@@ -1,0 +1,18 @@
+{{#and theme_settings.product_recently_viewed customer.recently_viewed_products.items}}
+    <div class="sidebarBlock sidebarBlock--mobileCollapsible">
+        <h5 class="sidebarBlock-heading is-open" data-collapsible="#sidebar-recently-viewed-products" data-collapsible-disabled-breakpoint="medium" aria-expanded="true">{{lang 'account.recent_items.heading' }}</h5>
+        <ul id="sidebar-recently-viewed-products" class="productList is-open" aria-hidden="false" data-product-type="recently_viewed">
+            {{#each (limit customer.recently_viewed_products.items theme_settings.product_recently_viewed)}}
+                <li class="product">
+                    {{>components/products/list-item 
+                        summary=false
+                        show_compare=../show_compare 
+                        show_rating=../settings.show_product_rating 
+                        theme_settings=../theme_settings 
+                        settings=../settings 
+                        customer=../customer}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+{{/and}}

@@ -1,0 +1,219 @@
+.body {
+    margin-bottom: spacing("double");
+    margin-top: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: -(container("padding") / 2);
+    margin-right: -(container("padding") / 2);
+
+    @include breakpoint("medium") {
+        margin-left: -$column-gutter / 2;
+        margin-right: -$column-gutter / 2;
+        display: block;
+    }
+}
+
+.main {
+    padding: 0 $container-padding / 2 - container("padding") / 2;
+
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+}
+
+.page-content {
+    order: 2;
+
+    // When main menu navPages style is Modern
+    .papaSupermarket-style--modern & {
+        margin-top: spacing("half");
+        padding-left: 0;
+        padding-right: 0;
+
+        @include breakpoint("medium") {
+            padding-left: $column-gutter / 2;
+            padding-right: $column-gutter / 2;
+        }
+    }
+}
+
+.page-content--centered {
+    @include breakpoint("medium") {
+        width: 60%;
+    }
+}
+
+.page-content--sticky {
+    @include breakpoint("medium") {
+        position: sticky;
+        top: 0;
+    }
+}
+
+.page-sidebar {
+    order: 3;
+    margin-top: spacing("single");
+    
+
+    @include breakpoint("medium") {
+        width: grid-calc(2, 10);
+        color: $color-textSecondary;
+        
+
+        @if $theme-style == "compact" {
+            margin-top: spacing("half");
+        }
+        @else {
+            margin-top: spacing("single");
+
+            // when layout is fixed left sidebar
+            .papaSupermarket-layout--left-sidebar & {
+                @if stencilString('navPages_categoriesMenu') == 'group' {
+                    margin-top: -(spacing("single") + spacing("base") + spacing("half"));
+                    z-index: zIndex("low"); // same header's z-index
+                }
+                @if stencilString('navPages_categoriesMenu') == 'horizontal' {
+                    margin-top: 0;
+                }
+            }
+
+            // Category page & Show Subcategories Menu is enabled.
+            .papaSupermarket-pageType--category.papaSupermarket--showSubcategoriesMenu & {
+                margin-top: spacing("single");
+                z-index: zIndex("lower"); // lower header
+            }
+
+            // no pages navigation
+            .papaSupermarket-layout--left-sidebar.papaSupermarket--hideContentNav & {
+                margin-top: 0;
+            }
+
+            // when banner below header show
+            .emthemesModezBannersBlockAfterHeader + .body & {
+                margin-top: 0;
+            }
+
+            // When main menu navPages style is Modern
+            .papaSupermarket-style--modern & {
+                margin-top: spacing("half");
+            }
+        }
+
+        
+        + .page-content {
+            width: grid-calc(8, 10);
+            float: right;
+        }
+
+        + .page-sidebar + .page-content {
+            width: grid-calc(6, 10);
+        }
+    }
+
+    .papaSupermarket-style--modern & {
+        padding-left: $column-gutter / 2 + spacing("quarter");
+        padding-right: $column-gutter / 2 + spacing("quarter");
+        
+        @include breakpoint("medium") {
+            padding-left: $column-gutter / 2;
+            padding-right: 0;
+        }
+    }
+
+    // fix margin issue of child elements
+    > nav {
+        border-top: 0.5px solid transparent;
+    }
+}
+
+.page-sidebar--top {
+    order: 1;
+    margin-top: 0;
+
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            margin-top: spacing("half");
+        }
+    }
+}
+
+.page-sidebar--bottom {
+    clear: left;
+
+    @include breakpoint("medium") {
+        &,
+        .papaSupermarket-layout--left-sidebar & {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.page-sidebar--right {
+    float: right;
+    
+    .papaSupermarket-layout--left-sidebar & {
+        margin-top: if($theme-style == "compact", spacing("half"), spacing("single"));
+
+        @include breakpoint("medium") {
+            z-index: zIndex("low") - 1; // same header's z-index - 1
+        }
+    }
+
+    .papaSupermarket-style--modern & {
+        margin-top: spacing("single");
+
+        @include breakpoint("medium") {
+            margin-top: spacing("half");
+        }
+    }
+}
+
+.page-sidebar--sticky {
+    @include breakpoint("medium") {
+        position: sticky;
+        top: 0;
+    }
+}
+
+
+.page-content-body {
+    .papaSupermarket-style--modern & {
+        @include u-modern-container-box($_shadow: false);
+
+        padding: spacing("quarter");
+        width: calc(100% - #{spacing("quarter") * 2});
+        margin: 0 auto;
+
+        @include breakpoint("small") {
+            padding: spacing("single") spacing("half");
+
+            &.emthemesModez-blog--2col .blog,
+            &.emthemesModez-blog--2col-featured .blog {
+                padding-left: spacing("half");
+                padding-right: spacing("half");
+            }
+        }
+
+        @include breakpoint("medium") {
+            width: 100%;
+        }
+    }
+}
+
+.papaSupermarket-style--modern[class*='papaSupermarket-page--pages-account-'] {
+    .body {
+        @include breakpoint("medium") {
+            margin-top: spacing("half");
+        }
+    }
+}
+
+.papaSupermarket-categoryPage-description {
+    .papaSupermarket-style--modern & {
+        padding: 0 spacing("half");
+    }    
+}

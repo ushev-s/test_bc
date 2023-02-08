@@ -1,0 +1,36 @@
+<div class="sidebarBlock sidebarBlock--verticalCategories">
+    <div class="emthemesModez-navPages-verticalCategories-container">
+        <a class="navPages-action has-subMenu" data-collapsible="emthemesModez-verticalCategories-sidebar"
+            data-collapsible-disabled-breakpoint="medium"
+            data-collapsible-disabled-state="open"
+            data-collapsible-enabled-state="closed">{{theme_settings.navPages_categoriesItem_text}}</a>
+        <div class="emthemesModez-verticalCategories emthemesModez-verticalCategories--open" id="emthemesModez-verticalCategories-sidebar" aria-hidden="false" tabindex="-1">
+            <ul class="navPages-list navPages-list--categories">
+                {{#if theme_settings.subcategories_menu_vertical}}
+                    {{#each categories}}
+                        <li class="navPages-item">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='vertical'}}
+                        </li>
+                    {{/each}}
+                {{else if theme_settings.navPages_standard}}
+                    {{#each categories}}
+                        <li class="navPages-item navPages-item--standard">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='standard'}}
+                        </li>
+                    {{/each}}
+                {{else}}
+                    {{#each categories}}
+                        <li class="navPages-item">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='mega'}}
+                        </li>
+                    {{/each}}
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</div>
+{{#if page_type "===" "category"}}
+    {{inject "enableVerticalCurrentCategory" true}}
+{{else if page_type "===" "product"}}
+    {{inject "enableVerticalCurrentCategory" true}}
+{{/if}}

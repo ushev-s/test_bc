@@ -1,0 +1,18 @@
+<a class="modal-close" aria-label="{{lang 'common.close'}}" data-drop-down-close role="button">
+    <svg class="icon"><use xlink:href="#icon-close" /></svg>
+</a>
+{{#if product_results.products}}
+    <ul class="productGrid productGrid--maxCol6" {{#if settings.data_tag_enabled}} data-list-name="Quick Search Results" {{/if}}>
+
+        {{#each product_results.products}}
+        <li class="product">
+            {{> components/products/card show_compare=../show_compare theme_settings=../theme_settings customer=../customer settings=../settings event="list" position=(add @index 1)}}
+        </li>
+        {{/each}}
+    </ul>
+    <p class="quickSearchResults-more"><a href="{{forms.search.product_url}}" class="button">{{lang 'search.quick_search.show_all'}}</a></p>
+{{else}}
+    <p class="quickSearchMessage">
+        {{{lang 'search.results.quick_count' count=pagination.product_results.total search_query=(sanitize forms.search.query)}}}
+    </p>
+{{/if}}

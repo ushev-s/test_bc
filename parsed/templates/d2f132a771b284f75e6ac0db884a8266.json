@@ -1,0 +1,1 @@
+{"components/search/product-count":"{{lang 'search.results.product_count' count=pagination.product_results.total}}\n"}

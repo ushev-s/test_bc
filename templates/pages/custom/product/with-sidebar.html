@@ -1,0 +1,62 @@
+{{#partial "page"}}
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+        <div class="page">
+            <div class="page-sidebar">
+                {{> components/papa-supermarket/home/sidebar}}
+            </div>
+            <main class="page-content">
+    {{/if}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert-info message}}
+    {{/each}}
+
+    <div class="productView-scope">
+        {{> components/products/product-view schema=false}}
+
+        {{{region name="product_below_content--global"}}}
+        {{{region name="product_below_content"}}}
+
+        {{#unless theme_settings.show_video_tabs}}
+        {{#if product.videos.list.length}}
+            {{> components/products/videos product.videos}}
+        {{/if}}
+        {{/unless}}
+
+        {{#all settings.show_product_reviews (if theme_settings.show_product_reviews_tabs '!==' true) (if product.reviews.total '>' 0)}}
+            <div class="productView-reviewTabs">
+                <ul class="tabs" data-tab >
+                    <li class="tab is-active" >
+                        <a class="tab-title" href="#tab-reviews" tabindex="0" aria-selected="true" controls="tab-reviews">{{lang 'products.reviews.header' total=product.reviews.total}}</a>
+                    </li>
+                </ul>
+                <div class="tabs-contents">
+                    <div role="tabpanel" aria-hidden="false" class="tab-content is-active" id="tab-reviews" data-emthemesmodez-mobile-collapse>
+                        <h2 class="page-heading">{{lang 'products.reviews.header' total=product.reviews.total}}</h2>
+                        <div class="emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
+                            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                        </div>
+                        <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
+                    </div>
+                </div>
+            </div>
+        {{/all}}
+    </div>
+
+    <div class="productView-productTabs">
+        {{> components/products/tabs}}
+    </div>
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+            </main>
+        </div>
+    {{/if}}
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

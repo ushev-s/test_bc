@@ -1,0 +1,63 @@
+@keyframes instantload-loading-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes instantload-loading-hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.instantload-loading,
+.instantload-loaded {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: zIndex("high") - 5;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba($color-white, .9);
+        opacity: 1;
+    }
+
+    &:after {
+        content: '';
+        position: fixed;
+        z-index: zIndex("highest") + 5;
+        top: calc(50% - 50px);
+        left: calc(50% - 50px);
+        width: 100px;
+        height: 100px;
+        background: url(../img/loading.svg) center center no-repeat;
+        background-size: cover;
+        opacity: 1;
+    }
+}
+
+.instantload-loading {
+    &:before,
+    &:after {
+        opacity: 1;
+        animation: instantload-loading-show .3s;
+    }
+}
+
+.instantload-loaded {
+    &:before,
+    &:after {
+        opacity: 0;
+        animation: instantload-loading-hide .3s;
+    }
+}

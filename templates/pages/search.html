@@ -1,0 +1,196 @@
+---
+product_results:
+    limit: {{theme_settings.searchpage_products_per_page}}
+products:
+    new:
+        limit: 20
+    featured:
+        limit: 20
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+shop_by_brand:
+    limit: {{theme_settings.max_shop_by_brand}}
+---
+{{inject 'categoryTree' forms.search.category_options}}
+{{inject 'searchProductsPerPage' theme_settings.searchpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.product_results.previous}}
+        <link rel="prev" href="{{pagination.product_results.previous}}">
+    {{/if}}
+    {{#if pagination.product_results.next}}
+        <link rel="next" href="{{pagination.product_results.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+
+
+<section class="page">
+
+    {{#if product_results.faceted_search_enabled}}
+        {{#if product_results.products}}
+            <div class="page-sidebar page-sidebar--top">
+                <div id="faceted-search-container" class="faceted-search-container">
+                    {{> components/faceted-search/index product_results}}
+                </div>
+            </div>
+        {{else}}
+            {{#if theme_settings.layout '===' 'left-sidebar'}}
+                <div class="page-sidebar">
+                    {{> components/papa-supermarket/home/sidebar}}
+                </div>
+            {{/if}}
+        {{/if}}
+    {{else}}
+        <div class="page-sidebar page-sidebar--top page-sidebar--advancedSearch">
+            {{>components/search/advanced-search}}
+        </div>
+    {{/if}}
+
+    <main class="page-content">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        {{{snippet 'search'}}}
+        {{{region name="search_before_nav--global"}}}
+        {{{region name="search_before_nav"}}}
+        <section class="nav">
+            {{#if forms.search.query}}
+                <div id="search-results-heading">
+                    {{>components/search/heading}}
+                </div>
+            {{/if}}
+            <nav class="navBar navBar--sub">
+                <ul class="navBar-section account-navigation">
+                    <li class="navBar-item">
+                        <a id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}" data-product-results-toggle>
+                            {{>components/search/product-count}}
+                        </a>
+                    </li>
+                    <li class="navBar-item">
+                        <a class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
+                            {{lang 'search.results.content_count' count=pagination.content_results.total}}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </section>
+
+        {{#if forms.search.has_suggestions}}
+            <div class="panel panel--large">
+                <div class="panel-body panel-body--searchSuggestions">
+                    {{#if forms.search.suggested_query}}
+                        <div class="search-suggestion search-suggestion--query">
+                            {{lang 'forms.search.did_you_mean'}} <strong>{{forms.search.suggested_query.query}}</strong>
+                            <a href="{{forms.search.suggested_query.url}}" class="search-refine">{{lang 'forms.search.refine'}}</a>
+                        </div>
+
+                        {{#if result_count '===' 0}}
+                            <div class="search-suggestion search-suggestion--query">
+                                <p>
+                                    {{lang 'forms.search.your_search_for'}}
+                                    "<strong>{{{sanitize forms.search.query}}}</strong>"
+                                    {{lang 'forms.search.no_match'}}
+                                </p>
+                            </div>
+                        {{/if}}
+                    {{/if}}
+
+                    {{#if category_results.length}}
+                        <div class="search-suggestion search-suggestion--categories">
+                            <h5 class="suggestion-title">{{lang 'forms.search.categories'}}</h5>
+                            <ul class="category-suggestion-list">
+
+                                {{#each category_results}}
+                                <li class="category-suggestion">
+
+                                    {{#each this}}
+                                        <a href="{{url}}">{{name}}</a>
+                                        {{#unless @last}} > {{/unless}}
+                                    {{/each}}
+
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
+
+                    {{#if brand_results.length}}
+                        <div class="search-suggestion search-suggestion--brands">
+                            <h5 class="suggestion-title">{{lang 'forms.search.brand'}}</h5>
+                            {{#each brand_results}}
+                                <a href="{{url}}">{{name}}</a>
+                                {{#unless @last}}, {{/unless}}
+                            {{/each}}
+                        </div>
+                    {{/if}}
+
+                    {{#if result_count '===' 0}}
+                        <div class="search-suggestion search-suggestion--tips">
+                            <h5 class="suggestion-title">{{lang 'forms.search.suggestions.title'}}</h5>
+                            <ul>
+                                <li>{{lang 'forms.search.suggestions.line1'}}</li>
+                                <li>{{lang 'forms.search.suggestions.line2'}}</li>
+                                <li>{{lang 'forms.search.suggestions.line3'}}</li>
+                            </ul>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        {{/if}}
+
+        {{{region name="search_before_content--global"}}}
+        {{{region name="search_before_content"}}}
+
+        {{#if content_results}}
+            <div id="search-results-content" {{#if forms.search.section '!=' 'content'}}class="u-hiddenVisually"{{/if}}>
+                {{> components/search/content-sort-box sort=pagination.content_results.sort}}
+                <ul>
+                    {{#each content_results}}
+                        <strong><a href="{{url}}">{{{title}}}</a></strong>({{type}})
+                        <p>{{{content}}}</p>
+                    {{/each}}
+                </ul>
+                {{> components/common/paginator pagination.content_results reload=true instantload=true}}
+            </div>
+
+        {{/if}}
+
+        <div id="product-listing-container" class="
+            {{#if theme_settings.product_list_display_mode '===' 'grid2'}}mode-2
+            {{else if theme_settings.product_list_display_mode '===' 'grid3'}}mode-3
+            {{else if theme_settings.product_list_display_mode '===' 'grid6'}}mode-6
+            {{else if theme_settings.product_list_display_mode '===' 'list'}}mode-1
+            {{else if theme_settings.product_list_display_mode '===' 'listbo'}}mode-bo{{/if}}
+            {{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}
+        ">
+            {{> components/search/product-listing}}
+        </div>
+
+        {{{region name="search_below_content--global"}}}
+        {{{region name="search_below_content"}}}
+        
+        {{#if result_count '===' 0}}
+            {{#if products.new}}
+                <div class="emthemesModez-section emthemesModez-section--newProducts emthemesModez-section--displayType-carousel">
+                    <div class="emthemesModez-section-inner">
+                        {{> components/products/new products=products.new columns=6 display_type="carousel"}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+
+        {{#if products.featured}}
+            <div class="emthemesModez-section emthemesModez-section--featuredProducts emthemesModez-section--displayType-carousel">
+                <div class="emthemesModez-section-inner">
+                    {{> components/products/featured products=products.featured columns=6 display_type="carousel"}}
+                </div>
+            </div>
+        {{/if}}
+    </main>
+</section>
+
+{{/partial}}
+{{> layout/base}}

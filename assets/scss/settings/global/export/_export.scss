@@ -1,0 +1,14 @@
+// =============================================================================
+// EXPORT CSS
+// =============================================================================
+
+
+// Include classes when building
+// -----------------------------------------------------------------------------
+
+$exportCSS:                     false;
+
+
+// emthemesModez mods
+$include-html-grid-classes:     true; // export css class to support grid
+$row-width:                     layout("max"); // grid row max width

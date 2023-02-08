@@ -1,0 +1,509 @@
+
+/**
+ * ============================================================================
+ * Block: Blog Posts in Grid view
+ * 
+ * - .emthemesModez-blogGrid: block blog in grid style
+ * - .emthemesModez-blogGrid--featured: block blog which has a first post show bigger than others
+ *  
+ * ============================================================================
+ */
+
+.emthemesModez-blogGrid {
+	@include u-listBullets("none");
+	@include grid-row($behavior: "nest");
+	font-size: 0; // 1
+	margin-bottom: spacing("single");
+
+	.emthemesModez-blogItem {
+		@include grid-column(12, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+		@include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+	}
+
+	.blog-post-figure {
+		width: 100%;
+	}
+
+	.blog-post-body {
+		width: 100%;
+	}
+}
+
+@include breakpoint("small") {
+	.emthemesModez-blogGrid--featured {
+		.emthemesModez-blogItem:first-child {
+			width: 50%;
+			float: left;
+		}
+
+		.emthemesModez-blogItem:nth-child(2),
+		.emthemesModez-blogItem:nth-child(3) {
+			width: 50%;
+			
+			.blog {
+				display: flex;
+				align-items: flex-start;
+			}
+			
+			.blog-post-figure {
+				flex: 1;
+				margin: 0 spacing("single") 0 0;
+
+				.first-tag {
+					bottom: spacing("single") * 2;
+				}
+			}
+
+			.blog-post-body {
+				flex: 1;
+			}
+
+			.blog-date {
+				display: none;
+			}
+		}
+	}
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * - Blog page 2-columns layout &
+ * - Blog page 2-columns layout has a first post show full width.
+ * ----------------------------------------------------------------------------
+ */
+@include breakpoint("small") {
+
+	.emthemesModez-blog--2col,
+	.emthemesModez-blog--2col-featured {	
+		@include grid-row($behavior: "nest");
+		font-size: 0; // 1
+		margin-bottom: spacing("single");
+
+		> * {
+			font-size: fontSize("base"); // 1
+		}
+
+		.blog {
+			@include grid-column(6, $float: none);
+	        display: inline-block;
+	        vertical-align: top;
+		}
+	}
+
+	.emthemesModez-blog--2col .blog:nth-child(2) {
+		margin-top: 0;
+    	padding-top: 0;
+	}
+
+	.emthemesModez-blog--2col-featured .blog:first-child {
+		display: block;
+		width: 100%;
+	}
+}
+
+
+/**
+ * ============================================================================
+ * Common blog elements
+ * ============================================================================
+ */
+
+
+.blog-post-figure {
+	position: relative;
+
+	.first-tag {
+		position: absolute;
+		bottom: spacing("single");
+		left: 0;
+
+		a {
+			display: block;
+			padding: spacing("quarter") spacing("single");
+			background: #fff;
+			text-transform: uppercase;
+			font-weight: fontWeight("bold");
+			font-size: fontSize("smaller");
+			letter-spacing: letterSpacing("large");
+			text-decoration: none;
+		}
+	}
+}
+
+/**
+ * Blog page which has Sidebar
+ */
+.page-sidebar + .page-content {
+	.blog-post-figure {
+		width: 100%;
+	}
+}
+
+
+
+.blog-thumbnail {
+	overflow: hidden;
+	margin: 0 0 spacing("single");
+}
+
+.blog-post-body {
+	text-align: left;
+}
+
+.page-sidebar + .page-content {
+	.blog-post-body {
+		width: 100%;
+	}
+}
+
+
+.blog-title {
+	@if $theme-style == "compact" {
+		margin: 0 0 spacing("half");
+	}
+	@else {
+		margin: 0 0 spacing("single");
+	}
+
+	a {
+		color: inherit;
+	}
+}
+h1.blog-title {
+	margin-top: spacing("single");
+
+	@include breakpoint("small") {
+		margin-top: spacing("half");
+	}
+}
+
+.blog-post {
+	font-size: fontSize("base");
+	margin-bottom: spacing("single");
+}
+
+.blog--has-tags,
+.blog--has-socials {
+
+	.blog-post-body {
+		@include clearfix;
+	}
+
+	.blog-post {
+		border-bottom: 1px solid container("borderColor");
+		
+		@if $theme-style == "compact" {
+			padding-bottom: spacing("half");
+		}
+		@else {
+			padding-bottom: spacing("single");
+		}
+	}
+}
+
+.blog-summary {
+	@if $theme-style == "compact" {
+		margin: 0 0 spacing("half");
+	}
+	@else {
+		margin: 0 0 spacing("single");
+	}
+}
+
+.blog-dateContainer {
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.blog-readmore a {
+	text-decoration: none;
+	margin-top: spacing("single");
+
+	@if $theme-style == "compact" {
+		font-weight: inherit;
+		text-transform: capitalize;
+	}
+	@else {
+		font-weight: fontWeight("bold");
+		text-transform: uppercase;
+	}
+}
+
+
+.blog-date,
+.blog-author {
+	font-size: fontSize("smaller");
+	color: $color-textSecondary;
+	text-align: right;
+}
+
+.blog-date-date {
+	&:before {
+		font-family: FontAwesome;
+		content: "\f017";
+		font-size: fontSize("base");
+		display: inline-block;
+		padding-right: spacing("quarter");
+	}
+}
+
+.blog-date-author {
+	padding-left: spacing("half");
+	&:before {
+		font-family: FontAwesome;
+		content: "\f2c0";
+		font-size: fontSize("base");
+		display: inline-block;
+		padding-right: spacing("quarter");
+	}
+}
+
+.blog {
+	.tags {
+		margin-bottom: 0;
+		text-align: left;
+
+		@if $theme-style == "compact" {
+			margin-top: spacing("half");
+		}
+		@else {
+			margin-top: spacing("single");
+		}
+	}
+
+	.addthis_toolbox {
+		text-align: left;
+
+		@if $theme-style == "compact" {
+			margin-top: spacing("half");
+		}
+		@else {
+			margin-top: spacing("single");
+		}
+
+		@include breakpoint("small") {
+			text-align: right;
+		}
+	}
+}
+
+.blog--has-tags .tags,
+.blog--has-socials .addthis_toolbox {
+	@include breakpoint("small") {
+		float: left;
+		width: 50%;
+	}
+}
+
+.blog .socialLinks {
+	text-align: left;
+
+	@include breakpoint("small") {
+		text-align: right;
+	}
+}
+
+
+/* fix wrong width of pinterest icon */
+.addthis_toolbox a.at300b.addthis_button_pinterest {
+	width: spacing("quarter") * 2 + lineHeight("base") * fontSize("base");
+
+	.pin_it_iframe_widget {
+		display: none;
+	}
+}
+
+
+.emthemesModez-blog-bottomSection {
+	margin-top: spacing("single") * 3;
+}
+
+
+
+
+// ============================================================================
+// Recent Blog Posts - Style 'footerList'
+// ============================================================================
+
+.page-heading--blogGrid-footerList {
+	font-size: fontSize("larger");
+	text-align: left;
+	text-transform: uppercase;
+	margin: 0 0 spacing("single");
+}
+
+.emthemesModez-blogGrid--footerList {
+	
+	@include breakpoint("medium") {
+		margin-bottom: 0;
+	}
+
+	.emthemesModez-blogItem {
+		display: block;
+		width: 100%;
+
+		&:last-child {
+			margin-bottom: -(spacing("single"));
+		}
+	}
+
+	.blog-thumbnail {
+		@include square(70px); // TOOD: add to theme settings
+		margin: 0 $column-gutter $column-gutter 0;
+	}
+
+	.blog {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.blog-post-figure {
+		flex: 0;
+		margin: 0;
+	}
+
+	.blog-post-body {
+		flex: 1;
+	}
+
+	.blog-title {
+		font-size: fontSize("base");
+		margin-bottom: spacing("half");
+	}
+}
+
+
+// ============================================================================
+// Blog on Sidebar
+// ============================================================================
+.sidebarBlock--blog {
+	.navList {
+		@include breakpoint("small") {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		@include breakpoint("medium") {
+			display: block;
+		}
+	}
+
+	.navList-item {
+		@include breakpoint("small") {
+			width: 50%;
+		}
+
+		@include breakpoint("medium") {
+			width: 100%;
+		}
+	}
+
+	.blog-post-figure {
+		@include breakpoint("medium") {
+		    width: 100%;
+		}
+	}
+
+	.blog-post-body {
+		@include breakpoint("small") {
+		    width: 100%;
+		}
+	}
+
+	.blog-dateContainer {
+		@include breakpoint("medium") {
+		    display: block;
+		}
+	}
+
+	.blog-date,
+	.blog-author {
+		display: none;
+		
+		@include breakpoint("medium") {
+			text-align: left;
+		}
+	}
+
+	.blog-readmore {
+		+ .blog-date {
+			@include breakpoint("medium") {
+				margin-top: spacing("single");
+			}
+		}
+	}
+}
+
+// ============================================================================
+// Modern Style
+// ============================================================================
+.papaSupermarket-style--modern {
+	.emthemesModez-blogGrid {
+		margin: 0;
+		background-color: container("fill");
+		border: container("border");
+		border-radius: $container-border-radius;
+		box-shadow: 0 3px 0 container("borderColor");
+		padding: spacing("half") spacing("quarter");
+
+		.emthemesModez-blogItem {
+			padding: 0 spacing("quarter");
+		}
+	}
+
+	.blog-title {
+		font-size: fontSize("small");
+		font-weight: fontWeight("normal");
+		margin-bottom: spacing("half");
+	}
+
+	.blog-summary {
+		margin-bottom: spacing("half");
+	}
+
+	.blog-readmore a {
+		text-transform: capitalize;
+		font-weight: inherit;
+		color: $color-primary;
+
+		&:hover {
+			color: $color-textBase;
+		}
+	}
+
+	.sidebarBlock--blog {
+		.navList-item {
+			padding: spacing("half");
+		}
+
+		.blog {
+			margin-bottom: 0;
+		}
+
+		.blog-thumbnail {
+			margin-bottom: spacing("half");
+		}
+		
+
+		.blog-post {
+			margin-bottom: spacing("half");
+		}
+
+		.blog-readmore + .blog-date {
+			margin-top: spacing("half");
+		}
+
+		.blog-summary {
+			color: $color-textBase;
+		}
+	}
+}
+
+

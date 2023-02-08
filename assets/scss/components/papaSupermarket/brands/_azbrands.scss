@@ -1,0 +1,75 @@
+.azBrands-table {
+    @include u-listReset;
+    text-transform: uppercase;
+
+    li {
+        display: inline-block;
+
+        a {
+            display: block;
+            padding: spacing("quarter");
+            min-width: spacing("single") + spacing("half");
+            text-align: center;
+            border: container("border");
+            text-decoration: none;
+            font-size: fontSize("large");
+            font-weight: fontWeight("bold");
+
+            &:hover {
+                border-color: stencilColor("color-textLink--hover");
+            }
+        }
+    }
+}
+
+.azBrands-group-title {
+    font-size: fontSize("largest");
+    text-transform: uppercase;
+    color: stencilColor("color-textSecondary");
+}
+
+.azBrands-group {
+    display: none;
+
+    &.is-active {
+        display: block;
+    }
+
+    .card-figure {
+        display: none;
+    }
+
+    .brandGrid .brand .card-title {
+        text-align: left;
+    }
+
+    .card {
+        margin-bottom: spacing("half");
+    }
+
+    .card-body {
+        padding: 0;
+    }
+}
+
+.azBrands ~ .pagination {
+    display: none;
+}
+
+.azBrands-group-topLink {
+    text-align: right;
+    display: none;
+
+    a {
+        text-decoration: none;
+        color: stencilColor("color-textSecondary");
+
+        &:hover,
+        &:focus {
+            color: stencilColor("color-textSecondary--hover");
+        }
+        &:active {
+            color: stencilColor("color-textSecondary--active");
+        }
+    }
+}

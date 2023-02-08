@@ -1,0 +1,9 @@
+// =============================================================================
+// NAV PAGES (Settings)
+// =============================================================================
+
+
+$navPages-backgroundColor:                  container("fill", "dark");
+$navPage-borderColor:                       stencilColor("navPages-subMenu-separatorColor");
+$navPage-childList-borderColor:             $navPage-borderColor;
+$navPages-list--user-borderColor:           $navPage-borderColor;

@@ -1,0 +1,32 @@
+// =============================================================================
+// PRICE (CSS)
+// =============================================================================
+
+.price-section {
+	// color: $color-textSecondary;
+
+	> * {
+		vertical-align: baseline;
+	}
+
+	[itemprop="priceSpecification"] {
+		display: inline;
+	}
+}
+
+.price-section--saving {
+	.price {
+		color: $color-textSecondary;
+	}
+}
+
+.price {
+	color: stencilColor("color-price");
+}
+
+.price--rrp,
+.price--non-sale,
+.price--discounted {
+	color: $color-textSecondary;
+	// font-weight: fontWeight("thin");
+}

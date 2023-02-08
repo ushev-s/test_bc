@@ -1,0 +1,12 @@
+<div class="body" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal}}
+    {{> components/common/alert-modal}}
+</div>
+
+<div class="scrollToTop">
+    <a href="#topOfPage" class="button u-hiddenVisually" id="scrollToTopFloatingButton" title="{{lang 'common.top_of_page'}}"><i class="fa fa-chevron-up"></i></a>
+</div>

@@ -1,0 +1,159 @@
+.emthemesModez-productsFilter {
+    @media (max-width: screenSize("medium") - 1px) {
+        margin: 0;
+        position: relative;
+        
+        &:first-child {
+            margin-top: spacing("half");
+            margin-bottom: spacing("half");
+        }
+
+        .actionBar {
+            position: absolute;
+            left: 1px;
+            right: 1px;
+            margin-top: spacing("half") * 2 + remCalc(fontSize("smaller") * lineHeight("base"));
+            z-index: zIndex("lower") + 1;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none;
+            
+
+            &.is-open {
+                display: block;
+            }
+        }
+
+        .actionBar-section {
+            float: none;
+
+            .form-field {
+                border-radius: 0;
+                margin-top: -1px;
+            }
+        }
+
+        .form-field {
+            margin-bottom: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+
+            &:before,
+            &:after {
+                display: none;
+            }
+        }
+
+        .form-label {
+            margin-right: auto;
+        }
+
+        .form-option {
+            margin-top: spacing("half");
+            margin-bottom: spacing("half");
+        }
+
+        .form-option-variant {
+            min-width: fontSize("base") * lineHeight("base");
+        }
+    }
+
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            .form-field {
+                margin-bottom: 0;
+            }
+
+            .form-option {
+                margin-top: spacing("quarter");
+                margin-bottom: spacing("quarter");
+                padding: 0;
+            }
+        }
+    }
+
+    .page-sidebar & {
+        @include breakpoint("medium") {
+            display: none;
+        }
+    }
+
+    .page-content & {
+        display: none;
+
+        @include breakpoint("medium") {
+            display: block;
+        }
+    }
+
+    .sidebarBlock + & {
+        margin-top: spacing("single");
+    }
+
+    .sidebarBlock--verticalCategories + & {
+        margin-top: 0;
+    }
+}
+
+.emthemesModez-productsFilter--faceted {
+    .sidebarBlock + & {
+        // margin-top: 0;
+    }
+}
+
+
+.emthemesModez-productsFilter-toggle {
+    padding: spacing("half");
+    // font-size: remCalc(18);
+    font-size: fontSize("smaller") * lineHeight("base"); // to make height equal filter toggle button
+    float: right;
+    margin: 0;
+    margin-right: 1px;
+    border-radius: $global-radius;
+
+    @include breakpoint("medium") {
+        display: none;
+    }
+}
+
+// Modern Style
+// ============================================================================
+.papaSupermarket-style--modern {
+    @media (max-width: screenSize("medium") - 1px) {
+        .page-sidebar {
+            .emthemesModez-productsFilter {
+                margin-left: -($container-padding / 2);
+                margin-right: -($container-padding / 2);
+            }
+        }
+
+        .emthemesModez-productsFilter--faceted {
+            .emthemesModez-productsFilter-toggle {
+                border: 0;
+            }
+        }
+
+        .sidebarBlock + .emthemesModez-productsFilter {
+            margin-top: spacing("half");
+        }
+
+        .sidebarBlock--verticalCategories + .emthemesModez-productsFilter {
+            margin-top: 0;
+        }
+
+        .emthemesModez-productsFilter-toggle {
+            background-color: container("fill");
+        }
+
+        .facetedSearch-navList {
+
+            &.is-open {
+                padding: spacing("half") 0;
+            }
+
+            > .accordion {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

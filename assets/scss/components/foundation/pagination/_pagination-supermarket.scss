@@ -1,0 +1,51 @@
+.pagination {
+    @include clearfix;
+
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            background-color: container("fill", "dark");
+            padding: spacing("eighth") spacing("single");
+        }
+    }
+}
+
+.pagination-info {
+    vertical-align: top;
+    padding: spacing("half") 0;
+    color: $color-textSecondary;
+    text-align: center;
+
+    @include breakpoint("medium") {
+        display: inline-block;
+        text-align: left;
+    }
+
+    +.pagination-list {
+        @include breakpoint("medium") {
+            float: right;
+        }
+    }
+}
+
+.pagination-item--previous {
+    float: none;
+}
+
+.pagination-item--next {
+    float: none;
+}
+
+.pagination-list {
+    @include breakpoint("medium") {
+        @if $theme-style == "compact" {
+            margin-bottom: 0;
+        }
+    }
+
+    li {
+        a,
+        button {
+            padding: spacing("half") spacing("base");
+        }
+    }
+}

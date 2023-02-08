@@ -1,0 +1,7 @@
+.form-option-expanded {
+    display: none;
+
+    @include breakpoint("medium") {
+        display: block;
+    }
+}

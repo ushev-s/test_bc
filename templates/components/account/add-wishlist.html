@@ -1,0 +1,39 @@
+<div class="wishlist-add">
+    <header class="wishlist-header">
+        {{#if forms.wishlist.id}}
+            <h1>{{lang 'account.wishlists.edit'}}</h1>
+        {{else}}
+            <h1>{{lang 'account.wishlists.new'}}</h1>
+            <p>{{lang 'account.wishlists.tag_line'}}</p>
+        {{/if}}
+        {{#if forms.wishlist.errors}}
+            {{> components/common/alert-error forms.wishlist.errors}}
+        {{/if}}
+    </header>
+    <form action="{{#if forms.wishlist.id}}{{urls.account.wishlists.edit}}{{else}}{{urls.account.wishlists.add}}&product_id={{forms.wishlist.product_id}}{{/if}}" class="form wishlist-form" method="post">
+        <input type="hidden" name="submit">
+
+        <div class="form-field">
+            <label class="form-label" for="wishlistname">
+                {{lang 'forms.wishlist.name'}}
+                <small>{{lang 'common.required' }}</small>
+            </label>
+            <input class="form-input" name="wishlistname" id="wishlistname" value="{{forms.wishlist.name}}">
+        </div>
+        <div class="form-field">
+            <input type="checkbox" class="form-checkbox" name="publicwishlist" id="publicwishlist" {{#if forms.wishlist.is_public}}checked{{/if}}>
+            <label class="form-label" for="publicwishlist">{{lang 'forms.wishlist.public' }}</label>
+
+        </div>
+        <div class="form-actions">
+            {{#if forms.wishlist.id}}
+                <input type="submit" class="button button--primary" value="{{lang 'account.wishlists.save'}}">
+                <input type="hidden" name="wishlistid" value="{{forms.wishlist.id}}">
+            {{else}}
+                <input type="submit" class="button button--primary"
+                       value="{{lang 'account.wishlists.create'}}">
+            {{/if}}
+        </div>
+    </form>
+
+</div>

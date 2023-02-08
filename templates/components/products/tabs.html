@@ -1,0 +1,32 @@
+<ul class="tabs" data-tab >
+    {{#if product.related_products}}
+        <li class="tab is-active" >
+            <a class="tab-title" href="#tab-related" tabindex="0" aria-selected="true" controls="tab-related">{{lang 'products.related_products'}}</a>
+        </li>
+    {{/if}}
+    {{#if product.similar_by_views}}
+        <li class="tab{{#unless product.related_products}} is-active{{/unless}}" >
+            <a class="tab-title" href="#tab-similar" tabindex="0" aria-selected="false" controls="tab-similar">{{lang 'products.similar_by_views'}}</a>
+        </li>
+    {{/if}}
+</ul>
+
+<div class="tabs-contents">
+{{#if product.related_products}}
+    <div role="tabpanel" aria-hidden="false" class="tab-content has-jsContent is-active" id="tab-related">
+        <p class="page-heading">{{lang 'products.related_products'}}</p>
+        {{#if settings.data_tag_enabled}}
+            <div class="searchanise-recommendations" id="2F7X1Y1P4G2L0E3"></div>
+        {{else}}
+            {{> components/products/carousel products=product.related_products columns=5}}
+        {{/if}}
+    </div>
+{{/if}}
+
+{{#if product.similar_by_views}}
+    <div role="tabpanel" aria-hidden="true" class="tab-content has-jsContent{{#unless product.related_products}} is-active{{/unless}}" id="tab-similar">
+        <p class="page-heading">{{lang 'products.similar_by_views'}}</p>
+        {{> components/products/carousel products=product.similar_by_views columns=5 list="Customers Also Viewed"}}
+    </div>
+{{/if}}
+</div>

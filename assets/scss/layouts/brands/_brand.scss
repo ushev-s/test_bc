@@ -1,0 +1,27 @@
+.brand-image-container {
+    position: relative;
+    
+    @if stencilString('brand_main_size') != 'original' {
+        max-width: get-width(stencilString('brand_main_size'));
+
+        img {
+            @include lazy-loaded-img;
+            // papathemes-supermarket:
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: left top;
+            font-family: "object-fit: contain";
+        }
+
+        @include lazy-loaded-padding('brand_main_size');
+    }
+}
+
+.brand {
+    .card-img-container {
+        max-width: get-width(stencilString('brand_size'));
+
+        @include lazy-loaded-padding('brand_size');
+    }
+}

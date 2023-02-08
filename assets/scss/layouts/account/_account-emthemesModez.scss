@@ -1,0 +1,61 @@
+.container .account {
+    padding: 0 $container-padding / 2;
+
+    .account-body {
+        margin: 0;
+    }
+}
+
+.account--fixed {
+    @include breakpoint("medium") {
+        width: 80%;
+    }
+
+    @include breakpoint("large") {
+        width: 60%;
+    }
+}
+
+
+.papaSupermarket-style--modern {
+    .account {
+        @include u-modern-container-box;
+        padding: spacing("half");
+        margin-top: spacing("half");
+
+        .form {
+            margin-bottom: 0;
+        }
+    }
+
+    .account-content--fixedSmall {
+        @include breakpoint("medium") {
+            padding-left: spacing("double");
+        }
+    }
+
+    &.papaSupermarket-page--pages-auth-create-account {
+        @include breakpoint("medium") {
+            .body > .container {
+                margin-top: spacing("half");
+            }
+        }
+    }
+
+    &.papaSupermarket-page--pages-gift-certificate-purchase,
+    &.papaSupermarket-page--pages-gift-certificate-redeem,
+    &.papaSupermarket-page--pages-gift-certificate-balance {
+        .account {
+            width: calc(100% - #{spacing("quarter") * 2});
+            margin: 0 auto;
+
+            @include breakpoint("medium") {
+                width: 100%;
+            }
+
+            h3:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

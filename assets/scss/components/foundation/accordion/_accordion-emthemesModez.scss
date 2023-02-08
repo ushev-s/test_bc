@@ -1,0 +1,20 @@
+
+
+// Accordion nav list
+// -----------------------------------------------------------------------------
+//
+// Purpose: Used as navigation menu, for example: faceted search menu.
+//
+// -----------------------------------------------------------------------------
+.accordion--navList {
+
+    .accordion-indicator {
+        
+
+        @include breakpoint("medium") {
+            visibility: visible;
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+}

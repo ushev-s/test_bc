@@ -1,0 +1,142 @@
+<div class="modal-header">
+    <h2 class="modal-header-title">
+        {{lang 'cart.added_to_cart.what_next' num_products=cart.quantity}}
+    </h2>
+</div>
+
+<div class="modal-body">
+    <div class="previewCart">
+        <section class="previewCartCheckout">
+            {{#if cart.show_primary_checkout_button}}
+                <a href="{{urls.checkout.single_address}}" class="button button--primary previewCartCheckout-checkoutButton">
+                    {{lang 'cart.added_to_cart.proceed_to_checkout'}}
+                </a>
+            {{/if}}
+
+            <div class="previewCartCheckout-additionalCheckoutButtons">
+                {{#each cart.additional_checkout_buttons}}
+                    {{{this}}}
+                {{/each}}
+            </div>
+
+            {{#if cart.show_multiple_address_shipping}}
+                <div class="previewCartAction-checkoutMultiple">
+                    <a href="{{urls.checkout.multiple_address}}">
+                        {{lang 'cart.preview.checkout_multiple'}}
+                    </a>
+                </div>
+            {{/if}}
+
+            <div class="previewCartCheckout-subtotal">
+                {{lang 'cart.added_to_cart.order_subtotal'}}
+
+                <strong class="previewCartCheckout-price">
+                    {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                        {{cart.sub_total.formatted}}
+                    {{else}}
+                        {{> components/common/login-for-pricing}}
+                    {{/or}}
+                </strong>
+            </div>
+
+            <p data-cart-quantity="{{cart.quantity}}">
+                {{lang 'cart.added_to_cart.your_cart_contains' num_products=cart.quantity}}
+            </p>
+
+            <a href="#" class="button button--primary previewCartCheckout-continueButton" role="button" data-reveal-close>
+                {{lang 'cart.added_to_cart.continue_shopping'}}
+            </a>
+
+            <a href="{{urls.cart}}" class="button previewCartCheckout-viewCartButton">
+                {{#if theme_settings.add_to_cart_popup '===' 'mini'}}
+                    {{lang 'cart.preview.view_cart'}}
+                {{else}}
+                    {{lang 'cart.added_to_cart.view_or_edit_cart'}}
+                {{/if}}
+            </a>
+
+            {{#if theme_settings.add_to_cart_popup '===' 'mini'}}
+            <p class="previewCartCheckout-autoClose" data-auto-close="10">{{{lang 'cart.added_to_cart.auto_close'}}}</p>
+            {{/if}}
+        </section>
+        <section class="productView">
+            {{#with cart.added_item}}
+                <figure class="productView-image">
+                    <div class="productView-img-container">
+                        {{> components/common/responsive-img
+                            image=image
+                            class="productView-image--cart"
+                            fallback_size=../theme_settings.product_size
+                            lazyload=../theme_settings.lazyload_mode
+                            default_image=../theme_settings.default_image_product
+                        }}
+                    </div>
+                </figure>
+
+                <div class="productView-details">
+                    <h4 class="productView-title">
+                        {{name}}
+                    </h4>
+
+                    <div class="productView-brand">
+                        {{brand.name}}
+                    </div>
+
+                    <div class="productView-price">
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{quantity}} &times;
+                            <span class="productView-price-value {{#if price_discounted}}price--discounted{{/if}}">{{price.formatted}}</span>
+                            {{#if price_discounted}}
+                                <span class="productView-price-value">{{price_discounted.formatted}}</span>
+                            {{/if}}
+
+                            
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+
+                    {{#each configurable_fields}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            {{#if is_file}}
+                                <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{value}}</a>
+                            {{else}}
+                                {{{sanitize value}}}
+                            {{/if}}
+                        </dl>
+                    {{/each}}
+
+                    {{#each options}}
+                        <dl class="productView-info">
+                            <dt class="productView-info-name">
+                                {{name}}
+                            </dt>
+                            <dd class="productView-info-value">
+                                {{{sanitize value}}}
+                            </dd>
+                        </dl>
+                    {{/each}}
+                </div>
+            {{/with}}
+        </section>
+    </div>
+
+    {{#if cart.suggested_products}}
+        <section class="suggestiveCart">
+            <h4>
+                {{lang 'cart.added_to_cart.you_might_also_like'}}&hellip;
+            </h4>
+
+            <ul class="productGrid">
+                {{#each cart.suggested_products}}
+                    <li class="product">
+                        {{> components/products/card settings=../settings hide_product_quick_view=true theme_settings=../theme_settings}}
+                    </li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
+</div>

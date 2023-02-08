@@ -1,0 +1,12 @@
+<img
+    {{#if lazyload '==' 'disabled'}}
+        src="{{image}}" 
+    {{else}}
+        data-sizes="auto"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" 
+        data-src="{{image}}"
+    {{/if}}
+    class="{{#unless lazyload '==' 'disabled'}}lazyload{{/unless}}{{#if class}} {{class}}{{/if}}"
+    alt="{{alt}}"
+    title="{{alt}}"
+/>

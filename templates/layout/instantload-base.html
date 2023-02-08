@@ -1,0 +1,114 @@
+<div id='instantload-html-element'>
+    <div id="instantload-head-element">
+        <title>{{ head.title }}</title>
+        
+        {{{ resourceHints }}}
+        {{{ head.meta_tags }}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        {{! Include Captcha because BC doesn't include it from Ajax requests }}
+        {{#if product.reviews.captcha}}
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        {{/if}}
+
+        {{{head.scripts}}}
+
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'pageType' page_type}}
+        {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
+        {{~inject 'compareAddonLang_quick_view' (lang 'products.quick_view')}}
+        {{~inject 'compareAddonLang_remove' (lang 'compare.remove')}}
+        {{~inject 'compareAddonLang_clear_all' (lang 'compare.clear_all')}}
+        {{~inject 'categoryId' category.id}}
+        {{#if theme_settings.navPages_autoFit}}
+            {{~inject 'txtNavMore' (lang 'common.nav_more')}}
+        {{/if}}
+        {{{snippet 'htmlhead'}}}
+    </div>
+    <div id="instantload-body-element" class="csscolumns papaSupermarket-layout--{{theme_settings.layout}} 
+        papaSupermarket-style--{{theme_settings.style}}
+        papaSupermarket-pageType--{{dashcase page_type}} 
+        papaSupermarket-page--{{dashcase template}}
+        {{#if theme_settings.product_uniform}}emthemesModez-productUniform{{/if}}
+        {{#if theme_settings.hide_loading_bar}}papaSupermarket--hideLoadingBar{{/if}}
+        {{#if theme_settings.hide_content_navigation}}papaSupermarket--hideContentNav{{/if}}
+        {{#if theme_settings.show_subcategories_menu}}papaSupermarket--showSubcategoriesMenu{{/if}}
+        {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if category.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brands.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brand.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if result_count '>' 0}}has-result{{/if}}
+        " id="topOfPage">
+
+        {{#if banners.top_metadata}}
+        <div class="banners" data-banner-location="top" id="instantload-banners-top">
+            {{#if settings.data_tag_enabled}}
+                {{#each banners.top_metadata}}
+                    {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                        <div class="banner">
+                            {{{this.content}}}
+                        </div>
+                    {{/if}}
+                {{/each}}
+            {{else}}
+                {{#each banners.top_metadata}}
+                    {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                        <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                            <div data-event-type="promotion-click">
+                                {{{this.content}}}
+                            </div>
+                        </div>
+                    {{/if}}
+                {{/each}}
+            {{/if}}
+        </div>
+        {{/if}}
+
+        <div class="body" data-currency-code="{{currency_selector.active_currency_code}}" id="instantload-page-body">
+            {{#block "hero"}} {{/block}}
+            <div class="container">
+                {{#block "page"}} {{/block}}
+            </div>
+            {{> components/common/modal}}
+            {{> components/common/alert-modal}}
+        </div>
+
+        
+        {{#if banners.bottom}}
+            {{#if settings.data_tag_enabled}}
+                <div class="banners banners--bottom" data-banner-location="bottom" id="instantload-banners-bottom">
+                    {{#each (limit banners.bottom_metadata 1)}}
+                        <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                            <div data-event-type="promotion-click">
+                                {{{this.content}}}
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="banners banners--bottom" data-banner-location="bottom" id="instantload-banners-bottom">
+                    <div class="banner">
+                        {{{limit banners.bottom 1}}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+
+        <script id="instantload-script">
+            // Exported in app.js
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}, false).load();
+        </script>
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+    </div>
+</div>

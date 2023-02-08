@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        {{#if page_type '==' 'product'}}
+        <script>
+            const webyGTMdata = {
+              ecomm_prodid:'{{product.sku}}',	
+              ecomm_pagetype:'{{product.category}}',	
+              ecomm_totalvalue:'{{product.price.without_tax.value}}',
+              item_id: "{{product.sku}}",
+              item_name: "{{product.title}}",
+              price: "{{product.price.without_tax.value}}",
+              quantity: {{#if product.can_purchase}}1{{else}}0{{/if}},
+              currency: 'USD'
+            };
+            if (window.dataLayer) {
+                window.dataLayer.push(webyGTMdata);
+            } else {
+                window.dataLayer= [webyGTMdata];
+            }
+        </script>
+                  <script>
+(function(d, e, n){
+e = d.createElement('script');
+e.type = 'text/javascript';
+e.async = true;
+e.src = 'https://api.videoly.co/1/quchbox/0/3462/quch.js';
+n = d.getElementsByTagName('script')[0];
+n.parentNode.insertBefore(e, n);
+})(document);
+</script>
+        {{/if}}
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NSQNHQK');</script>
+        <!-- End Google Tag Manager -->
+        
+        {{#if page_type '==' 'cart'}}	
+        	<meta name="robots" content="noindex,nofollow" />	
+        {{else}}	
+        	{{#if page_type '==' 'wishlist'}}	
+        		<meta name="robots" content="noindex,nofollow" />
+        	{{/if}}
+        {{/if}}
+        <!-- Open graph -->
+        {{#if page_type '==' 'page'}}
+        <meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+
+        {{~/if}}
+        
+        
+        {{~#if settings.request.absolute_path '===' '/'}}
+<meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="Best online gun store that provides firearms and guns from top brands. A wide variety of sporting goods for shooting sports. Find top guns at Gritr Sports near you." />
+{{~#if settings.store_logo.image}}<meta property="og:image" content="{{getImage settings.store_logo.image}}">{{~/if}}
+{{~else if page_type '===' 'category'}}
+<meta property="og:url" content="{{category.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage category.image}}>
+
+{{~#if category.image}}<meta property="og:image" content="{{getImage category.image}}">{{~/if}}
+{{~else if page_type '===' 'brand'}}
+<meta property="og:url" content="{{brand.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json brand.name}}}>
+<meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage brand.image}}>
+<!-- <meta property="og:description" content={{{json brand.name}}}> -->
+{{~#if brand.image}}<meta property="og:image" content="{{getImage brand.image}}">{{~/if}}{{~/if}}
+<!-- End Open graph -->
+    {{#if page_type '==' 'page'}}
+        <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+    {{/if}}
+
+{{#if page_type '==' 'page_contact_form'}}        <!-- CONTACT FORM -->
+      
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "SportingGoodsStore",
+  "@id": "gritrsports.com",
+  "name": "gritrsports.com",
+  "image": "https://cdn11.bigcommerce.com/s-lpuqsi1cy6/images/stencil/original/logo-ex-gna3_1598336431__39548.original.png",
+  "telephone": "1-800-486-7497",
+  "url": "gritrsports.com/contact-us/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "7901 Boulevard 26 #200",
+    "addressLocality": "North Richland Hills",
+    "addressRegion": "Texas",
+    "postalCode": "76180",
+    "addressCountry": "United States"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "sameAs": ["https://www.facebook.com/gritrsports/", "https://www.instagram.com/gritrsports/", "https://www.linkedin.com/company/gritrsports", "https://www.pinterest.com/gritrsports/"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "32.8372084",
+    "longitude": "-97.2146825"
+  },
+  "name": "gritrsports.com"
+}
+</script>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+
+<meta property="og:url" content="https://gritrsports.com/contact-us/">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="Monday - Saturday: 10am - 8pm, Sunday: 10am - 6pm, Call Us: 1-800-486-7497">
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+{{/if}}        
+
+<!-- Shema Microdata -->      
+{{#if page_type '==' 'default'}}       
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={{{json head.title}}}>
+    <meta name="twitter:site" content="@gritrsports">
+    <meta name="twitter:description" content={{{json head.title}}}>
+    <meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+{{/if}}
+
+{{#if page_type '==' 'cart'}}
+   <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_cart.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+{{/if}}
+
+{{#if page_type '==' 'default'}}	
+    <meta name="keywords" content="gun shop, gun store, shooting sports, sporting goods">
+{{/if}}	
+        
+       <link rel="shortcut icon" href="https://cdn11.bigcommerce.com/s-lpuqsi1cy6/product_images/uploaded_images/favicongs.png" />
+        <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_menu.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_main_min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        
+        <noscript><link rel="stylesheet" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_main.css"></noscript>
+        
+        {{#if page_type '==' 'product'}}
+            <div id="itemData" style="display:none"	
+            	data-price-discount="{{product.price.sale_price_without_tax.value}}"	
+                data-price="{{product.price.non_sale_price_without_tax.value}}"	
+                data-standard-price="{{product.price.without_tax.value}}"	
+            	data-product-id="{{product.id}}"	
+            	data-product-category="{{product.category}}"	
+            	data-stock-level="{{product.stock_level}}"></div>
+            
+        	{{inject "breadcrumbsData" breadcrumbs}}
+        	{{inject "shopByBrand" shop_by_brand}}
+        	{{inject "productInfo" product}}
+        	<script>	
+                const context = JSON.parse({{jsContext}});
+                const { shopByBrand, breadcrumbsData, productInfo} = context;
+                if (productInfo.custom_fields) {	
+                    localStorage.setItem('custom_fields', JSON.stringify(productInfo.custom_fields));
+                }	
+
+                const brandName = productInfo && productInfo.brand ? productInfo.brand.name : '';
+
+                if (shopByBrand && brandName && breadcrumbsData) {
+                    const brandData = shopByBrand.find(data => data.name == brandName);
+                    const breadcrumb = breadcrumbsData.length > 1 ? breadcrumbsData[breadcrumbsData.length - 2] : null;
+                    const dataBlock = document.querySelector('#itemData');
+                    if (brandData && breadcrumb && dataBlock) {
+                        dataBlock.innerHTML = `<div id="itemBrandCategoryData" style="display:none" data-brandid="${brandData.id}" data-category="${breadcrumb.url}" ></div>`;
+                    }
+                }
+            </script>
+
+        {{/if}}
+    	
+        <title>{{ head.title }}</title>
+        {{{ resourceHints }}}
+         {{#startsWith 'giftcertificates' page_type}}
+             {{#if page_type '==' 'giftcertificates'}}
+                <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc.">
+             {{/if}}
+             {{#if page_type '==' 'giftcertificates_redeem'}}
+                <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc. - Redeem">
+             {{/if}}
+             {{#if page_type '==' 'giftcertificates_balance'}}
+                <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc - Balance">
+             {{/if}}
+         {{else}}
+            {{#if page_type '==' 'category'}}
+                <link rel="stylesheet" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+                <meta name="keywords" content="{{#each (split head.meta_tags 'name="keywords" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                <meta name="description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                <link rel="canonical" href="{{ category.url }}" />
+            {{else}}
+                {{#if page_type '==' 'brand'}}
+                    <link rel="stylesheet" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+                    <meta name="keywords" content="{{#each (split head.meta_tags 'name="keywords" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                    <meta name="description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                    <link rel="canonical" href="{{ brand.url }}" />
+                {{else}}
+                    {{{ head.meta_tags }}}
+                {{/if}}
+            {{/if}}
+            
+         {{/startsWith}}
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        
+        <!-- Product Schema -->
+        {{#if page_type '==' 'product'}}
+
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{product.title}}">
+        <meta name="twitter:site" content="@gritrsports">
+        <meta name="twitter:description" content="{{product.description}}">
+        <meta name="twitter:image" content="{{getImage product.main_image}}">
+        {{/if}}
+        <!-- END Product Schema -->
+
+
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+
+        {{> components/common/polyfill-script }}
+        
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+
+        {{#if theme_settings.csspreload '===' 'performance'}}
+            <script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
+            <noscript>{{ getFontsCollection }}</noscript>
+
+            {{{stylesheet '/assets/css/theme.css'}}}
+
+            <script>
+                window.lazySizesConfig.loadHidden = false;
+                window.lazySizesConfig.expand = 0;
+            </script>
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
+        {{else if theme_settings.csspreload '===' 'speedtest'}}
+            <meta class="foundation-data-attribute-namespace">
+            <style id="themeCSSPreload">
+                meta.foundation-data-attribute-namespace { font-family: false }
+                body { visibility: hidden !important }
+                .emthemesModez-header-userSection > .container { transition: none !important }
+            </style>
+
+            {{! stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';setTimeout(function() {var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el); }, 10);" }}
+            {{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.themeCSSLoaded"}}}
+            <noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+
+            <script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
+            <noscript>{{ getFontsCollection }}</noscript>
+            
+            <script>
+                window.lazySizesConfig.loadHidden = false;
+                window.lazySizesConfig.expand = 0;
+            </script>
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
+        {{else}}
+            <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+            <script>
+                WebFont.load({
+                    custom: {
+                        families: ['Karla', 'Roboto', 'Source Sans Pro', 'Poppins', 'Barlow', 'Rubik', 'Libre Baskerville', 'Quicksand', 'Montserrat', 'Open Sans', 'Volkhov', 'Caveat']
+                    },
+                    classes: false
+                });
+            </script>
+            
+            {{ getFontsCollection }}
+            {{{stylesheet '/assets/css/theme.css'}}}
+        {{/if}}
+        
+        <div class="powr-form-builder" id="cd3db2d5_1560332501"></div>
+        
+        {{{head.scripts}}}
+
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}" as="script">
+
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'pageType' page_type}}
+        {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
+        {{~inject 'compareAddonLang_quick_view' (lang 'products.quick_view')}}
+        {{~inject 'compareAddonLang_remove' (lang 'compare.remove')}}
+        {{~inject 'compareAddonLang_clear_all' (lang 'compare.clear_all')}}
+        {{~inject 'categoryId' category.id}}
+        {{#if theme_settings.navPages_autoFit}}
+            {{~inject 'txtNavMore' (lang 'common.nav_more')}}
+        {{/if}}
+        {{{snippet 'htmlhead'}}}
+
+    </head>
+    <body class="csscolumns papaSupermarket-layout--{{theme_settings.layout}} 
+        papaSupermarket-style--{{theme_settings.style}}
+        papaSupermarket-pageType--{{dashcase page_type}} 
+        papaSupermarket-page--{{dashcase template}} 
+        {{#if theme_settings.product_uniform}}emthemesModez-productUniform{{/if}}
+        {{#if theme_settings.hide_loading_bar}}papaSupermarket--hideLoadingBar{{/if}}
+        {{#if theme_settings.hide_content_navigation}}papaSupermarket--hideContentNav{{/if}}
+        {{#if theme_settings.show_subcategories_menu}}papaSupermarket--showSubcategoriesMenu{{/if}}
+        {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if category.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brands.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brand.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if result_count '>' 0}}has-result{{/if}}
+        " id="topOfPage">
+        
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSQNHQK"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        
+        {{#if theme_settings.fb_page '!==' ''}}
+        <!-- Facebook SDK -->
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=378187145615477&autoLogAppEvents=1" nonce="VinhY3Lb"></script>
+        {{/if}}
+
+        {{{snippet 'header'}}}
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script src="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}"></script>
+        <script>
+            {{!-- Exported in app.js --}}
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+        
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+        
+        <style>
+            .emthemesModez-instafeed .slick-slide a {
+              padding-top: 100%;
+              content: '';
+              display: block;
+              height: 0;
+              position: relative;
+            }
+            
+            .emthemesModez-instafeed .slick-slide img {
+              object-fit: cover;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+            }
+        </style>
+        {{#if page_type '==' 'product'}}
+        {{#if product.brand}}
+        {{#if product.brand.name '==' 'Zeiss'}}
+        {{#if product.upc}}
+        <script async src="https://cdn.loadbee.com/js/loadbee_integration.js"></script>
+        {{/if}}{{/if}}{{/if}}{{/if}}
+        <!--{{#if page_type '==' 'search'}}-->
+        <!--<script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/select_search_filter.js"></script>-->
+        <!--{{/if}}-->
+        {{#if page_type '==' 'product'}}
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/item_matching_min.js"></script>
+        <script src="https://www.powr.io/powr.js?external-type=bigcommerce" async=""></script>
+        {{/if}}
+        {{#if page_type '==' 'category'}}
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
+        {{/if}}
+        {{#if page_type '==' 'brand'}}
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
+        {{/if}}
+    </body>
+</html>

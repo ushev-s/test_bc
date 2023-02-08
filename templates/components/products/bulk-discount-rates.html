@@ -1,0 +1,66 @@
+{{#if bulk_discount_rates.length}}
+    {{#if theme_settings.productpage_bulk_price_table}}
+        <div class="productView-bulkPricing">
+            <h3 class="productView-bulkPricing-heading">{{lang 'products.bulk_pricing.modal_title'}}</h3>
+            <p class="productView-bulkPricing-description">{{lang 'products.bulk_pricing.instructions'}}</p>
+            <table class="productView-bulkPricing-table table">
+                <tbody class="table-tbody">
+                    {{#each bulk_discount_rates}}
+                    <tr>
+                        <td>{{lang 'products.bulk_pricing.range' min=min max=max}}</td>
+                        <td>
+                            {{#if type '===' 'percent'}}
+                                {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                            {{else if type '===' 'fixed'}}
+                                {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                            {{else if type '===' 'price'}}
+                                {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                            {{/if}}
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+        {{#if product}}<dt class="productView-info-name">{{lang 'products.bulk_pricing.title'}}</dt>{{/if}}
+        <dd class="productView-info-value">
+            <a href="{{product.url}}#bulk_pricing"
+                {{#unless is_ajax}}
+                    data-reveal-id="modal-bulk-pricing"
+                {{else}}
+                    {{#unless in_quickview}}
+                        data-reveal-id="modal-bulk-pricing"
+                    {{/unless}}
+                {{/unless}}
+            >
+                {{lang 'products.bulk_pricing.view'}}
+            </a>
+        </dd>
+        <div id="modal-bulk-pricing" class="modal modal--small" data-reveal>
+            <div class="modal-header">
+                <h2 class="modal-header-title">{{lang 'products.bulk_pricing.modal_title'}}</h2>
+                <a href="#" class="modal-close" aria-label="Close"><svg class="icon"><use xlink:href="#icon-close" /></svg></a>
+            </div>
+            <div class="modal-body">
+                <p>{{lang 'products.bulk_pricing.instructions'}}</p>
+                <ul>
+                    {{#each bulk_discount_rates}}
+                    <li>
+                        {{lang 'products.bulk_pricing.range' min=min max=max}}
+                        {{#if type '===' 'percent'}}
+                        {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
+                        {{/if}}
+                        {{#if type '===' 'fixed'}}
+                        {{lang 'products.bulk_pricing.fixed' discount=discount.formatted}}
+                        {{/if}}
+                        {{#if type '===' 'price'}}
+                        {{lang 'products.bulk_pricing.price' discount=discount.formatted}}
+                        {{/if}}
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{/if}}
+{{/if}}

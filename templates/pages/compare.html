@@ -1,0 +1,150 @@
+{{#partial "page"}}
+{{inject 'comparisons' comparisons}}
+{{inject 'compareRemoveMessage' (lang 'compare.no_remove')}}
+<div class="page">
+    <main class="page-content">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{lang 'compare.header' products=comparisons.length}}</h1>
+
+        <table class="compareTable">
+            <tr class="compareTable-row">
+                <th class="compareTable-heading"></th>
+                {{#each comparisons}}
+                <th class="compareTable-product">
+                    <article class="card">
+                        <figure class="card-figure">
+                            <div class="card-img-container">
+                                {{> components/common/responsive-img
+                                    image=image
+                                    class="card-image"
+                                    fallback_size=../theme_settings.product_size
+                                    lazyload=../theme_settings.lazyload_mode
+                                    default_image=../theme_settings.default_image_product
+                                }}
+                            </div>
+                            <a class="compareTable-removeProduct" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
+                                <svg class="icon">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
+                                </svg>
+                            </a>
+                        </figure>
+                        <div class="card-body">
+                            {{#if brand.name}}
+                                <p class="card-text"><a href="{{brand.url}}">{{ brand.name }}</a></p>
+                            {{/if}}
+                            <h4 class="card-title">
+                                <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{ name }}</a>
+                            </h4>
+                            {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                                {{#if price_range}}
+                                    {{> components/products/price-range}}
+                                {{else}}
+                                    {{> components/products/price price=price}}
+                                {{/if}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                    </article>
+                </th>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading"></th>
+                {{#each comparisons}}
+                    <td class="compareTable-action">
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            {{#if show_cart_action}}
+                                {{#if has_options}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
+                                {{/if}}
+                                {{#if pre_order}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">
+                                        {{lang 'products.pre_order'}}
+                                    </a>
+                                {{/if}}
+                                {{#if add_to_cart_url}}
+                                    <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">
+                                        {{lang 'products.add_to_cart'}}
+                                    </a>
+                                {{/if}}
+                                {{#if out_of_stock_message}}
+                                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--primary" data-product-id="{{id}}">{{out_of_stock_message}}</a>
+                                {{/if}}
+                            {{/if}}
+                        {{/or}}
+                    </td>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">Description</span>
+                </th>
+                {{#each comparisons}}
+                <td class="compareTable-item">{{{ summary }}}</td>
+                {{/each}}
+            </tr>
+            {{#if settings.show_product_rating}}
+                <tr class="compareTable-row">
+                    <th class="compareTable-heading">
+                        <span class="compareTable-headingText">Rating</span>
+                    </th>
+                    {{#each comparisons}}
+                    <td class="compareTable-item">
+                        {{#if rating}}
+                            {{> components/products/ratings rating=rating}}
+                        {{else}}
+                            No Reviews
+                    {{/if}}
+                    </td>
+                    {{/each}}
+                </tr>
+            {{/if}}
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">Availability</span>
+                </th>
+                {{#each comparisons}}
+                <td class="compareTable-item">
+                    {{#if availability}}
+                        {{ availability }}
+                    {{else}}
+                        {{lang 'common.not_applicable'}}
+                    {{/if}}
+                </td>
+                {{/each}}
+            </tr>
+            <tr class="compareTable-row">
+                <th class="compareTable-heading">
+                    <span class="compareTable-headingText">{{lang 'common.other_details'}}</span>
+                </th>
+                {{#each comparisons}}
+                    <td class="compareTable-item">
+                        {{#if custom_fields}}
+                            <ul>
+                                {{#if ../../theme_settings.productpage_custom_fields_hide_special}}
+                                    {{#each custom_fields}}
+                                        {{#startsWith '__' name}}
+                                        {{else}}
+                                            <li>{{name}}: {{{value}}}</li>
+                                        {{/startsWith}}
+                                    {{/each}}
+                                {{else}}
+                                    {{#each custom_fields}}
+                                        <li>{{name}}: {{{value}}}</li>
+                                    {{/each}}
+                                {{/if}}
+                            </ul>
+                        {{else}}
+                            {{lang 'common.not_applicable'}}
+                        {{/if}}
+                    </td>
+                {{/each}}
+            </tr>
+        </table>
+
+    </main>
+</div>
+
+{{/partial}}
+{{> layout/base}}
