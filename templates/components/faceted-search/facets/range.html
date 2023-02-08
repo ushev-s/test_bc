@@ -27,6 +27,7 @@
                 <input type="hidden" name="sort" value={{this.sort}}>
             {{/if}}
             <fieldset class="form-fieldset">
+                <legend class="is-srOnly">{{ title }} min-max</legend>
                 <div class="form-minMaxRow">
                     <div class="form-field">
                         <input
@@ -53,7 +54,7 @@
                     </div>
 
                     <div class="form-field">
-                        <button class="button button--primary button--small" type="submit">
+                        <button class="button button--small" type="submit">
                             {{lang 'search.faceted.range.update'}}
                         </button>
                     </div>

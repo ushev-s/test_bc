@@ -61,7 +61,7 @@ $pagination-link-current-active-bg:      null;
 $pagination-item-border:                1px solid transparent;
 
 $pagination-link-current-borderColor:   container("borderColor");
-$pagination-link-current-borderRadius:  $button-radius; // $global-radius; // papathemes-supermarket edited
+$pagination-link-current-borderRadius:  $global-radius;
 $pagination-link-current-margin:        0 spacing("quarter") 0 spacing("half");
 
 $pagination-item-previousNext-color:        stencilColor("color-textLink");

@@ -15,10 +15,6 @@ export default function (secureBaseUrl, cartId) {
 
     const $body = $('body');
 
-    if (window.ApplePaySession) {
-        $cartDropdown.addClass('apple-pay-supported');
-    }
-
     $body.on('cart-quantity-update', (event, quantity) => {
         $('.cart-quantity')
             .text(quantity)

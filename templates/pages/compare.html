@@ -78,7 +78,7 @@
             </tr>
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">{{lang 'products.description'}}</span>
+                    <span class="compareTable-headingText">Description</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">{{{ summary }}}</td>
@@ -87,22 +87,22 @@
             {{#if settings.show_product_rating}}
                 <tr class="compareTable-row">
                     <th class="compareTable-heading">
-                        <span class="compareTable-headingText">{{lang 'products.reviews.rating_label'}}</span>
+                        <span class="compareTable-headingText">Rating</span>
                     </th>
                     {{#each comparisons}}
                     <td class="compareTable-item">
                         {{#if rating}}
                             {{> components/products/ratings rating=rating}}
                         {{else}}
-                            {{lang 'products.reviews.no_reviews'}}
-                        {{/if}}
+                            No Reviews
+                    {{/if}}
                     </td>
                     {{/each}}
                 </tr>
             {{/if}}
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">{{lang 'products.availability'}}</span>
+                    <span class="compareTable-headingText">Availability</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">

@@ -42,7 +42,7 @@ $input-border-color:                stencilColor("input-border-color");
 $input-focus-border-color:          stencilColor("input-border-color-active");
 $input-border-style:                solid;
 $input-border-width:                1px;
-$input-border-radius:               stencilNumber("input-radius2"); // $global-radius; // papathemes-supermarket edited
+$input-border-radius:               $global-radius;
 $input-disabled-bg:                 stencilColor("input-disabled-bg");
 $input-disabled-cursor:             not-allowed;
 $input-box-shadow:                  null;
@@ -101,7 +101,7 @@ $input-fontSmoothing:               true;
 $input-height:                      $form-spacing * 2;
 $input-margin:                      0;
 // $input-horizontalPadding:           ($form-spacing / 1.5); // emthemesModez papaSupermarket mod
-$input-horizontalPadding:           spacing("base"); // emthemesModez papaSupermarket
+$input-horizontalPadding:           remCalc(30px); // = 30px // emthemesModez papaSupermarket
 $input-verticalPadding:             ($form-spacing / 2);
 $input-padding:                     $input-verticalPadding $input-horizontalPadding;
 $input-transition:                  border-color 100ms ease-out;
@@ -139,7 +139,7 @@ $prefixPostfix-input-height:               $input-height;
 // -----------------------------------------------------------------------------
 
 $select-padding:                    $input-verticalPadding (spacing("double")) $input-verticalPadding $input-horizontalPadding;
-$select-borderRadius:               $input-border-radius; // $global-radius; // papathemes-supermarket edited
+$select-borderRadius:               $global-radius;
 $select-hover-borderColor:          null;
 $select-arrow-color:                rgba(stencilColor("select-arrow-color"), 0.999);
 $select-backgroundImage:            url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z' fill='#{$select-arrow-color}' /%3E%3C/svg%3E");

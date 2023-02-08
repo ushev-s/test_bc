@@ -7,7 +7,7 @@
                 <tbody class="table-tbody">
                     {{#each bulk_discount_rates}}
                     <tr>
-                        <td>{{#if min '==' max}}{{lang 'products.bulk_pricing.range_single' min=min}}{{else}}{{lang 'products.bulk_pricing.range' min=min max=max}}{{/if}}</td>
+                        <td>{{lang 'products.bulk_pricing.range' min=min max=max}}</td>
                         <td>
                             {{#if type '===' 'percent'}}
                                 {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
@@ -47,7 +47,7 @@
                 <ul>
                     {{#each bulk_discount_rates}}
                     <li>
-                        {{#if min '==' max}}{{lang 'products.bulk_pricing.range_single' min=min}}{{else}}{{lang 'products.bulk_pricing.range' min=min max=max}}{{/if}}
+                        {{lang 'products.bulk_pricing.range' min=min max=max}}
                         {{#if type '===' 'percent'}}
                         {{lang 'products.bulk_pricing.percent' discount=discount.formatted}}
                         {{/if}}

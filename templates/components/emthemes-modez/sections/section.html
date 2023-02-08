@@ -56,13 +56,22 @@
     {{#if theme_settings.homepage_blog_posts_count '>' 0}}
     <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--blog">
     <div class="emthemesModez-section-inner">
-        {{#if theme_settings.blog_style '==' 'featured'}}
-            {{> components/emthemes-modez/blog/featured posts=blog.recent_posts style="featured"}}
-        {{else}}
-            {{> components/emthemes-modez/blog/featured posts=blog.recent_posts style="3col"}}
-        {{/if}}
+    {{> components/emthemes-modez/blog/featured posts=blog.recent_posts style="featured"}}
     </div>
     </div>
+    {{/if}}
+    {{/if}}
+
+{{else if section '===' 'instagram_carousel'}}
+    {{#if theme_settings.instagram_token '!=' ''}}
+    {{#if theme_settings.instagram_userid '!=' ''}}
+    {{#if theme_settings.instagram_count '>' 0}}
+    <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--instagramCarousel">
+    <div class="emthemesModez-section-inner">
+    {{> components/emthemes-modez/instagram/carousel}}
+    </div>
+    </div>
+    {{/if}}
     {{/if}}
     {{/if}}
 

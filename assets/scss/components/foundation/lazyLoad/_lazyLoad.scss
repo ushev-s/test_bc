@@ -8,8 +8,8 @@
 }
 
 @mixin lazy-loaded-padding($size-param) {
-    &::after {
-        content: "";
+    &:after {
+        content: '';
         display: block;
         height: 0;
         width: 100%;

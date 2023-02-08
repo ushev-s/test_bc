@@ -1,173 +1,175 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ locale_name }}">
-    {{> components/papa-supermarket/common/global-vars}}
     <head>
         {{#if page_type '==' 'product'}}
-            <script>
-                const webyGTMdata = {
-                  ecomm_prodid:'{{product.sku}}',	
-                  ecomm_pagetype:'{{product.category}}',	
-                  ecomm_totalvalue:'{{product.price.without_tax.value}}',
-                  item_id: "{{product.sku}}",
-                  item_name: "{{product.title}}",
-                  price: "{{product.price.without_tax.value}}",
-                  quantity: {{#if product.can_purchase}}1{{else}}0{{/if}},
-                  currency: 'USD'
-                };
-                if (window.dataLayer) {
-                    window.dataLayer.push(webyGTMdata);
-                } else {
-                    window.dataLayer= [webyGTMdata];
-                }
-            </script>
-            <script>
-                (function(d, e, n){
-                e = d.createElement('script');
-                e.type = 'text/javascript';
-                e.async = true;
-                e.src = 'https://api.videoly.co/1/quchbox/0/3462/quch.js';
-                n = d.getElementsByTagName('script')[0];
-                n.parentNode.insertBefore(e, n);
-                })(document);
-            </script>
+        <script>
+            const webyGTMdata = {
+              ecomm_prodid:'{{product.sku}}',	
+              ecomm_pagetype:'{{product.category}}',	
+              ecomm_totalvalue:'{{product.price.without_tax.value}}',
+              item_id: "{{product.sku}}",
+              item_name: "{{product.title}}",
+              price: "{{product.price.without_tax.value}}",
+              quantity: {{#if product.can_purchase}}1{{else}}0{{/if}},
+              currency: 'USD'
+            };
+            if (window.dataLayer) {
+                window.dataLayer.push(webyGTMdata);
+            } else {
+                window.dataLayer= [webyGTMdata];
+            }
+        </script>
+                  <script>
+(function(d, e, n){
+e = d.createElement('script');
+e.type = 'text/javascript';
+e.async = true;
+e.src = 'https://api.videoly.co/1/quchbox/0/3462/quch.js';
+n = d.getElementsByTagName('script')[0];
+n.parentNode.insertBefore(e, n);
+})(document);
+</script>
         {{/if}}
-            
+
         <!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-NSQNHQK');
-        </script>
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NSQNHQK');</script>
         <!-- End Google Tag Manager -->
         
         {{#if page_type '==' 'cart'}}	
-            <meta name="robots" content="noindex,nofollow" />	
+        	<meta name="robots" content="noindex,nofollow" />	
         {{else}}	
-            {{#if page_type '==' 'wishlist'}}	
-                <meta name="robots" content="noindex,nofollow" />
-            {{/if}}
+        	{{#if page_type '==' 'wishlist'}}	
+        		<meta name="robots" content="noindex,nofollow" />
+        	{{/if}}
         {{/if}}
-            <!-- Open graph -->
+        <!-- Open graph -->
         {{#if page_type '==' 'page'}}
-            <meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content={{{json head.title}}}>
-            <meta property="og:image" content="{{getImage settings.store_logo.image}}">
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content={{{json head.title}}}>
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content={{{json head.title}}}>
-            <meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+        <meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+
         {{~/if}}
         
-        {{~#if settings.request.absolute_path '===' '/'}}
-            <meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content={{{json head.title}}}>
-            <meta property="og:description" content="Best online gun store that provides firearms and guns from top brands. A wide variety of sporting goods for shooting sports. Find top guns at Gritr Sports near you." />
-        {{~#if settings.store_logo.image}}<meta property="og:image" content="{{getImage settings.store_logo.image}}">{{~/if}}
-        {{~else if page_type '===' 'category'}}
-            <meta property="og:url" content="{{category.url}}">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content={{{json head.title}}}>
-            <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content={{{json head.title}}}>
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content={{{json head.title}}}>
-            <meta name="twitter:image" content={{getImage category.image}}>
-        {{~#if category.image}}<meta property="og:image" content="{{getImage category.image}}">{{~/if}}
-        {{~else if page_type '===' 'brand'}}
-            <meta property="og:url" content="{{brand.url}}">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content={{{json brand.name}}}>
-            <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content={{{json head.title}}}>
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content={{{json head.title}}}>
-            <meta name="twitter:image" content={{getImage brand.image}}>
-        {{~#if brand.image}}<meta property="og:image" content="{{getImage brand.image}}">{{~/if}}{{~/if}}
-        <!-- End Open graph -->
-            
-        {{#if page_type '==' 'page'}}
-            <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
-        {{/if}}
-            
-        <!-- CONTACT FORM -->
-        {{#if page_type '==' 'page_contact_form'}}        
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org/",
-              "@type": "SportingGoodsStore",
-              "@id": "gritrsports.com",
-              "name": "gritrsports.com",
-              "image": "https://cdn11.bigcommerce.com/s-lpuqsi1cy6/images/stencil/original/logo-ex-gna3_1598336431__39548.original.png",
-              "telephone": "1-800-486-7497",
-              "url": "gritrsports.com/contact-us/",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "7901 Boulevard 26 #200",
-                "addressLocality": "North Richland Hills",
-                "addressRegion": "Texas",
-                "postalCode": "76180",
-                "addressCountry": "United States"
-              },
-              "openingHoursSpecification": [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                  "opens": "10:00",
-                  "closes": "20:00"
-                }
-              ],
-              "sameAs": ["https://www.facebook.com/gritrsports/", "https://www.instagram.com/gritrsports/", "https://www.linkedin.com/company/gritrsports", "https://www.pinterest.com/gritrsports/"]
-            }
-            </script>
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "Place",
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "32.8372084",
-                "longitude": "-97.2146825"
-              },
-              "name": "gritrsports.com"
-            }
-            </script>
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content={{{json head.title}}}>
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content={{{json head.title}}}>
-            <meta name="twitter:image" content={{getImage settings.store_logo.image}}>
-            
-            <meta property="og:url" content="https://gritrsports.com/contact-us/">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content={{{json head.title}}}>
-            <meta property="og:description" content="Monday - Saturday: 10am - 8pm, Sunday: 10am - 6pm, Call Us: 1-800-486-7497">
-            <meta property="og:image" content="{{getImage settings.store_logo.image}}">
-        {{/if}}        
-
-        <!-- Shema Microdata -->      
-        {{#if page_type '==' 'default'}}       
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content={{{json head.title}}}>
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content={{{json head.title}}}>
-            <meta name="twitter:image" content={{getImage settings.store_logo.image}}>
-        {{/if}}
-
-        {{#if page_type '==' 'cart'}}
-            <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_cart.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        {{/if}}
-            
-        {{#if page_type '==' 'default'}}	
-            <meta name="keywords" content="gun shop, gun store, shooting sports, sporting goods">
-        {{/if}}	
         
-        <link rel="shortcut icon" href="https://cdn11.bigcommerce.com/s-lpuqsi1cy6/product_images/uploaded_images/favicongs.png" />
+        {{~#if settings.request.absolute_path '===' '/'}}
+<meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="Best online gun store that provides firearms and guns from top brands. A wide variety of sporting goods for shooting sports. Find top guns at Gritr Sports near you." />
+{{~#if settings.store_logo.image}}<meta property="og:image" content="{{getImage settings.store_logo.image}}">{{~/if}}
+{{~else if page_type '===' 'category'}}
+<meta property="og:url" content="{{category.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage category.image}}>
+
+{{~#if category.image}}<meta property="og:image" content="{{getImage category.image}}">{{~/if}}
+{{~else if page_type '===' 'brand'}}
+<meta property="og:url" content="{{brand.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json brand.name}}}>
+<meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage brand.image}}>
+<!-- <meta property="og:description" content={{{json brand.name}}}> -->
+{{~#if brand.image}}<meta property="og:image" content="{{getImage brand.image}}">{{~/if}}{{~/if}}
+<!-- End Open graph -->
+    {{#if page_type '==' 'page'}}
+        <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+    {{/if}}
+
+{{#if page_type '==' 'page_contact_form'}}        <!-- CONTACT FORM -->
+      
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "SportingGoodsStore",
+  "@id": "gritrsports.com",
+  "name": "gritrsports.com",
+  "image": "https://cdn11.bigcommerce.com/s-lpuqsi1cy6/images/stencil/original/logo-ex-gna3_1598336431__39548.original.png",
+  "telephone": "1-800-486-7497",
+  "url": "gritrsports.com/contact-us/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "7901 Boulevard 26 #200",
+    "addressLocality": "North Richland Hills",
+    "addressRegion": "Texas",
+    "postalCode": "76180",
+    "addressCountry": "United States"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ],
+  "sameAs": ["https://www.facebook.com/gritrsports/", "https://www.instagram.com/gritrsports/", "https://www.linkedin.com/company/gritrsports", "https://www.pinterest.com/gritrsports/"]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "32.8372084",
+    "longitude": "-97.2146825"
+  },
+  "name": "gritrsports.com"
+}
+</script>
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritrsports">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+
+<meta property="og:url" content="https://gritrsports.com/contact-us/">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="Monday - Saturday: 10am - 8pm, Sunday: 10am - 6pm, Call Us: 1-800-486-7497">
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+{{/if}}        
+
+<!-- Shema Microdata -->      
+{{#if page_type '==' 'default'}}       
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={{{json head.title}}}>
+    <meta name="twitter:site" content="@gritrsports">
+    <meta name="twitter:description" content={{{json head.title}}}>
+    <meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+{{/if}}
+
+{{#if page_type '==' 'cart'}}
+   <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_cart.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+{{/if}}
+
+{{#if page_type '==' 'default'}}	
+    <meta name="keywords" content="gun shop, gun store, shooting sports, sporting goods">
+{{/if}}	
+        
+       <link rel="shortcut icon" href="https://cdn11.bigcommerce.com/s-lpuqsi1cy6/product_images/uploaded_images/favicongs.png" />
         <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_menu.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_main_min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <link rel="preload" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -204,29 +206,22 @@
                     }
                 }
             </script>
-            <!-- Product Schema -->
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content="{{product.title}}">
-            <meta name="twitter:site" content="@gritrsports">
-            <meta name="twitter:description" content="{{product.description}}">
-            <meta name="twitter:image" content="{{getImage product.main_image}}">
-            <!-- END Product Schema -->
+
         {{/if}}
-        
+    	
         <title>{{ head.title }}</title>
         {{{ resourceHints }}}
-        <!-- START Custom metatags -->
-        {{#startsWith 'giftcertificates' page_type}}
-            {{#if page_type '==' 'giftcertificates'}}
+         {{#startsWith 'giftcertificates' page_type}}
+             {{#if page_type '==' 'giftcertificates'}}
                 <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc.">
-            {{/if}}
-            {{#if page_type '==' 'giftcertificates_redeem'}}
+             {{/if}}
+             {{#if page_type '==' 'giftcertificates_redeem'}}
                 <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc. - Redeem">
-            {{/if}}
-            {{#if page_type '==' 'giftcertificates_balance'}}
+             {{/if}}
+             {{#if page_type '==' 'giftcertificates_balance'}}
                 <meta name="description" content="Gift certificates from Gritr Sports. Gift Certificates are perfect for anyone who loves Guns, Rifles, Pislols, Safety & Skill Instruction, Ammo and etc - Balance">
-            {{/if}}
-        {{else}}
+             {{/if}}
+         {{else}}
             {{#if page_type '==' 'category'}}
                 <link rel="stylesheet" href="https://store-lpuqsi1cy6.mybigcommerce.com/content/css/ammo_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
                 <meta name="keywords" content="{{#each (split head.meta_tags 'name="keywords" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
@@ -242,14 +237,26 @@
                     {{{ head.meta_tags }}}
                 {{/if}}
             {{/if}}
-        {{/startsWith}}
-        <!-- END Custom metatags -->
             
+         {{/startsWith}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
 
         <link href="{{ head.favicon }}" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        
+        <!-- Product Schema -->
+        {{#if page_type '==' 'product'}}
+
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{product.title}}">
+        <meta name="twitter:site" content="@gritrsports">
+        <meta name="twitter:description" content="{{product.description}}">
+        <meta name="twitter:image" content="{{getImage product.main_image}}">
+        {{/if}}
+        <!-- END Product Schema -->
+
 
         <script>
             {{!-- Change document class from no-js to js so we can detect this in css --}}
@@ -257,7 +264,6 @@
         </script>
 
         {{> components/common/polyfill-script }}
-        <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
         
         {{!-- Load Lazysizes script ASAP so images will appear --}}
         <script>
@@ -265,7 +271,7 @@
             window.lazySizesConfig = window.lazySizesConfig || {};
             window.lazySizesConfig.loadMode = 1;
         </script>
-        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js' resourceHint='preload' as='script'}}"></script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
 
         {{#if theme_settings.csspreload '===' 'performance'}}
             <script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
@@ -277,43 +283,60 @@
                 window.lazySizesConfig.loadHidden = false;
                 window.lazySizesConfig.expand = 0;
             </script>
-            {{> components/papa-supermarket/common/cssrelpreload}}
-            {{{head.scripts}}}
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
         {{else if theme_settings.csspreload '===' 'speedtest'}}
-            <script>
-                (function() {
-                    var el = document.createElement('head');
-                    el.innerHTML = '{{{getFontsCollection}}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"');
-                    el.children && el.children[0] && document.head.appendChild(el.children[0]);
-                })();
-            </script>
+            <meta class="foundation-data-attribute-namespace">
+            <style id="themeCSSPreload">
+                meta.foundation-data-attribute-namespace { font-family: false }
+                body { visibility: hidden !important }
+                .emthemesModez-header-userSection > .container { transition: none !important }
+            </style>
+
+            {{! stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';setTimeout(function() {var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el); }, 10);" }}
+            {{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.themeCSSLoaded"}}}
+            <noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+
+            <script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>
             <noscript>{{ getFontsCollection }}</noscript>
-
-            {{{stylesheet '/assets/css/theme.css'}}}
-
+            
             <script>
                 window.lazySizesConfig.loadHidden = false;
                 window.lazySizesConfig.expand = 0;
             </script>
-            {{> components/papa-supermarket/common/cssrelpreload}}
-            {{> components/papa-supermarket/common/load-scripts scripts=head.scripts}}
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
         {{else}}
-            {{getFontsCollection font-display='block'}}
-            <script async src="{{cdn 'assets/dist/theme-bundle.font.js' resourceHint='preload' as='script'}}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+            <script>
+                WebFont.load({
+                    custom: {
+                        families: ['Karla', 'Roboto', 'Source Sans Pro', 'Poppins', 'Barlow', 'Rubik', 'Libre Baskerville', 'Quicksand', 'Montserrat', 'Open Sans', 'Volkhov', 'Caveat']
+                    },
+                    classes: false
+                });
+            </script>
+            
+            {{ getFontsCollection }}
             {{{stylesheet '/assets/css/theme.css'}}}
-            {{{head.scripts}}}
         {{/if}}
+        
+        <div class="powr-form-builder" id="cd3db2d5_1560332501"></div>
+        
+        {{{head.scripts}}}
+
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}" as="script">
 
         {{~inject 'themeSettings' theme_settings}}
         {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
         {{~inject 'urls' urls}}
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
         {{~inject 'template' template}}
         {{~inject 'pageType' page_type}}
-        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
-        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
-        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
         {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
         {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
         {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
@@ -324,18 +347,8 @@
         {{#if theme_settings.navPages_autoFit}}
             {{~inject 'txtNavMore' (lang 'common.nav_more')}}
         {{/if}}
-        {{~inject 'customerRecentlyViewedProductIds' (pluck customer.recently_viewed_products.items 'id')}}
-        {{~inject 'customerId' customer.id}}
-        {{~inject 'graphQLToken' settings.storefront_api.token}}
-        {{~inject 'currencyCode' currency_selector.active_currency_code}}
-        {{~inject 'isCrawlerAndSpeedTestMode' (getVar 'isCrawlerAndSpeedTestMode')}}
         {{{snippet 'htmlhead'}}}
 
-        {{#block "head-last"}} {{/block}}
-        
-        <!-- POWR Form Builder-->
-        <div class="powr-form-builder" id="cd3db2d5_1560332501"></div>
-        <!-- END POWR Form Builder-->
     </head>
     <body class="csscolumns papaSupermarket-layout--{{theme_settings.layout}} 
         papaSupermarket-style--{{theme_settings.style}}
@@ -344,7 +357,6 @@
         {{#if theme_settings.product_uniform}}emthemesModez-productUniform{{/if}}
         {{#if theme_settings.hide_loading_bar}}papaSupermarket--hideLoadingBar{{/if}}
         {{#if theme_settings.hide_content_navigation}}papaSupermarket--hideContentNav{{/if}}
-        {{#if theme_settings.show_allcategories_menu}}papaSupermarket--showAllCategoriesMenu{{/if}}
         {{#if theme_settings.show_subcategories_menu}}papaSupermarket--showSubcategoriesMenu{{/if}}
         {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
         {{#if category.faceted_search_enabled}}has-faceted{{/if}}
@@ -357,7 +369,7 @@
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NSQNHQK"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- End Google Tag Manager (noscript) -->
-
+        
         {{#if theme_settings.fb_page '!==' ''}}
         <!-- Facebook SDK -->
         <div id="fb-root"></div>
@@ -372,17 +384,15 @@
         {{> components/common/footer }}
 
         <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
-        <script src="{{cdn 'assets/dist/theme-bundle.main.js' resourceHint='preload' as='script'}}"></script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script src="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}"></script>
         <script>
             {{!-- Exported in app.js --}}
             window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
         </script>
+        
 
-        {{#if theme_settings.csspreload '===' 'speedtest'}}
-            {{> components/papa-supermarket/common/load-scripts scripts=footer.scripts}}
-        {{else}}
-            {{{footer.scripts}}}
-        {{/if}}
+        {{{footer.scripts}}}
         {{{snippet 'footer'}}}
         
         <style>
@@ -407,20 +417,20 @@
         {{#if product.brand}}
         {{#if product.brand.name '==' 'Zeiss'}}
         {{#if product.upc}}
-            <script async src="https://cdn.loadbee.com/js/loadbee_integration.js"></script>
+        <script async src="https://cdn.loadbee.com/js/loadbee_integration.js"></script>
         {{/if}}{{/if}}{{/if}}{{/if}}
         <!--{{#if page_type '==' 'search'}}-->
         <!--<script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/select_search_filter.js"></script>-->
         <!--{{/if}}-->
         {{#if page_type '==' 'product'}}
-            <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/item_matching_min.js"></script>
-            <script src="https://www.powr.io/powr.js?external-type=bigcommerce" async=""></script>
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/item_matching_min.js"></script>
+        <script src="https://www.powr.io/powr.js?external-type=bigcommerce" async=""></script>
         {{/if}}
         {{#if page_type '==' 'category'}}
-            <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
         {{/if}}
         {{#if page_type '==' 'brand'}}
-            <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
+        <script src="https://store-lpuqsi1cy6.mybigcommerce.com/content/custom_scripts/ammo_faq.js"></script>
         {{/if}}
     </body>
 </html>

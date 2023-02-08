@@ -2,6 +2,7 @@
     {{{ snippet "forms_search"}}}
     <form class="form" action="{{urls.search}}">
         <fieldset class="form-fieldset">
+            <legend class="is-srOnly">{{lang "search.quick_search.input_label"}}</legend>
             <div class="form-field">
                 <label class="is-srOnly" for="search_query{{#if style '===' 'mobileOnly'}}_mobile{{/if}}">{{lang "search.quick_search.input_label"}}</label>
                 <div class="form-prefixPostfix wrap">

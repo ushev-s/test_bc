@@ -1,100 +1,101 @@
 .emthemesModez-quickSearch {
-    .form {
-        margin-bottom: 0;
-        @include breakpoint("medium") {
-            position: relative;
-            z-index: zIndex("high") + 5;
-        }
-    }
+	.form {
+		margin-bottom: 0;
+		@include breakpoint("medium") {
+			position: relative;
+			z-index: zIndex("high") + 5;
+		}
+	}
 	
-    .form-field {
-        margin-bottom: 0;
-        position: relative;
+	.form-field {
+		margin-bottom: 0;
+		position: relative;
 
-        &::before {
-            content: $emthemesModez-icon-linear-magnifier;
-            font-family: emthemesmodezicons;
-            font-size: fontSize("large");
-            font-weight: fontWeight("bold");
-            display: block;
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: $input-height;
-            line-height: $input-height;
-            padding: 0 spacing("single") + spacing("quarter");
-            text-align: center;
-            border: {
-                color: transparent;
-                style: $input-border-style;
-                width: $input-border-width;
-            }
-            color: stencilColor("quickSearch-color");
-            background-color: stencilColor("quickSearch-borderColor");
-            background: linear-gradient(90deg, stencilColor("quickSearch-borderColor") 0%, rgba(stencilColor("quickSearch-borderColor"), 0.7) 100%);
-            border-radius: 0 $input-border-radius $input-border-radius 0;
-        }
-    }
+		&:before {
+			content: $emthemesModez-icon-linear-magnifier;
+			font-family: emthemesmodezicons;
+			font-size: fontSize("large");
+			font-weight: fontWeight("bold");
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: $input-height;
+			line-height: $input-height;
+			padding: 0 spacing("single") + spacing("quarter");
+			text-align: center;
+			border: {
+			    color: transparent;
+			    style: $input-border-style;
+			    width: $input-border-width;
+			}
+			color: stencilColor("quickSearch-color");
+			background-color: stencilColor("quickSearch-borderColor");
+			border-radius: 0 $input-border-radius $input-border-radius 0;
+		}
+	}
 
 	
-    .form-input {
-        border-color: stencilColor("quickSearch-borderColor");
-    }
+	.form-input {
+		border-color: stencilColor("quickSearch-borderColor");
+	}
 
-    // Search button
-    .form .button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: $input-height;
-        padding: $input-padding;
-        margin: 0;
-        background: transparent;
-        color: transparent;
-        border: 0;
-        width: auto;
-    }
+	// Search button
+	.form .button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: $input-height;
+		padding: $input-padding;
+		margin: 0;
+		background: transparent;
+		color: transparent;
+		border: 0;
+		width: auto;
+	}
 }
 
 .emthemesModez-quickSearch--mobileOnly {
-    z-index: zIndex("high") - 5; // same search results popup
-    position: relative;
-    background: container("fill");
-    padding: spacing("half") $container-padding / 2;
+	z-index: zIndex("high") - 5; // same search results popup
+	position: relative;
+	background: container("fill");
+	padding: spacing("half") $container-padding / 2;
 
-    @include breakpoint("medium") {
-        display: none;
-    }
+	@include breakpoint("medium") {
+		display: none;
+	}
 
-    $input-height: $input-font-size * lineHeight("base") + spacing("third") * 2;
+	$input-height: $input-font-size * lineHeight("base") + spacing("quarter") * 2;
 
-    .form-field {
-        &::before {
-            font-size: fontSize("small");
-            height: $input-height;
-            line-height: $input-height;
-            padding: 0 spacing("half");
-            background-color: transparent;
-            color: $input-font-color;
-        }
-    }
+	.form-field {
+		&:before {
+			font-size: fontSize("small");
+			height: $input-height;
+			height: calc(#{$input-height} - #{$input-border-width * 2});
+			line-height: $input-height;
+			line-height: calc(#{$input-height} - #{$input-border-width * 2});
+			padding: 0 spacing("half");
+			background-color: transparent;
+			color: $input-font-color;
+		}
+	}
 
-    .form-input {
-        padding: spacing("third") spacing("half");
-        height: $input-height;
-    }
+	.form-input {
+		padding: spacing("quarter") spacing("half");
+		height: $input-height;
+	}
 
-    .form .button {
-        height: $input-height;
-        padding: spacing("third") spacing("half") + 0.5rem;
-    }
+	.form .button {
+		height: $input-height;
+		padding: spacing("quarter") spacing("half") + 0.5rem;
+	}
 }
 
 .quickSearchResults-more {
-    margin: spacing("half") 0 0;
-    text-align: center;
+	margin: spacing("half") 0 0;
+	text-align: center;
 
-    .button {
-        margin-bottom: 0;
-    }
+	.button {
+		margin-bottom: 0;
+	}
 }

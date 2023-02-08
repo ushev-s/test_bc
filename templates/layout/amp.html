@@ -14,6 +14,7 @@
         {{#block "amp-style"}} {{/block}}
         {{inject 'themeSettings' theme_settings}}
         {{inject 'genericError' (lang 'common.generic_error')}}
+        {{inject 'maintenanceMode' settings.maintenance}}
         {{inject 'urls' urls}}
         {{{snippet 'htmlhead'}}}
         <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>

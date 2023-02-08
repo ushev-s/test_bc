@@ -1,3 +1,1 @@
-{
-  "components/papa-supermarket/banners/remote": "{{#if banners.top_metadata}}\n    <div id=\"document\">\n    {{#each banners.top_metadata}}\n        {{{this.content}}}\n    {{/each}}\n    </div>\n{{/if}}"
-}
+{"components/papa-supermarket/banners/remote":"{{#if banners.top_metadata}}\n    <div id=\"document\">\n    {{#each banners.top_metadata}}\n        {{{this.content}}}\n    {{/each}}\n    </div>\n{{/if}}"}

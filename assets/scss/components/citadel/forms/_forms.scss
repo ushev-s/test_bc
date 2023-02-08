@@ -7,6 +7,7 @@
 // -----------------------------------------------------------------------------
 
 .form--hiddenLabels {
+
     .form-label {
         @include u-hidden("visually");
     }
@@ -25,6 +26,7 @@
 // -----------------------------------------------------------------------------
 
 .form-field--error {
+
     .form-input {
         float: none;
     }
@@ -32,7 +34,7 @@
     .form-inlineMessage {
 
         // scss-lint:disable NestingDepth
-        &::before {
+        &:before {
             background: $form-error-icon no-repeat;
             background-size: $form-inlineMessage-backgroundSize;
             content: "";
@@ -48,6 +50,7 @@
 }
 
 .form-field--success {
+
     .form-input[type="text"] {
         background: {
             image: $form-success-icon;
@@ -55,14 +58,6 @@
             repeat: no-repeat;
         }
         padding-right: $form-success-input-paddingRight;
-    }
-
-    .form-input[name="credit_card_number"] {
-        background-position: right $form-success-icon-check-right center;
-    }
-
-    .form-input[name="cvv"] {
-        background-position: right $form-success-icon-check-right center;
     }
 }
 
@@ -72,6 +67,7 @@
 
 .form-checkbox,
 .form-radio {
+
     + .form-label {
 
         // scss-lint:disable NestingDepth
@@ -192,6 +188,7 @@
 }
 
 .form-prefixPostfix {
+
     &.wrap {
         flex-wrap: wrap;
     }
@@ -221,24 +218,6 @@
             margin-bottom: 0;
         }
     }
-}
-
-.form-prefixPostfix--centeredColumn {
-    &.wrap {
-        flex-direction: column;
-    }
-
-    .g-recaptcha {
-        margin: 2em auto 0;
-    }
-
-    .form-prefixPostfix-button--postfix {
-
-        @include breakpoint("large") {
-            margin: 1em 0 spacing("half");
-        }
-    }
-
 }
 
 .form-prefixPostfix-button--postfix {
@@ -320,7 +299,7 @@
     min-width: initial;
     padding: 0;
 
-    @include breakpoint("small") { // 4
+    @include breakpoint('small') { // 4
         pointer-events: inherit; // 3
     }
 }
@@ -395,7 +374,7 @@
             background-color: $productOptions-disable-background-color;
             opacity: $productOptions-disable-opacity;
 
-            &::before {
+            &:before {
                 background-color: $productOptions-strikethrough-color;
                 content: "";
                 height: 2px;

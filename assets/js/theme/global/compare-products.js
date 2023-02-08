@@ -52,6 +52,16 @@ export default function (urlContext) {
         updateCounterNav(compareCounter, $clickedCompareLink, urlContext);
     });
 
+    $('body').on('submit', '[data-product-compare]', event => {
+        const $this = $(event.currentTarget);
+        const productsToCompare = $this.find('input[name="products\[\]"]:checked');
+
+        if (productsToCompare.length <= 1) {
+            showAlertModal('You must select at least two products to compare');
+            event.preventDefault();
+        }
+    });
+
     $('body').on('click', 'a[data-compare-nav]', () => {
         const $clickedCheckedInput = $('body').find('input[name="products\[\]"]:checked');
 

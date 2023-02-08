@@ -65,5 +65,11 @@
     {{/if}}
 </div>
 {{else}}
-<a class="navPages-action" href="{{url}}" data-instantload {{#if id '==' category.id}}data-current-category{{/if}}>{{name}}</a>
+  {{#if id '!==' '191'}}
+    {{#if id '!==' '198'}}
+     {{#if id '!==' '256'}}
+         <a {{#if id '==' '196'}}class="navPages-action ammo-good-fortune-link" {{else}} class="navPages-action" {{/if}} href="{{url}}" data-instantload {{#if id '==' category.id}}data-current-category{{/if}}>{{name}}</a>
+     {{/if}}
+    {{/if}}
+  {{/if}}
 {{/if}}

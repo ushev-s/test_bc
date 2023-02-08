@@ -1,5 +1,5 @@
 export default function (cert) {
-    if (typeof cert !== 'string' || cert.length === 0) {
+    if (typeof cert !== 'string') {
         return false;
     }
 

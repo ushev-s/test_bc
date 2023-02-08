@@ -90,11 +90,6 @@ export default class AlsoBought {
 
                     this.products.push(new ProductDetails($productEl, _.extend(this.parentProductDetails.context, { enableAlsoBought: false })));
                 }
-
-                // Hide Also Bought block if all products are not purchasable
-                if (this.$alsoBoughtEl.find('[data-product-id]').length === 0) {
-                    this.$alsoBoughtEl.addClass('u-hiddenVisually');
-                }
             });
         });
     }

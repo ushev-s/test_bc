@@ -7,12 +7,12 @@
         id_suffix='_main'
     }}
 {{!/if}}
-<div {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}}>
+<form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Search Results" {{/if}} data-product-compare>
     {{#if settings.data_tag_enabled}}
         {{> components/products/grid products=product_results.products show_compare=product_results.show_compare show_aside=true show_info=theme_settings.card_info theme_settings=theme_settings event="list"}}
     {{else}}
         {{> components/products/grid products=product_results.products show_compare=product_results.show_compare show_aside=true show_info=theme_settings.card_info theme_settings=theme_settings}}
     {{/if}}
-</div>
+</form>
 
 {{> components/common/paginator pagination.product_results instantload=(unless product_results.faceted_search_enabled)}}

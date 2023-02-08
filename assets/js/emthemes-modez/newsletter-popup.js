@@ -60,18 +60,18 @@ export function hideForSubscribed() {
 export default function (context) {
     if (!Cookies.get('NL_POPUP_HIDE')) {
         let last = parseInt(Cookies.get('NL_POPUP_LAST'), 10);
-        if (Number.isNaN(last)) {
+        if (isNaN(last)) {
             last = 0;
         }
 
         let hideSec = parseInt(context.themeSettings.nl_popup_hide, 10);
-        if (Number.isNaN(hideSec)) {
+        if (isNaN(hideSec)) {
             hideSec = 0;
         }
 
         if (last === 0 || hideSec === 0 || last + hideSec * 1000 <= Date.now()) {
             let waitSec = parseInt(context.themeSettings.nl_popup_start, 10);
-            if (Number.isNaN(waitSec)) {
+            if (isNaN(waitSec)) {
                 waitSec = 0;
             }
 

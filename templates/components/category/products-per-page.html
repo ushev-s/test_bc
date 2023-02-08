@@ -1,7 +1,8 @@
 <fieldset class="form-fieldset actionBar-section actionBar-section--productsPerPage">
+    <legend class="is-srOnly">{{lang 'common.sorter.products_per_page'}}</legend>
     <div class="form-field">
-        <label class="form-label" for="limit">{{lang 'common.sorter.products_per_page'}}:</label>
-        <select class="form-select" name="limit" id="limit">
+        <label class="form-label" for="limit-{{filter_id}}">{{lang 'common.sorter.products_per_page'}}:</label>
+        <select class="form-select" name="limit" id="limit-{{filter_id}}">
             <option value="8" {{#if products_per_page '==' 8}}selected{{/if}}>8</option>
             <option value="12" {{#if products_per_page '==' 12}}selected{{/if}}>12</option>
             <option value="16" {{#if products_per_page '==' 16}}selected{{/if}}>16</option>

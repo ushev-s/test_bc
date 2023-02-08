@@ -72,11 +72,11 @@
 
             // when layout is fixed left sidebar
             .papaSupermarket-layout--left-sidebar & {
-                @if stencilString("navPages_categoriesMenu") == "group" {
+                @if stencilString('navPages_categoriesMenu') == 'group' {
                     margin-top: -(spacing("single") + spacing("base") + spacing("half"));
                     z-index: zIndex("low"); // same header's z-index
                 }
-                @if stencilString("navPages_categoriesMenu") == "horizontal" {
+                @if stencilString('navPages_categoriesMenu') == 'horizontal' {
                     margin-top: 0;
                 }
             }
@@ -204,7 +204,7 @@
     }
 }
 
-.papaSupermarket-style--modern[class*="papaSupermarket-page--pages-account-"] {
+.papaSupermarket-style--modern[class*='papaSupermarket-page--pages-account-'] {
     .body {
         @include breakpoint("medium") {
             margin-top: spacing("half");

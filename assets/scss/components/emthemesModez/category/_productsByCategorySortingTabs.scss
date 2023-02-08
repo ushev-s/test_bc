@@ -1,75 +1,73 @@
 
-@include emthemesModez-productsByCategoryTabs-type("sorting", "productsByCategorySortingTabs");
+@include emthemesModez-productsByCategoryTabs-type('sorting', 'productsByCategorySortingTabs');
 
 // Variation 'supermarket1'
 // ----------------------------------------------------------------
 
 
 .emthemesModez-section--productsByCategorySortingTabs {
-    @mixin stylingSupermarket($color, $bgcolor) {
-        .emthemesModez-productsByCategoryTabs--sorting.emthemesModez-productsByCategoryTabs--supermarket1 {
-            .page-heading {
-                background-color: $bgcolor;
-                background: linear-gradient(90deg, $bgcolor 0%, rgba($bgcolor, 0.6) 100%);
+	@mixin stylingSupermarket($color, $bgcolor) {
+	    .emthemesModez-productsByCategoryTabs--sorting.emthemesModez-productsByCategoryTabs--supermarket1 {
+	        .page-heading {
+				background-color: $bgcolor;
 
-                @include breakpoint("medium") {
-                    background: none;
+	        	@include breakpoint("medium") {
+					background-color: transparent;
 					
-                    .papaSupermarket-style--modern & {
-                        padding-left: spacing("single");
-                        padding-right: spacing("single");
-                    }
-                }
+					.papaSupermarket-style--modern & {
+						padding-left: spacing("single");
+						padding-right: spacing("single");
+					}
+	        	}
 
-                a,
-                > span {
-                    color: $color;
-                    background: none;
-                    border-bottom: 0;
+	            a,
+	            > span {
+	            	color: $color;
+	            	background: none;
+	                border-bottom: 0;
 
-                    @include breakpoint("medium") {
-                        color: stencilColor("color-textHeading");
+	                @include breakpoint("medium") {
+	                	color: stencilColor("color-textHeading");
 
-                        &:hover {
-                            color: $color-textLink-hover;
-                        }
+	                	&:hover {
+	                		color: $color-textLink-hover;
+	                	}
 
-                        &:active {
-                            color: $color-textLink-active;	
-                        }
-                    }
-                }
-            }
+	                	&:active {
+	                		color: $color-textLink-active;	
+	                	}
+	                }
+	            }
+	        }
 
-            .emthemesModez-productsByCategoryTabs-details-sub-heading {
-                color: $color;
-                background-color: $bgcolor;
-                background: linear-gradient(90deg, $bgcolor 0%, rgba($bgcolor, 0.6) 100%);
-            }
+	        .emthemesModez-productsByCategoryTabs-details-sub-heading {
+	            color: $color;
+	            background-color: $bgcolor;
+	        }
 
-            @include breakpoint("medium") {
-                .tab.is-active {
-                    border-color: $bgcolor;
-                }
-            }
-        }
-    }
+	        @include breakpoint("medium") {
+	            .tab.is-active {
+	                border-color: $bgcolor;
+	            }
+	        }
+	    }
+	}
 
-    $color1: stencilColor("productsByCategorySortingTabs-heading-color1");
-    $bgcolor1: stencilColor("productsByCategorySortingTabs-heading-backgroundColor1");
-    $color2: stencilColor("productsByCategorySortingTabs-heading-color2");
-    $bgcolor2: stencilColor("productsByCategorySortingTabs-heading-backgroundColor2");
-    $color3: stencilColor("productsByCategorySortingTabs-heading-color3");
-    $bgcolor3: stencilColor("productsByCategorySortingTabs-heading-backgroundColor3");
+	$color1: stencilColor('productsByCategorySortingTabs-heading-color1');
+	$bgcolor1: stencilColor('productsByCategorySortingTabs-heading-backgroundColor1');
+	$color2: stencilColor('productsByCategorySortingTabs-heading-color2');
+	$bgcolor2: stencilColor('productsByCategorySortingTabs-heading-backgroundColor2');
+	$color3: stencilColor('productsByCategorySortingTabs-heading-color3');
+	$bgcolor3: stencilColor('productsByCategorySortingTabs-heading-backgroundColor3');
 
-    @include stylingSupermarket($color1, $bgcolor1);
+	@include stylingSupermarket($color1, $bgcolor1);
 
-    &:nth-child(3n + 2) {
-        @include stylingSupermarket($color2, $bgcolor2);
-    }
+	&:nth-child(3n + 2) {
+		@include stylingSupermarket($color2, $bgcolor2);
+	}
 
-    &:nth-child(3n) {
-        @include stylingSupermarket($color3, $bgcolor3);
-    }
+	&:nth-child(3n) {
+		@include stylingSupermarket($color3, $bgcolor3);
+	}
 }
 

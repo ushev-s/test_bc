@@ -1,4 +1,4 @@
-{{#unless (getVar 'isCrawlerAndSpeedTestMode')}}
+
 {{#or settings.add_this.buttons settings.facebook_like_button.enabled}}
     {{assignVar 'encodedUrl' (encodeURI url)}}
     {{assignVar 'encodedTitle' (encodeURI head.title)}}
@@ -94,10 +94,11 @@
                 style="border:none; overflow:hidden; margin: 0; padding: 0; height: 20px; margin-top: .75rem; max-width: 100%"
                 src="https://www.facebook.com/plugins/like.php?href={{settings.facebook_like_button.href}}&amp;layout=button_count{{#if settings.facebook_like_button.verb '===' 'recommend'}}&amp;action=recommend{{/if}}&amp;colorscheme=light&amp;height=20"
                 scrolling="no"
+                title="facebook like"
                 frameborder="0"
                 allowTransparency="true">
             </iframe>
         {{/if}}
     </div>
 {{/or}}
-{{/unless}}
+

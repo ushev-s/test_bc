@@ -1,7 +1,8 @@
 <fieldset class="form-fieldset actionBar-section actionBar-section--sort">
+    <legend class="is-srOnly">{{lang 'common.sorter.sort_by'}}</legend>
     <div class="form-field">
-        <label class="form-label" for="sort">{{lang 'common.sorter.sort_by'}}</label>
-        <select class="form-select" name="sort" id="sort">
+        <label class="form-label" for="sort-{{filter_id}}">{{lang 'common.sorter.sort_by'}}</label>
+        <select class="form-select" name="sort" id="sort-{{filter_id}}">
             <option value="featured" {{#if sort '==' 'featured'}}selected{{/if}}>{{lang 'common.sorter.featured'}}</option>
             <option value="newest" {{#if sort '==' 'newest'}}selected{{/if}}>{{lang 'common.sorter.newest'}}</option>
             <option value="bestselling" {{#if sort '==' 'bestselling'}}selected{{/if}}>{{lang 'common.sorter.top_sellers'}}</option>

@@ -114,7 +114,6 @@
         padding-top: 0;
         padding-bottom: 0;
     }
-
     .form-select {
         padding-top: 0;
         padding-bottom: 0;
@@ -152,19 +151,6 @@
 
     @include breakpoint("medium") {
         line-height: inherit;
-    }
-}
-
-.shipping-quotes {
-    .estimator-form-label {
-        text-align: left;
-    }
-
-    dl {
-        display: grid;
-        grid-template-columns: auto max-content;
-        grid-gap: spacing("half");
-        margin-bottom: 0;
     }
 }
 
@@ -216,32 +202,9 @@
     }
 }
 
-.cart-additionalCheckoutButtons {
-    @include breakpoint("small") {
-        width: grid-calc(9, $total-columns);
-        margin-left: auto;
-        margin-right: 0;
-    }
-    @include breakpoint("medium") {
-        width: grid-calc(7, $total-columns);
-    }
-    @include breakpoint("large") {
-        width: grid-calc(5, $total-columns);
-    }
-}
 
 // Cart Preview
 // ----------------------------------------------------------------------------
-
-.previewCartListWrapper {
-    [data-stickymenu] & {
-        @include breakpoint("medium") {
-            display: block;
-            overflow: auto;
-            max-height: calc(100vh - 350px);
-        }
-    }
-}
 
 .previewCartItem-content {
     @include clearfix;
@@ -271,18 +234,10 @@
 // Modern Style
 // ----------------------------------------------------------------------------
 .papaSupermarket-style--modern {
-    .cart-contentWrapper {
+    .cart {
         background: container("fill");
         border: container("border");
-        border-radius: $container-border-radius;
-        box-shadow: 0 3px 0 container("borderColor");
-        
-        @media (max-width: (screenSize("medium") - 1px)) {
-            margin: 0 spacing("quarter");
-        }
-    }
-
-    .cart {
+        // border-radius: $container-border-radius;
         width: calc(100% - #{spacing("quarter") * 2});
         margin: 0 auto;
 
@@ -302,18 +257,8 @@
         }
     }
 
-    .cart-list {
-        @media (max-width: (screenSize("medium") - 1px)) {
-            border-top: 0;
-        }
-    }
-
     .cart-item {
         padding: spacing("half") 0;
-
-        &:last-child {
-            border-bottom: 0;
-        }
 
         @include breakpoint("small") {
             padding-left: 25%;
@@ -377,8 +322,6 @@
         margin-top: spacing("single");
         background: container("fill");
         border: container("border");
-        border-radius: $container-border-radius;
-        box-shadow: 0 3px 0 container("borderColor");
         padding: spacing("quarter");
 
         @include breakpoint("medium") {
@@ -429,21 +372,6 @@
             @include breakpoint("small") {
                 float: right;
                 clear: right;
-            }
-        }
-    }
-}
-
-.or-use-label {
-    display: none;
-}
-
-.papaSupermarket-pageType--cart {
-    @if $theme-style == "modern" {
-        .alertBox {
-            @media (max-width: (screenSize("medium") - 1px)) {
-                margin-left: spacing("quarter");
-                margin-right: spacing("quarter");
             }
         }
     }

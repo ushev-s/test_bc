@@ -62,6 +62,7 @@
                 </div>
                 <div class="form-row">
                     <fieldset class="form-fieldset form-column">
+                        <legend class="is-srOnly">{{lang 'forms.gift_certificate.purchase.amount' }}</legend>
                         {{#if forms.gift_certificate.can_use_custom_amount }}
                             <div class="form-field">
                                 <label class="form-label" for="certificate_amount">
@@ -95,6 +96,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="form-fieldset form-column">
+                        <legend class="is-srOnly">{{lang 'forms.gift_certificate.purchase.message' }}</legend>
                         <div class="form-field">
                             <label class="form-label" for="message">{{lang 'forms.gift_certificate.purchase.message' }}</label>
                             <textarea class="form-input" name="message" id="message" rows="8" >{{forms.gift_certificate.values.message}}</textarea>

@@ -1,3 +1,0 @@
-{
-  "components/papa-supermarket/recently-viewed-products/customer-product-ids": "<div data-product-ids=\"{{pluck customer.recently_viewed_products.items 'id'}}\"></div>"
-}

@@ -2,26 +2,4 @@
     {{#if theme_settings.layout '===' 'left-sidebar'}}
         {{> components/papa-supermarket/sidebar/categories-menu}}
     {{/if}}
-
-    {{#if brand.faceted_search_enabled}}
-        {{> components/products/filter 
-            sort=pagination.brand.sort 
-            pager=pagination.brand
-            list=brand
-            products_per_page=theme_settings.brandpage_products_per_page
-        }}
-        {{> components/faceted-search/index brand}}
-    {{else}}
-        {{#if shop_by_brand}}
-            {{#if theme_settings.max_shop_by_brand '>' 9}}
-                {{> components/papa-supermarket/sidebar/brands}}
-            {{/if}}
-        {{/if}}
-        {{> components/products/filter 
-            sort=pagination.brand.sort 
-            pager=pagination.brand
-            list=brand
-            products_per_page=theme_settings.brandpage_products_per_page
-        }}
-    {{/if}}
 </nav>

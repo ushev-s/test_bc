@@ -189,8 +189,8 @@ export default function (context) {
         const formData = new FormData();
         formData.append('product_id', productId);
 
-        const $scope = $(event.target).closest('form, .card');
-        const qty = $scope.find(`input[name=qty_${productId}]`).val();
+        const $form = $(event.target).closest('form');
+        const qty = $form.find(`input[name=qty_${productId}]`).val();
         if (qty && qty.length > 0) {
             if (parseInt(qty, 10) > 0) {
                 formData.append('qty[]', qty);
@@ -214,10 +214,6 @@ export default function (context) {
                 tmp.innerHTML = errorMessage;
 
                 alert(tmp.textContent || tmp.innerText);
-
-                if (response && response.data && response.data.data && response.data.data.url) {
-                    window.location = response.data.data.url;
-                }
 
                 return;
             }

@@ -1,11 +1,22 @@
 <section class="productView-details">
     <div class="productView-product">
         {{#if product.brand }}
-        <h2 class="productView-brand">
-            <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
+        <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="http://schema.org/Brand"{{/if}}>
+            <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
         </h2>
         {{/if}}
-        <h1 class="productView-title">{{product.title}}</h1>
+        <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+        {{#and schema product.sku}}
+            <meta itemprop="sku" content="{{product.sku}}" />
+        {{/and}}
+
+        {{#and schema product.mpn}}
+            <meta itemprop="mpn" content="{{product.mpn}}" />
+        {{/and}}
+
+            {{#and schema product.gtin}}
+            <meta itemprop="gtin{{length product.gtin}}" content="{{product.gtin}}" />
+        {{/and}}
         {{#if product.call_for_price}}
             <p class="productView-price">
                 <span>{{product.call_for_price}}</span>
@@ -13,15 +24,21 @@
         {{/if}}
         {{#if product.price}}
             <div class="productView-price">
-                {{> components/products/price price=product.price}}
+                {{> components/products/price price=product.price schema_org=schema}}
             </div>
         {{/if}}
         {{product.detail_messages}}
         {{#if settings.show_product_rating}}
             {{> components/amp/products/ratings rating=product.rating}}
-        {{/if}}
-        {{#if product.release_date }}
-            <p>{{product.release_date}}</p>
+            {{#if schema}}
+                {{#if product.num_reviews '>' 0}}
+                    <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                        <meta itemprop="ratingValue" content="{{product.rating}}">
+                        <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                        <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                    </div>
+                {{/if}}
+            {{/if}}
         {{/if}}
         <dl class="productView-info">
             {{#if product.sku}}

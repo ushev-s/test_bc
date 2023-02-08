@@ -1,17 +1,7 @@
 import swal from './sweet-alert';
 import utils from '@bigcommerce/stencil-utils';
 
-let currencySelectorCalled = false;
-
 export default function (cartId) {
-    if (!cartId) return;
-
-    if (!currencySelectorCalled) {
-        currencySelectorCalled = true;
-    } else {
-        return;
-    }
-
     function changeCurrency(url, currencyCode) {
         $.ajax({
             url,
@@ -35,6 +25,9 @@ export default function (cartId) {
 
     $(document.body).on('click', '[data-cart-currency-switch-url]', event => {
         const currencySessionSwitcher = event.target.href;
+        if (!cartId) {
+            return;
+        }
         event.preventDefault();
         utils.api.cart.getCart({ cartId }, (err, response) => {
             if (err || response === undefined) {

@@ -16,7 +16,7 @@
     flex-wrap: wrap;
 
     &-item {
-        padding: spacing("half");
+        padding: spacing("half");;
         width: 100%;
 
         @include breakpoint("small") {
@@ -37,7 +37,7 @@
         padding: 1.5rem;
 
         &:first-child {
-            background-color: #fff;
+            background-color: #ffffff;
         }
 
         &:last-child {

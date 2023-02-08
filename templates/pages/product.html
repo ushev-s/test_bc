@@ -1,7 +1,7 @@
 ---
 product:
     videos:
-        limit: 100
+        limit: {{theme_settings.productpage_videos_count}}
     reviews:
         limit: {{theme_settings.productpage_reviews_count}}
     related_products:
@@ -9,14 +9,16 @@ product:
     similar_by_views:
         limit: {{theme_settings.productpage_similar_by_views_count}}
 shop_by_brand:
-    limit: {{theme_settings.max_shop_by_brand}}
+    limit: 9000
 blog:
     recent_posts:
         limit: {{theme_settings.homepage_blog_posts_count}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
 ---
-{{!-- {{{region name="product_below_price"}}} --}}{{!-- DO NOT DELETE THIS LINE: Workaround for Get Theme Regions API cannot retrive regions from nested file causing PayPal Pay Later Message doesn't work! --}}
 {{#if theme_settings.productpage_layout '==' 'no-sidebar'}}
-    {{> components/products/product-page-no-sidebar}}
+    {{> pages/custom/product/no-sidebar}}
 {{else}}
-    {{> components/products/product-page-with-sidebar}}
+    {{> pages/custom/product/with-sidebar}}
 {{/if}}

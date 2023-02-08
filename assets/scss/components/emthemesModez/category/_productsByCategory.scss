@@ -14,29 +14,29 @@
 }
 
 .emthemesModez-productsByCategory-heading--1 {
-    border-color: stencilColor("productsByCategory-heading-backgroundColor1");
+    border-color: stencilColor('productsByCategory-heading-backgroundColor1');
 
     a {
-        color: stencilColor("productsByCategory-heading-color1");
-        background: stencilColor("productsByCategory-heading-backgroundColor1");
+        color: stencilColor('productsByCategory-heading-color1');
+        background: stencilColor('productsByCategory-heading-backgroundColor1');
     }
 }
 
 .emthemesModez-productsByCategory-heading--2 {
-    border-color: stencilColor("productsByCategory-heading-backgroundColor2");
+    border-color: stencilColor('productsByCategory-heading-backgroundColor2');
 
     a {
-        color: stencilColor("productsByCategory-heading-color2");
-        background: stencilColor("productsByCategory-heading-backgroundColor2");
+        color: stencilColor('productsByCategory-heading-color2');
+        background: stencilColor('productsByCategory-heading-backgroundColor2');
     }
 }
 
 .emthemesModez-productsByCategory-heading--3 {
-    border-color: stencilColor("productsByCategory-heading-backgroundColor3");
+    border-color: stencilColor('productsByCategory-heading-backgroundColor3');
 
     a {
-        color: stencilColor("productsByCategory-heading-color3");
-        background: stencilColor("productsByCategory-heading-backgroundColor3");
+        color: stencilColor('productsByCategory-heading-color3');
+        background: stencilColor('productsByCategory-heading-backgroundColor3');
     }
 }
 
@@ -102,8 +102,8 @@
     a {
         text-decoration: none;
 
-        &::before {
-            content: "\f105";
+        &:before {
+            content: '\f105';
             font-family: FontAwesome;
             padding-right: spacing("half");
         }
@@ -168,6 +168,7 @@
 
 
         @include breakpoint("small") {
+
             .product:nth-child(2n) .card {
                 border-left: 0;
             }

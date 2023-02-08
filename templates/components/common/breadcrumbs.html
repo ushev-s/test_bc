@@ -1,35 +1,39 @@
-<ul class="breadcrumbs">
-    {{#each breadcrumbs}}
-        {{#if url}}
-            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
-                <a data-instantload href="{{url}}" class="breadcrumb-label">
-                    <span>{{name}}</span>
-                </a>
-            </li>
-        {{else}}
-            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
-                <span class="breadcrumb-label">{{name}}</span>
-            </li>
-        {{/if}}
-    {{/each}}
-</ul>
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement":
-    [
+<ul class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {{#if breadcrumbs.length '>' 2}}
         {{#each breadcrumbs}}
-        {
-            "@type": "ListItem",
-            "position": {{add @index 1}},
-            "item": {
-                "@id": {{{JSONstringify url}}},
-                "name": {{{JSONstringify name}}}
-            }
-        }{{#unless @last}},{{/unless}}
+            {{#if url}}
+                {{#if name '!==' 'Home'}}
+                {{#if @last}}
+                <li class="breadcrumb"></li>
+                {{else}}
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a data-instantload href="{{url}}" class="breadcrumb-label" itemprop="item">
+                        <span itemprop="name">{{name}}</span>
+                        <meta itemprop="position" content="{{@index}}" />
+                    </a>
+                </li>
+                {{/if}}
+                {{/if}}   
+            {{else}}
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                    <span class="breadcrumb-label">{{name}}</span>
+                </li>
+            {{/if}}
         {{/each}}
-    ]
-}
-</script>
+    {{else}}
+        {{#each breadcrumbs}}
+            {{#if url}}
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a data-instantload href="{{url}}" class="breadcrumb-label" itemprop="item">
+                        <span itemprop="name">{{name}}</span>
+                        <meta itemprop="position" content="{{@index}}" />
+                    </a>
+                </li>
+            {{else}}
+                <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                    <span class="breadcrumb-label">{{name}}</span>
+                </li>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+</ul>

@@ -9,6 +9,7 @@ import foundation from './global/foundation';
 import quickView from './global/quick-view';
 import cartPreview from './global/cart-preview';
 import privacyCookieNotification from './global/cookieNotification';
+import maintenanceMode from './global/maintenanceMode';
 import carousel from './common/carousel';
 import svgInjector from './global/svg-injector';
 
@@ -29,6 +30,7 @@ export default class Global extends PageManager {
         menu();
         mobileMenuToggle();
         privacyCookieNotification();
+        maintenanceMode(this.context.maintenanceMode);
         emthemesModez(this.context); // emthemesModez added
         svgInjector();
     }

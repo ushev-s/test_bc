@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import utils from '@bigcommerce/stencil-utils';
 import swal from '../theme/global/sweet-alert';
-import { extractMoney, currencyFormat } from './theme-utils';
 
 //
 // https://javascript.info/task/delay-promise
@@ -16,7 +15,7 @@ function delay(ms) {
 function promiseSerial(funcs) {
     return funcs.reduce(
         (promise, func) => promise.then(result => func().then(Array.prototype.concat.bind(result))),
-        Promise.resolve([]),
+        Promise.resolve([])
     );
 }
 
@@ -44,7 +43,6 @@ export class BulkOrder {
 
     reinit() {
         this.$progressPopup = $('.bulkOrder-progressModal', this.$scope);
-        this.$progressBar = $('.progressBar', this.$progressPopup);
         this.$progressPopupCurrent = $('.bulkOrder-progressModal-current', this.$scope);
         this.$progressPopupActions = $('.bulkOrder-progressModal-actions', this.$scope);
         this.$progressPopupClose = $('[data-close]', this.$scope);
@@ -104,14 +102,6 @@ export class BulkOrder {
 
     showProgressPopupActions() {
         this.$progressPopupActions.removeClass('u-hiddenVisually');
-    }
-
-    showProgressBar() {
-        this.$progressBar.removeClass('u-hiddenVisually');
-    }
-
-    hideProgressBar() {
-        this.$progressBar.addClass('u-hiddenVisually');
     }
 
     onAddAllClick(event) {
@@ -177,9 +167,9 @@ export class BulkOrder {
     }
 
     calculate() {
+        let format = '';
         let total = 0;
         let count = 0;
-        let money;
 
         this.$scope.find('[data-bulkorder-qty-id]').each((i, el) => {
             const $input = $(el);
@@ -190,13 +180,9 @@ export class BulkOrder {
             const priceFmt = `${$price.data('bulkorderPriceFormatted')}`;
             const subtotal = Math.round(priceVal * qty * 100) / 100;
             const $subtotal = this.$scope.find(`[data-bulkorder-subtotal-id='${productId}']`);
+            $subtotal.html(priceFmt.replace(/[0-9.,]+/, subtotal));
 
-            if (priceFmt) {
-                money = extractMoney(priceFmt);
-            }
-
-            $subtotal.html(currencyFormat(subtotal, money));
-
+            format = priceFmt;
             total += subtotal;
             count += qty;
         });
@@ -204,7 +190,7 @@ export class BulkOrder {
         this.itemCount = count;
 
         this.$scope.find('[data-bulkorder-total-count]').html(count);
-        this.$scope.find('[data-bulkorder-total-amount]').html(currencyFormat(Math.round(total * 100) / 100, money));
+        this.$scope.find('[data-bulkorder-total-amount]').html(format.replace(/[0-9.,]+/, Math.round(total * 100) / 100));
     }
 
     addAllProducts() {
@@ -234,11 +220,9 @@ export class BulkOrder {
 
         this.progressTotal = promises.length;
         this.showProgressPopup();
-        this.showProgressBar();
 
         promiseSerial(promises).then(() => {
             this.showProgressPopupActions();
-            this.hideProgressBar();
             // this.updateQtyInCart();
             this.updateCartCounter();
         });

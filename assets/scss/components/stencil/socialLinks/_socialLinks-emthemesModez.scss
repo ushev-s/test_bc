@@ -1,198 +1,196 @@
 .socialLinks {
-    font-size: 0;
+	font-size: 0;
 
-    .socialLinks-item {
-        margin: 0 spacing("quarter") 0 0;
+	.socialLinks-item {
+		margin: 0 spacing("quarter") 0 0;
 
-        &:last-child {
-            margin-right: 0;
-        }
-    }
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	.icon {
+		width: spacing("quarter") * 2 + lineHeight("base") * fontSize("base");
+		height: spacing("quarter") * 2 + lineHeight("base") * fontSize("base");
+		padding: spacing("third");
+		background-color: stencilColor('icon-backgroundColor');
 
-    .icon {
-        width: spacing("quarter") * 2 + lineHeight("base") * fontSize("base");
-        height: spacing("quarter") * 2 + lineHeight("base") * fontSize("base");
-        padding: spacing("third");
-        background-color: stencilColor("icon-backgroundColor");
-        border-radius: $button-radius;
+		&:hover,
+		&:focus {
+			background-color: stencilColor('icon-backgroundColor-hover');
 
-        &:hover,
-        &:focus {
-            background-color: stencilColor("icon-backgroundColor-hover");
+		}
+	}
 
-        }
-    }
-
-    .icon--google_plusone {
-        padding-top: 0;
-        padding-bottom: 0;
-        display: inline-flex !important;
-        align-items: center;
-        width: 52px !important;
-        display: none;
-    }
+	.icon--google_plusone {
+		padding-top: 0;
+		padding-bottom: 0;
+		display: inline-flex !important;
+		align-items: center;
+		width: 52px !important;
+		display: none;
+	}
 }
 
 .socialLinks--dark {
-    .socialLinks-item {
-        margin: 0;
-    }
+	.socialLinks-item {
+		margin: 0;
+	}
 	
-    .icon {
-        background-color: stencilColor("icon-backgroundColor-hover");
+	.icon {
+		background-color: stencilColor('icon-backgroundColor-hover');
 
-        &:hover,
-        &:focus {
-            background-color: stencilColor("icon-backgroundColor");
+		&:hover,
+		&:focus {
+			background-color: stencilColor('icon-backgroundColor');
 
-        }
-    }
+		}
+	}
 }
 
 
 .socialLinks--alt {
-    .icon {
-        background-color: stencilColor("icon--alt-backgroundColor");
+	.icon {
+		background-color: stencilColor('icon--alt-backgroundColor');
 
-        svg {
-            fill: stencilColor("icon--alt-color");
-        }
+		svg {
+			fill: stencilColor("icon--alt-color");
+		}
 
-        &:hover,
-        &:focus {
-            background-color: stencilColor("icon--alt-backgroundColor-hover");
+		&:hover,
+		&:focus {
+			background-color: stencilColor('icon--alt-backgroundColor-hover');
 
-            svg {
-                fill: stencilColor("icon--alt-color-hover");
-            }
-        }
-    }
+			svg {
+				fill: stencilColor("icon--alt-color-hover");
+			}
+		}
+	}
 }
 
 // Fix Facebook like button
 .socialLinks-item--facebook_like .icon {
-    width: auto;
+	width: auto;
 }
 
 .socialLinks-item--facebook_like {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
+	display: inline-flex;
+	align-items: center;
+	vertical-align: middle;
 
-    iframe {
-        position: static !important;
-    }
+	iframe {
+		position: static !important;
+	}
 }
 
 // Social Links on Footer
 // ----------------------------------------------------------------------------
 .footer {
-    .socialLinks .icon {
-        background-color: transparent;
+	.socialLinks .icon {
+		background-color: transparent;
 
-        svg {
-            fill: stencilColor("footer-linkColor");
-        }
+		svg {
+			fill: stencilColor("footer-linkColor");
+		}
 
-        &:hover svg {
-            fill: stencilColor("footer-linkColor-hover");
-        }
-    }
+		&:hover svg {
+			fill: stencilColor("footer-linkColor-hover");
+		}
+	}
 }
 
 // Social Links on Footer - Modern Style
 // ----------------------------------------------------------------------------
 .papaSupermarket-style--modern .footer {
-    .socialLinks .icon {
-        svg {
-            fill: color("whites");
-        }
+	.socialLinks .icon {
+		svg {
+			fill: color("whites");
+		}
 
-        &:hover svg {
-            fill: color("whites");
-        }
-    }
+		&:hover svg {
+			fill: color("whites");
+		}
+	}
 
-    .socialLinks .icon--twitter {
-        background-color: #12c4ff;
+	.socialLinks .icon--twitter {
+		background-color: #12c4ff;
 
-        &:hover {
-            background-color: darken(#12c4ff, 20);
+		&:hover {
+			background-color: darken(#12c4ff, 20);
 
-        }
-    }
+		}
+	}
 
-    .socialLinks .icon--facebook {
-        background-color: #236cbe;
+	.socialLinks .icon--facebook {
+		background-color: #236cbe;
 
-        &:hover {
-            background-color: darken(#12c4ff, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#12c4ff, 20);
+		}
+	}
 
-    .socialLinks .icon--instagram {
-        background-color: #006dab;
+	.socialLinks .icon--instagram {
+		background-color: #006dab;
 
-        &:hover {
-            background-color: darken(#12c4ff, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#12c4ff, 20);
+		}
+	}
 
-    .socialLinks .icon--youtube {
-        background-color: #ff0a0a;
+	.socialLinks .icon--youtube {
+		background-color: #ff0a0a;
 
-        &:hover {
-            background-color: darken(#ff0a0a, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#ff0a0a, 20);
+		}
+	}
 
-    .socialLinks .icon--pinterest {
-        background-color: #d61f35;
+	.socialLinks .icon--pinterest {
+		background-color: #d61f35;
 
-        &:hover {
-            background-color: darken(#d61f35, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#d61f35, 20);
+		}
+	}
 
-    .socialLinks .icon--google {
-        background-color: #da473d;
+	.socialLinks .icon--google {
+		background-color: #da473d;
 
-        &:hover {
-            background-color: darken(#da473d, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#da473d, 20);
+		}
+	}
 
-    .socialLinks .icon--linkedin {
-        background-color: #117cb3;
+	.socialLinks .icon--linkedin {
+		background-color: #117cb3;
 
-        &:hover {
-            background-color: darken(#117cb3, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#117cb3, 20);
+		}
+	}
 
-    .socialLinks .icon--tumbler {
-        background-color: #324357;
+	.socialLinks .icon--tumbler {
+		background-color: #324357;
 
-        &:hover {
-            background-color: darken(#324357, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#324357, 20);
+		}
+	}
 
-    .socialLinks .icon--stumbleupon {
-        background-color: #8acf5c;
+	.socialLinks .icon--stumbleupon {
+		background-color: #8acf5c;
 
-        &:hover {
-            background-color: darken(#8acf5c, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#8acf5c, 20);
+		}
+	}
 
-    .socialLinks .icon--rss {
-        background-color: #e8762a;
+	.socialLinks .icon--rss {
+		background-color: #e8762a;
 
-        &:hover {
-            background-color: darken(#e8762a, 20);
-        }
-    }
+		&:hover {
+			background-color: darken(#e8762a, 20);
+		}
+	}
 }
 
 
@@ -213,8 +211,8 @@
 }
 
 .addthis_button_facebook_like.icon--facebook_like {
-    width: auto !important;
-    overflow: hidden !important;
-    padding-top: remCalc(6px);
+	width: auto !important;
+	overflow: hidden !important;
+	padding-top: remCalc(6px);
 }
 

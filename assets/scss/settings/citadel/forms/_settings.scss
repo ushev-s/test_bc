@@ -64,7 +64,7 @@ $checkRadio-focus-boxShadow:                null;
 $checkRadio-disabled-bg:                    $input-disabled-bg;
 $checkRadio-disabled-opacity:               null;
 
-$check-radius:                              $input-border-radius; // $global-radius; // papathemes-supermarket edited
+$check-radius:                              $global-radius;
 $check-pip-color:                           rgba(stencilColor("checkRadio-color"), 0.999);
 $check-pip-backgroundImage:                 url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' fill='#{$check-pip-color}' /%3E%3C/svg%3E");
 $check-pip-content:                         "";
@@ -214,7 +214,6 @@ $form-success-icon:                         url("data:image/svg+xml;charset=utf8
 $form-success-icon-height:                  remCalc(24px);
 $form-success-icon-top:                     remCalc(37px);
 $form-success-icon-right:                   spacing("third") + spacing("eighth");
-$form-success-icon-check-right:             spacing("single") + spacing("half");
 $form-success-icon-width:                   remCalc(24px);
 $form-success-input-paddingRight:           spacing("double");
 

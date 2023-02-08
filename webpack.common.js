@@ -11,7 +11,6 @@ module.exports = {
     entry: {
         main: './assets/js/app.js',
         head_async: ['lazysizes'],
-        font: './assets/js/theme/common/font.js',
         polyfills: './assets/js/polyfills.js',
     },
     module: {
@@ -50,17 +49,17 @@ module.exports = {
         maxAssetSize: 1024 * 300,
         maxEntrypointSize: 1024 * 400,
     },
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             vendors: {
-    //                 test: /[\\/]node_modules[\\/](jquery|foundation)/,
-    //                 name: 'vendors',
-    //                 chunks: 'all',
-    //             },
-    //         },
-    //     },
-    // },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/](jquery|foundation)/,
+                    name: 'vendors',
+                    chunks: 'all',
+                },
+            },
+        },
+    },
     plugins: [
         new CleanPlugin(['assets/dist'], {
             verbose: false,

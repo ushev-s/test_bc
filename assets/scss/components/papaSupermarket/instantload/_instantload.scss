@@ -2,7 +2,6 @@
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
@@ -12,7 +11,6 @@
     from {
         opacity: 1;
     }
-
     to {
         opacity: 0;
     }
@@ -22,44 +20,44 @@
 .instantload-loaded {
     position: relative;
 
-    &::before {
-        content: "";
+    &:before {
+        content: '';
         position: absolute;
         z-index: zIndex("high") - 5;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba($color-white, 0.9);
+        background: rgba($color-white, .9);
         opacity: 1;
     }
 
-    &::after {
-        content: "";
+    &:after {
+        content: '';
         position: fixed;
         z-index: zIndex("highest") + 5;
         top: calc(50% - 50px);
         left: calc(50% - 50px);
         width: 100px;
         height: 100px;
-        background: url("../img/loading.svg") center center no-repeat;
+        background: url(../img/loading.svg) center center no-repeat;
         background-size: cover;
         opacity: 1;
     }
 }
 
 .instantload-loading {
-    &::before,
-    &::after {
+    &:before,
+    &:after {
         opacity: 1;
-        animation: instantload-loading-show 0.3s;
+        animation: instantload-loading-show .3s;
     }
 }
 
 .instantload-loaded {
-    &::before,
-    &::after {
+    &:before,
+    &:after {
         opacity: 0;
-        animation: instantload-loading-hide 0.3s;
+        animation: instantload-loading-hide .3s;
     }
 }

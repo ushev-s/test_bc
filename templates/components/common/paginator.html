@@ -16,15 +16,7 @@
     <ul class="pagination-list">
         {{#if previous}}
             <li class="pagination-item pagination-item--previous">
-                <a class="pagination-link"
-                    href="{{previous}}"
-                    {{#if instantload}}data-instantload{{/if}}
-                    {{#unless reload}}data-faceted-search-facet{{/unless}}
-                    {{#if this.number '==' ../current}}
-                        aria-current="page"
-                        data-pagination-current-page-link
-                    {{/if}}
-                >
+                <a class="pagination-link" href="{{previous}}" {{#if instantload}}data-instantload{{/if}} {{#unless reload}}data-faceted-search-facet{{/unless}}>
                     <i class="icon" aria-hidden="true">
                         <svg>
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>

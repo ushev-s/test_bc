@@ -3,7 +3,10 @@ brand:
     products:
         limit: {{theme_settings.brandpage_products_per_page}}
 shop_by_brand:
-    limit: {{theme_settings.max_shop_by_brand}}
+        limit: {{theme_settings.max_shop_by_brand}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
 ---
 {{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
 {{#partial "head"}}
@@ -21,6 +24,10 @@ shop_by_brand:
 
 {{{snippet 'brand'}}}
 <div class="page">
+    <!--<aside class="page-sidebar page-sidebar--top" id="faceted-search-container">-->
+    <!--    {{> components/brand/sidebar}}-->
+    <!--</aside>-->
+
     <main class="page-content">
         {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
@@ -97,7 +104,7 @@ shop_by_brand:
         }
     }, 30);
 }(window));
-</script>
+></script>
 
 {{/partial}}
 {{#and theme_settings.instantload is_ajax}}

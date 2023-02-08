@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import Url from 'url';
-import urlUtils from '../theme/common/utils/url-utils';
+import urlUtils from '../theme/common/url-utils';
 
 let instantloadBinded = false;
 let actionBar;

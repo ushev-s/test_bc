@@ -2,7 +2,7 @@
     {{#if theme_settings.show_subcategories_menu}}
         {{> components/papa-supermarket/sidebar/subcategories-menu}}
     {{else}}
-        {{#if theme_settings.show_allcategories_menu}}
+        {{#if theme_settings.layout '===' 'left-sidebar'}}
             {{> components/papa-supermarket/sidebar/categories-menu}}
         {{/if}}
         
@@ -20,28 +20,4 @@
         {{/if}}
     {{/if}}
 
-    {{#if category.faceted_search_enabled}}
-        {{> components/products/filter 
-            sort=pagination.category.sort 
-            pager=pagination.category
-            list=category
-            products_per_page=theme_settings.categorypage_products_per_page
-        }}
-        {{> components/faceted-search/index category}}
-    {{else}}
-        {{#if theme_settings.show_shop_by_price}}
-            {{> components/category/shop-by-price shop_by_price=category.shop_by_price category_url=category.url}}
-        {{/if}}
-        {{#if shop_by_brand}}
-            {{#if theme_settings.max_shop_by_brand '>' 9}}
-                {{> components/papa-supermarket/sidebar/brands}}
-            {{/if}}
-        {{/if}}
-        {{> components/products/filter 
-            sort=pagination.category.sort 
-            pager=pagination.category
-            list=category
-            products_per_page=theme_settings.categorypage_products_per_page
-        }}
-    {{/if}}
 </nav>

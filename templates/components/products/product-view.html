@@ -1,26 +1,13 @@
-{{assignVar 'productImageSizeAttrs' (get 'string' (concat 'width=' (join (split theme_settings.product_size 'x') ' height=')))}}
-{{assignVar 'productThumbSizeAttrs' (get 'string' (concat 'width=' (join (split theme_settings.productthumb_size 'x') ' height=')))}}
-<div class="productView productView--{{theme_settings.productpage_description_type}}"
-    {{#if settings.data_tag_enabled}}
-        data-event-type="product"
-        data-entity-id="{{product.id}}"
-        data-name="{{product.title}}"
-        data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
-        data-product-brand="{{product.brand.name}}"
-        data-product-price="
-            {{#or customer (unless theme_settings.restrict_to_login)}}
-                {{#if product.price.with_tax}}
-                    {{product.price.with_tax.value}}
-                {{else}}
-                    {{product.price.without_tax.value}}
-                {{/if}}
-            {{else}}
-                {{lang 'common.login_for_pricing'}}
-            {{/or}}
-        "
-        data-product-variant="single-product-option"
-    {{/if}}
->
+<div class="productView productView--{{theme_settings.productpage_description_type}}" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+    
+     <!-- For Item Matching Script -->	
+    <div id="itemMatchingData" style="display:none" 
+        data-title="{{product.title}}"
+        data-sale-price="{{product.price.non_sale_price_without_tax.value}}"
+        data-standard-price="{{product.price.without_tax.value}}"
+        data-image-url="{{product.main_image.data}}"
+        data-url="{{product.url}}"></div>
+    
     {{#each product.reviews.messages}}
         {{#if error}}
             {{>components/common/alert-error error}}
@@ -35,15 +22,33 @@
             <section class="productView-details">
                 <div class="productView-product">
                     {{#if product.brand}}
-                    <h5 class="productView-brand">
-                        <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
-                    </h5>
+                    <p class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="https://schema.org/Brand"{{/if}}>
+                        <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}}>{{product.brand.name}}</span></a>
+                    </p>
                     {{/if}}
                     
-                    <h1 class="productView-title">{{product.title}}</h1>
+                    <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+                    {{#and schema product.sku}}
+                        <meta itemprop="sku" content="{{product.sku}}" />
+                    {{/and}}
 
-                    <div class="productView-rating">
+                    {{#and schema product.mpn}}
+                        <meta itemprop="mpn" content="{{product.mpn}}" />
+                    {{/and}}
+
+                     {{#and schema product.gtin}}
+                        <meta itemprop="gtin{{length product.gtin}}" content="{{product.gtin}}" />
+                    {{/and}}
+
+                    <div class="productView-rating"{{#if schema}}{{#if settings.show_product_rating}}{{#if product.num_reviews '>' 0}} itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"{{/if}}{{/if}}{{/if}}>
                         {{#if settings.show_product_rating}}
+                            {{#if product.num_reviews '>' 0}}
+                                {{#if schema}}
+                                    <meta itemprop="ratingValue" content="{{product.rating}}">
+                                    <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                    <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                                {{/if}}
+                            {{/if}}
                             {{> components/products/ratings rating=product.rating}}
                             <span class="productView-reviewLink">
                                 {{#if product.num_reviews '>' 0}}
@@ -189,6 +194,7 @@
                     {{/or}}
                     {{/if}}
                 </div>
+                
             </section>
 
             <section class="productView-images {{#unless theme_settings.productpage_vertical_thumbnails}}productView-images--bottom{{/unless}}" data-image-gallery 
@@ -200,138 +206,68 @@
                     Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
                     for variant/rule image replacement
                 --}}
-                
-                {{#if theme_settings.productpage_videos_position '===' 'images'}}
-                    {{#if product.videos.list}}
-                        {{assignVar 'videosInGallery' product.videos.list.length}}
-                    {{else}}
-                        {{assignVar 'videosInGallery' 0}}
+                {{#if schema}}
+                    {{#if product.main_image}}
+                        <meta itemprop="image" content="{{getImage product.main_image 'zoom_size' (cdn theme_settings.default_image_product)}}" />
                     {{/if}}
-                {{else}}
-                    {{assignVar 'videosInGallery' 0}}
                 {{/if}}
-
-                {{#or product.images (getVar 'videosInGallery')}}
-                    <ul class="productView-imageCarousel-main" id="productView-imageCarousel-main-{{product.id}}" data-image-gallery-main>
-                        {{#if theme_settings.product_image_responsive}}
-                            {{#each product.images}}
-                                <li class="productView-imageCarousel-main-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
-                                    <a href="{{getImageSrcset this 'zoom_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;imbypass=on"
-                                        data-original-zoom="{{getImageSrcset this 'zoom_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;imbypass=on"
-                                        data-original-img="{{getImageSrcset this 'product_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
-                                        data-original-srcset="{{getImageSrcset this use_default_sizes=true }}">
-                                        {{#startsWith this.data ../product.main_image.data}}
-                                            {{!-- First image loads default quality image --}}
-                                            {{#if ../../theme_settings.lazyload_mode '==' 'lazyload'}}
-                                                {{!-- Disable lazyload for the first image if mode is not lazyload+lqip --}}
-                                                {{> components/common/responsive-img
-                                                    image=this
-                                                    fallback_size=../../../theme_settings.product_size
-                                                    lazyload='disabled'
-                                                    default_image=../../../theme_settings.default_image_product
-                                                    lqip_size=../../../theme_settings.product_size
-                                                    otherAttributes=(getVar 'productImageSizeAttrs')
-                                                }}
-                                            {{else}}
-                                                {{> components/common/responsive-img
-                                                    image=this
-                                                    fallback_size=../../../theme_settings.product_size
-                                                    lazyload=../../theme_settings.lazyload_mode
-                                                    default_image=../../../theme_settings.default_image_product
-                                                    lqip_size=../../../theme_settings.product_size
-                                                    otherAttributes=(getVar 'productImageSizeAttrs')
-                                                }}
-                                            {{/if}}
-                                        {{else}}
-                                            {{> components/common/responsive-img
-                                                image=this
-                                                fallback_size=../../theme_settings.product_size
-                                                lazyload=../../theme_settings.lazyload_mode
-                                                default_image=../../theme_settings.default_image_product
-                                                otherAttributes=(getVar 'productImageSizeAttrs')
-                                            }}
-                                        {{/startsWith}}
-                                    </a>
-                                </li>
-                            {{/each}}
-                        {{else}}
-                            {{#each product.images}}
-                                <li class="productView-imageCarousel-main-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
-                                    <a href="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}?imbypass=on"
-                                        data-original-zoom="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}?imbypass=on"
-                                        data-original-img="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
-                                        data-original-srcset="">
-                                        {{#if @index '===' 0}}
-                                            <img src="{{getImage this 'product_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}" {{getVar 'productImageSizeAttrs'}}>
-                                        {{else}}
-                                            <img data-lazy="{{getImage this 'product_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{this.alt}}" title="{{this.alt}}" {{getVar 'productImageSizeAttrs'}}>
-                                        {{/if}}
-                                    </a>
-                                </li>
-                            {{/each}}
-                        {{/if}}
-                        {{#if theme_settings.productpage_videos_position '===' 'images'}}
-                            {{#each product.videos.list}}
-                                <li class="productView-imageCarousel-main-item _video">
-                                    <a
-                                        href="//i.ytimg.com/vi/{{id}}/hqdefault.jpg"
-                                        data-image-gallery-item
-                                        data-image-gallery-new-image-url="//i.ytimg.com/vi/{{id}}/default.jpg"
-                                        data-image-gallery-zoom-image-url="//i.ytimg.com/vi/{{id}}/default.jpg"
-                                        data-video-url="//www.youtube.com/embed/{{id}}?autoplay=1&mute=1&enablejsapi=1"
-                                        data-video-id="{{id}}">
-                                        <span class="productView-imageCarousel-main-item-img-container yt-video">
-                                            <img src="//i.ytimg.com/vi/{{id}}/hqdefault.jpg" alt="{{title_long}}" title="{{title_long}}">
-                                        </span>
-                                    </a>
-                                </li>
-                            {{/each}}
-                        {{/if}}
-                    </ul>
-                {{else}}
-                    <ul class="productView-imageCarousel-main" id="productView-imageCarousel-main-{{product.id}}" data-image-gallery-main>
-                        <li class="productView-imageCarousel-main-item slick-current">
-                            {{#if theme_settings.lazyload_mode '==' 'lazyload'}}
-                                {{!-- Disable lazyload for the first image if mode is not lazyload+lqip --}}
-                                {{> components/common/responsive-img
-                                    image=product.main_image
-                                    fallback_size=theme_settings.product_size
-                                    lazyload='disabled'
-                                    default_image=theme_settings.default_image_product
-                                    otherAttributes=(getVar 'productImageSizeAttrs')
-                                }}
-                            {{else}}
-                                {{> components/common/responsive-img
-                                    image=product.main_image
-                                    fallback_size=theme_settings.product_size
-                                    lazyload=theme_settings.lazyload_mode
-                                    default_image=theme_settings.default_image_product
-                                    otherAttributes=(getVar 'productImageSizeAttrs')
-                                }}
-                            {{/if}}
-                        </li>
-                    </ul>
-                {{/or}}
-
-                {{#if theme_settings.productpage_videos_position '===' 'images'}}
-                    {{#if product.videos.list.length}}
-                        <div class="productView-videoPlayer hide" data-video-player>
-                            <div class="productView-videoPlayer-container">
-                                <iframe
-                                    data-video-player
-                                    type="text/html"
-                                    width="815"
-                                    height="496"
-                                    frameborder="0"
-                                    webkitAllowFullScreen
-                                    mozallowfullscreen
-                                    allowFullScreen
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    src="">
-                                </iframe>
-                            </div>
-                        </div>
+                {{#if product.images}}
+                <ul class="productView-imageCarousel-main" id="productView-imageCarousel-main-{{product.id}}" data-image-gallery-main>
+                    {{#if theme_settings.product_image_responsive}}
+                        {{#each product.images}}
+                            <li class="productView-imageCarousel-main-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
+                                <a href="{{getImageSrcset this 'zoom_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;imbypass=on"
+                                    data-original-zoom="{{getImageSrcset this 'zoom_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.zoom_size}}&amp;imbypass=on"
+                                    data-original-img="{{getImageSrcset this 'product_size' (cdn ../theme_settings.default_image_product) 1x=../theme_settings.product_size}}"
+                                    data-original-srcset="{{getImageSrcset this use_default_sizes=true }}">
+                                    {{#startsWith this.data ../product.main_image.data}}
+                                        {{!-- First image loads default quality image --}}
+                                        {{> components/common/responsive-img
+                                            image=this
+                                            fallback_size=../../theme_settings.product_size
+                                            lazyload=../../theme_settings.lazyload_mode
+                                            default_image=../../theme_settings.default_image_product
+                                            lqip_size=../../theme_settings.product_size
+                                        }}
+                                    {{else}}
+                                        {{> components/common/responsive-img
+                                            image=this
+                                            fallback_size=../../theme_settings.product_size
+                                            lazyload=../../theme_settings.lazyload_mode
+                                            default_image=../../theme_settings.default_image_product
+                                        }}
+                                    {{/startsWith}}
+                                </a>
+                            </li>
+                        {{/each}}
+                    {{else}}
+                        {{#each product.images}}
+                            <li class="productView-imageCarousel-main-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
+                                <a href="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}?imbypass=on"
+                                    data-original-zoom="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}?imbypass=on"
+                                    data-original-img="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                                    data-original-srcset="">
+                                    {{#if @index '===' 0}}
+                                        <img src="{{getImage this 'product_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{truncate this.alt 125}}" title="Shop {{../../product.title}} in {{#each ../../product.category}}{{#if @index '==' 0}}{{#each (split this "/")}}{{#if @last}}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+                                    {{else}}
+                                        <img data-lazy="{{getImage this 'product_size' (cdn ../../theme_settings.default_image_product)}}" alt="{{truncate this.alt 125}}" title="Shop {{../../product.title}} in {{#each ../../product.category}}{{#if @index '==' 0}}{{#each (split this "/")}}{{#if @last}}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+                                    {{/if}}
+                                </a>
+                            </li>
+                        {{/each}}
                     {{/if}}
+                </ul>
+                {{else}}
+                <ul class="productView-imageCarousel-main" id="productView-imageCarousel-main-{{product.id}}" data-image-gallery-main>
+                    <li class="productView-imageCarousel-main-item slick-current">
+                        {{> components/common/responsive-img
+                            image=product.main_image
+                            fallback_size=theme_settings.product_size
+                            lazyload=theme_settings.lazyload_mode
+                            default_image=theme_settings.default_image_product
+                        }}
+                    </li>
+                </ul>
                 {{/if}}
 
                 {{#or product.price.non_sale_price_with_tax product.price.non_sale_price_without_tax}}
@@ -362,32 +298,19 @@
                 {{/if}}
 
 
-                {{#or (if product.images.length '>' 1) (getVar 'videosInGallery')}}
-                    <ul class="productView-imageCarousel-nav" id="productView-imageCarousel-nav-{{product.id}}" data-image-gallery-nav data-image-gallery-nav-slides="{{theme_settings.productpage_thumbnails_count}}" {{#unless theme_settings.productpage_vertical_thumbnails}}data-image-gallery-nav-horizontal="true"{{/unless}}>
-                        {{#each product.images}}
-                            <li class="productView-imageCarousel-nav-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
-                                {{> components/common/responsive-img
-                                    image=this
-                                    fallback_size=../theme_settings.productthumb_size
-                                    lazyload=../theme_settings.lazyload_mode
-                                    otherAttributes=(getVar 'productThumbSizeAttrs')
-                                }}
-                            </li>
-                        {{/each}}
-
-                        {{#if theme_settings.productpage_videos_position '===' 'images'}}
-                            {{#each product.videos.list}}
-                                <li class="productView-imageCarousel-nav-item _video">
-                                    <button>
-                                        <span class="productView-imageCarousel-nav-item-img-container yt-video">
-                                            <img class="lazyload" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg" alt="{{title_long}}" title="{{title_long}}">
-                                        </span>
-                                    </button>
-                                </li>
-                            {{/each}}
-                        {{/if}}
-                    </ul>
-                {{/or}}
+                {{#if product.images.length '>' 1}}
+                <ul class="productView-imageCarousel-nav" id="productView-imageCarousel-nav-{{product.id}}" data-image-gallery-nav data-image-gallery-nav-slides="{{theme_settings.productpage_thumbnails_count}}" {{#unless theme_settings.productpage_vertical_thumbnails}}data-image-gallery-nav-horizontal="true"{{/unless}}>
+                    {{#each product.images}}
+                        <li class="productView-imageCarousel-nav-item{{#startsWith this.data ../product.main_image.data}} slick-current{{/startsWith}}">
+                            {{> components/common/responsive-img
+                                image=this
+                                fallback_size=../theme_settings.productthumb_size
+                                lazyload=../theme_settings.lazyload_mode
+                            }}
+                        </li>
+                    {{/each}}
+                </ul>
+                {{/if}}
             </section>
 
 
@@ -402,7 +325,7 @@
                             <span class="price--call">{{product.call_for_price}}</span>
                         {{else}}
                             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-                                {{> components/products/price price=product.price}}
+                                {{> components/products/price price=product.price schema_org=schema}}
                             {{else}}
                                 {{> components/common/login-for-pricing}}
                             {{/or}}
@@ -441,7 +364,7 @@
 
                                 <div class="form-increment" data-quantity-change>
                                     <button class="button button--icon" data-action="dec">
-                                        <span class="is-srOnly">{{lang 'products.quantity_decrease' name=product.title}}</span>
+                                        <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
                                         <i class="icon" aria-hidden="true">
                                             <svg>
                                                 <use xlink:href="#icon-keyboard-arrow-down"/>
@@ -459,7 +382,7 @@
                                         pattern="[0-9]*"
                                         aria-live="polite">
                                     <button class="button button--icon" data-action="inc">
-                                        <span class="is-srOnly">{{lang 'products.quantity_increase' name=product.title}}</span>
+                                        <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
                                         <i class="icon" aria-hidden="true">
                                             <svg>
                                                 <use xlink:href="#icon-keyboard-arrow-up"/>
@@ -468,10 +391,12 @@
                                     </button>
                                 </div>
                             </div>
+                         <div id="pickup"></div>
+                        <div id="check-shipping"></div>  
                         {{/if}}
                         <div class="alertBox productAttributes-message" style="display:none">
                             <div class="alertBox-column alertBox-icon">
-                                <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
+                                <icon glyph="ic-success" class="icon" aria-hidden="true"><svg xmlns="https://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path></svg></icon>
                             </div>
                             <p class="alertBox-column alertBox-message"></p>
                         </div>
@@ -504,7 +429,9 @@
 
                 {{> components/common/share url=product.url}}
                 {{{snippet 'product_details'}}}
+            <div class="consultus"><img class="cunsulticon" src="https://cdn11.bigcommerce.com/s-lpuqsi1cy6/product_images/uploaded_images/cloud.jpg"><strong>ASK AN EXPERT</strong><br/>Speak to one of our expertly trained specialists!<br/> <strong>1-800-486-7497 ext 117</strong></div>
             </section>
+            
         </div>
 
         {{#if theme_settings.alsobought_position '===' 'left'}}
@@ -522,13 +449,13 @@
         <div class="emthemesModezBannersBlockBeforeDescription-wrapper emthemesModezBannersBlockBeforeDescription-wrapper--{{theme_settings.productpage_description_type}}"><div data-emthemesmodez-remote-banner="emthemesModezBannersBlockBeforeDescription"></div></div>
     {{/if}}
 
-    <div data-also-bought-parent-scope class="productView-descriptionWrapper">
+    <div data-also-bought-parent-scope class="productView-descriptionWrapper weby-product-description">
         <article class="productView-description{{#if theme_settings.productpage_description_type '===' 'full'}} productView-description--full{{/if}}">
             <ul class="tabs tabs--alt" data-tab>
                 <li class="tab tab--description is-active">
                     <a class="tab-title" href="#tab-description">{{lang 'products.description'}}</a>
                 </li>
-                {{#if theme_settings.productpage_videos_position '===' 'tab'}}
+                {{#if theme_settings.show_video_tabs}}
                     {{#if product.videos.list.length}}
                         <li class="tab tab--videos">
                             <a class="tab-title" href="#tab-videos">{{lang 'products.videos.header'}}</a>
@@ -537,7 +464,7 @@
                 {{/if}}
                 {{#if product.warranty}}
                     <li class="tab tab--warranty">
-                        <a class="tab-title" href="#tab-warranty">{{lang 'products.warranty'}}</a>
+                        <a class="tab-title" href="#tab-warranty">Specification</a>
                     </li>
                 {{/if}}
 
@@ -552,9 +479,9 @@
 
                 {{#all product.custom_fields.length theme_settings.productpage_custom_fields_tab}}
                 {{#any (unless theme_settings.productpage_custom_fields_hide_special) (if product.custom_fields.length '>' specialCustomFields )}}
-                    <li class="tab tab--addition">
-                        <a class="tab-title" href="#tab-addition">{{lang 'products.addition'}}</a>
-                    </li>
+                    <!--<li class="tab tab--addition">-->
+                    <!--    <a class="tab-title" href="#tab-addition">{{lang 'products.addition'}}</a>-->
+                    <!--</li>-->
                 {{/any}}
                 {{/all}}
                 {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
@@ -565,31 +492,42 @@
             </ul>
             <div class="tabs-contents">
                 <div class="tab-content is-active" id="tab-description" data-emthemesmodez-mobile-collapse>
-                    <h2 class="page-heading">{{lang 'products.description'}}</h2>
-                    <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
+                    <p class="page-heading">{{lang 'products.description'}}</p>
+                    {{#if product.brand}}
+                    {{#if product.brand.name '==' 'Zeiss'}}
+                    {{#if product.upc}}
+                    <div class="loadbeeTabContent"
+                        data-loadbee-gtintype="upc"
+                        data-loadbee-apikey="cRryF4RegwBRPZttyvAZNxUt5XknnzHs"
+                        data-loadbee-gtin="{{product.upc}}"
+                        data-loadbee-locale="en_US"
+                    ></div>
+                    {{/if}}{{/if}}{{/if}}
+                    <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content {{#if schema}} itemprop="description"{{/if}} {{#if settings.data_tag_enabled}} data-event-type="product" {{/if}}>
                         {{{product.description}}}
                         {{{snippet 'product_description'}}}
                     </div>
                     <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
                 </div>
-                {{#if theme_settings.productpage_videos_position '===' 'tab'}}
+                {{#if theme_settings.show_video_tabs}}
                     {{#if product.videos.list.length}}
                         <div class="tab-content" id="tab-videos" data-emthemesmodez-mobile-collapse>
-                            <h2 class="page-heading">{{lang 'products.videos.header'}}</h2>
+                            <p class="page-heading">{{lang 'products.videos.header'}}</p>
                             <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
-                                <section class="videoGallery{{#if theme_settings.productpage_videos_position '===' 'tab'}} videoGallery--inTab{{/if}}" data-video-gallery>
+                                <section class="videoGallery{{#if theme_settings.show_video_tabs}} videoGallery--inTab{{/if}}" data-video-gallery>
                                     <div class="videoGallery-main">
                                         <iframe
                                             id="player"
+                                            class="lazyload"
                                             type="text/html"
                                             width="640"
                                             height="390"
+                                            title="Video gallery"
                                             frameborder="0"
                                             webkitAllowFullScreen
                                             mozallowfullscreen
                                             allowFullScreen
-                                            src="https://www.youtube.com/embed/{{product.videos.featured.id}}?rel=0"
-                                            loading="lazy"
+                                            data-src="//www.youtube.com/embed/{{product.videos.featured.id}}?rel=0"
                                             data-video-player>
                                         </iframe>
                                     </div>
@@ -598,7 +536,7 @@
                                         <li class="videoGallery-item">
                                             <a href="#" class="video {{#if @first}}is-active{{/if}}" data-video-item data-video-id="{{id}}">
                                                 <div class="video-figure">
-                                                    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg"/>
+                                                    <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="//i.ytimg.com/vi/{{id}}/default.jpg" alt="{{title_long}}" />
                                                 </div>
                                                 <div class="video-body">
                                                     <h5 class="video-title">{{title_long}}</h5>
@@ -616,19 +554,37 @@
                 {{/if}}
                 {{#if product.warranty}}
                     <div class="tab-content" id="tab-warranty" data-emthemesmodez-mobile-collapse>
-                        <h2 class="page-heading">{{lang 'products.warranty'}}</h2>
+                        <p class="page-heading">Specification</p>
                         <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
                             {{{product.warranty}}}
                         </div>
                         <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
                     </div>
                 {{/if}}
-                {{#all product.custom_fields.length theme_settings.productpage_custom_fields_tab}}
+                
+                {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
+                <div class="tab-content" id="tab-reviews" data-emthemesmodez-mobile-collapse>
+                    <p class="page-heading">{{lang 'products.reviews.header' total=product.reviews.total}}</p>
+                    <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
+                        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+                    </div>
+                    <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
+                </div>
+                {{/all}}
+            </div>
+        </article>
+        {{#all product.custom_fields.length theme_settings.productpage_custom_fields_tab}}
                 {{#any (unless theme_settings.productpage_custom_fields_hide_special) (if product.custom_fields.length '>' specialCustomFields )}}
-                    <div class="tab-content" id="tab-addition" data-emthemesmodez-mobile-collapse>
-                        <h2 class="page-heading">{{lang 'products.addition'}}</h2>
-                        <div class="productView-addition-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
+                    <div class="tab-content is-active weby-product-description-box" id="tab-addition" data-emthemesmodez-mobile-collapse>
+                        <p class="page-heading weby-product-description-header">{{lang 'products.addition'}}</p>
+                        <div class="productView-addition-tabContent emthemesModez-mobile-collapse-content weby-product-description-table" data-emthemesmodez-mobile-collapse-content>
                             <table class="productView-addition-table table">
+                                <thead>
+                                    <tr>
+                                      <th><div style="font-size: 1rem;text-transform: uppercase;font-weight: 700;text-align: center;font-family: Roboto,Arial,Helvetica,sans-serif;">Name</div></th>
+                                      <th><div style="font-size: 1rem;text-transform: uppercase;font-weight: 700;text-align: center;font-family: Roboto,Arial,Helvetica,sans-serif;">Value</div></th>
+                                    </tr>
+                                </thead>
                                 <tbody class="table-tbody">
                                     {{#if theme_settings.productpage_custom_fields_hide_special}}
                                         {{#each product.custom_fields}}
@@ -651,21 +607,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
+                        <a href="#" class="emthemesModez-mobile-collapse-handle weby-product-description-table" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
                     </div>
                 {{/any}}
                 {{/all}}
-                {{#all settings.show_product_reviews theme_settings.show_product_reviews_tabs}}
-                <div class="tab-content" id="tab-reviews" data-emthemesmodez-mobile-collapse>
-                    <h2 class="page-heading">{{lang 'products.reviews.header' total=product.reviews.total}}</h2>
-                    <div class="productView-description-tabContent emthemesModez-mobile-collapse-content" data-emthemesmodez-mobile-collapse-content>
-                        {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-                    </div>
-                    <a href="#" class="emthemesModez-mobile-collapse-handle" data-emthemesmodez-mobile-collapse-handle><span class="on">{{lang 'common.view_all'}}</span><span class="off">{{lang 'common.close'}}</span></a>
-                </div>
-                {{/all}}
-            </div>
-        </article>
     </div>
-    
+
 </div>

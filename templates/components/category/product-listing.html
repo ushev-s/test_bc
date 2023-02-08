@@ -5,13 +5,13 @@
     products_per_page=theme_settings.categorypage_products_per_page
     id_suffix='_main'
 }}
-<div {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}}>
+<form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
     {{#if settings.data_tag_enabled}}
         {{> components/products/grid products=category.products show_compare=category.show_compare show_aside=true show_info=theme_settings.card_info theme_settings=theme_settings event="list"}}
     {{else}}
         {{> components/products/grid products=category.products show_compare=category.show_compare show_aside=true show_info=theme_settings.card_info theme_settings=theme_settings}}
     {{/if}}
-</div>
+</form>
 
     {{> components/common/paginator pagination.category total=category.total_products instantload=(unless category.faceted_search_enabled)}}
     

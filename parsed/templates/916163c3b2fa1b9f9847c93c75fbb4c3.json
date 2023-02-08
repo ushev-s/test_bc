@@ -1,3 +1,0 @@
-{
-  "components/papa-supermarket/common/load-scripts": "{{#unless settings.request.is_crawler}}\n    {{{scripts}}}\n{{/unless}}\n"
-}

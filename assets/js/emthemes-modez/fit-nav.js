@@ -58,13 +58,12 @@ export default function (context) {
     } else {
         $navPages.prepend($list);
     }
-
+    
     const txtMore = context.txtNavMore || 'More';
-    const isStandardMenu = context.themeSettings.navPages_standard;
     const $more = $(`
-        <li class="navPages-item ${isStandardMenu ? 'navPages-item--standard' : ''} navPages-item--more">
+        <li class="navPages-item navPages-item--more">
             <a class="navPages-action has-subMenu is-open" href="#">${txtMore} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i></a>
-            <div class="navPage-subMenu ${isStandardMenu ? 'navPage-subMenu--standard' : ''} is-open"></div>
+            <div class="navPage-subMenu is-open"></div>
         </li>`);
     $list.append($more);
 

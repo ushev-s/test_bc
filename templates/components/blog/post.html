@@ -27,9 +27,6 @@
         </header>
 
         <div class="blog-post">
-            {{#if single}}
-                {{{region name="blog_post_body"}}}
-            {{/if}}
             {{#if post.body}}
                 {{{post.body}}}
                 <div class="blog-date"><span class="blog-date-date">{{post.date_published}}{{#if post.author}}</span> <span class="blog-date-author">{{lang 'blog.posted_by' name=post.author}}{{/if}}</span></div>

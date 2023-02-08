@@ -6,11 +6,11 @@
     &:link,
     &:visited,
     &:active {
-        color: stencilColor("color-textLink");
+        color: $color-textLink;
     }
 
     &:hover,
     &:focus {
-        color: stencilColor("color-textLink-hover");
+        color: $color-textLink-hover;
     }
 }

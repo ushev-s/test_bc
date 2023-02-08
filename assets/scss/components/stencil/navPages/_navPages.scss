@@ -48,7 +48,7 @@
     z-index: zIndex("lower");
 
     @include breakpoint("medium") {
-        background: transparent;
+    background: #213267;
         display: block;
         height: auto;
         padding: 0;
@@ -67,7 +67,7 @@
 // -----------------------------------------------------------------------------
 
 .navPages {
-    background-color: $navPages-backgroundColor;
+    background: #213267 !important;
     height: 100%;
     overflow-y: auto;
     padding: spacing("single");
@@ -114,7 +114,7 @@
 }
 
 .navPages-action {
-    color: stencilColor("navPages-color");
+ color: white;
     display: block;
     font-size: fontSize("smaller");
     font-weight: fontWeight("bold");
@@ -263,7 +263,13 @@
 // Child pages of sub pages navigation lists
 // -----------------------------------------------------------------------------
 
+.navPage-childList-item {
+    @include breakpoint("medium") {
+    }
+}
+
 .navPage-childList-action {
+    padding: 1px 0!important;
     font-weight: fontWeight("normal");
     padding: 0 0 spacing("quarter");
 }

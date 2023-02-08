@@ -7,53 +7,53 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-toggle {
-    width: auto;
-    display: block;
-    margin-right: remCalc(60);
-    margin-bottom: spacing("half");
-    // padding: $input-verticalPadding $input-verticalPadding;
-    padding: spacing("half");
-    text-decoration: none;
-    font-size: fontSize("smaller");
+	width: auto;
+	display: block;
+	margin-right: remCalc(60);
+	margin-bottom: spacing("half");
+	// padding: $input-verticalPadding $input-verticalPadding;
+	padding: spacing("half");
+	text-decoration: none;
+	font-size: fontSize("smaller");
 
-    &::before,
-    &::after {
-        display: none;
-    }
+	&:before,
+	&:after {
+		display: none;
+	}
 
-    &.is-open .toggleLink-text--on {
-        display: block;
-    }
+	&.is-open .toggleLink-text--on {
+		display: block;
+	}
 
-    + .facetedSearch-navList.is-open {
-        clear: both;
-        top: spacing("half");
-    }
+	+ .facetedSearch-navList.is-open {
+		clear: both;
+		top: -1px;
+	}
 }
 
 
 .facetedSearch-toggle-text {
-    display: none;
+	display: none;
 }
 
 .facetedSearch-toggle-indicator {
-    color: $color-textSecondary;
-    width: auto;
-    float: none;
-    text-align: left;
+	color: $color-textSecondary;
+	width: auto;
+	float: none;
+	text-align: left;
 
-    .toggleLink-text {
-        font-size: fontSize("smaller");
-        width: 100%;
+	.toggleLink-text {
+		font-size: fontSize("smaller");
+		width: 100%;
 
-        .icon {
-            float: right;
-        }
-    }
+		.icon {
+			float: right;
+		}
+	}
 
-    .icon svg {
-        fill: $color-textSecondary;
-    }
+	.icon svg {
+		fill: $color-textSecondary;
+	}
 }
 
 
@@ -64,107 +64,108 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-navList {
-    .accordion--navList {
-        .accordion-navigation-actions {
-            top: $accordion-navList-padding;
 
-            @include breakpoint("medium") {
-                top: 0;
-            }
-        }
-    }
+	.accordion--navList {
+		.accordion-navigation-actions {
+			top: $accordion-navList-padding;
 
-    .accordion-title {
-        text-transform: uppercase;
-        font-weight: fontWeight("bold");
-        font-size: fontSize("base");
-    }
+			@include breakpoint("medium") {
+				top: 0;
+			}
+		}
+	}
 
-    .navList-action--checkbox {
-        &::before {
-            margin-top: remCalc(-(fontSize("smaller") * lineHeight("base") / 2));
-        }
+	.accordion-title {
+		text-transform: uppercase;
+		font-weight: fontWeight("bold");
+		font-size: fontSize("base");
+	}
 
-        &::after {
-            margin-top: remCalc(-(fontSize("smaller") * lineHeight("base") / 2) + 1px);
-        }
+	.navList-action--checkbox {
+		&:before {
+		    margin-top: remCalc(-(fontSize("smaller") * lineHeight("base") / 2));
+		}
 
-    }
+		&:after {
+		    margin-top: remCalc(-(fontSize("smaller") * lineHeight("base") / 2) + 1px);
+		}
+
+	}
 }
 
 .facetedSearch.sidebarBlock {
-    border-top: 0;
-    border-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+	border-top: 0;
+	border-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
 
-    @include breakpoint("medium") {
-        border-top: container("border");
-        border-bottom: container("border");
-        padding-top: container("padding");
-        padding-bottom: container("padding");
-    }
+	@include breakpoint("medium") {
+		border-top: container("border");
+		border-bottom: container("border");
+		padding-top: container("padding");
+		padding-bottom: container("padding");
+	}
 
-    @media (max-width: screenSize("medium") - 1px) {
-        @if $theme-style == "modern" {
-            margin-top: 0;
-        }
-        @else {
-            margin: 0;
-            padding: 0;
-            border: 0;
-        }
+	@media (max-width: screenSize("medium") - 1px) {
+		@if $theme-style == "modern" {
+			margin-top: 0;
+		}
+		@else {
+			margin: 0;
+			padding: 0;
+			border: 0;
+		}
 
-        .sidebarBlock ~ & {
-            margin-top: 0;
-        }
-    }
+		.sidebarBlock ~ & {
+			margin-top: 0;
+		}
+	}
 
-    .papaSupermarket-style--modern & {
-        .facetedSearch-toggle {
-            border: 0;
-            margin-left: -(spacing("half"));
-            margin-bottom: 0;
-        }
+	.papaSupermarket-style--modern & {
+		.facetedSearch-toggle {
+			border: 0;
+			margin-left: -(spacing("half"));
+			margin-bottom: 0;
+		}
 
-        .facetedSearch-toggle-indicator .toggleLink-text .icon {
-            display: none;
-        }
-    }
+		.facetedSearch-toggle-indicator .toggleLink-text .icon {
+			display: none;
+		}
+	}
 
-    .facetedSearch-refineFilters {
-        margin: (-(container("padding"))) (-(container("padding"))) 0;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-    }
+	.facetedSearch-refineFilters {
+		margin: (-(container("padding"))) (-(container("padding"))) 0;
+		border-top: 0;
+		border-left: 0;
+		border-right: 0;
+	}
 
-    .navList {
-        border: 0;
-        margin: 0;
-    }
+	.navList {
+		border: 0;
+		margin: 0;
+	}
 
-    .navList-item {
-        border: 0;
-        padding: spacing("quarter") 0;
+	.navList-item {
+		border: 0;
+		padding: spacing("quarter") 0;
 
-        + .navList-item {
-            border: 0;
-        }
-    }
+		+ .navList-item {
+			border: 0;
+		}
+	}
 }
 
 // Modern Style
 // ============================================================================
 .papaSupermarket-style--modern {
-    @media (max-width: screenSize("medium") - 1px) {
-        .sidebarBlock ~ .facetedSearch.sidebarBlock {
-            margin-top: 0;
-        }
+	@media (max-width: screenSize("medium") - 1px) {
+		.sidebarBlock ~ .facetedSearch.sidebarBlock  {
+			margin-top: 0;
+		}
 
-        .emthemesModez-productsFilter--faceted ~ .facetedSearch .facetedSearch-toggle-indicator {
-            border-right: container("border");
-        }
-    }
+		.emthemesModez-productsFilter--faceted ~ .facetedSearch .facetedSearch-toggle-indicator {
+			border-right: container("border");
+		}
+	}
 }
 

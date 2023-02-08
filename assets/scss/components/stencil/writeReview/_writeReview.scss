@@ -36,8 +36,8 @@
         // height: 100%;
         object-fit: contain;
         /* Object-fit polyfill */
-        font-family: "object-fit: contain;";
+        font-family: 'object-fit: contain;';
     }
 
-    @include lazy-loaded-padding("product_size");
+    @include lazy-loaded-padding('product_size');
 }

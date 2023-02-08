@@ -42,31 +42,30 @@
     font-size: fontSize("small");
     font-weight: fontWeight("bold");
     text-transform: uppercase;
-    padding: spacing("half") $container-padding / 2;
+    padding: spacing("third") spacing("single");
     margin: 0 (-$container-padding / 2);
+    background-color: container("fill", "dark");
     line-height: 1.25;
     color: stencilColor("color-textHeading");
     margin-bottom: spacing("single");
-    border-top: 5px solid container("borderColor");
 
     @include breakpoint("medium") {
         padding: spacing("single") 0 0;
-        background: none;
+        background-color: transparent;
         font-size: fontSize("base");
         margin: 0 0 spacing("single");
         border-top: container("border");
     }
 
     .papaSupermarket-style--modern & {
-        background: none;
-        margin: 0 (-(spacing("half"))) spacing("half");
-        border-color: container("fill", "dark");
-        padding: spacing("half");
+        background-color: transparent;
+        margin: 0 0 spacing("half");
+        padding: 0;
         font-size: fontSize("smaller");
 
         @include breakpoint("medium") {
-            margin: 0 0 spacing("base");
-            padding: spacing("base") 0 0;
+            margin-bottom: spacing("base");
+            padding-top: spacing("base");
             font-size: fontSize("base");
         }
     }
@@ -146,7 +145,6 @@
 
     a {
         text-decoration: none;
-
         &.is-open .icon {
             transform: rotate(180deg);
         }
@@ -165,6 +163,7 @@
 }
 
 .productView-alsoBought-item-form {
+
     .form {
         margin-bottom: 0;
     }
@@ -222,9 +221,8 @@
 
     &:not(:last-child) {
         padding-right: 30px;
-
-        &::before {
-            content: "\f067";
+        &:before {
+            content: '\f067';
             font-family: FontAwesome;
             font-size: 18px;
             position: absolute;
@@ -236,12 +234,12 @@
 }
 
 .productView-alsoBought-item-image {
-    img {
+	img {
         @include object-fit(contain);
-        width: get-width(stencilString("productthumb_size"));
+        width: get-width(stencilString('productthumb_size'));
         max-width: 100%;
-        max-height: get-height(stencilString("productthumb_size"));
-    }
+        max-height: get-height(stencilString('productthumb_size'));
+	}
 }
 
 .productView-alsoBought-thumbnail-label {

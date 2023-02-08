@@ -75,7 +75,7 @@
     position: relative;
     width: 70px;
 
-    @include lazy-loaded-padding("productthumb_size");
+    @include lazy-loaded-padding('productthumb_size');
 }
 
 .account-product-download {
@@ -339,6 +339,7 @@
 // -----------------------------------------------------------------------------
 
 .account {
+
     .pagination {
         color: color("greys", "light");
         margin-top: spacing("double");
@@ -351,6 +352,7 @@
 // -----------------------------------------------------------------------------
 
 .account-message {
+
     .is-read {
         color: color("greys", "light");
     }

@@ -10,7 +10,6 @@
         .navPages .emthemesModez-navPages-verticalCategories-container {
             @include breakpoint("medium") {
                 display: block;
-
                 +* {
                     margin-left: 0;
                 }
@@ -33,6 +32,7 @@
 // Increase sidebar width for:
 // - NO faceted (Advanced search form)
 .page-sidebar--advancedSearch {
+
     .papaSupermarket-style--modern & {
         margin-top: spacing("half");
 
@@ -52,9 +52,9 @@
     .sidebarBlock-heading {
         position: relative;
 
-        &::after {
+        &:after {
             font-family: FontAwesome;
-            content: "\f105";
+            content: '\f105';
             position: absolute;
             top: spacing("half");
             right: spacing("single");
@@ -64,8 +64,8 @@
             }
         }
 
-        &.is-open::after {
-            content: "\f107";
+        &.is-open:after {
+            content: '\f107';
         }
     }
 }

@@ -162,6 +162,9 @@
 // Preview Cart
 @import "stencil/previewCart/component";
 
+// Maintenance Notice
+@import "stencil/maintenanceNotice/component";
+
 // Cookie Warning
 @import "stencil/cookie/component";
 
@@ -202,6 +205,9 @@
 // Newsletter Form section
 @import "emthemesModez/newsletterSection/component";
 
+// Instagram
+@import "emthemesModez/instagram/component";
+
 // Section
 @import "emthemesModez/sections/component";
 @import "papaSupermarket/sections/component";
@@ -226,10 +232,32 @@
 @import "papaSupermarket/compareProducts/component";
 
 // Search In Category
-@import "papaSupermarket/searchInCategory/component";
-
-// Recently Viewed Products
-@import "papaSupermarket/recentlyViewedProducts/component";
+@if stencilString("categorypage_search") == "show" {
+    @import "papaSupermarket/searchInCategory/component";
+}
 
 // Multiple Category Dependent Dropdowns
 // @import "papaSupermarket/mcdd/component";
+
+.rental-gun-title {
+    font-family: Montserrat;
+    font-size: 24px;
+}
+.rental-gun-table {
+    width: 100%;
+}
+.rental-gun-table-row-title {
+    font-family: Montserrat;
+    font-size: 18px;
+    background-color: #505050;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+.rental-gun-table-row-content {
+    font-family: Montserrat;
+    font-size: 18px;
+    color: #505050;
+    background-color: #F0F0F0;
+    padding: 7px;
+}

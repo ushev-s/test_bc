@@ -1,25 +1,18 @@
-import { Validators } from '../../../theme/common/utils/form-utils';
+import { Validators } from '../../../theme/common/form-utils';
 
 describe('Validators', () => {
     let validator;
 
     beforeEach(() => {
-        validator = {
-            add: jest.fn(),
-            configure: jest.fn(),
-            setMessageOptions: jest.fn()
-        };
+        validator = jasmine.createSpyObj('validator', [
+            'add',
+            'configure',
+            'setMessageOptions',
+        ]);
     });
 
     describe('setMinMaxPriceValidation', () => {
         let selectors;
-        const priceValidationErrorTexts = { 
-            onMinPriceError: jasmine.any(String), 
-            onMaxPriceError: jasmine.any(String), 
-            minPriceNotEntered: jasmine.any(String), 
-            maxPriceNotEntered: jasmine.any(String),  
-            onInvalidPrice: jasmine.any(String), 
-        };
 
         beforeEach(() => {
             selectors = {
@@ -32,7 +25,7 @@ describe('Validators', () => {
         });
 
         it('should add min-max validator to min price input', () => {
-            Validators.setMinMaxPriceValidation(validator, selectors, priceValidationErrorTexts);
+            Validators.setMinMaxPriceValidation(validator, selectors);
 
             expect(validator.add).toHaveBeenCalledWith({
                 errorMessage: jasmine.any(String),
@@ -42,7 +35,7 @@ describe('Validators', () => {
         });
 
         it('should add presence validator to max price input', () => {
-            Validators.setMinMaxPriceValidation(validator, selectors, priceValidationErrorTexts);
+            Validators.setMinMaxPriceValidation(validator, selectors);
 
             expect(validator.add).toHaveBeenCalledWith({
                 errorMessage: jasmine.any(String),
@@ -52,7 +45,7 @@ describe('Validators', () => {
         });
 
         it('should add presence validator to max price input', () => {
-            Validators.setMinMaxPriceValidation(validator, selectors, priceValidationErrorTexts);
+            Validators.setMinMaxPriceValidation(validator, selectors);
 
             expect(validator.add).toHaveBeenCalledWith({
                 errorMessage: jasmine.any(String),
@@ -62,7 +55,7 @@ describe('Validators', () => {
         });
 
         it('should add min-number validator to max/min price inputs', () => {
-            Validators.setMinMaxPriceValidation(validator, selectors, priceValidationErrorTexts);
+            Validators.setMinMaxPriceValidation(validator, selectors);
 
             expect(validator.add).toHaveBeenCalledWith({
                 errorMessage: jasmine.any(String),

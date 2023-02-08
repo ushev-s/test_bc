@@ -42,9 +42,6 @@ export default function (context) {
 
             $('body').trigger('loaded.quickview', [product]);
 
-            // Supermarket: Track recently viewed products
-            $('body').trigger('productviewed', [Number($quickView.find('input[name="product_id"]').val())]);
-
             return product;
             // }}}
         });

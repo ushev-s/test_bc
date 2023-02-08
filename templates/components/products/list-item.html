@@ -1,22 +1,5 @@
 {{#if settings.data_tag_enabled}}
-    <article class="listItem"
-        data-event-type="{{event}}"
-        data-entity-id="{{id}}"
-        data-position="{{position}}"
-        data-name="{{name}}"
-        data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
-        data-product-brand="{{brand.name}}"
-        data-product-price="
-            {{#or customer (unless theme_settings.restrict_to_login)}}
-                {{#if price.with_tax}}
-                    {{price.with_tax.value}}
-                {{else}}
-                    {{price.without_tax.value}}
-                {{/if}}
-            {{else}}
-                {{lang 'common.login_for_pricing'}}
-            {{/or}}
-        ">
+    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
 {{else}}
     <article class="listItem" >
 {{/if}}
@@ -61,15 +44,14 @@
             fallback_size=theme_settings.productgallery_size
             lazyload=theme_settings.lazyload_mode
             default_image=theme_settings.default_image_product
-            otherAttributes=(getVar 'productCardImageSizeAttrs')
         }}
     </figure>
     <div class="listItem-body">
         <div class="listItem-content">
             <div class="listItem-details">
-                <h4 class="listItem-title">
+                <p class="listItem-title">
                     <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
-                </h4>
+                </p>
                 {{#if brand.name}}
                 <p class="listItem-brand">{{brand.name}}</p>
                 {{/if}}

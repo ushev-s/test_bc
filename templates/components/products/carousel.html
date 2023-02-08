@@ -30,10 +30,12 @@
             }
         ]
     }'
->
-    {{#each products}}
-    <div class="productCarousel-slide" data-product-id="{{id}}">
-        {{> components/products/card show_info=(if ../theme_settings.card_info '==' 'all') settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
-    </div>
-    {{/each}}
+>   
+    {{#if products}}
+        {{#each products}}
+        <div class="productCarousel-slide" data-product-id="{{id}}">
+            {{> components/products/card show_info=(if ../theme_settings.card_info '==' 'all') settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+        </div>
+        {{/each}}
+    {{/if}}
 </section>

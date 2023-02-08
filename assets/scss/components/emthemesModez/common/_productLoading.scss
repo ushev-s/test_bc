@@ -1,19 +1,19 @@
 .emthemesModez-productLoading {
-    @include grid-row($behavior: "nest");
-    font-size: 0;
+	@include grid-row($behavior: "nest");
+	font-size: 0;
 }
 
 .emthemesModez-productLoading-item {
-    @include grid-column(6, $float: none);
-    font-size: fontSize("base");
+	@include grid-column(6, $float: none);
+	font-size: fontSize("base");
 
-    @include breakpoint("medium") {
-        width: grid-calc(3, $total-columns);
-        display: inline-block;
-        vertical-align: top;
-    }
+	@include breakpoint("medium") {
+		width: grid-calc(3, $total-columns);
+		display: inline-block;
+		vertical-align: top;
+	}
 	
-    img {
-        max-width: 100%;
-    }
+	img {
+		max-width: 100%;
+	}
 }

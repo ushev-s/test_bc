@@ -15,8 +15,8 @@
         width: calc(#{width("8/12")} - #{$column-gutter / 2});
     }
 
-    &::after {
-        content: "";
+    &:after {
+        content: '';
         display: block;
         height: 0;
         padding-bottom: 67.5%;

@@ -1,16 +1,13 @@
 import PageManager from '../page-manager';
 import nod from './common/nod';
-import checkIsGiftCertValid from './common/gift-certificate-validator';
+import giftCertChecker from './common/gift-certificate-validator';
 import formModel from './common/models/forms';
-import { createTranslationDictionary } from './common/utils/translations-utils';
-import { announceInputErrorMessage } from './common/utils/form-utils';
 import { api } from '@bigcommerce/stencil-utils';
 import { defaultModal } from './global/modal';
 
 export default class GiftCertificate extends PageManager {
     constructor(context) {
         super(context);
-        this.validationDictionary = createTranslationDictionary(context);
 
         const $certBalanceForm = $('#gift-certificate-balance');
 
@@ -49,7 +46,6 @@ export default class GiftCertificate extends PageManager {
         const purchaseValidator = nod({
             submit: '#gift-certificate-form input[type="submit"]',
             delay: 300,
-            tap: announceInputErrorMessage,
         });
 
         if ($customAmounts.length) {
@@ -58,16 +54,6 @@ export default class GiftCertificate extends PageManager {
             const minFormatted = $element.data('minFormatted');
             const max = $element.data('max');
             const maxFormatted = $element.data('maxFormatted');
-            const insertFormattedAmountsIntoErrorMessage = (message, ...amountRange) => {
-                const amountPlaceholders = ['[MIN]', '[MAX]'];
-                let updatedErrorText = message;
-                amountPlaceholders.forEach((placeholder, i) => {
-                    updatedErrorText = updatedErrorText.includes(placeholder) ?
-                        updatedErrorText.replace(placeholder, amountRange[i]) :
-                        updatedErrorText;
-                });
-                return updatedErrorText;
-            };
 
             purchaseValidator.add({
                 selector: '#gift-certificate-form input[name="certificate_amount"]',
@@ -80,7 +66,7 @@ export default class GiftCertificate extends PageManager {
 
                     cb(numberVal >= min && numberVal <= max);
                 },
-                errorMessage: insertFormattedAmountsIntoErrorMessage(this.validationDictionary.certificate_amount_range, minFormatted, maxFormatted),
+                errorMessage: `You must enter a certificate amount between ${minFormatted} and ${maxFormatted}.`,
             });
         }
 
@@ -198,15 +184,14 @@ export default class GiftCertificate extends PageManager {
     checkCertBalanceValidator($balanceForm) {
         const balanceValidator = nod({
             submit: $balanceForm.find('input[type="submit"]'),
-            tap: announceInputErrorMessage,
         });
 
         balanceValidator.add({
             selector: $balanceForm.find('input[name="giftcertificatecode"]'),
             validate(cb, val) {
-                cb(checkIsGiftCertValid(val));
+                cb(giftCertChecker(val));
             },
-            errorMessage: this.validationDictionary.invalid_gift_certificate,
+            errorMessage: 'You must enter a certificate code.',
         });
 
         return balanceValidator;

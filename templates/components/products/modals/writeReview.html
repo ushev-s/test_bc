@@ -4,7 +4,7 @@
     {{inject 'reviewComment' (lang 'forms.validate.reviews.comment')}}
     {{inject 'reviewEmail' (lang 'forms.validate.common.email_address')}}
     <div class="modal-header">
-        <h2 class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</h2>
+        <p class="modal-header-title">{{lang 'products.reviews.write_a_review'}}</p>
         <a href="#" class="modal-close" aria-label="{{lang 'common.close'}}" role="button">
             <svg class="icon"><use xlink:href="#icon-close" /></svg>
         </a>
@@ -12,27 +12,19 @@
     <div class="modal-body">
         <div class="writeReview-productDetails">
             <div class="writeReview-productImage-container">
-                {{#if theme_settings.lazyload_mode '===' 'disabled'}}
-                    {{> components/common/responsive-img
-                        image=product.main_image
-                        fallback_size=theme_settings.product_size
-                        lazyload=theme_settings.lazyload_mode
-                        default_image=theme_settings.default_image_product
-                    }}
-                {{else}}
-                    {{> components/common/responsive-img
-                        image=product.main_image
-                        fallback_size=theme_settings.product_size
-                        lazyload='lazyload'
-                        default_image=theme_settings.default_image_product
-                    }}
-                {{/if}}
+                {{> components/common/responsive-img
+                    image=product.main_image
+                    fallback_size=theme_settings.product_size
+                    lazyload=theme_settings.lazyload_mode
+                    default_image=theme_settings.default_image_product
+                }}
             </div>
-            <h6 class="product-brand">{{ product.brand.name }}</h6>
-            <h5 class="product-title">{{ product.title }}</h5>
+            <p class="product-brand">{{ product.brand.name }}</p>
+            <p class="product-title">{{ product.title }}</p>
         </div>
         <form class="form writeReview-form" action="{{ urls.product.post_review }}" method="post">
             <fieldset class="form-fieldset">
+                <legend class="is-srOnly">{{lang 'products.reviews.rating_label'}}</legend>
                 <div class="form-field">
                     <label class="form-label" for="rating-rate">{{lang 'products.reviews.rating_label'}}
                         <small>{{lang 'common.required' }}</small>

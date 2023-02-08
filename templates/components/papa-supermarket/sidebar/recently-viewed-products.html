@@ -1,8 +1,8 @@
-{{#if customer.recently_viewed_products.items}}
-    <div class="sidebarBlock sidebarBlock--recentlyViewed sidebarBlock--mobileCollapsible">
+{{#and theme_settings.product_recently_viewed customer.recently_viewed_products.items}}
+    <div class="sidebarBlock sidebarBlock--mobileCollapsible">
         <h5 class="sidebarBlock-heading is-open" data-collapsible="#sidebar-recently-viewed-products" data-collapsible-disabled-breakpoint="medium" aria-expanded="true">{{lang 'account.recent_items.heading' }}</h5>
         <ul id="sidebar-recently-viewed-products" class="productList is-open" aria-hidden="false" data-product-type="recently_viewed">
-            {{#each customer.recently_viewed_products.items}}
+            {{#each (limit customer.recently_viewed_products.items theme_settings.product_recently_viewed)}}
                 <li class="product">
                     {{>components/products/list-item 
                         summary=false
@@ -15,4 +15,4 @@
             {{/each}}
         </ul>
     </div>
-{{/if}}
+{{/and}}

@@ -3,6 +3,9 @@ category:
     shop_by_price: true
     products:
         limit: {{theme_settings.categorypage_products_per_page}}
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
 shop_by_brand:
     limit: {{theme_settings.max_shop_by_brand}}
 ---
@@ -21,6 +24,10 @@ shop_by_brand:
 <h1 class="page-heading page-heading--mobileOnly">{{category.name}}</h1>
 
 <div class="page">
+    <!--<aside class="page-sidebar page-sidebar--top" id="faceted-search-container">-->
+    <!--    {{> components/category/sidebar}}-->
+    <!--</aside>-->
+
     <main class="page-content">
         {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 
@@ -47,7 +54,6 @@ shop_by_brand:
         <p class="h1 page-heading page-heading--desktopOnly">{{category.name}}</p>
         {{{region name="category_below_header--global"}}}
         {{{region name="category_below_header"}}}
-        
 
         {{#if theme_settings.show_subcategories_grid}}
             {{#if category.subcategories}}
@@ -69,7 +75,7 @@ shop_by_brand:
             </ul>
             {{/if}}
         {{/if}}
-        
+
         <!-- Searchanise Filters Block  -->
         <div class="snize" id="snize_results"></div> 
         <!-- END Searchanise Filters Block  -->
@@ -83,6 +89,7 @@ shop_by_brand:
                 {{{snippet 'categories'}}}
             </div>
         {{/if}}
+        
     </main>
 
     <aside class="page-sidebar page-sidebar--bottom">
@@ -96,7 +103,7 @@ shop_by_brand:
         {{{region name="category_sidebar2_bottom--global"}}}
     </aside>
 </div>
-<!-- Searchinise Block-->
+
 <style type="text/css">
 /* Load spinner */
 #snize-preload-spinner {
@@ -135,8 +142,8 @@ shop_by_brand:
         }
     }, 30);
 }(window));
-</script>
-<!-- END Searchinise Block-->
+></script>
+
 {{/partial}}
 {{#and theme_settings.instantload is_ajax}}
     {{> layout/instantload-base}}

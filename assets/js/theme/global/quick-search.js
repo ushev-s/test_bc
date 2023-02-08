@@ -9,10 +9,7 @@ export default function () {
     const $searchQuery = $('#search_query');
     const stencilDropDownExtendables = {
         hide: () => {
-            // papathemes-supermarket: fix issue when selecting the search text from right to left by mouse
-            if ($searchQuery.is(':hidden')) {
-                $searchQuery.trigger('blur');
-            }
+            $searchQuery.trigger('blur');
         },
         show: (event) => {
             $searchQuery.trigger('focus');
@@ -43,8 +40,7 @@ export default function () {
         }
     };
 
-    // stagger searching for 1200ms after last input
-    const debounceWaitTime = 1200;
+    // stagger searching for 200ms after last input
     const doSearch = _.debounce((searchQuery) => {
         utils.api.search.search(searchQuery, { template: 'search/quick-results' }, (err, response) => {
             if (err) {
@@ -52,9 +48,9 @@ export default function () {
             }
 
             $quickSearchResults.html(response);
-            stencilDropDown.show($quickSearchDiv); // emthemesModez: show drop-down results after search results retrieved
+            stencilDropDown.show($quickSearchDiv);  // emthemesModez: show drop-down results after search results retrieved
         });
-    }, debounceWaitTime);
+    }, 200);
 
     utils.hooks.on('search-quick', (event, currentTarget) => {
         const searchQuery = $(currentTarget).val();

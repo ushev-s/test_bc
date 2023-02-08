@@ -1,102 +1,102 @@
 
 .navList-subSection .navList-item {
-    margin-left: spacing("half");
+	margin-left: spacing("half");
 
-    &::before {
-        content: "-";
-        float: left;
-        margin-left: -(spacing("half"));
-    }
+	&:before {
+		content: '-';
+		float: left;
+		margin-left: -(spacing("half"));
+	}
 }
 
 .navBar--sub {
-    margin-bottom: spacing("single");
+	margin-bottom: spacing("single");
 
-    .navBar-item {
-        &.is-active {
-            font-weight: fontWeight("bold");
-        }
+	.navBar-item {
+		&.is-active {
+			font-weight: fontWeight("bold");
+		}
 		
-        .papaSupermarket-page--pages-search & {
-            display: inline-block;
-        }
-    }
+		.papaSupermarket-page--pages-search & {
+			display: inline-block;
+		}
+	}
 
-    .navBar-action {
-        padding-top: spacing("quarter");
-        padding-bottom: spacing("quarter");
+	.navBar-action {
+		padding-top: spacing("quarter");
+		padding-bottom: spacing("quarter");
 
-        color: $color-textLink;
+		color: $color-textLink;
 
-        &:hover {
-            color: $color-textLink-hover;
-        }
+		&:hover {
+			color: $color-textLink-hover;
+		}
 
-        &:active {
-            color: $color-textLink-active;
-        }
+		&:active {
+			color: $color-textLink-active;
+		}
 
-        @include breakpoint("medium") {
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-    }
+		@include breakpoint("medium") {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
 	
-    .papaSupermarket-page--pages-search & {
-        @include breakpoint("medium") {
-            text-align: left;
+	.papaSupermarket-page--pages-search & {
+		@include breakpoint("medium") {
+			text-align: left;
 
-            .navBar-item:first-child {
-                margin-left: 0;
-            }
-        }
-    }
+			.navBar-item:first-child {
+				margin-left: 0;
+			}
+		}
+	}
 }
 
 
 .papaSupermarket-style--modern {
-    .navBar--sub {
-        padding: 0 spacing("quarter");
+	.navBar--sub {
+		padding: 0 spacing("quarter");
 
-        @include breakpoint("medium") {
-            padding: 0;
-        }
+		@include breakpoint("medium") {
+			padding: 0;
+		}
 
-        .navBar-section {
-            @include u-modern-container-box($_shadow: false);
+		.navBar-section {
+			@include u-modern-container-box($_shadow: false);
 
-            @include breakpoint("medium") {
-                background: transparent;
-                border: 0;
-            }
-        }
+			@include breakpoint("medium") {
+				background: transparent;
+				border: 0;
+			}
+		}
 
-        .navBar-item {
-            padding: spacing("quarter") spacing("half");
-            font-weight: fontWeight("bold");
+		.navBar-item {
+			padding: spacing("quarter") spacing("half");
+			font-weight: fontWeight("bold");
 
-            @include breakpoint("medium") {
-                padding: spacing("eighth") 0;
-            }
+			@include breakpoint("medium") {
+				padding: spacing("eighth") 0;
+			}
 
-            + .navBar-item {
-                border-top: container("border");
+			+ .navBar-item {
+				border-top: container("border");
 
-                @include breakpoint("medium") {
-                    border-top: 0;
-                }
-            }
-        }
+				@include breakpoint("medium") {
+					border-top: 0;
+				}
+			}
+		}
 
-        .navBar-action {
-            padding: 0;
-            color: $color-textBase;
-            font-weight: $body-font-weight;
+		.navBar-action {
+			padding: 0;
+			color: $color-textBase;
+			font-weight: $body-font-weight;
 
-            &:hover,
-            &:focus {
-                color: $color-primary;
-            }
-        }
-    }
+			&:hover,
+			&:focus {
+				color: $color-primary;
+			}
+		}
+	}
 }

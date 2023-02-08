@@ -2,174 +2,150 @@
 // -----------------------------------------------------------------------------
 
 .productView {
-    margin: 0 (-(container("padding") / 2));
+	margin: 0 (-(container("padding") / 2));
 
-    .papaSupermarket-layout--left-sidebar & {
-        margin: 0 (-$container-padding / 2);
-    }
+	.papaSupermarket-layout--left-sidebar & {
+		margin: 0 (-$container-padding / 2);
+	}
 
-    @include breakpoint("medium") {
-        margin: 0 (-$container-padding / 2);
-    }
+	@include breakpoint("medium") {
+		margin: 0 (-$container-padding / 2);
+	}
 
-    .papaSupermarket-style--modern & {
-        margin: 0;
-        padding: spacing("quarter");
+	.papaSupermarket-style--modern & {
+	    margin: 0;
+		padding: spacing("quarter");
 		
-        @include breakpoint("medium") {
-            padding: 0;
-        }
-    }
+		@include breakpoint("medium") {
+			padding: 0;
+		}
+	}
 }
 
 .productView--quickView {
-    @media (max-width: screenSize("medium") - 1px) {
-        .papaSupermarket-layout--left-sidebar & {
-            margin: 0 (-(spacing("half")));
-        }
-    }
+	@media (max-width: screenSize("medium") - 1px) {
+		.papaSupermarket-layout--left-sidebar & {
+			margin: 0 (-(spacing("half")));
+		}
+	}
 }
 
 .productView--half {
-    .productView-detailsWrapper {
-        @include breakpoint("medium") {
-            position: static;
-            display: inline;
-            border: 0;
+	.productView-detailsWrapper {
+		@include breakpoint("medium") {
+			position: static;
+			display: inline;
+			border: 0;
 
-            &::before,
-            &::after {
-                display: none;
-            }
-        }
-    }
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
 
-    .papaSupermarket-style--modern & {
-        @include breakpoint("medium") {
-            background-color: container("fill");
-            border: container("border");
-            border-radius: $container-border-radius;
-            box-shadow: 0 3px 0 container("borderColor");
+	.papaSupermarket-style--modern & {
+		@include breakpoint("medium") {
+			background-color: container("fill");
+			border: container("border");
+			border-radius: $container-border-radius;
+			box-shadow: 0 3px 0 container("borderColor");
 
-            .productView-description {
-                margin-left: spacing("half");
-                margin-right: spacing("half");
-                width: calc(50% - #{spacing("single")});
-            }
-        }
-    }
+			.productView-description {
+				margin-left: spacing("half");
+				margin-right: spacing("half");
+				width: calc(50% - #{spacing("single")});
+			}
+		}
+	}
 }
 
 .productView-detailsWrapper {
-    @include breakpoint("medium") {
-        @include clearfix;
-        position: relative;
-    }
+	@include breakpoint("medium") {
+		@include clearfix;
+		position: relative;
+	}
 	
-    .papaSupermarket-style--modern & {
-        background-color: container("fill");
-        border: container("border");
-        border-radius: $container-border-radius;
-        box-shadow: 0 3px 0 container("borderColor");
-    }
+	.papaSupermarket-style--modern & {
+		background-color: container("fill");
+		border: container("border");
+		border-radius: $container-border-radius;
+		box-shadow: 0 3px 0 container("borderColor");
+	}
 }
 
 
 .productView-beforeAlsoBought {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    @include breakpoint("medium") {
-        display: inline;
-    }
+	@include breakpoint("medium") {
+		display: inline;
+	}
 }
 
 .productView-details {
-    order: 2;
-    padding: 0 $container-padding / 2;
+	order: 2;
+	padding: 0 $container-padding / 2;
 
-    .papaSupermarket-style--modern & {
-        padding: 0 spacing("half");
+	.papaSupermarket-style--modern & {
+		padding: 0 spacing("half");
 
-        @include breakpoint("medium") {
-            padding: spacing("half");
-            margin-bottom: 0;
-        }
-    }
+		@include breakpoint("medium") {
+			padding: spacing("half");
+			margin-bottom: 0;
+		}
+	}
 }
 
 .productView-images {
-    order: 1;
-    position: relative;
-    padding: 0 $container-padding / 2;
+	order: 1;
+	position: relative;
+	padding: 0 $container-padding / 2;
 
-    &[data-sidebar-sticky] {
-        @include breakpoint("medium") {
-            position: sticky;
-            top: 0;
-        }
-    }
+	&[data-sidebar-sticky] {
+		@include breakpoint("medium") {
+			position: sticky;
+			top: 0;
+		}
+	}
 
-    .papaSupermarket-style--modern & {
-        padding: spacing("half");
-    }
+	.papaSupermarket-style--modern & {
+		padding: spacing("half");
+	}
 }
 
 .productView-descriptionWrapper {
-    display: inline;
+	display: inline;
 }
 
 .productView-description {
-    padding: 0 $container-padding / 2;
+	padding: 0 $container-padding / 2;
 	
-    .papaSupermarket-style--modern & {
-        background-color: container("fill");
-        border: container("border");
-        border-radius: $container-border-radius;
-        padding: 0 spacing("half") spacing("half");
-        margin-top: spacing("single");
+	.papaSupermarket-style--modern & {
+		background-color: container("fill");
+		border: container("border");
+		border-radius: $container-border-radius;
+		padding: spacing("half");
+		margin-top: spacing("single");
 
-        .tabs {
-            border-top-left-radius: $container-border-radius;
-            border-top-right-radius: $container-border-radius;
-            overflow: hidden;
-        }
-
-        .tab-content {
-            &:first-child {
-                @media (max-width: (screenSize("medium") - 1px)) {
-                    padding-top: 0;
-
-                    .page-heading {
-                        border-top: 0;
-                    }
-                }
-            }
-        }
-
-        .page-heading {
-            text-align: left;
-            margin-left: -(spacing("half"));
-            margin-right: -(spacing("half"));
-            padding: spacing("half");
-        }
-
-        @include breakpoint("medium") {
-            padding: 0;
-        }
-    }
+		@include breakpoint("medium") {
+			padding: 0;
+			border-radius: 0;
+		}
+	}
 }
 
 .productView-reviewTabs,
 .productView-productTabs {
 
-    padding: 0 $container-padding / 2 - container("padding") / 2;
+	padding: 0 $container-padding / 2 - container("padding") / 2;
 
-    .papaSupermarket-layout--left-sidebar & {
-        padding: 0;
-    }
+	.papaSupermarket-layout--left-sidebar & {
+		padding: 0;
+	}
 
-    @include breakpoint("medium") {
-        padding: 0;
-    }
+	@include breakpoint("medium") {
+		padding: 0;
+	}
 }

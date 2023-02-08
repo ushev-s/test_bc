@@ -74,14 +74,6 @@ function validateSchema() {
                     err = true;
                 }
 
-                let valueType;
-
-                if (item.type === 'color' || item.type === 'font' || item.type === 'text' || item.type === 'imageDimension' || item.type === 'optimizedCheckout-image') {
-                    valueType = 'string';
-                } else if (item.type === 'checkbox') {
-                    valueType = 'boolean';
-                }
-
                 if (item.options instanceof Array) {
                     var values = [];
                     item.options.forEach(option => {
@@ -100,13 +92,7 @@ function validateSchema() {
                             err = true;
                         }
 
-                        if (valueType && typeof option.value !== valueType) {
-                            console.error(`Settings '${item.id}' options are not the same type (${typeof option.value} !== ${valueType})`);
-                            err = true;
-                        }
-
                         values.push(option.value);
-                        valueType = typeof option.value;
                     });
 
                     if (item.id in config.settings && values.indexOf(config.settings[item.id]) === -1) {
@@ -126,18 +112,6 @@ function validateSchema() {
                     console.error(`Setting '${item.id}' in group '${group.name}' has value type is not string`);
                     err = true;
                 }
-
-                if (item.id && typeof config.settings[item.id] !== valueType) {
-                    console.error(`Setting '${item.id}' has value type is not ${valueType}`);
-                }
-
-                config.variations.forEach(variation => {
-                    if (item.id && item.id in variation.settings && typeof variation.settings[item.id] !== valueType) {
-                        console.error(`Setting '${item.id}' of variation '${variation.name}' has value type is not ${valueType}`);
-                        err = true;
-                    }
-                });
-
 
                 if (item.id) {
                     keys.push(item.id);

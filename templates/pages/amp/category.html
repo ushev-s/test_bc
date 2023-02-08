@@ -27,13 +27,6 @@ category:
         <h1 class="categoryView-title">
             {{category.name}}
         </h1>
-
-        {{#if theme_settings.show_amp_category_desc}}
-        <div class="papaSupermarket-categoryPage-description">
-            {{{category.description}}}
-            {{{snippet 'categories'}}}
-        </div>
-        {{/if}}
     </div>
     <main class="page-content" id="product-listing-container">
         {{#if category.products}}
@@ -43,6 +36,14 @@ category:
         {{/if}}
     </main>
     {{> components/amp/category/subcategories}}
+    <div class="container">
+        {{#if theme_settings.show_amp_category_desc}}
+        <div class="papaSupermarket-categoryPage-description">
+            {{{category.description}}}
+            {{{snippet 'categories'}}}
+        </div>
+        {{/if}}
+    </div>
     {{> components/amp/common/footer }}
     {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">
