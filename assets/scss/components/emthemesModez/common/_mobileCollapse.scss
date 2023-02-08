@@ -1,0 +1,56 @@
+.emthemesModez-mobile-collapse-content {
+    max-height: 50vh;
+    overflow: hidden;
+
+    @include breakpoint("medium") {
+        max-height: none;
+        overflow: visible;
+    }
+
+    &.is-active {
+        max-height: none;
+        overflow: visible;
+        overflow-y: auto;
+    }
+}
+
+.emthemesModez-mobile-collapse-handle {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAyCAYAAACd+7GKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD1JREFUeNpi+P//PwMTAwMDG4hgBxEcIIILTnDDCV4QwQNngQk+VC6aEoRehHlg49kZgPb+B7EYBooACDAAxQwIU5WPeIUAAAAASUVORK5CYII=");
+    display: flex;
+    align-items: flex-end;
+    height: 50px;
+    line-height: 1.25;
+    margin-top: -50px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: fontWeight("bold");
+    text-decoration: none;
+	
+    .on,
+    .off {
+        border-bottom: 1px solid;
+    }
+
+    .on {
+        display: inline;
+    }
+
+    .off {
+        display: none;
+    }
+
+    &.is-active {
+        margin-top: 0;
+
+        .on {
+            display: none;
+        }
+
+        .off {
+            display: inline;
+        }
+    }
+    @include breakpoint("medium") {
+        display: none;
+    }
+}

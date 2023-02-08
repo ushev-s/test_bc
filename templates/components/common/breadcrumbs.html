@@ -1,0 +1,35 @@
+<ul class="breadcrumbs">
+    {{#each breadcrumbs}}
+        {{#if url}}
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <a data-instantload href="{{url}}" class="breadcrumb-label">
+                    <span>{{name}}</span>
+                </a>
+            </li>
+        {{else}}
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <span class="breadcrumb-label">{{name}}</span>
+            </li>
+        {{/if}}
+    {{/each}}
+</ul>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+        {{#each breadcrumbs}}
+        {
+            "@type": "ListItem",
+            "position": {{add @index 1}},
+            "item": {
+                "@id": {{{JSONstringify url}}},
+                "name": {{{JSONstringify name}}}
+            }
+        }{{#unless @last}},{{/unless}}
+        {{/each}}
+    ]
+}
+</script>

@@ -1,0 +1,29 @@
+.tab {
+    @include breakpoint("medium") {
+        border-top-left-radius: $container-border-radius;
+        border-top-right-radius: $container-border-radius;
+    }
+}
+
+.tab-title {
+    font-weight: fontWeight("bold");
+    color: $color-textBase;
+
+    &:hover,
+    &:focus {
+        color: $color-textBase-hover;
+    }
+}
+
+.tabs--alt {
+    .tab-title {
+        text-transform: uppercase;
+    }
+}
+
+
+.tab-content {
+    .productReview {
+        width: 100%;
+    }
+}

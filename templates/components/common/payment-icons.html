@@ -1,0 +1,33 @@
+{{#with theme_settings}}
+    {{#or show_accept_amex show_accept_discover show_accept_mastercard show_accept_paypal show_accept_visa}}
+        <div class="footer-payment-icons">
+            {{#if show_accept_amex}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-american-express{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_discover}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-discover{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_mastercard}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-mastercard{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_paypal}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-paypal{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_visa}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-visa{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_applepay}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-applepay{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_amazon}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-amazon{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_googlepay}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-googlepay{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+            {{#if show_accept_klarna}}
+                <svg class="footer-payment-icon"><use xlink:href="#icon-logo-klarna{{#if payment_icons_style}}{{#if payment_icons_style '!=' 'flat'}}-{{payment_icons_style}}{{/if}}{{/if}}"></use></svg>
+            {{/if}}
+        </div>
+    {{/or}}
+{{/with}}

@@ -1,0 +1,13 @@
+<a href="{{urls.home}}" data-instantload='{"page":"home"}'>
+    {{#if settings.store_logo.image}}
+        {{#if theme_settings.logo_size '===' 'original'}}
+            <img class="header-logo-image-unknown-size" src="{{getImage settings.store_logo.image 'logo_size'}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+        {{else}}
+            <div class="header-logo-image-container">
+                <img class="header-logo-image" src="{{getImage settings.store_logo.image 'logo_size'}}" srcset="{{getImageSrcset settings.store_logo.image 1x=theme_settings.logo_size 2x=(concat (multiply (first (split theme_settings.logo_size 'x')) 2) 'w')}}" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+            </div>
+        {{/if}}
+    {{else}}
+        <span class="header-logo-text">{{settings.store_logo.title}}</span>
+    {{/if}}
+</a>

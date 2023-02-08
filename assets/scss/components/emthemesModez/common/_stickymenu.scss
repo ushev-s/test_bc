@@ -1,0 +1,52 @@
+.papathemes-stickymenu-placeholder {
+    display: none;
+    position: absolute;
+
+    @include breakpoint("medium") {
+        position: static;
+    }
+}
+
+.is-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    z-index: zIndex("high");
+    background-color: stencilColor("header-backgroundColor");
+    box-shadow: 0 2px 10px rgba(color("blacks"), 0.1);
+
+    + .papathemes-stickymenu-placeholder {
+        display: block;
+    }
+}
+
+
+
+// .header.is-sticky {
+//     position: fixed;
+//     z-index: zIndex('high');
+    
+// // 	@include breakpoint("medium") {
+// // 		.container {
+// // 			max-width: none;
+// // 		}
+
+// // 		.navPages {
+// // 			max-width: none;
+// // 		}
+
+// // 		.navPages-item--page {
+// // 			display: block;
+// // 		}
+
+// // 		// .navPages-list--user {
+// // 		// 	display: block;
+// // 		// }
+
+// // 		.emthemesModez-header-userSection {
+// // 			display: none;
+// // 		}
+// // 	}
+// }

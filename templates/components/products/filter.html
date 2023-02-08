@@ -1,0 +1,8 @@
+<div class="emthemesModez-productsFilter {{#or category.faceted_search_enabled brand.faceted_search_enabled product_results.faceted_search_enabled}}emthemesModez-productsFilter--faceted{{/or}}">
+    <a href="#emthemesModez-productsFilter-form" role="button" class="button emthemesModez-productsFilter-toggle" aria-label="Options" data-collapsible><i class="fa fa-cog" aria-hidden="true"></i></a>
+    <form class="actionBar" id="emthemesModez-productsFilter-form" method="get" data-sort-by>
+        {{> components/category/sort-box sort=sort}}
+        {{> components/category/products-per-page products_per_page=products_per_page}}
+        {{> components/category/grid-list}}
+    </form>
+</div>

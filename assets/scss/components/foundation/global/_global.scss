@@ -1,0 +1,38 @@
+// =============================================================================
+// GLOBAL (CSS)
+// =============================================================================
+//
+// 1. If set to false, there is no outputted CSS for this component.
+// 2. Create offset for the fixed position header on smaller screens.
+//
+// -----------------------------------------------------------------------------
+
+@if $exportCSS--global { // 1
+
+    html,
+    body {
+        height: auto;
+    }
+
+    body {
+        padding-top: $header-height; // 2
+        @include breakpoint("medium") {
+            padding-top: 0;
+        }
+    }
+
+    figure {
+        margin-bottom: $figure-marginBottom;
+        margin-top: $figure-marginTop;
+
+        > figcaption {
+            margin-bottom: $figure-figcaption-marginBottom;
+        }
+    }
+
+    figcaption {
+        color: $figcaption-color;
+        font-size: $figcaption-fontSize;
+        margin-top: $figcaption-marginTop;
+    }
+}

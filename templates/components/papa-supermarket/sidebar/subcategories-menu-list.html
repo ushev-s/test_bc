@@ -1,0 +1,25 @@
+<div class="sidebarBlock sidebarBlock--verticalCategories">
+    <div class="emthemesModez-navPages-verticalCategories-container">
+        <a class="navPages-action has-subMenu" data-collapsible="emthemesModez-verticalCategories-sidebar"
+            data-collapsible-disabled-breakpoint="medium"
+            data-collapsible-disabled-state="open"
+            data-collapsible-enabled-state="closed">{{category.name}}</a>
+        <div class="emthemesModez-verticalCategories emthemesModez-verticalCategories--open" id="emthemesModez-verticalCategories-sidebar" aria-hidden="false">
+            <ul class="navPages-list navPages-list--categories">
+                {{#if theme_settings.subcategories_menu_vertical}}
+                    {{#each subcategories}}
+                        <li class="navPages-item">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='vertical'}}
+                        </li>
+                    {{/each}}
+                {{else}}
+                    {{#each subcategories}}
+                        <li class="navPages-item navPages-item--standard">
+                            {{> components/common/navigation-list idSuffix='-sidebar' theme_settings=../theme_settings category=../category menu_type='standard'}}
+                        </li>
+                    {{/each}}
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</div>

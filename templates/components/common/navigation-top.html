@@ -1,0 +1,72 @@
+<nav class="navUser navUser--storeInfo">
+    <ul class="navUser-section">
+        {{#if theme_settings.show_welcome_text}}
+        <li class="navUser-item">
+            <span class="navUser-welcome">{{{lang 'emthemesmodez.top_nav.welcome_text' store_name=settings.store_name}}}</span>
+        </li>
+        {{/if}}
+        {{#if theme_settings.topHeader_banner1}}
+        <li class="navUser-item">
+            <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockTopHeaderBanner01"></div>
+        </li>
+        {{/if}}
+    </ul>
+</nav>
+
+<nav class="navUser">
+
+    {{#if theme_settings.topHeader_banner2}}
+        <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockTopHeaderBanner02"></div>
+    {{/if}}
+
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{> components/common/currency-selector}}
+    {{/or}}
+
+    {{#or theme_settings.topHeader_address theme_settings.topHeader_phone theme_settings.topHeader_account}}
+    <ul class="navUser-section">
+        
+        {{#if settings.address}}
+        {{#if theme_settings.topHeader_address}}
+        <li class="navUser-item">
+            <span class="navUser-action">
+                <span class="navUser-item-icon {{lang 'emthemesmodez.top_nav.icon_class1'}}"></span>
+                <span>{{{lang 'emthemesmodez.top_nav.text1' address=settings.address phone_number=settings.phone_number}}}</span>
+            </span>
+        </li>
+        {{/if}}
+        {{/if}}
+
+        {{#if settings.phone_number}}
+        {{#if theme_settings.topHeader_phone}}
+        <li class="navUser-item">
+            <a class="navUser-action" href="tel:{{settings.phone_number}}">
+                <span class="navUser-item-icon {{lang 'emthemesmodez.top_nav.icon_class2'}}"></span>
+                <span>{{{lang 'emthemesmodez.top_nav.text2' address=settings.address phone_number=settings.phone_number}}}</span>
+            </a>
+        </li>
+        {{/if}}
+        {{/if}}
+
+        {{#if theme_settings.topHeader_account}}
+        <li class="navUser-item navUser-item--account">
+            {{#if customer}}
+                <a class="navUser-action" href="{{urls.account.index}}">
+                    <span class="navUser-item-icon navUser-item-accountIcon emthemesModez-icon-linear-user"></span>
+                    <span class="navUser-item-accountLabel">{{lang 'common.account'}}</span>
+                </a>
+                <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+            {{else}}
+                <a class="navUser-action" href="{{urls.auth.login}}">
+                    <span class="navUser-item-icon navUser-item-loginIcon emthemesModez-icon-linear-user"></span>
+                    <span class="navUser-item-loginLabel">{{lang 'common.login'}}</span>
+                </a>
+                {{#if settings.account_creation_enabled}}
+                    <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                {{/if}}
+            {{/if}}
+        </li>
+        {{/if}}
+    </ul>
+    {{/or}}
+</nav>

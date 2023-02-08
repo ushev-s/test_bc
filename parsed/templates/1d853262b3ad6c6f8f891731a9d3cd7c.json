@@ -1,0 +1,3 @@
+{
+  "components/amp/products/options/input-numbers": "<div class=\"form-field\" data-product-attribute=\"input-number\">\n    <label class=\"form-label form-label--alternate form-label--inlineSmall\" for=\"attribute_{{id}}\">\n        {{ this.display_name }}:\n\n        {{#if required}}\n            <small>{{lang 'common.required'}}</small>\n        {{/if}}\n    </label>\n\n    <input class=\"form-input\" type=\"number\" id=\"attribute_{{id}}\" {{#unless this.integer_only}}step=\"any\"{{/unless}} name=\"attribute[{{this.id}}]\" value=\"{{this.prefill}}\" {{#if required}}required{{/if}}>\n</div>\n"
+}

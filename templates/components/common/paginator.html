@@ -1,0 +1,63 @@
+{{#or previous links next}}
+<div class="pagination">
+    {{#if total}}
+    {{#if start}}
+    {{#if end}}
+        <div class="pagination-info">
+            {{#if end '>' total}}
+                {{{lang 'common.paginator.items_of' start=start end=total total=total}}}
+            {{else}}
+                {{{lang 'common.paginator.items_of' start=start end=end total=total}}}
+            {{/if}}
+        </div>
+    {{/if}}
+     {{/if}}
+     {{/if}}
+    <ul class="pagination-list">
+        {{#if previous}}
+            <li class="pagination-item pagination-item--previous">
+                <a class="pagination-link"
+                    href="{{previous}}"
+                    {{#if instantload}}data-instantload{{/if}}
+                    {{#unless reload}}data-faceted-search-facet{{/unless}}
+                    {{#if this.number '==' ../current}}
+                        aria-current="page"
+                        data-pagination-current-page-link
+                    {{/if}}
+                >
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-left"></use>
+                        </svg>
+                    </i>
+                    {{lang 'common.previous'}}
+                </a>
+            </li>
+        {{/if}}
+        {{#each links}}
+            {{#if this.number '==' ../current}}
+                <li class="pagination-item pagination-item--current">
+                    <a class="pagination-link" href="{{this.url}}" {{#if ../../instantload}}data-instantload{{/if}} {{#unless ../../reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{else}}
+                <li class="pagination-item">
+                    <a class="pagination-link" href="{{this.url}}" {{#if ../../instantload}}data-instantload{{/if}} {{#unless ../../reload}}data-faceted-search-facet{{/unless}}>{{this.number}}</a>
+                </li>
+            {{/if}}
+        {{/each}}
+
+        {{#if next}}
+            <li class="pagination-item pagination-item--next">
+                <a class="pagination-link" href="{{next}}" {{#if instantload}}data-instantload{{/if}} {{#unless reload}}data-faceted-search-facet{{/unless}}>
+                    {{lang 'common.next'}}
+                    <i class="icon" aria-hidden="true">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chevron-right"></use>
+                        </svg>
+                    </i>
+                </a>
+            </li>
+        {{/if}}
+    </ul>
+</div>
+{{/or}}

@@ -1,0 +1,15 @@
+{{#partial "head"}}
+	{{{stylesheet 'assets/css/maintenance.css'}}}
+{{/partial}}
+
+{{#partial "page"}}
+    <main>
+        <header>
+            <h1>{{lang 'maintenance.down'}}</h1>
+        </header>
+        <section><p>{{{settings.maintenance.message}}}</p></section>
+        <section></section>
+        <footer><small></small></footer>
+    </main>
+{{/partial}}
+{{> layout/empty}}

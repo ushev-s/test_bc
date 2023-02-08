@@ -1,0 +1,3 @@
+{
+  "components/amp/products/options/input-checkbox": "<div class=\"form-field\" data-product-attribute=\"input-checkbox\">\n    <label class=\"form-label form-label--alternate form-label--inlineSmall\">\n        {{display_name}}:\n\n        {{#if required}}\n            <small>{{lang 'common.required'}}</small>\n        {{/if}}\n    </label>\n    <input\n        class=\"form-checkbox\"\n        type=\"checkbox\"\n        name=\"attribute[{{id}}]\"\n        id=\"attribute-{{id}}\"\n        value=\"{{value}}\"\n        {{#if checked}}checked{{/if}}\n        {{#if required}}required{{/if}}>\n    <label class=\"form-label {{class}}\" for=\"attribute-{{id}}\">{{label}}</label>\n</div>\n"
+}

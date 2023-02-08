@@ -1,0 +1,191 @@
+
+{{#or banners.bottom theme_settings.instantload}}
+<div class="container">
+    {{#if settings.data_tag_enabled}}
+        <div class="banners banners--bottom" data-banner-location="bottom">
+            {{#each (limit banners.bottom_metadata 1)}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-name="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="banners banners--bottom" data-banner-location="bottom">
+            <div class="banner">
+                {{{limit banners.bottom 1}}}
+            </div>
+        </div>
+    {{/if}}
+</div>
+{{/or}}
+
+{{{region name="footer_before"}}}
+{{{region name="footer_before--global"}}}
+
+{{#if settings.show_newsletter_box}}
+    {{#if theme_settings.nl_popup_show '===' 'home'}}
+        {{#if page_type '===' 'default'}}
+            {{> components/emthemes-modez/newsletter/modal}}
+        {{/if}}
+    {{else if theme_settings.nl_popup_show '===' 'all'}}
+        {{> components/emthemes-modez/newsletter/modal}}
+    {{/if}}
+{{/if}}
+
+<footer class="footer" role="contentinfo">
+    {{#if settings.show_newsletter_box}}
+    {{#if theme_settings.footer_show_newsletter}}
+    <div class="emthemesModez-footer-topColumns-wrapper">
+        <div class="container">
+            <div class="emthemesModez-footer-topColumns">
+                <div class="emthemesModez-footer-newsletter">
+                    {{> components/emthemes-modez/newsletter/section}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+
+    {{{region name="newsletter_below"}}}
+    {{{region name="newsletter_below--global"}}}
+
+
+    <div class="container">
+        <section class="footer-info">
+
+            {{#if theme_settings.footer_show_aboutus}}
+                <article class="footer-info-col footer-info-col--about" data-section-type="storeInfo">
+                    {{{region name="footer_before_logo--global"}}}
+                    <div class="footer-info-heading">
+                        <div class="footer-logo">
+                            {{> components/common/store-logo}}
+                        </div>
+                    </div>
+                    {{{region name="footer_below_logo--global"}}}
+
+                    {{#if theme_settings.footer_show_contact}}
+                        <ul class="fa-ul">
+                            <li><i class="fa fa-li fa-map-marker"></i><address>{{nl2br settings.address}}</address></li>
+                            {{#if settings.phone_number}}
+                            <li><i class="fa fa-li fa-phone"></i><a href="tel:{{settings.phone_number}}">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a></li>
+                            {{/if}}
+                        </ul>
+                    {{/if}}
+
+                    {{#if theme_settings.social_icon_placement_bottom}}
+                        {{> components/common/social-links style="alt"}}
+                    {{/if}}
+
+                    {{{region name="footer_below_contact--global"}}}
+                </article>
+            {{/if}}
+            
+
+            {{#if theme_settings.footer_show_pages '>' -2}}
+                <article class="footer-info-col" data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
+                    <ul class="footer-info-list">
+                        {{#if theme_settings.footer_show_pages '>' -1}}
+                            {{#each (limit pages theme_settings.footer_show_pages)}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                        {{else}}
+                            {{#each pages}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                        {{/if}}
+                        <li>
+                            <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
+                        </li>
+                    </ul>
+                    {{{region name="footer_below_pages--global"}}}
+                </article>
+            {{/if}}
+
+            {{#if theme_settings.footer_show_categories '>' -1}}
+                <article class="footer-info-col" data-section-type="footer-categories">
+                    <h5 class="footer-info-heading">{{lang 'footer.categories'}}</h5>
+                    <ul class="footer-info-list">
+                        {{#if theme_settings.footer_show_categories '>' 0}}
+                            {{#each (limit categories theme_settings.footer_show_categories)}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                        {{else}}
+                            {{#each categories}}
+                                <li>
+                                    <a href="{{url}}">{{name}}</a>
+                                </li>
+                            {{/each}}
+                        {{/if}}
+                    </ul>
+                    {{{region name="footer_below_categories--global"}}}
+                </article>
+            {{/if}}
+
+            {{#if theme_settings.footer_show_links_1}}
+                {{> components/emthemes-modez/common/footer-links index=1}}
+            {{/if}}
+
+            {{#if theme_settings.footer_show_links_2}}
+                {{> components/emthemes-modez/common/footer-links index=2}}
+            {{/if}}
+            
+            {{#if theme_settings.footer_show_links_3}}
+                {{> components/emthemes-modez/common/footer-links index=3}}
+            {{/if}}
+            
+            {{#if theme_settings.footer_show_links_4}}
+                {{> components/emthemes-modez/common/footer-links index=4}}
+            {{/if}}
+
+
+            {{#if theme_settings.show_shop_by_brand}}
+                <article class="footer-info-col footer-info-col--brands" data-section-type="footer-brands">
+                    <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+                    <ul class="footer-info-list">
+                        {{#each (limit shop_by_brand theme_settings.show_shop_by_brand)}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                        <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+                    </ul>
+                    {{{region name="footer_below_brands--global"}}}
+                </article>
+            {{/if}}
+
+        </section>
+        {{{region name="footer_below_columns--global"}}}
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <p class="powered-by">
+                {{#if theme_settings.show_copyright_footer}}
+                    &copy; <span id="copyright_year"></span> {{settings.store_name}}.
+                    <script>
+                        document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+                    </script>
+                {{/if}}
+                {{#if theme_settings.show_powered_by}}
+                    {{lang 'footer.powered_by'}} <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a>. Theme designed by <a href="https://papathemes.com" rel="nofollow">Papathemes</a>.
+                {{/if}}
+            </p>
+
+            {{> components/common/payment-icons}}
+
+            {{{region name="ssl_site_seal--global"}}}
+        </div>
+    </div>
+</footer>
+
+{{{region name="footer_bottom--global"}}}

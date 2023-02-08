@@ -1,0 +1,16 @@
+{{#for 1 5}}
+    {{#if ../this.rating '>=' $index}}
+        <span class="icon icon--ratingFull">
+            <svg>
+                <use xlink:href="#icon-star" />
+            </svg>
+        </span>
+    {{else}}
+        <span class="icon icon--ratingEmpty">
+            <svg>
+                <use xlink:href="#icon-star" />
+            </svg>
+        </span>
+    {{/if}}
+{{/for}}
+{{{snippet 'product_rating'}}}

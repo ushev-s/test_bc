@@ -1,0 +1,3 @@
+{
+  "components/products/customizations/textarea": "<div class=\"form-field\">\n    <label class=\"form-label form-label--alternate form-label--inlineSmall\" for=\"customization_{{id}}_{{../id}}\">\n        {{display_name}}:\n        {{#if required}}\n            <small>{{lang 'common.required'}}</small>\n        {{/if}}\n    </label>\n    <textarea class=\"form-input\" id=\"customization_{{id}}_{{../id}}\" {{#if required}}required {{/if}}name=\"ProductFields[{{id}}]\" {{#if max_length}}maxlength=\"{{max_length}}\"{{/if}}>{{value}}</textarea>\n</div>\n"
+}

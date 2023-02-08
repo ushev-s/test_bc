@@ -1,0 +1,59 @@
+.productReviews-list {
+    margin: 0;
+}
+
+.productReview {
+    display: block;
+    padding: 0;
+    width: 100%;
+
+    + .productReview {
+        padding-top: spacing("single");
+        border-top: container("border");
+
+        .papaSupermarket-style--modern & {
+            padding-top: spacing("half");
+        }
+    }
+
+    article {
+        @include breakpoint("medium") {
+            font-size: 0;
+        }
+    }
+
+    header {
+        @include breakpoint("medium") {
+            display: inline-block;
+            width: width("3/12");
+            font-size: fontSize("base");
+            vertical-align: top;
+            padding-right: spacing("single");
+        }
+    }
+}
+
+.productReview-body {
+    .papaSupermarket-style--modern & {
+        margin-bottom: spacing("half");
+    }
+
+    @include breakpoint("medium") {
+        display: inline-block;
+        width: width("9/12");
+        font-size: fontSize("base");
+        vertical-align: top;
+        padding-left: spacing("single");
+        border-left: container("border");
+    }
+}
+
+.productReview-title {
+    font-size: fontSize("base");
+}
+
+.productReview-author {
+    .papaSupermarket-style--modern & {
+        margin-bottom: spacing("half");
+    }
+}

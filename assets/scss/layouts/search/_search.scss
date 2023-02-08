@@ -1,0 +1,87 @@
+
+// Left Sidebar Layout
+.papaSupermarket-page--pages-search.papaSupermarket-layout--left-sidebar {
+
+    // Show categories on header for:
+    // - Has faceted & has result
+    // - No faceted
+    &.has-faceted.has-result,
+    &:not(.has-faceted) {
+        .navPages .emthemesModez-navPages-verticalCategories-container {
+            @include breakpoint("medium") {
+                display: block;
+
+                +* {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    
+    // Move sidebar down when:
+    // - Has faceted & Has result
+    // - No faceted
+    &.has-faceted.has-result .page-sidebar,
+    .page-sidebar--advancedSearch {
+        @include breakpoint("medium") {
+            z-index: zIndex("low")-1; // lower than .navPages-container's
+            margin-top: spacing("half");
+        }
+    }
+}
+
+// Increase sidebar width for:
+// - NO faceted (Advanced search form)
+.page-sidebar--advancedSearch {
+    .papaSupermarket-style--modern & {
+        margin-top: spacing("half");
+
+        @include breakpoint("medium") {
+            margin-top: 0;
+        }
+    }
+
+    @include breakpoint("medium") {
+        width: 25%;
+
+        + .page-content {
+            width: 75%;
+        }
+    }
+
+    .sidebarBlock-heading {
+        position: relative;
+
+        &::after {
+            font-family: FontAwesome;
+            content: "\f105";
+            position: absolute;
+            top: spacing("half");
+            right: spacing("single");
+
+            @include breakpoint("medium") {
+                display: none;
+            }
+        }
+
+        &.is-open::after {
+            content: "\f107";
+        }
+    }
+}
+
+.papaSupermarket-page--pages-search:not(.has-faceted) .page-content .emthemesModez-productsFilter {
+    @include clearfix;
+    display: block;
+
+    @if $theme-style == "modern" {
+        padding: 0 spacing("quarter");
+    }
+    @else {
+        padding: 0 spacing("single");
+    }
+    
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+}

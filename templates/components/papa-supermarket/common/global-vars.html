@@ -1,0 +1,6 @@
+{{#if theme_settings.csspreload}}
+    {{#if settings.request.is_crawler}}
+        {{assignVar 'isCrawlerAndSpeedTestMode' 1}}
+    {{/if}}
+{{/if}}
+{{assignVar 'productCardImageSizeAttrs' (get 'string' (concat 'width=' (join (split theme_settings.productgallery_size 'x') ' height=')))}}

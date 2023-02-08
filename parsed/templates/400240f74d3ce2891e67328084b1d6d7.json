@@ -1,0 +1,3 @@
+{
+  "components/sitemap/links": "<li>\n    <a href=\"{{url}}\">{{label}}</a>\n    {{#if children}}\n        <ul>\n            {{#each children}}\n                {{> components/sitemap/links}}\n            {{/each}}\n        </ul>\n    {{/if}}\n</li>\n"
+}

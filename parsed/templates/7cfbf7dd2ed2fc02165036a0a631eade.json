@@ -1,0 +1,3 @@
+{
+  "components/common/search-box": "{{{ snippet \"forms_search\"}}}\n<form class=\"form\"  action=\"{{urls.search}}\">\n    <fieldset class=\"form-fieldset\">\n        <div class=\"form-field\">\n            <label class=\"form-label is-srOnly\" for=\"search_query_adv\">{{lang 'search.results.form_label'}}</label>\n            <div class=\"form-prefixPostfix wrap\">\n                <input class=\"form-input\" id=\"search_query_adv\" name=\"search_query_adv\" value=\"{{forms.search.query}}\">\n                <input class=\"button button--primary form-prefixPostfix-button--postfix\" type=\"submit\" value=\"{{lang 'search.results.form_button_text'}}\">\n            </div>\n        </div>\n    </fieldset>\n</form>\n"
+}

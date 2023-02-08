@@ -1,0 +1,3 @@
+{
+  "components/amp/common/quick-search": "<form class=\"form\" method=\"get\" action=\"{{urls.search}}\" target=\"_top\">\n    <fieldset class=\"form-fieldset\">\n        <div class=\"form-field\">\n            <input class=\"form-input\" data-search-quick name=\"search_query\" id=\"search_query\" data-error-message=\"{{lang 'search.error.empty_field'}}\" placeholder=\"{{lang 'search.quick_search.input_placeholder'}}\" autocomplete=\"off\">\n        </div>\n    </fieldset>\n</form>\n<section class=\"quickSearchResults\" data-bind=\"html: results\"></section>\n"
+}

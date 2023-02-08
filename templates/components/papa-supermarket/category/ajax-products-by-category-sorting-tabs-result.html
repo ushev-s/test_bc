@@ -1,0 +1,36 @@
+<div class="emthemesModez-productsByCategoryTabs-products">
+    <ul class="productGrid 
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 5}}
+            productGrid--maxCol5
+        {{/if}}
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 6}}
+            productGrid--maxCol6
+        {{/if}}
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 10}}
+            productGrid--maxCol5
+        {{/if}}
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 12}}
+            {{#if theme_settings.productsByCategorySortingTabs_subcategories '==' 0}}
+                productGrid--maxCol6
+            {{/if}}
+        {{/if}}
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 15}}
+            productGrid--maxCol5
+        {{/if}}
+        {{#if theme_settings.productsByCategorySortingTabs_products '==' 18}}
+            productGrid--maxCol6
+        {{/if}}
+        ">
+        {{#each (limit category.products theme_settings.productsByCategorySortingTabs_products)}}
+        <li class="product">
+            {{>components/products/card 
+                show_compare=false 
+                show_rating=../settings.show_product_rating 
+                show_info=(if ../theme_settings.card_info '==' 'all')
+                theme_settings=../theme_settings 
+                settings=../settings 
+                customer=../customer}}
+        </li>
+        {{/each}}
+    </ul>
+</div>

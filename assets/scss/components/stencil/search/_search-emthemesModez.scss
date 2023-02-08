@@ -1,0 +1,56 @@
+.quickSearchResults {
+    margin-top: 0;
+    padding: 0 spacing("half") spacing("single");
+
+    @include breakpoint("medium") {
+        padding: spacing("single") 0;
+    }
+}
+
+.advancedSearch-form {
+    @if $theme-style == "modern" {
+        margin-bottom: 0;
+    }
+    @else {
+        margin-bottom: spacing("half");
+    }
+}
+
+.quickSearchMessage {
+    margin-top: 0;
+}
+
+.category-suggestion-list {
+    padding: 0;
+    margin: 0;
+    column-count: 2;
+
+    @include breakpoint("small") {
+        column-count: 3;
+    }
+
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
+}
+
+.category-suggestion {
+    width: auto;
+    padding: 0;
+    margin-right: spacing("half");
+    float: none;
+
+    @include breakpoint("medium") {
+        margin-right: $column-gutter;
+    }
+}
+
+.papaSupermarket-style--modern .panel-body--searchSuggestions {
+    padding: 0 spacing("half");
+    margin-bottom: spacing("half");
+
+    @include breakpoint("medium") {
+        padding: 0;
+        margin-bottom: spacing("single");
+    }
+}

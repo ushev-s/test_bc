@@ -1,0 +1,45 @@
+---
+products:
+    new:
+        limit: 5
+blog:
+    recent_posts:
+        limit: 10
+---
+{{#partial "page"}}
+
+<div class="page u-emthemesModez-page-responsiveSidebar">
+
+    <aside class="page-sidebar">
+        {{> components/emthemes-modez/blog/sidebar}}
+    </aside>
+
+    <main class="page-content">
+        <div class="page-content-header">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        </div>
+        <div class="page-content-body">
+            {{{region name="blog_post_content--global"}}}
+            {{{region name="blog_post_content"}}}
+            {{> components/blog/post post=blog.post show_tags=true single=true}}
+
+            {{{region name="blog_post_before_products--global"}}}
+            {{{region name="blog_post_before_products"}}}
+
+    		<div class="emthemesModez-blog-bottomSection">
+            	{{> components/emthemes-modez/blog/featured posts=(limit blog.recent_posts 3)}}
+            </div>
+
+            {{{region name="blog_post_bottom"}}}
+            {{{region name="blog_post_bottom--global"}}}
+        </div>
+    </main>
+
+</div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}

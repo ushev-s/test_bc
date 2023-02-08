@@ -1,0 +1,3 @@
+{
+  "components/emthemes-modez/common/footer-links-item": "{{#if (lang (concat langPrefix '.title')) '!=' ' '}}\n\t<li><a href=\"{{lang (concat langPrefix '.url')}}\">{{lang (concat langPrefix '.title')}}</a></li>\n{{/if}}"
+}

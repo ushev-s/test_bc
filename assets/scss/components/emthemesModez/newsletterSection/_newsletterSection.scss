@@ -1,0 +1,104 @@
+.emthemesModez-newsletterForm {
+
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+
+        > * {
+            margin: 0 spacing("single") 0 0;
+        }
+
+        .footer-info-heading {
+            margin: 0 spacing("single") 0 0;
+        }
+
+        > .form {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    @include breakpoint("large") {
+        > .form {
+            width: 35%;
+        }
+    }
+
+    p {
+        margin-left: auto;
+    }
+
+    .form {
+        margin-bottom: 0;
+    }
+
+
+    .form-field {
+        margin: 0;
+    }
+
+    .form-prefixPostfix {
+        @include breakpoint("medium") {
+            flex-wrap: nowrap;
+        }
+
+        .form-input {
+            border-radius: $input-border-radius;
+
+            @include breakpoint("small") {
+                width: auto;
+                border-radius: $input-border-radius 0 0 $input-border-radius;
+            }
+        }
+
+        .button {
+            @include breakpoint("small") {
+                width: auto;
+                margin-top: 0;
+            }
+        }
+    }
+
+    .form-prefixPostfix-button--postfix {
+        border-radius: $input-border-radius;
+		
+        @include breakpoint("small") {
+            border-radius: 0 $input-border-radius $input-border-radius 0;
+            margin-left: 0;
+        }
+
+        @include breakpoint("large") {
+            margin-left: 0;
+        }
+    }
+
+    .button {
+        background-color: stencilColor("footer-secondary-button-backgroundColor");
+        border-color: stencilColor("footer-secondary-button-backgroundColor");
+        color: stencilColor("footer-secondary-button-color");
+
+        &:hover,
+        &:focus {
+            background-color: lighten(stencilColor("footer-secondary-button-backgroundColor"), 15);
+        }
+
+        // position: relative;
+        // &:after {
+        // 	content: '';
+        // 	display: block;
+        // 	background: rgba(255, 255, 255, 0.5);
+        // 	position: absolute;
+        // 	top: 0;
+        // 	left: 0;
+        // 	width: 100%;
+        // 	height: 100%;
+        // }
+    }
+}
+
+
+.emthemesModez-socials {
+    .footer-info-heading {
+        display: none;
+    }
+}

@@ -1,0 +1,24 @@
+<div class="emthemesModez-bannersContainer 
+			emthemesModez-bannersContainer--half 
+			emthemesModez-bannersContainer--half-{{index}} 
+			{{#if style}}emthemesModez-bannersContainer--half-{{style}}{{/if}}">
+
+	{{> components/emthemes-modez/banners/banner
+		url=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner1.url"))
+		image=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner1.image"))
+		title=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner1.title"))
+		text=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner1.text"))
+		button=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner1.button"))
+		style=style
+	}}
+
+	{{> components/emthemes-modez/banners/banner
+		url=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner2.url"))
+		image=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner2.image"))
+		title=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner2.title"))
+		text=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner2.text"))
+		button=(lang (concat (concat "emthemesmodez.banners.half_" index) ".banner2.button"))
+		style=style
+	}}
+
+</div>

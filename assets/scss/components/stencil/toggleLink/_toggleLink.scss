@@ -1,0 +1,64 @@
+// =============================================================================
+// TOGGLE LINK (CSS)
+// =============================================================================
+
+
+// Toggle link
+// -----------------------------------------------------------------------------
+
+$toggle-spacing: spacing("single") + spacing("half");
+
+.toggle {
+    border-top: container("border");
+    margin-bottom: $toggle-spacing;
+
+    &:last-of-type {
+        margin-bottom: $toggle-spacing * 2;
+    }
+}
+
+.toggle-title {
+    margin-bottom: $toggle-spacing;
+}
+
+.toggleLink {
+    color: stencilColor("color-textSecondary");
+
+    &:hover {
+        color: stencilColor("color-textSecondary--hover");
+    }
+
+    .toggle-title & {
+        float: right;
+        line-height: 24px;
+    }
+}
+
+.toggleLink-text {
+    font-size: fontSize("smallest");
+    font-weight: fontWeight("normal");
+}
+
+.toggleLink-text--off {
+    display: inline-block;
+
+    .toggleLink.is-open & {
+        display: none;
+    }
+}
+
+.toggleLink-text--on {
+    display: none;
+
+    .toggleLink.is-open & {
+        display: inline-block;
+    }
+}
+
+.toggle-content {
+    display: none;
+
+    &.is-open {
+        display: block;
+    }
+}

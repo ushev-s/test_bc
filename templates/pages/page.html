@@ -1,0 +1,55 @@
+---
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+shop_by_brand:
+    limit: {{theme_settings.max_shop_by_brand}}
+---
+{{#partial "page"}}
+
+<main class="page">
+
+    {{#if theme_settings.layout '===' 'left-sidebar'}}
+        <div class="page-sidebar">
+            {{> components/papa-supermarket/home/sidebar}}
+        </div>
+    {{else}}
+        {{#if page.sub_pages}}
+            <div class="page-sidebar page-sidebar--right">
+                {{> components/papa-supermarket/sidebar/subpages}}
+            </div>
+        {{/if}}
+    {{/if}}
+
+    <div class="page-content {{#if theme_settings.layout '!==' 'left-sidebar'}}{{#unless page.sub_pages}}page-content--centered{{/unless}}{{/if}}">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        <h1 class="page-heading">{{ page.title }}</h1>
+
+        {{{region name="page_builder_content--global"}}}
+        {{{region name="page_builder_content"}}}
+
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            {{{page.content}}}
+        {{/replace}}
+
+        {{#if page.feed}}
+            <ul>
+                {{#each page.feed}}
+                    <li>
+                        <h6><a href="{{url}}" target="_blank">{{title}}</a></h6>
+                        <p>{{content}}</p>
+                    </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+
+        {{{region name="page_builder_bottom"}}}
+        {{{region name="page_builder_bottom--global"}}}
+    </div>
+</main>
+
+{{/partial}}
+
+{{> layout/base}}

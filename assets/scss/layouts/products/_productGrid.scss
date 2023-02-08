@@ -1,0 +1,145 @@
+// =============================================================================
+// PRODUCT GRID (CSS)
+// =============================================================================
+
+
+// Product grid view
+// -----------------------------------------------------------------------------
+//
+// 1. Re-set the font-size, as we're reducing it to 0 in the .products class.
+//
+// -----------------------------------------------------------------------------
+
+.productGrid {
+
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+
+    .product {
+        @include grid-column(6, $float: none);
+        display: inline-block;
+        font-size: fontSize("base"); // 1
+        vertical-align: top;
+
+        @include breakpoint("small") {
+            width: grid-calc(4, $total-columns);
+        }
+
+        @include breakpoint("medium") {
+            width: grid-calc(3, $total-columns);
+        }
+    }
+}
+
+
+// Product when sidebar is present
+// -----------------------------------------------------------------------------
+//
+// 1. When the sidebar is visible, reduce products to 3 across.
+//
+// -----------------------------------------------------------------------------
+
+.page-sidebar + .page-content {
+    .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product { // 1
+            @include breakpoint("small") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+}
+
+
+//
+// Product Grid with masonry layout
+//
+// Purpose: Display products in a masonry grid, with a display inline-block for
+// older browsers that don't support css multicolumn
+//
+// -----------------------------------------------------------------------------
+
+.productMasonry {
+    column-count: 2;
+    column-fill: auto;
+    column-gap: remCalc(20px);
+    margin: 0 0 spacing("single");
+    overflow: hidden;
+
+    @include breakpoint("small") {
+        column-count: 3;
+    }
+
+    @include breakpoint("medium") {
+        column-count: 4;
+    }
+
+    .product {
+        break-inside: avoid;
+        page-break-inside: avoid; // for firefox
+        display: block;
+        margin-bottom: spacing("double");
+        padding: 0;
+        width: 100%;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+
+// Product grid view variation
+// -----------------------------------------------------------------------------
+
+.productGrid--maxCol6 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(2, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            // emthemesModez: fix stencil bug
+            // column-count: 6;
+            @include grid-column(12);
+            // ---
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                @include grid-column(2);
+            }
+        }
+    }
+}
+
+.productGrid--maxCol3 {
+    .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        .product {
+            @include breakpoint("medium") {
+                width: grid-calc(4, $total-columns);
+            }
+        }
+    }
+
+    .csscolumns & {
+        @include breakpoint("medium") {
+            @include grid-column(12);
+
+            float: none;
+
+            // scss-lint:disable SelectorDepth, NestingDepth
+            .product {
+                @include grid-column(4, $float: none);
+            }
+        }
+    }
+}

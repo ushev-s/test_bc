@@ -1,0 +1,77 @@
+// =============================================================================
+// CARDS (Settings)
+// =============================================================================
+
+
+// Citadel variables
+// -----------------------------------------------------------------------------
+//
+// 1. Choose whether to include the BigCommerce class names
+//
+// -----------------------------------------------------------------------------
+
+$exportCSS--cards:                          true;
+
+$card-border:                               null;
+$card-marginBottom:                         spacing("double");
+
+$card-figcaption-background:                null;
+$card-figcaption-color:                     null;
+$card-figcaption-textAlign:                 center;
+$card-figcaption-body-paddingHorizontal:    null;
+$card-figcaption-title-color:               null;
+$card-figcaption-title-marginBottom:        null;
+$card-figcaption-button-background:         rgba(stencilColor("card-figcaption-button-background"), 1); // emthemesModez mods
+$card-figcaption-button-backgroundHover:    darken(stencilColor("card-figcaption-button-background"), 5%); // emthemesModez mods
+$card-figcaption-button-borderColor:        null;
+$card-figcaption-button-color:              stencilColor("card-figcaption-button-color");
+
+$card-text-color:                           stencilColor("color-textSecondary");
+
+$card-body-background:                      null;
+$card-body-borderTop:                       null;
+$card-body-paddingVertical:                 null;
+$card-body-paddingHorizontal:               null;
+$card-body-padding:                         spacing("half") 0 0;
+$card-body-textColor:                       stencilColor("color-textSecondary");
+
+$card-title-marginBottom:                   null;
+
+$card-subTitle-marginBottom:                null;
+$card-subTitle-adjacentCardTitleMarginTop:  null;
+
+$card-text-fontSize:                        null;
+
+$card-footer-borderStyle:                   null;
+$card-footer-borderColor:                   null;
+$card-footer-borderWidth:                   null;
+$card-footer-border:                        null;
+$card-footer-padding:                       null;
+
+$card-button-width:                         null;
+
+
+// Stencil variables
+// -----------------------------------------------------------------------------
+
+$card-figure-marginTop:                     0;
+
+$card-figcaption-margin:                    0;
+
+$card-figcaption-body-display:              inline-block;
+
+// $card-title-fontSize:                       fontSize("smaller"); // emthemesModez - supermarket mods
+$card-title-fontSize:                       fontSize("base"); // emthemesModez - supermarket mods
+$card-title-margin:                         0 0 spacing("sixth");
+$card-title-color:                          stencilColor("card-title-color");
+$card-title-color-hover:                    stencilColor("card-title-color-hover");
+$card-title-textDecoration:                 none;
+
+// $card-text-marginBottom:                    spacing("eighth"); // emthemesModez - supermarket mods
+$card-text-marginBottom:                    spacing("quarter");
+
+// $card-figcaption-button-border:             none; // emthemesModez mods
+$card-figcaption-button-border:             1px solid stencilColor("card-figcaption-button-borderColor");
+$card-figcaption-button-display:            block;
+$card-figcaption-button-margin:             0;
+$card-figcaption-button-margin:             spacing("quarter") 0 0;

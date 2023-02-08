@@ -1,0 +1,10 @@
+.dropdown-menu-button .icon {
+    height: fontSize("base");
+}
+
+#wishlist-dropdown.is-open {
+
+    @include breakpoint("large") {
+        padding-right: 0;
+    }
+}

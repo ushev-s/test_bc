@@ -1,0 +1,69 @@
+{{inject "useBulkOrder" true}}
+{{inject "brandProductsPerPage" theme_settings.brandpage_products_per_page}}
+{{#partial "head"}}
+    {{#if pagination.brand.previous}}
+        <link rel="prev" href="{{pagination.brand.previous}}">
+    {{/if}}
+    {{#if pagination.brand.next}}
+        <link rel="next" href="{{pagination.brand.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "page"}}
+<h1 class="page-heading page-heading--mobileOnly">{{brand.name}}</h1>
+
+{{{snippet 'brand'}}}
+<div class="page">
+    <aside class="page-sidebar page-sidebar--top" id="faceted-search-container">
+        {{> components/brand/sidebar}}
+    </aside>
+
+    <main class="page-content">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        {{#if brand.image}}
+            <div class="brand-image-container emthemesModez-brandPage-mainImage">
+                <img alt="{{brand.name}}" title="{{brand.name}}"
+                    {{#if theme_settings.lazyload_mode '===' 'disabled'}}
+                        src="{{getImage brand.image 'original'}}"
+                    {{else}}
+                        {{#if theme_settings.lazyload_mode '===' 'lazyload+lqip'}}
+                            src="{{getImageSrcset brand.image 1x='80w'}}"
+                        {{else}}
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                        {{/if}}
+                        data-src="{{getImage brand.image 'brand_main_size'}}" class="lazyload"
+                    {{/if}}
+                />
+            </div>
+        {{/if}}
+        <p class="h1 page-heading page-heading--desktopOnly">{{brand.name}}</p>
+        {{{region name="brand_below_header--global"}}}
+        {{{region name="brand_below_header"}}}
+
+        {{#if brand.description}}
+            <div class="papaSupermarket-brandPage-description">
+                {{{brand.description}}}
+            </div>
+        {{/if}}
+
+        <div id="product-listing-container" class="mode-bo is-bulkOrderTemplate">
+            {{#if brand.products}}
+                {{> components/brand/product-listing show_bulk_order_mode=true}}
+            {{else}}
+                <p>{{lang 'brands.no_products'}}</p>
+            {{/if}}
+        </div>
+
+        {{{region name="brand_below_content"}}}
+        {{{region name="brand_below_content--global"}}}
+    </main>
+</div>
+
+{{/partial}}
+{{#and theme_settings.instantload is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/and}}
+

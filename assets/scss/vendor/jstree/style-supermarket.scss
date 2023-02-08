@@ -1,0 +1,16 @@
+.jstree-default .jstree-themeicon {
+    display: none;
+}
+
+.jstree-anchor {
+    &:link,
+    &:visited,
+    &:active {
+        color: stencilColor("color-textLink");
+    }
+
+    &:hover,
+    &:focus {
+        color: stencilColor("color-textLink-hover");
+    }
+}

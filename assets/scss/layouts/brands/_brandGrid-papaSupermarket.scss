@@ -1,0 +1,33 @@
+.brandGrid {
+    &--newest {
+        display: flex;
+        flex-flow: row wrap;
+    }
+}
+
+.papaSupermarket-style--modern {
+    .brandGrid {
+        @include u-modern-container-box;
+
+        padding: spacing("half") spacing("quarter");
+        width: calc(100% - #{spacing("quarter") * 2});
+        margin: 0 auto;
+
+        @include breakpoint("medium") {
+            width: 100%;
+            padding: spacing("single") spacing("half");
+        }
+
+        .brand {
+            padding: 0 spacing("quarter");
+
+            @include breakpoint("medium") {
+                padding: 0 spacing("half");
+            }
+        }
+
+        .card-body {
+            padding-top: spacing("quarter");
+        }
+    }
+}

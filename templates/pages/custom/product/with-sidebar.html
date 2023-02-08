@@ -1,0 +1,17 @@
+---
+product:
+    videos:
+        limit: 100
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+shop_by_brand:
+    limit: {{theme_settings.max_shop_by_brand}}
+blog:
+    recent_posts:
+        limit: {{theme_settings.homepage_blog_posts_count}}
+---
+{{> components/products/product-page-with-sidebar}}

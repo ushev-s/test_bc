@@ -1,0 +1,9 @@
+// =============================================================================
+// FACETED SEARCH (Settings)
+// =============================================================================
+
+$facetedSearch-toggle-border:               $accordion-border;
+$facetedSearch-toggle-borderWidth:          $accordion-navList-borderWidth;
+$facetedSearch-toggle-borderRadius:         $input-border-radius; // $global-radius; // papathemes-supermarket edited
+$facetedSearch-toggle-padding:              spacing("base");
+$facetedSearch-toggle-verticalSpacing:      spacing("single") + spacing("third");

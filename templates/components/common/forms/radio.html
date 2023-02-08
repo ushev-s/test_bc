@@ -1,0 +1,26 @@
+<div class="form-field" id="{{id}}" data-validation="{{validation}}">
+    <label class="form-label">{{label}}
+        {{#if required}}
+            <small>{{lang 'common.required' }}</small>
+        {{/if}}
+    </label>
+    {{#if radios}}
+        {{#each radios}}
+            <input 
+                type="radio"
+                class="form-radio"
+                name="{{../name}}"
+                id="{{../name}}_{{@index}}"
+                value="{{value}}"
+                data-label="{{label}}"
+                aria-required="{{required}}"
+                {{#if checked}}
+                    checked
+                {{/if}}
+                {{#if private_id}}
+                    data-field-type="{{private_id}}"
+                {{/if}}>
+            <label class="form-label" for="{{../name}}_{{@index}}">{{label}}</label>
+        {{/each}}
+    {{/if}}
+</div>

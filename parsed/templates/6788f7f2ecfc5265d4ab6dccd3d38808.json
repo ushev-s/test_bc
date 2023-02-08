@@ -1,0 +1,3 @@
+{
+  "components/cart/additional-checkout-buttons": "{{#if cart.additional_checkout_buttons}}\n    {{#each cart.additional_checkout_buttons}}\n        {{{this}}}\n    {{/each}}\n{{/if}}"
+}

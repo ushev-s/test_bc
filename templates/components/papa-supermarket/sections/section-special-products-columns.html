@@ -1,0 +1,30 @@
+<div class="papaSupermarket-specialProductsColumns{{#if style}} papaSupermarket-specialProductsColumns--{{style}}{{/if}}">
+
+    {{#and products.featured theme_settings.specialProductsColumns_show_featured}}
+    <section class="papaSupermarket-specialProductsColumns-column papaSupermarket-specialProductsColumns-column--featured">
+        {{> components/products/featured 
+            products=(limit products.featured theme_settings.specialProductsColumns_products_count)
+            columns=1
+            display_type='list'}}
+    </section>
+    {{/and}}
+
+    {{#and products.top_sellers theme_settings.specialProductsColumns_show_top}}
+    <section class="papaSupermarket-specialProductsColumns-column papaSupermarket-specialProductsColumns-column---bestselling">
+        {{> components/products/top 
+            products=(limit products.top_sellers theme_settings.specialProductsColumns_products_count)
+            columns=1
+            display_type='list'}}
+    </section>
+    {{/and}}
+
+    {{#and products.new theme_settings.specialProductsColumns_show_new}}
+    <section class="papaSupermarket-specialProductsColumns-column papaSupermarket-specialProductsColumns-column---new">
+        {{> components/products/new 
+            products=(limit products.new theme_settings.specialProductsColumns_products_count)
+            columns=1
+            display_type='list'}}
+    </section>
+    {{/and}}
+
+</div>

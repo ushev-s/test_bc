@@ -1,0 +1,104 @@
+<nav class="navUser">
+    
+    <ul class="navUser-section navUser-section--alt">
+
+        {{#unless theme_settings.topHeader_account}}
+            <li class="navUser-item navUser-item--account">
+                {{#if theme_settings.style '===' 'modern'}}
+                    <span class="navUser-item-icon navUser-item-accountIcon emthemesModez-icon-linear-user"></span>
+                    <div class="navUser-actions">
+                    {{#if customer}}
+                        <a class="navUser-action" href="{{urls.account.index}}">
+                            <span class="navUser-item-accountLabel">{{lang 'common.account'}}</span>
+                        </a>
+                        <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                    {{else}}
+                        <a class="navUser-action" href="{{urls.auth.login}}">
+                            <span class="navUser-item-loginLabel">{{lang 'common.login'}}</span>
+                        </a>
+                        {{#if settings.account_creation_enabled}}
+                            <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                        {{/if}}
+                    {{/if}}
+                    </div>
+                {{else}}
+                    {{#if customer}}
+                        <a class="navUser-action" href="{{urls.account.index}}">
+                            <span class="navUser-item-icon navUser-item-accountIcon"><svg class="icon"><use xlink:href="#icon-user" /></svg></span>
+                            <span class="navUser-item-accountLabel">{{lang 'common.account'}}</span>
+                        </a>
+                        <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                    {{else}}
+                        <a class="navUser-action" href="{{urls.auth.login}}">
+                            <span class="navUser-item-icon navUser-item-loginIcon"><svg class="icon"><use xlink:href="#icon-user" /></svg></span>
+                            <span class="navUser-item-loginLabel">{{lang 'common.login'}}</span>
+                        </a>
+                        {{#if settings.account_creation_enabled}}
+                            <span class="navUser-or">{{lang 'common.or'}}</span> <a class="navUser-action" href="{{urls.auth.create_account}}">{{lang 'common.sign_up'}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </li>
+        {{/unless}}
+
+        {{#all settings.show_wishlist theme_settings.navUser_wishlist}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--wishlist" href="{{urls.account.wishlists.all}}" title="{{lang 'account.nav.wishlists'}}">
+                    <span class="navUser-item-icon navUser-item-wishlistIcon"><svg class="icon"><use xlink:href="#icon-heart" /></svg></span>
+                    <span class="navUser-item-wishlistLabel">{{{lang 'account.nav.wishlists2'}}}</span>
+                </a>
+            </li>
+        {{/all}}
+        
+        {{#if customer.store_credit.value '>' 0}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--storeCredit"
+                   data-dropdown="storeCredit-dropdown"
+                   data-options="align:bottom"
+                   href="{{urls.cart}}">
+                        <span class="navUser-action-divider">{{lang 'common.store_credit_overview' credit=customer.store_credit.formatted}}</span>
+                </a>
+                <div class="dropdown-menu" id="storeCredit-dropdown" data-dropdown-content aria-hidden="true">
+                    {{{lang 'common.store_credit' store_credit=customer.store_credit.formatted}}}
+                </div>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item navUser-item--compare">
+            <a class="navUser-action navUser-action--compare" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}} <span class="countPill countPill--positive countPill--alt"></span></a>
+        </li>
+        
+        {{#if settings.gift_certificates_enabled}}
+            <li class="navUser-item">
+                <a class="navUser-action navUser-action--giftCert" href="{{urls.gift_certificate.purchase}}" title="{{lang 'common.gift_cert'}}">
+                    <span class="navUser-item-icon navUser-item-giftCertIcon"><svg class="icon"><use xlink:href="#icon-gift" /></svg></span>
+                    <span class="navUser-item-giftCertLabel">{{{lang 'common.gift_cert2'}}}</span>
+                </a>
+            </li>
+        {{/if}}
+
+        <li class="navUser-item navUser-item--recentlyViewed">
+            <a class="navUser-action navUser-action--recentlyViewed" href="#recently-viewed" data-dropdown="recently-viewed-dropdown" data-options="align:right" title="{{lang 'account.nav.recently_viewed'}}" style="display:none">
+                <span class="navUser-item-icon navUser-item-recentlyViewedIcon"><svg class="icon"><use xlink:href="#icon-recent-list" /></svg></span>
+                <span class="navUser-item-recentlyViewedLabel">{{{lang 'account.nav.recently_viewed2'}}}</span>
+            </a>
+            <div class="dropdown-menu" id="recently-viewed-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+
+        <li class="navUser-item navUser-item--cart">
+
+            <a
+                class="navUser-action navUser-action--cart"
+                data-cart-preview
+                data-dropdown="cart-preview-dropdown"
+                data-options="align:right"
+                href="{{urls.cart}}"
+                title="{{lang 'common.cart'}}">
+                <span class="navUser-item-icon navUser-item-cartIcon"><svg class="icon"><use xlink:href="#icon-cart" /></svg></span>
+                <span class="navUser-item-cartLabel">{{lang 'common.cart'}}</span> <span class="countPill cart-quantity"></span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+        </li>
+    </ul>
+</nav>
