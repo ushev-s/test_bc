@@ -1,0 +1,101 @@
+{{#if settings.data_tag_enabled}}
+    <article class="listItem" data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}">
+{{else}}
+    <article class="listItem" >
+{{/if}}
+    <figure class="listItem-figure">
+        {{#if theme_settings.product_outstock_badge}}
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                {{#if out_of_stock_message }}
+                    <div class="sale-flag-side sale-flag-side--outstock">
+                        <span class="sale-text">{{out_of_stock_message}}</span>
+                    </div>
+                {{/if}}
+            {{/or}}
+        {{/if}}
+        {{#or price.non_sale_price_with_tax price.non_sale_price_without_tax}}
+            {{#if theme_settings.product_sale_badges '===' 'sash'}}
+                <div class="sale-flag-sash">
+                    <span class="sale-text">{{lang 'emthemesmodez.on_sale'}}</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'topright'}}
+                <div class="sale-flag-side">
+                    <span class="sale-text">{{lang 'emthemesmodez.on_sale'}}</span>
+                </div>
+            {{else if theme_settings.product_sale_badges '===' 'burst'}}
+                <div class="starwrap">
+                    <div class="sale-flag-star"></div>
+                    <div class="sale-text-burst">{{lang 'emthemesmodez.on_sale'}}</div>
+                </div>
+            {{/if}}
+        {{/or}}
+        {{#if theme_settings.product_custom_badges}}
+            {{#each custom_fields}}
+                {{#if name '===' '__badge'}}
+                    <div class="sale-flag-side sale-flag-side--custom">
+                        <span class="sale-text">{{{value}}}</span>
+                    </div>
+                {{/if}}
+            {{/each}}
+        {{/if}}
+        {{> components/common/responsive-img
+            image=image
+            class="listItem-image"
+            fallback_size=theme_settings.productgallery_size
+            lazyload=theme_settings.lazyload_mode
+            default_image=theme_settings.default_image_product
+        }}
+    </figure>
+    <div class="listItem-body">
+        <div class="listItem-content">
+            <div class="listItem-details">
+                <p class="listItem-title">
+                    <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
+                </p>
+                {{#if brand.name}}
+                <p class="listItem-brand">{{brand.name}}</p>
+                {{/if}}
+                {{#if price}}
+                    <div class="listItem-price">
+                        {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                            {{> components/products/price price=price customer=customer}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+                {{/if}}
+                {{#and rating show_rating}}
+                    <p class="listItem-rating"><span class="rating--small">{{> components/products/ratings rating=rating}}</span></p>
+                {{/and}}
+                {{#if summary}}
+                    <p>{{{summary}}}</p>
+                {{/if}}
+            </div>
+            <div class="listItem-actions">
+                <div class="listItem-buttons">
+                {{#if show_cart_action}}
+                {{#unless hide_add_to_cart}}
+                    {{#if has_options}}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small button--primary{{#unless hide_product_quick_view}}{{#if theme_settings.show_product_quick_view}}{{#if theme_settings.ajax_add_to_cart}} quickview-alt{{/if}}{{/if}}{{/unless}}" data-product-id="{{id}}">{{lang "products.choose_options"}}</a>
+                    {{else}}
+                        {{#if out_of_stock_message }}
+                        <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small button--primary">{{out_of_stock_message}}</a>
+                        {{else}}
+                        <a href="{{add_to_cart_url}}" {{#if settings.data_tag_enabled}}{{#unless theme_settings.ajax_add_to_cart}} data-event-type="product-click"{{/unless}}{{/if}} class="button button--small button--primary"{{#if theme_settings.ajax_add_to_cart}} data-emthemesmodez-cart-item-add{{/if}}>{{lang "products.add_to_cart"}}</a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+                {{/if}}
+                {{#if show_compare}}
+                <a class="button button--small button--compare" href="#" data-compare-id="{{id}}">{{lang 'products.compare'}}</a>
+                {{/if}}
+                {{#unless hide_product_quick_view}}
+                    {{#if theme_settings.show_product_quick_view}}
+                        <a {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}} class="button button--small quickview" data-product-id="{{id}}">{{lang 'products.quick_view'}}</a>
+                    {{/if}}
+                {{/unless}}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

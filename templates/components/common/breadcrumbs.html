@@ -1,0 +1,16 @@
+<ul class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {{#each breadcrumbs}}
+        {{#if url}}
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a data-instantload href="{{url}}" class="breadcrumb-label" itemprop="item">
+                    <span itemprop="name">{{name}}</span>
+                    <meta itemprop="position" content="{{@index}}" />
+                </a>
+            </li>
+        {{else}}
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <span class="breadcrumb-label">{{name}}</span>
+            </li>
+        {{/if}}
+    {{/each}}
+</ul>

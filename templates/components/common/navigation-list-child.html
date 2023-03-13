@@ -1,0 +1,29 @@
+{{#if children}}
+    <a
+        class="navPage-childList-action navPages-action has-subMenu" 
+        href="{{url}}"
+        {{#if menu_type '!=' 'vertical'}}data-instantload{{/if}}
+        {{#if id '==' category_id}}data-current-category{{/if}}
+        data-collapsible="navPages-{{id}}{{idSuffix}}"
+        {{#if menu_type '!=' 'vertical'}}data-collapsible-disabled-breakpoint="medium"{{/if}}
+        data-collapsible-disabled-state="open"
+        data-collapsible-enabled-state="closed">
+        {{name}} <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down" /></svg></i>
+    </a>
+    <ul class="navPage-childList" id="navPages-{{id}}{{idSuffix}}">
+        <li class="navPage-childList-item">
+            <a class="navPage-childList-action navPages-action" data-instantload href="{{url}}">{{lang 'category.view_all.name' category=name}}</a>
+        </li>
+        {{#each children}}
+            <li class="navPage-childList-item">
+                {{> components/common/navigation-list-child 
+                    category_id=../category_id 
+                    idSuffix=../idSuffix 
+                    theme_settings=../theme_settings
+                    menu_type=../menu_type}}
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <a class="navPage-childList-action navPages-action" data-instantload href="{{url}}" {{#if id '==' category_id}}data-current-category{{/if}}>{{name}}</a>
+{{/if}}

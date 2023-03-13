@@ -1,0 +1,33 @@
+{{!--
+Arguments:
+    - categories (array)
+    - limit (number)
+    - style (string)
+--}}
+<h2 class="emthemesModez-categoriesGrid-heading {{#if style}}emthemesModez-categoriesGrid-heading--{{style}}{{/if}}"><span>{{lang 'emthemesmodez.categories_grid.heading'}}</span></h2>
+<section class="emthemesModez-categoriesGrid-section {{#if style}}emthemesModez-categoriesGrid-section--{{style}}{{/if}}">
+    <ul class="emthemesModez-categoriesGrid">
+        {{#each (limit categories limit)}}
+        <li class="emthemesModez-categoriesGrid-item">
+            <article class="emthemesModez-categoriesGrid-card">
+                {{#if image}}
+                <figure class="emthemesModez-categoriesGrid-figure">
+                    <a href="{{url}}"><img class="emthemesModez-categoriesGrid-image" src="{{getImage image 'category_card_size'}}" alt="{{name}}" /></a>
+                    <figcaption>
+                        <div class="figcaption-body"></div>
+                    </figcaption>
+                </figure>
+                {{/if}}
+                <div class="emthemesModez-categoriesGrid-body">
+                    <h4 class="emthemesModez-categoriesGrid-name">
+                        {{name}}
+                    </h4>
+                    <div class="emthemesModez-categoriesGrid-productsCount">
+                        {{lang 'emthemesmodez.categories_grid.products_count' count=count}}
+                    </div>
+                </div>
+            </article>
+        </li>
+        {{/each}}
+    </ul>
+</section>

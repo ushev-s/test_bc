@@ -1,0 +1,96 @@
+{{inject 'hasMainCarousel' true}}
+<section class="heroCarousel-container{{#if theme_settings.carousel_banners}} heroCarousel-container--hasBanners{{/if}}">
+    <div class="heroCarousel"
+        data-slick='{
+            "dots": true,
+            "mobileFirst": true,
+            "slidesToShow": 1,
+            "slidesToScroll": 1,
+            "autoplay": true,
+            "autoplaySpeed": {{carousel.swap_frequency}},
+            "lazyLoad": "anticipated"
+        }'
+        {{#if theme_settings.carousel_video_autoplay}} data-youtube-autoplay{{/if}}
+        {{#if theme_settings.carousel_video_mute}} data-youtube-mute{{/if}}>
+        {{#each carousel.slides}}
+        <div class="heroCarousel-slide {{#if ../theme_settings.homepage_carousel_style '==' 'stretch'}}heroCarousel-slide--stretch{{/if}} heroCarousel-slide--{{@index}}{{#if @first}} heroCarousel-slide--first{{/if}}">
+            <div class="heroCarousel-image-wrapper{{#and image_height image_width}} heroCarousel-image-wrapper--sized{{/and}}">
+                <a href="{{url}}">
+                    {{#if @index '==' 0}}
+                        {{#if (merge this video=../../theme_settings.carousel_vid0)}}{{/if}}
+                    {{/if}}
+                    {{#if @index '==' 1}}
+                        {{#if (merge this video=../../theme_settings.carousel_vid1)}}{{/if}}
+                    {{/if}}
+                    {{#if @index '==' 2}}
+                        {{#if (merge this video=../../theme_settings.carousel_vid2)}}{{/if}}
+                    {{/if}}
+                    {{#if @index '==' 3}}
+                        {{#if (merge this video=../../theme_settings.carousel_vid3)}}{{/if}}
+                    {{/if}}
+                    {{#if @index '==' 4}}
+                        {{#if (merge this video=../../theme_settings.carousel_vid4)}}{{/if}}
+                    {{/if}}
+
+                    
+
+                    {{#if video}}
+                        <div class="heroCarousel-video-wrapper">
+                            <div class="heroCarousel-image-box" style="{{#if image_width}}width:{{image_width}}px{{/if}}">
+                                {{#and image_height image_width}}<div class="heroCarousel-image-box-padding" style="padding-bottom:{{multiply (divide image_height image_width) 100}}%">{{/and}}
+                                    {{> components/common/responsive-img
+                                        image=stencil_image
+                                        class="heroCarousel-image"
+                                        fallback_size='1920w'
+                                        lazyload='disabled'
+                                    }}
+                                {{#and image_height image_width}}</div>{{/and}}
+                            </div>
+                            <div class="heroCarousel-video"><div data-youtube="{{video}}"></div></div>
+                        </div>
+                    {{else}}
+                        <div class="heroCarousel-image-box" style="{{#if image_width}}width:{{image_width}}px{{/if}}">
+                            {{#and image_height image_width}}<div class="heroCarousel-image-box-padding" style="padding-bottom:{{multiply (divide image_height image_width) 100}}%">{{/and}}
+                                {{#if @first}}
+                                    {{> components/common/responsive-img
+                                        image=stencil_image
+                                        class="heroCarousel-image"
+                                        fallback_size='1920w'
+                                        lazyload='disabled'
+                                        otherAttributes=(concat (concat (concat (concat 'width="' image_width) '" height="') image_height) '"')
+                                    }}
+                                {{else}}
+                                    {{> components/common/responsive-img
+                                        image=stencil_image
+                                        class="heroCarousel-image"
+                                        fallback_size='1920w'
+                                        lazyload='lazyload'
+                                        otherAttributes=(concat (concat (concat (concat 'width="' image_width) '" height="') image_height) '"')
+                                    }}
+                                {{/if}}
+                            {{#and image_height image_width}}</div>{{/and}}
+                        </div>
+                    {{/if}}
+                    
+                    {{#if heading}}
+                        {{> components/carousel-content show_background=true}}
+                    {{else}}
+                        {{#if text}}
+                            {{> components/carousel-content show_background=true}}
+                        {{else}}
+                            {{#if button_text}}
+                                {{> components/carousel-content show_background=false}}
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                </a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{#if theme_settings.carousel_banners}}
+        <div class="heroCarousel-banners">
+            {{> components/papa-supermarket/sections/section-bc-banner find="papathemesHeroCarouselBanner"}}
+        </div>
+    {{/if}}
+</section>

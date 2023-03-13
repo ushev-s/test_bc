@@ -1,0 +1,1 @@
+{"components/search/heading":"<h1 class=\"page-heading\">\n    {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query)}}}\n</h1>\n"}

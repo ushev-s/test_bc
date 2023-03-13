@@ -1,0 +1,11 @@
+{{#if product.can_purchase}}
+<div class="productView-alsoBought-item-image">
+    <label class="productView-alsoBought-thumbnail-label" for="productView-alsoBought-item-checkbox-{{product.id}}">
+        {{> components/common/responsive-img
+            image=product.main_image
+            fallback_size=theme_settings.productthumb_size
+            lazyload=theme_settings.lazyload_mode
+        }}
+    </label>
+</div>
+{{/if}}

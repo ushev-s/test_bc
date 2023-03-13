@@ -1,0 +1,106 @@
+body.has-activeModal--newsletter {
+    overflow: auto;
+
+    .modal-background {
+        background-color: transparent;
+        transition: none;
+        visibility: hidden;
+    }
+}
+
+.modal--newsletter {
+    width: 600px;
+    box-shadow: 0 5px 10px rgba(color("blacks"), 0.15);
+    transform: translateY(100vh);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    .modal-close {
+        top: 0;
+        right: 0;
+    }
+
+    &.open {
+        transform: translateY(-50%);
+    }
+}
+
+.newsletterPopup {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint("small") {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.newsletterPopup-image {
+    order: 2;
+    text-align: center;
+    display: none;
+
+    @include breakpoint("small") {
+        display: block;
+        flex: 1 1 50%;
+        order: 1;
+    }
+}
+
+.newsletterPopup-content {
+    order: 1;
+    padding: container("padding");
+
+    @include breakpoint("small") {
+        flex: 1 1 50%;
+        order: 2;
+    }
+}
+
+.newsletterPopup-heading {
+    text-align: center;
+    margin: spacing("half") 0;
+
+    @include breakpoint("small") {
+        text-align: left;
+        margin-top: spacing("single");
+    }
+}
+
+.newsletterPopup-description {
+    text-align: center;
+    margin-bottom: spacing("single");
+
+    @include breakpoint("small") {
+        text-align: left;
+    }
+}
+
+.newsletterPopup-form {
+    .form {
+        margin-bottom: 0;
+    }
+
+    .form-field {
+        margin-bottom: spacing("half");
+    }
+
+    .form-prefixPostfix-button--postfix {
+        margin-left: 0;
+        margin-top: spacing("half");
+    }
+
+    .form-prefixPostfix {
+        .form-input {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
+
+    .button {
+        @include buttonVariant("primary");
+    }
+}

@@ -1,0 +1,21 @@
+<h5 class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h5>
+{{#if theme_settings.subscribe_intro '!==' ''}}
+    <p>{{theme_settings.subscribe_intro}}</p>
+{{else if settings.show_newsletter_summary}}
+    <p>{{settings.newsletter_summary}}</p>
+{{/if}}
+
+<form class="form" action="{{urls.subscribe.action}}" method="post">
+    <fieldset class="form-fieldset">
+        <input type="hidden" name="action" value="subscribe">
+        <input type="hidden" name="nl_first_name" value="bc">
+        <input type="hidden" name="check" value="1">
+        <div class="form-field">
+            <label class="form-label is-srOnly" for="nl_email">{{lang 'common.email_address'}}</label>
+            <div class="form-prefixPostfix wrap">
+                <input class="form-input form-prefixPostfix-input" id="nl_email" name="nl_email" type="email" value="{{customer.email}}" placeholder="{{lang 'newsletter.email_placeholder'}}">
+                <input class="button form-prefixPostfix-button--postfix" type="submit" value="{{lang 'newsletter.subscribe_submit'}}">
+            </div>
+        </div>
+    </fieldset>
+</form>

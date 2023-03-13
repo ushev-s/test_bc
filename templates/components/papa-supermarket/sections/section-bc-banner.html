@@ -1,0 +1,11 @@
+{{!--
+Arguments:
+    - find (string)
+--}}
+{{#if banners.top_metadata}}
+	{{#each banners.top_metadata}}
+	    {{#if (occurrences this.content ../find) '>' 0}}
+	        {{{this.content}}}
+	    {{/if}}
+	{{/each}}
+{{/if}}

@@ -1,0 +1,20 @@
+<div>
+    <ul class="brandGrid" data-brands-list data-brands-list-next="{{pagination.brands.next}}" data-azbrands="azBrands">
+        {{#each brands}}
+            <li class="brand" data-brand-code="{{dashcase name}}">
+                <article class="card {{#if alternate}}card--alternate{{/if}}">
+                    <figure class="card-figure">
+                        <a href="{{url}}">
+                            <img class="card-image" src="{{getImage image 'brand_size' (cdn ../theme_settings.default_image_brand)}}" alt="{{name}}" title="{{name}}">
+                        </a>
+                    </figure>
+                    <div class="card-body">
+                        <p class="card-title">
+                            <a href="{{url}}">{{name}}</p>
+                    </div>
+                </article>
+            </li>
+        {{/each}}
+    </ul>
+    {{> components/common/paginator pagination.brands instantload=true}}
+</div>

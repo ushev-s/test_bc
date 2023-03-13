@@ -1,0 +1,125 @@
+{{#if section '===' ''}}
+
+{{else if section '===' 'slideshow'}}
+    {{#if carousel}}
+        {{> components/carousel}}
+    {{/if}}
+
+{{else if section '===' 'special_products_tabs'}}
+    {{#or theme_settings.specialProductsTab_show_featured theme_settings.specialProductsTab_show_top theme_settings.specialProductsTab_show_new}}
+        {{#or theme_settings.specialProductsTab_init_count theme_settings.specialProductsTab_lazy_count}}
+            <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--specialProductsTabs">
+            <div class="emthemesModez-section-inner">
+                {{> components/papa-supermarket/special-products-tabs/section}}
+            </div>
+            </div>
+        {{/or}}
+    {{/or}}
+
+{{else if section '===' 'special_products_columns'}}
+    {{#or theme_settings.specialProductsColumns_show_featured theme_settings.specialProductsColumns_show_top theme_settings.specialProductsColumns_show_new}}
+    <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--specialProductsColumns">
+    <div class="emthemesModez-section-inner">
+    {{> components/papa-supermarket/sections/section-special-products-columns}}
+    </div>
+    </div>
+    {{/or}}
+
+{{else if section '===' 'products_by_category_sorting_tabs'}}
+    {{#if theme_settings.productsByCategorySortingTabs_catIDs}}
+        {{inject 'hasProductsByCategorySortingTabs' true}}
+        <div class="emthemesModez-sections-group"
+        data-pbcst-group="{{theme_settings.productsByCategorySortingTabs_catIDs}}"
+        data-sort="{{theme_settings.productsByCategorySortingTabs_active}}"
+        data-limit="{{theme_settings.productsByCategorySortingTabs_products}}"
+        {{#if theme_settings.productsByCategorySortingTabs_lazy}}data-lazy{{/if}}></div>
+    {{else if theme_settings.productsByCategorySortingTabs_count '>' 0}}
+        {{inject 'hasProductsByCategorySortingTabs' true}}
+        <div class="emthemesModez-sections-group"
+            data-pbcst-group="{{join (pluck (limit categories theme_settings.productsByCategorySortingTabs_count) 'id') ','}}"
+            data-sort="{{theme_settings.productsByCategorySortingTabs_active}}"
+            data-limit="{{theme_settings.productsByCategorySortingTabs_products}}"
+            {{#if theme_settings.productsByCategorySortingTabs_lazy}}data-lazy{{/if}}></div>
+    {{/if}}
+
+{{else if section '===' 'categories_list'}}
+    {{#if theme_settings.categoriesList_count '>' 0}}
+    <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--categoriesGrid">
+    <div class="emthemesModez-section-inner">
+    {{> components/papa-supermarket/sections/section-categories-list limit=theme_settings.categoriesList_count sub_limit=theme_settings.categoriesList_subCount}}
+    </div>
+    </div>
+    {{/if}}
+
+{{else if section '===' 'blog_recent'}}
+    {{#if theme_settings.homepage_blog_posts_position '===' 'content'}}
+    {{#if theme_settings.homepage_blog_posts_count '>' 0}}
+    <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--blog">
+    <div class="emthemesModez-section-inner">
+    {{> components/emthemes-modez/blog/featured posts=blog.recent_posts style="featured"}}
+    </div>
+    </div>
+    {{/if}}
+    {{/if}}
+
+{{else if section '===' 'instagram_carousel'}}
+    {{#if theme_settings.instagram_token '!=' ''}}
+    {{#if theme_settings.instagram_userid '!=' ''}}
+    {{#if theme_settings.instagram_count '>' 0}}
+    <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--instagramCarousel">
+    <div class="emthemesModez-section-inner">
+    {{> components/emthemes-modez/instagram/carousel}}
+    </div>
+    </div>
+    {{/if}}
+    {{/if}}
+    {{/if}}
+
+{{else if section '===' 'bc_banner_home_1'}}
+    {{> components/papa-supermarket/sections/section-bc-banner find="emthemesModezBannersBlockHome01"}}
+
+{{else if section '===' 'bc_banner_home_2'}}
+    {{> components/papa-supermarket/sections/section-bc-banner find="emthemesModezBannersBlockHome02"}}
+
+{{else if section '===' 'bc_banner_home_3'}}
+    {{> components/papa-supermarket/sections/section-bc-banner find="emthemesModezBannersBlockHome03"}}
+
+{{else if section '===' 'new_products'}}
+    {{#if products.new}}
+        <div class="emthemesModez-section emthemesModez-section--alt {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--newProducts emthemesModez-section--displayType-grid">
+        <div class="emthemesModez-section-inner">
+        {{> components/papa-supermarket/products/new 
+            products=products.new 
+            columns=4 
+            display_type='grid'}}
+        </div>
+        </div>
+    {{/if}}
+    {{{region name="home_below_new_products"}}}
+
+{{else if section '===' 'featured_products'}}
+    {{#if products.featured}}
+        <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--featuredProducts emthemesModez-section--displayType-grid">
+        <div class="emthemesModez-section-inner">
+        {{> components/products/featured 
+            products=products.featured 
+            columns=4 
+            display_type='grid'}}
+        </div>
+        </div>
+    {{/if}}
+    {{{region name="home_below_featured_products"}}}
+
+{{else if section '===' 'popular_products'}}
+    {{#if products.top_sellers}}
+        <div class="emthemesModez-section {{#if index}}emthemesModez-section--index{{index}}{{/if}} emthemesModez-section--topProducts emthemesModez-section--displayType-grid">
+        <div class="emthemesModez-section-inner">
+        {{> components/products/top 
+            products=products.top_sellers 
+            columns=4 
+            display_type='grid'}}
+        </div>
+        </div>
+    {{/if}}
+    {{{region name="home_below_top_products"}}}
+{{/if}}

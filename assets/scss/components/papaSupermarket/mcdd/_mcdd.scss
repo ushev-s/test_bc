@@ -1,0 +1,128 @@
+div.PMCDD-container {
+    padding: spacing("half") + spacing("quarter");
+    background-color: container("fill", "dark");
+
+    .page-heading {
+        font-size: fontSize("small");
+        font-weight: $header-font-weight;
+        text-transform: uppercase;
+    }
+
+    .form {
+        margin-bottom: 0;
+    }
+
+    .form-field {
+        margin-bottom: spacing("half");
+    }
+
+    .form-label {
+        display: none;
+    }
+}
+
+.page-sidebar {
+    div.PMCDD-container--vertical {
+        border: container("border");
+        background-color: container("fill");
+        padding: 0;
+
+        .form {
+            padding: container("padding");
+        }
+
+        .page-heading {
+            font-size: fontSize("small");
+            color: $header-font-color;
+            background-color: container("borderColor");
+            padding: spacing("half") (spacing("half") + spacing("quarter"));
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+@include breakpoint("small") {
+    div.PMCDD-container {
+        .form-actions {
+            margin-top: 0;
+            .button {
+                min-width: 300px;
+            }
+        }
+    }
+}
+
+@include breakpoint("medium") {
+    div.PMCDD-container {
+        padding-top: spacing("half");
+        padding-bottom: spacing("half");
+
+        .PMCDD-container-inner {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form {
+            flex: 0 0 auto;
+        }
+
+        .page-heading {
+            font-size: fontSize("large");
+            margin: 0;
+            width: auto;
+        }
+
+        .form-field {
+            margin-bottom: 0;
+            width: 150px;
+        }
+
+        .form-actions {
+            margin-bottom: 0;
+            width: 150px;
+
+            .button {
+                min-width: auto;
+            }
+        }
+    }
+
+    div.PMCDD-container--vertical {
+        .page-heading {
+            margin-bottom: spacing("half");
+        }
+        .form-field {
+            width: 100%;
+            margin-bottom: spacing("half");
+        }
+
+        .form-actions {
+            width: 100%;
+            // margin-bottom: spacing("half");
+        }
+    }
+}
+
+
+@include breakpoint("large") {
+    div.PMCDD-container {
+        .form-field {
+            width: 200px;
+        }
+
+        .form-actions {
+            width: 200px;
+        }
+    }
+
+    div.PMCDD-container--vertical {
+        .form-field {
+            width: 100%;
+        }
+
+        .form-actions {
+            width: 100%;
+        }
+    }
+}

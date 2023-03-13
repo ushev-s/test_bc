@@ -1,0 +1,43 @@
+<div class="papaSupermarket-newProducts">
+    <div class="papaSupermarket-newProducts-banner">
+        <img src="{{lang 'papasupermarket.new_products.image'}}" alt="{{lang 'products.new'}}">
+    </div>
+    <div class="papaSupermarket-newProducts-products">
+        <div class="papaSupermarket-newProducts-products-inner">
+            {{#unless hide_heading}}
+            <h2 class="page-heading">{{lang 'products.new' }}</h2>
+            {{/unless}}
+
+            {{#if display_type '==' 'carousel'}}
+                {{> components/products/carousel products=products}}
+            {{else if display_type '==' 'grid'}}
+                <ul class="productGrid productGrid--maxCol{{ columns }}" data-product-type="new">
+                    {{#each products}}
+                        <li class="product">
+                            {{>components/products/card 
+                                show_compare=../show_compare 
+                                show_rating=../settings.show_product_rating
+                                theme_settings=../theme_settings 
+                                settings=../settings 
+                                customer=../customer}}
+                        </li>
+                    {{/each}}
+                </ul>
+            {{else}}
+                <ul class="productList productList--maxCol{{ columns }}" data-product-type="new">
+                    {{#each products}}
+                        <li class="product">
+                            {{>components/products/list-item 
+                            	summary=false
+                            	show_compare=../show_compare 
+                            	show_rating=../settings.show_product_rating 
+                                theme_settings=../theme_settings 
+                                settings=../settings 
+                                customer=../customer}}
+                        </li>
+                    {{/each}}
+                </ul>	
+            {{/if}}
+        </div>
+    </div>
+</div>

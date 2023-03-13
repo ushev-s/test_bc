@@ -1,0 +1,32 @@
+{{!--
+Arguments:
+    - categories (array)
+    - limit (number)
+    - sub_limit (number)
+    - style (string)
+--}}
+{{#if limit '>' 0}}
+<h2 class="page-heading"><span>{{lang 'papasupermarket.categories_list.heading'}}</span></h2>
+<section class="papaSupermarket-categoriesList-section {{#if style}}papaSupermarket-categoriesList-section--{{style}}{{/if}} {{#if theme_settings.categoriesList_showBanner}}papaSupermarket-categoriesList-section--hasImage{{/if}}">
+    <ul class="papaSupermarket-categoriesList">
+        {{#each (limit categories limit)}}
+            <li class="papaSupermarket-categoriesList-item">
+                {{#if ../theme_settings.categoriesList_showBanner}}
+                <div class="papaSupermarket-categoriesList-item-image"><a href="{{url}}">{{> components/common/responsive-img-url image=(concat (concat '/product_images/uploaded_images/categories-list-thumbnail-' (add @index 1)) '.jpg?c=2') alt=name lazyload=../../theme_settings.lazyload_mode}}</a></div>
+                {{/if}}
+                <div class="papaSupermarket-categoriesList-item-body">
+                    <p style="font-weight:bold" class="papaSupermarket-categoriesList-item-name"><a href="{{url}}">{{name}}</p>
+                    {{#if children}}
+                    <ul class="papaSupermarket-subCategoriesList">
+                        {{#each (limit children ../../sub_limit)}}
+                        <li class="papaSupermarket-subCategoriesList-item"><a href="{{url}}">{{name}}</a></li>
+                        {{/each}}
+                    </ul>
+                    <div class="papaSupermarket-categoriesList-item-moreLink"><a href="{{url}}">{{lang 'papasupermarket.categories_list.see_all'}}</a></div>
+                    {{/if}}
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</section>
+{{/if}}

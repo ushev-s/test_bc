@@ -1,0 +1,26 @@
+<fieldset class="form-fieldset actionBar-section actionBar-section--mode">
+    <div class="form-field">
+        <label class="form-label" for="mode">{{lang 'common.sorter.columns'}}:</label>
+        <input class="form-radio" type="radio" name="mode" value="1" id="mode_1{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'list'}} checked{{/if}}>
+        <label class="form-option" for="mode_1{{id_suffix}}"><span class="form-option-variant" title="1">1</span></label>
+        <input class="form-radio" type="radio" name="mode" value="2" id="mode_2{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'grid2'}} checked{{/if}}>
+        <label class="form-option" for="mode_2{{id_suffix}}"><span class="form-option-variant" title="2">2</span></label>
+        <input class="form-radio" type="radio" name="mode" value="3" id="mode_3{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'grid3'}} checked{{/if}}>
+        <label class="form-option" for="mode_3{{id_suffix}}"><span class="form-option-variant" title="3">3</span></label>
+        <input class="form-radio" type="radio" name="mode" value="4" id="mode_4{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'grid'}} checked{{/if}}>
+        <label class="form-option" for="mode_4{{id_suffix}}"><span class="form-option-variant" title="4">4</span></label>
+        <input class="form-radio" type="radio" name="mode" value="6" id="mode_6{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'grid6'}} checked{{/if}}>
+        <label class="form-option" for="mode_6{{id_suffix}}"><span class="form-option-variant" title="6">6</span></label>
+        {{#if theme_settings.show_bulk_order_mode}}
+        <input class="form-radio" type="radio" name="mode" value="bo" id="mode_bo{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'listbo'}} checked{{/if}}>
+        <label class="form-option" for="mode_bo{{id_suffix}}"><span class="form-option-variant" title="{{lang 'bulk_order.icon_title'}}"><i class="fa fa-th-list"></i></span></label>
+        {{/if}}
+
+        <!--
+        <input class="form-radio" type="radio" name="mode" value="grid" id="mode_grid{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'grid'}} checked{{/if}}>
+        <label class="form-option" for="mode_grid{{id_suffix}}" aria-label="Grid"><span class="form-option-variant" title="Grid"><i class="fa fa-th-large" aria-hidden="true"></i></span></label>
+        <input class="form-radio" type="radio" name="mode" value="list" id="mode_list{{id_suffix}}" {{#if theme_settings.product_list_display_mode '===' 'list'}} checked{{/if}}>
+        <label class="form-option" for="mode_list{{id_suffix}}" aria-label="List"><span class="form-option-variant" title="List"><i class="fa fa-th-list" aria-hidden="true"></i></span></label>
+        -->
+    </div>
+</fieldset>

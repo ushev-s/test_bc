@@ -1,0 +1,22 @@
+.tab-title {
+	font-weight: fontWeight("bold");
+	color: $color-textBase;
+
+	&:hover,
+	&:focus {
+		color: $color-textBase-hover;
+	}
+}
+
+.tabs--alt {
+	.tab-title {
+		text-transform: uppercase;
+	}
+}
+
+
+.tab-content {
+    .productReview {
+		width: 100%;
+	}
+}

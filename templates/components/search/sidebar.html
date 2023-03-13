@@ -1,0 +1,18 @@
+<nav>
+    {{#if product_results.faceted_search_enabled}}
+        {{> components/products/filter 
+            sort=pagination.product_results.sort 
+            pager=pagination.product_results
+            list=product_results
+            products_per_page=theme_settings.searchpage_products_per_page
+        }}
+        {{> components/faceted-search/index product_results}}
+    {{else}}
+        {{> components/products/filter 
+            sort=pagination.product_results.sort 
+            pager=pagination.product_results
+            list=product_results
+            products_per_page=theme_settings.searchpage_products_per_page
+        }}
+    {{/if}}
+</nav>

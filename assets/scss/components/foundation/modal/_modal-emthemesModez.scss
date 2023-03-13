@@ -1,0 +1,54 @@
+.modal {
+    overflow: visible; // Fix quickview -> choose product options: content disappear
+
+    // Fix modal on mobile
+    top: 50% !important; 
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+}
+
+.modal-close {
+    color: $color-textSecondary;
+    top: 0;
+    right: 0;
+
+    @include breakpoint("medium") {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        color: $color-textSecondary-hover;
+    }
+}
+
+.modal-header {
+    @media (max-width: screenSize("medium") - 1px) {
+        padding: spacing("half") spacing("double") spacing("half") spacing("half");
+    }
+}
+
+.modal-header-title {
+    @media (max-width: screenSize("medium") - 1px) {
+        font-size: fontSize("small");
+    }
+}
+
+.modal-body {
+    @media (max-width: screenSize("medium") - 1px) {
+        padding: spacing("half");
+    }
+}
+
+.has-activeModal--miniPreview {
+    .modal-background {
+        display: none !important;
+    }
+}

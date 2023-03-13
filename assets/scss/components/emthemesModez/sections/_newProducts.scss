@@ -1,0 +1,30 @@
+.papaSupermarket-newProducts {
+
+	@include breakpoint("medium") {
+		@include grid-row($behavior: "nest");
+    	font-size: 0; // 1		
+	}
+
+	.papaSupermarket-newProducts-banner,
+	.papaSupermarket-newProducts-products {
+		@include breakpoint("medium") {
+			@include grid-column(6, $float: none);
+			display: inline-block;
+			font-size: fontSize("base"); // 1
+			vertical-align: top;	
+		}
+	}
+
+	.papaSupermarket-newProducts-products-inner {
+		position: relative;
+	}
+
+	.page-heading {
+		@extend %emthemesModez-section-page-heading;
+	}
+
+	.productCarousel .card, 
+	.productGrid .card {
+		border-color: transparent;
+	}
+}

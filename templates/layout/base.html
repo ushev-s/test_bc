@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="no-js" lang="{{ locale_name }}">
+    <head>
+        {{#if page_type '==' 'product'}}
+        <script>	
+            var dataLayer = [];	
+            dataLayer.push({	
+              ecomm_prodid:'{{product.sku}}',	
+              ecomm_pagetype:'{{product.category}}',	
+              ecomm_totalvalue:'{{product.price.without_tax.value}}',
+              item_id: "{{product.sku}}",
+              item_name: "{{product.title}}",
+              price: "{{product.price.without_tax.value}}",
+              quantity: {{#if product.can_purchase}}1{{else}}0{{/if}},
+              currency: 'USD'
+            });
+        </script>
+        <script>
+(function(d, e, n){
+e = d.createElement('script');
+e.type = 'text/javascript';
+e.async = true;
+e.src = 'https://api.videoly.co/1/quchbox/0/3463/quch.js';
+n = d.getElementsByTagName('script')[0];
+n.parentNode.insertBefore(e, n);
+})(document);
+</script>
+        {{/if}}
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NQ6FQ32');</script>
+        <!-- End Google Tag Manager -->
+      <!-- Open graph -->
+      
+        {{~#if settings.request.absolute_path '===' '/'}}
+<meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="We are the gear guide for life of every hunter, fisherman, backpacker, sportsman or adventure racer around the world. Shop for the best fishing, hunting and outdoor gear!" />
+{{~#if settings.store_logo.image}}<meta property="og:image" content="{{getImage settings.store_logo.image}}">{{~/if}}
+{{~else if page_type '===' 'category'}}
+<meta property="og:url" content="{{category.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+
+<!-- <meta property="og:description" content={{{json category.name}}}> -->
+
+{{~#if category.image}}<meta property="og:image" content="{{getImage category.image}}">{{~/if}}
+{{~else if page_type '===' 'brand'}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage brand.image}}>
+<meta property="og:url" content="{{brand.url}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json brand.name}}}>
+
+<!-- <meta property="og:description" content={{{json brand.name}}}> -->
+
+{{~#if brand.image}}<meta property="og:image" content="{{getImage brand.image}}">{{~/if}}{{~/if}} 
+<!-- End Open graph -->
+    {{#if page_type '==' 'category'}}
+        <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+    {{/if}}
+    {{#if page_type '==' 'brand'}}
+        <meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+    {{/if}}
+           {{#if page_type '==' 'page'}}
+        <meta property="og:url" content="{{settings.base_url}}{{settings.request.absolute_path}}">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+<meta property="og:description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+        {{~/if}}
+  
+
+<link href="https://fonts.googleapis.com/css?family=Quicksand:400|Barlow:600,400&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <!-- Shema Microdata -->      
+      {{#if page_type '==' 'default'}} 
+      <meta name="keywords" content="hunting, fishing, outdoor store, sporting goods">
+
+<meta name="facebook-domain-verification" content="2jaqnw8h2yd0u6p3n39wmsqys4jn35" />
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+{{/if}}
+      {{#if page_type '==' 'page_contact_form'}}        <!-- CONTACT FORM -->
+      
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "SportingGoodsStore",
+  "@id": "GritrOutdoors.com",
+  "name": "GritrOutdoors.com",
+  "image": "https://cdn11.bigcommerce.com/s-8lwkyk05bo/images/stencil/original/logo-left_1596094335__39196.original.png",
+  "telephone": "800-432-6319",
+  "url": "gritroutdoors.com/contact-us/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "7901 Boulevard 26 #200",
+    "addressLocality": "North Richland Hills",
+    "addressRegion": "Texas",
+    "postalCode": "76180",
+    "addressCountry": "United States"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "10:00",
+      "closes": "20:00"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "32.8372084",
+    "longitude": "-97.2146825"
+  },
+  "name": "GritrOutdoors.com"
+}
+</script>
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage settings.store_logo.image}}>
+
+<meta property="og:url" content="https://gritroutdoors.com/contact-us/">
+<meta property="og:type" content="website">
+<meta property="og:title" content={{{json head.title}}}>
+<meta property="og:description" content="Monday - Saturday: 10am - 8pm, Sunday: 10am - 6pm, Call Us: 800-432-6319">
+<meta property="og:image" content="{{getImage settings.store_logo.image}}">
+{{/if}}
+{{#if page_type '==' 'category'}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content={{{json head.title}}}>
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content={{{json head.title}}}>
+<meta name="twitter:image" content={{getImage category.image}}>
+{{/if}}
+{{#if page_type '==' 'product'}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{product.title}}">
+<meta name="twitter:site" content="@gritroutdoors">
+<meta name="twitter:description" content="{{product.description}}">
+<meta name="twitter:image" content="{{getImage product.main_image}}">
+{{/if}} 
+        <link rel="shortcut icon" href="https://cdn11.bigcommerce.com/s-8lwkyk05bo/product_images/uploaded_images/favicongo.png" />
+
+        {{#if page_type '==' 'cart'}}
+        <link rel="preload" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_main.css"></noscript>
+        {{/if}}
+        
+        {{#if page_type '==' 'product'}}
+        <link rel="preload" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_product.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_product.css"></noscript>
+        {{/if}}
+        
+       
+        <div id="itemData" style="display:none" product-id="{{product.id}}"></div>	
+        
+        {{inject "productSKU" product.sku}}
+        {{inject "customFields" product.custom_fields}}
+        
+        <title>{{ head.title }}</title>
+        
+        {{{ resourceHints }}}
+        
+        {{#if page_type '==' 'category'}}
+            <link rel="stylesheet" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <meta name="keywords" content="{{#each (split head.meta_tags 'name="keywords" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+            <meta name="description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+            <link rel="canonical" href="{{ category.url }}" />
+        {{else}}
+            {{#if page_type '==' 'brand'}}
+                <link rel="stylesheet" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+                <meta name="keywords" content="{{#each (split head.meta_tags 'name="keywords" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                <meta name="description" content="{{#each (split head.meta_tags 'name="description" content="') }}{{#if @index '===' 1 }}{{#each (split this '"') }}{{#if @index '===' 0 }}{{this}}{{/if}}{{/each}}{{/if}}{{/each}}" />
+                <link rel="canonical" href="{{ brand.url }}" />
+            {{else}}
+                {{{ head.meta_tags }}}
+            {{/if}}
+        {{/if}}
+            
+        {{{ head.config }}}
+        {{#block "head"}} {{/block}}
+        
+        {{#if page_type '==' 'blog_post'}}
+            <link rel="stylesheet" href="https://store-8lwkyk05bo.mybigcommerce.com/content/css/gear_faq.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        {{/if}}
+
+        <link href="{{ head.favicon }}" rel="shortcut icon">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Exclude pages from index -->
+        {{#if page_type '==' 'cart'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'wishlist'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'add-wishlist'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'add-cart'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'login'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'account_orderstatus'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'search'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'editaccount'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'account_recentitems'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'account_addressbook'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'account_inbox'}}<meta name="robots" content="noindex" />{{else}}
+	    {{#if page_type '==' 'account_returns'}}<meta name="robots" content="noindex" />{{else}}
+        {{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}{{/if}}
+        
+        <script>
+            {{!-- Change document class from no-js to js so we can detect this in css --}}
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+        </script>
+        
+        {{!-- Load Lazysizes script ASAP so images will appear --}}
+        <script>
+            {{!-- Only load visible elements until the onload event fires, after which preload nearby elements. --}}
+            window.lazySizesConfig = window.lazySizesConfig || {};
+            window.lazySizesConfig.loadMode = 1;
+        </script>
+        <script async src="{{cdn 'assets/dist/theme-bundle.head_async.js'}}"></script>
+        
+        
+        {{#if theme_settings.csspreload '===' 'performance'}}
+            <!--<script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>-->
+            <noscript>{{ getFontsCollection }}</noscript>
+
+            {{{stylesheet '/assets/css/theme.css'}}}
+
+            <script>
+                window.lazySizesConfig.loadHidden = false;
+                window.lazySizesConfig.expand = 0;
+            </script>
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
+        {{else if theme_settings.csspreload '===' 'speedtest'}}
+            <meta class="foundation-data-attribute-namespace">
+            <style id="themeCSSPreload">
+                meta.foundation-data-attribute-namespace { font-family: false }
+                body { visibility: hidden !important }
+                .emthemesModez-header-userSection > .container { transition: none !important }
+            </style>
+
+            {{! stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';setTimeout(function() {var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el); }, 10);" }}
+            {{{stylesheet '/assets/css/theme.css' rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet';var el = document.getElementById('themeCSSPreload');el.parentNode.removeChild(el);window.themeCSSLoaded"}}}
+            <noscript>{{{stylesheet '/assets/css/theme.css'}}}</noscript>
+
+            <!--<script>document.write('{{{ getFontsCollection }}}'.replace('rel="stylesheet"', 'rel="preload" as="style" onload="this.onload=null;this.rel=\'stylesheet\'"'));</script>-->
+            <noscript>{{ getFontsCollection }}</noscript>
+            
+            <script>
+                window.lazySizesConfig.loadHidden = false;
+                window.lazySizesConfig.expand = 0;
+            </script>
+            <script src="{{cdn 'assets/vendor/loadcss/cssrelpreload.min.js'}}" async></script>
+
+        {{else}}
+            <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+
+            <script>
+                WebFont.load({
+                    custom: {
+                        families: ['Karla', 'Roboto', 'Source Sans Pro', 'Poppins', 'Barlow', 'Rubik', 'Libre Baskerville', 'Quicksand', 'Montserrat', 'Open Sans', 'Volkhov', 'Caveat']
+                    },
+                    classes: false
+                });
+            </script>
+            
+            {{ getFontsCollection }}
+            {{{stylesheet '/assets/css/theme.css'}}}
+        {{/if}}
+        
+        {{{head.scripts}}}
+
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.main.js'}}" as="script">
+        <link rel="preload" href="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}" as="script">
+
+        {{~inject 'themeSettings' theme_settings}}
+        {{~inject 'genericError' (lang 'common.generic_error')}}
+        {{~inject 'maintenanceMode' settings.maintenance}}
+        {{~inject 'urls' urls}}
+        {{~inject 'secureBaseUrl' settings.secure_base_url}}
+        {{~inject 'cartId' cart_id}}
+        {{~inject 'template' template}}
+        {{~inject 'pageType' page_type}}
+        {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
+        {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
+        {{~inject 'compareAddonLang_quick_view' (lang 'products.quick_view')}}
+        {{~inject 'compareAddonLang_remove' (lang 'compare.remove')}}
+        {{~inject 'compareAddonLang_clear_all' (lang 'compare.clear_all')}}
+        {{~inject 'categoryId' category.id}}
+        {{#if theme_settings.navPages_autoFit}}
+            {{~inject 'txtNavMore' (lang 'common.nav_more')}}
+        {{/if}}
+        {{{snippet 'htmlhead'}}}
+        
+        
+    </head>
+    <body class="csscolumns papaSupermarket-layout--{{theme_settings.layout}} 
+        papaSupermarket-style--{{theme_settings.style}}
+        papaSupermarket-pageType--{{dashcase page_type}} 
+        papaSupermarket-page--{{dashcase template}} 
+        {{#if theme_settings.product_uniform}}emthemesModez-productUniform{{/if}}
+        {{#if theme_settings.hide_loading_bar}}papaSupermarket--hideLoadingBar{{/if}}
+        {{#if theme_settings.hide_content_navigation}}papaSupermarket--hideContentNav{{/if}}
+        {{#if theme_settings.show_subcategories_menu}}papaSupermarket--showSubcategoriesMenu{{/if}}
+        {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if category.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brands.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if brand.faceted_search_enabled}}has-faceted{{/if}}
+        {{#if result_count '>' 0}}has-result{{/if}}
+        " id="topOfPage">
+        
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQ6FQ32"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+
+        {{#if theme_settings.fb_page '!==' ''}}
+        <!-- Facebook SDK -->
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=378187145615477&autoLogAppEvents=1" nonce="VinhY3Lb"></script>
+        {{/if}}
+
+        {{{snippet 'header'}}}
+        <svg data-src="{{cdn 'img/icon-sprite.svg'}}" class="icons-svg-sprite"></svg>
+
+        {{> components/common/header }}
+        {{> components/common/body }}
+        {{> components/common/footer }}
+
+        <script>window.__webpack_public_path__ = "{{cdn 'assets/dist/'}}";</script>
+        <script src="{{cdn 'assets/dist/theme-bundle.main.js'}}"></script>
+        <script src="{{cdn 'assets/dist/theme-bundle.chunk.vendors.js'}}"></script>
+        <script>
+            {{!-- Exported in app.js --}}
+            window.stencilBootstrap("{{page_type}}", {{jsContext}}).load();
+        </script>
+
+        {{{footer.scripts}}}
+        {{{snippet 'footer'}}}
+        
+        {{#if page_type '==' 'product'}}
+        {{#if product.brand}}
+        {{#if product.brand.name '==' 'Zeiss'}}
+        {{#if product.upc}}
+        <script async src="https://cdn.loadbee.com/js/loadbee_integration.js"></script>
+        {{/if}}{{/if}}{{/if}}{{/if}}
+        {{#if page_type '==' 'category'}}
+        <script src="https://store-8lwkyk05bo.mybigcommerce.com/content/custom_scripts/gear_faq.js"></script>
+        {{/if}}
+        {{#if page_type '==' 'brand'}}
+        <script src="https://store-8lwkyk05bo.mybigcommerce.com/content/custom_scripts/gear_faq.js"></script>
+        {{/if}}
+        {{#if page_type '==' 'blog_post'}}
+        <script src="https://store-8lwkyk05bo.mybigcommerce.com/content/custom_scripts/gear_faq.js"></script>
+        {{/if}}
+    </body>
+</html>

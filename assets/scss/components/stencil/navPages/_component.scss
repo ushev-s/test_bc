@@ -1,0 +1,12 @@
+// =============================================================================
+// PAGE NAVIGATION
+// =============================================================================
+
+
+// Component
+@import "navPages";
+@import "navPages-emthemesModez";
+
+@if stencilString('navPages_categoriesMenu') == 'horizontal' {
+    @import "navPages-supermarket-horizontal";
+}

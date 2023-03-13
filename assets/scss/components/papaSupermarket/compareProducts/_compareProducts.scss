@@ -1,0 +1,168 @@
+.supermarket-compareList-panel-wrapper {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    z-index: zIndex("low");
+    animation-name: supermarket-compareList-show;
+    animation-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
+
+    .button {
+        margin: 0;
+    }
+
+    .button--close,
+    .button--open {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 28px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        font-size: 16px;
+
+        @media (max-width: screenSize("medium") - 1px) {
+            width: 40px;
+            height: 40px;
+            top: -39px;
+            border: container("border");
+            background-color: container("fill");
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+    }
+
+    .button--open {
+        display: none;
+    }
+
+    &.is-empty {
+        animation-name: supermarket-compareList-hide;
+        animation-timing-function: cubic-bezier(0.6, -0.28, 0.74, 0.05);
+    }
+
+    &.is-closed {
+        .button--close {
+            display: none;
+        }
+
+        .button--open {
+            display: flex;
+            bottom: 0;
+            top: auto;
+            border: container("border");
+            background-color: container("fill");
+            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+        }
+
+        .supermarket-compareList-panel-body {
+            height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            overflow: hidden;
+        }
+    }
+    
+}
+
+@keyframes supermarket-compareList-show {
+    from {
+        transform: translateY(50px);
+    }
+    to {
+        transform: none;
+    }
+}
+@keyframes supermarket-compareList-hide {
+    from {
+        transform: none;
+    }
+    to {
+        transform: translateY(50px);
+    }
+}
+
+.supermarket-compareList-panel {
+    position: relative;
+    width: auto;
+    max-width: 100%;
+}
+
+.supermarket-compareList-panel-body {
+    width: auto;
+    background-color: container("fill");
+    padding: spacing("half") spacing("quarter");
+    border: container("border");
+    position: relative;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+}
+
+.supermarket-compareList {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    margin: 0 auto;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.supermarket-compareList-item {
+    position: relative;
+    margin: 0 spacing("quarter");
+    width: 70px;
+    flex: 0 0 auto;
+
+    @include breakpoint("medium") {
+        width: 80px;
+    }
+}
+
+.supermarket-compareList-actions {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    @include breakpoint("medium") {
+        margin: 0 spacing("single") + spacing("quarter");
+    }
+
+    .button + .button {
+        margin-top: spacing("quarter");
+    }
+}
+
+.supermarket-compareList-quickview,
+.supermarket-compareList-remove {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, .5);
+
+    @media (max-width: screenSize("medium") - 1px) {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.supermarket-compareList-remove {
+    position: absolute;
+    bottom: 0;
+    top: auto;
+}

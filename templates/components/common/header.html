@@ -1,0 +1,94 @@
+{{#or banners.top_metadata theme_settings.instantload}}
+<div class="banners" data-banner-location="top">
+    {{#if settings.data_tag_enabled}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                <div class="banner">
+                    {{{this.content}}}
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlock') '===' 0}}
+                <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+                    <div data-event-type="promotion-click">
+                        {{{this.content}}}
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+</div>
+{{/or}}
+{{#if theme_settings.bannerAdvTopHeader '===' 'all'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAdvTopHeader"></div>
+{{else if theme_settings.bannerAdvTopHeader '===' 'nothome'}}
+    {{#if page_type '!==' 'default'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAdvTopHeader"></div>
+    {{/if}}
+{{/if}}
+<header class="header" role="banner" {{#if theme_settings.header_sticky '===' 'all'}} data-stickymenu{{/if}}>
+    <a href="#" class="mobileMenu-toggle" data-mobile-menu-toggle="menu">
+        <span class="mobileMenu-toggleIcon">Toggle menu</span>
+    </a>
+
+    <div class="emthemesModez-header-topSection">
+        <div class="container">
+            {{> components/common/navigation-top}}
+        </div>
+    </div>
+
+    <div class="emthemesModez-header-userSection emthemesModez-header-userSection--logo-{{theme_settings.logo-position}}"{{#if theme_settings.header_sticky '===' 'search'}} data-stickymenu{{/if}}>
+        <div class="container">
+            {{> components/common/navigation}}
+
+            {{#if template_file '===' 'pages/home'}}
+                <p class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </p>
+            {{else}}
+                <div class="header-logo header-logo--{{theme_settings.logo-position}}">
+                    {{> components/common/store-logo}}
+                </div>
+            {{/if}}
+
+            {{> components/common/quick-search}}
+        </div>
+    </div>
+
+    <div class="navPages-container{{#if theme_settings.navPages_bg_stretch}} navPages-container--bg{{/if}}" id="menu" data-menu>
+        <div class="container">
+            {{> components/common/navigation-menu}}
+        </div>
+    </div>
+
+</header>
+
+{{> components/common/quick-search style="mobileOnly"}}
+
+<div class="dropdown dropdown--quickSearch" id="quickSearch" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close>
+    <div class="container">
+        <section class="quickSearchResults" data-bind="html: results"></section>
+    </div>
+</div>
+<div class="emthemesModez-overlay"></div>
+
+{{{region name="header_bottom--global"}}}
+{{{region name="header_bottom"}}}
+
+{{#if theme_settings.bannerAfterHeader '===' 'all'}}
+    <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAfterHeader"></div>
+{{else if theme_settings.bannerAfterHeader '===' 'nothome'}}
+    {{#if page_type '!==' 'default'}}
+        <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockAfterHeader"></div>
+    {{/if}}
+{{else if theme_settings.bannerAfterHeader '===' 'onlyhome'}}
+    {{#if banners.top_metadata}}
+        {{#each banners.top_metadata}}
+            {{#if (occurrences this.content 'emthemesModezBannersBlockAfterHeader') '!==' 0}}
+                {{{this.content}}}
+            {{/if}}
+        {{/each}}
+    {{/if}}
+{{/if}}

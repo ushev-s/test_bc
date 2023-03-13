@@ -1,0 +1,306 @@
+.emthemesModez-bannersContainer {
+    @include grid-row($behavior: "nest");
+	font-size: 0; // 1
+
+	@if $theme-style == "compact" {
+		margin-left: -(spacing("half"));
+		margin-right: -(spacing("half"));
+	}
+	
+	.papaSupermarket-style--modern & {
+		@media (max-width: screenSize("medium") - 1px) {
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+}
+
+
+.emthemesModez-banner {
+	@include grid-column(12, $float: none);
+    display: inline-block;
+    font-size: fontSize("base"); // 1
+	vertical-align: top;
+
+	@if $theme-style == "compact" {
+		padding-left: spacing("half");
+		padding-right: spacing("half");
+	}
+
+    + .emthemesModez-banner {
+		@if $theme-style == "compact" {
+			margin-top: spacing("half");
+		}
+		@else {
+			margin-top: spacing("single");
+		}
+
+    	@include breakpoint("small") {
+    		margin-top: 0;
+    	}
+    }
+}
+
+
+.emthemesModez-banner-image {
+	transition: all 0.2s ease;
+}
+
+.emthemesModez-banner-figure {
+	margin: 0;
+	text-align: center;
+	overflow: hidden;
+
+	a {
+		position: relative;
+	}
+	a:hover {
+		.emthemesModez-banner-image {
+			transform: scale3d(1.2, 1.2, 1);
+			filter: brightness(0.8);
+		}
+	}
+}
+
+
+.emthemesModez-banner-figcaption {
+	color: $color-textSecondary;
+	margin: spacing("single") + spacing("half") 0 0;
+}
+
+.emthemesModez-banner-figcaption--empty {
+	margin-top: 0;
+}
+
+.emthemesModez-banner-figcaption-body {
+	text-align: center;
+
+	> *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.emthemesModez-banner-figcaption-title {
+	font-size: fontSize("large");
+	margin: 0 0 spacing("single") + spacing("half");
+	line-height: 1;
+}
+
+
+.emthemesModez-banner-figcaption-text {
+	margin-bottom: spacing("single");
+}
+
+.emthemesModez-banner-figcaption-button {
+	margin-bottom: 0;
+}
+
+
+
+
+// ============================================================================
+// BANNER VARIATIONS
+// ============================================================================
+
+
+.emthemesModez-bannersContainer--twothird-onethird {
+	
+	.emthemesModez-banner:nth-child(2n+1) {
+		@include breakpoint("small") {
+	        width: grid-calc(8, $total-columns);
+	    }
+	}
+
+	.emthemesModez-banner:nth-child(2n) {
+		@include breakpoint("small") {
+	        width: grid-calc(4, $total-columns);
+	    }
+	}
+}
+
+
+
+
+%emthemesModez-bannersContainer--COMMON-style1 {
+	@include breakpoint("medium") {
+		display: flex;
+		align-items: stretch;
+
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
+
+	.emthemesModez-banner {
+		flex: 1;
+		width: auto;
+
+		.emthemesModez-banner-container {
+			padding: spacing("double");
+
+			@include breakpoint("medium") {
+				height: 100%;
+			}
+		}
+
+		.emthemesModez-banner-figure {
+			svg {
+				fill: stencilColor("icon--alt-color");
+				stroke: stencilColor("icon--alt-color");
+			}
+		}
+
+		.emthemesModez-banner-figcaption-title {
+			text-transform: uppercase;
+			margin-bottom: spacing("single");
+		}
+
+		.emthemesModez-banner-figcaption-text {
+			font-size: fontSize("smaller");
+		}
+	}
+}
+
+
+@mixin emthemesModez-bannersContainer($name, $setting, $total: 3) {
+	@for $i from 1 to $total {
+		.emthemesModez-bannersContainer--#{$name}-#{$i} {
+			.emthemesModez-banner {
+				.emthemesModez-banner-container {
+					background: stencilColor(#{$setting} + "_" + #{$i} + "_backgroundColor");
+				}
+			}
+		}	
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Banner 3x - Default Style
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--onethird-x3 .emthemesModez-banner {
+	@include breakpoint("small") {
+        width: grid-calc(4, $total-columns);
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Banner 3x - Style 1
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--onethird-x3-style1 {
+	@extend %emthemesModez-bannersContainer--COMMON-style1;
+}
+
+// ----------------------------------------------------------------------------
+// Banner 3x - Instances
+// ----------------------------------------------------------------------------
+@include emthemesModez-bannersContainer('onethird-x3', 'banner3x');
+
+
+
+// ----------------------------------------------------------------------------
+// Banner Half 3x - Default Style
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--half .emthemesModez-banner {
+	@include breakpoint("small") {
+        width: grid-calc(6, $total-columns);
+    }
+}
+
+
+// ----------------------------------------------------------------------------
+// Banner Half 2x - Style 1
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--half-style1 {
+	@extend %emthemesModez-bannersContainer--COMMON-style1;
+}
+
+// ----------------------------------------------------------------------------
+// Banner Half 2x - Instances
+// ----------------------------------------------------------------------------
+@include emthemesModez-bannersContainer('half', 'banner_half');
+
+
+
+// ----------------------------------------------------------------------------
+// Banner Fullwidth - Default Style
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--one .emthemesModez-banner {
+	@include breakpoint("small") {
+        width: grid-calc(12, $total-columns);
+    }
+}
+
+// ----------------------------------------------------------------------------
+// Banner Fullwidth - Style 1
+// ----------------------------------------------------------------------------
+.emthemesModez-bannersContainer--one-style1 {
+	@extend %emthemesModez-bannersContainer--COMMON-style1;
+}
+
+
+// ----------------------------------------------------------------------------
+// Banner Fullwidth - Instances
+// ----------------------------------------------------------------------------
+@include emthemesModez-bannersContainer('one', 'banner_one');
+
+
+// ----------------------------------------------------------------------------
+// Banner on Top Header
+// ----------------------------------------------------------------------------
+.emthemesModezBannersBlockTopHeaderBanner01 {
+	@if $theme-style == "compact" {
+		padding-top: spacing("half");
+	}
+}
+
+// ----------------------------------------------------------------------------
+// Banner After Header
+// ----------------------------------------------------------------------------
+.emthemesModezBannersBlockAfterHeader {
+	border-bottom: 1px solid transparent; // fix margin bottom of inner div
+
+	.emthemesModez-section {
+		padding: 0 $container-padding / 2 - container("padding") / 2;
+		margin-bottom: spacing("single");
+
+		@include breakpoint("medium") {
+			padding: 0;
+		}
+	}
+}
+
+
+// ----------------------------------------------------------------------------
+// Banners on category page, product page:
+// - Banner above category name
+// - Banner before category name on category page
+// - After Add to Cart button
+// - Above description tabs
+// ----------------------------------------------------------------------------
+.emthemesModezBannersBlockBeforeCategory,
+.emthemesModezBannersBlockAfterRating,
+.emthemesModezBannersBlockAfterAddToCartButton,
+.emthemesModezBannersBlockBeforeDescription {
+	border-bottom: 1px solid transparent; // fix margin bottom of inner div
+
+	.emthemesModez-section {
+		padding: 0;
+		margin-bottom: spacing("single");
+	}
+}
+
+.emthemesModezBannersBlockBeforeDescription {
+	padding: 0 $container-padding / 2;
+}
+
+.emthemesModezBannersBlockBeforeDescription-wrapper--full {
+	clear: both;
+}
+.emthemesModezBannersBlockBeforeDescription-wrapper--half {
+	@include breakpoint("medium") {
+		clear: right;
+		float: right;
+		width: 50%;
+	}
+}

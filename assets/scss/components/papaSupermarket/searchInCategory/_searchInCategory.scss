@@ -1,0 +1,110 @@
+.categoryPage-searchInCategory-form {
+    @if $theme-style == "modern" {
+        padding: 0 spacing("quarter");
+    }
+
+    @include breakpoint("medium") {
+        padding: 0;
+    }
+
+    @media (max-width: screenSize("medium") - 1px) {
+        &.noFaceted {
+            margin-top: spacing("half");
+
+            &.noDesc {
+                $h: spacing("single") + remCalc(fontSize("smaller") * lineHeight("base")); // Same the toggle button height
+                margin-right: $h + spacing("half");
+                
+                @if $theme-style == "modern" {
+                    margin-top: -($h + spacing("half"));
+                }
+                @else {
+                    margin-top: -$h;
+                }
+
+                .form-input,
+                .button {
+                    height: $h - remCalc(2px);
+                }
+
+                &.loading .form-field:after {
+                    width: $h - spacing("third") * 2;
+                    height: $h - spacing("third") * 2;
+                }
+            }
+
+            .form-field {
+                border-radius: $input-border-radius;
+            }
+        }
+    }
+    
+    .form-field {
+        position: relative;
+        display: flex;
+        border: 1px solid $input-border-color;
+        background-color: $input-bg-color;
+        margin-bottom: spacing("half");
+
+        &:hover {
+            border-color: $input-focus-border-color;
+        }
+
+        @include breakpoint("medium") {
+            @if $theme-style == "compact" {
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                margin-bottom: 0;
+            }
+            @else if $theme-style == "modern" {
+                margin-bottom: spacing("half");
+            }
+            @else {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .form-input {
+        border: 0;
+        @if $theme-style != "default" {
+            padding-left: spacing("half");
+            padding-right: spacing("half");
+        }
+    }
+
+    .button {
+        margin: 0;
+        border: 0;
+        white-space: nowrap;
+        height: $input-height;
+        color: $color-textLink;
+
+        @if $theme-style != "default" {
+            padding-left: spacing("half");
+            padding-right: spacing("half");
+        }
+        
+        &:hover,
+        &:focus {
+            color: $color-textLink-hover;
+        }
+    }
+
+    &.loading {
+        .form-field:after {
+            $padding: spacing("third");
+            content: '';
+            display: block;
+            height: $input-height - $padding * 2;
+            width: $input-height - $padding * 2;
+            position: absolute;
+            top: $padding;
+            right: $padding;
+            background-image: url('../img/loading2.gif');
+            background-size: 100%;
+        }
+        .button {
+            margin-right: $input-height;
+        }
+    }
+}

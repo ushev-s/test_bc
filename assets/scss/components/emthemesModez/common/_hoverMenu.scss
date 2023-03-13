@@ -1,0 +1,67 @@
+// ============================================================================
+// Make the main menu open when hover
+// 
+// 1. Import this file to allow the main menu open submenus when mouse hover
+// 
+// 2. Add data-collapsible-... to the main menu links in file navigation-list.html
+// 
+// <a class="navPages-action has-subMenu" href="{{url}}" 
+//     data-collapsible="navPages-{{id}}"
+//     data-collapsible-disabled-breakpoint="medium"
+//     data-collapsible-disabled-state="open"
+//     data-collapsible-enabled-state="closed">
+//     
+// ============================================================================
+
+@include breakpoint("medium") {
+
+	.emthemesModez-verticalCategories.is-open:not(.emthemesModez-verticalCategories--open) {
+		display: none;
+	}
+
+	.emthemesModez-navPages-verticalCategories-container:hover,
+	.emthemesModez-navPages-verticalCategories-container:focus {
+		.navPages-action.is-open {
+			// remove only for this theme
+			// background-color: stencilColor("navPages-subMenu-backgroundColor");
+		}
+		
+		.emthemesModez-verticalCategories.is-open {
+			display: block;
+			box-shadow: 1px 1px 3px rgba(color("blacks"), 0.1);
+		}
+	}
+
+
+	.navPages-action.is-open {
+		background-color: transparent;
+	}
+
+	.navPage-subMenu.is-open {
+		display: none;
+	}
+	
+	.navPages-item:hover,
+	.navPages-item:focus {
+		> .navPages-action {
+			color: stencilColor("navPages-color-hover");
+		}
+		
+
+		.navPages-action.is-open {
+			// background-color: stencilColor("navPages-subMenu-backgroundColor");
+		}
+
+		.navPage-subMenu-action.is-open {
+			background-color: transparent;
+		}
+
+		.navPage-subMenu.is-open {
+			display: block;
+		}
+	}
+
+
+}
+
+.navPages-action:focus {color: #e74c3c !important};

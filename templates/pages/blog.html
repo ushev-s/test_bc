@@ -1,0 +1,48 @@
+---
+blog:
+    posts:
+        limit: 5
+        pages: 3
+        summary: 500
+products:
+    new:
+        limit: 5
+customer:
+    recently_viewed_products:
+        limit: {{theme_settings.product_recently_viewed}}
+---
+{{#partial "page"}}
+
+
+
+<div class="page u-emthemesModez-page-responsiveSidebar">
+
+    <aside class="page-sidebar">
+        {{> components/emthemes-modez/blog/sidebar}}
+    </aside>
+
+    <main class="page-content">
+        <div class="page-content-header">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            <h1 class="page-heading">{{ blog.name }}</h1>
+        </div>
+        {{{region name="blog_content--global"}}}
+        {{{region name="blog_content"}}}
+        <div class="page-content-body emthemesModez-blog--2col-featured">
+            {{#each blog.posts}}
+                {{> components/blog/post post=this settings=../settings hide_social_icons=true}}
+            {{/each}}
+            {{> components/common/paginator pagination.blog instantload=true}}
+        </div>
+        {{{region name="blog_bottom"}}}
+        {{{region name="blog_bottom--global"}}}
+    </main>
+
+</div>
+
+{{/partial}}
+{{#if is_ajax}}
+    {{> layout/instantload-base}}
+{{else}}
+    {{> layout/base}}
+{{/if}}

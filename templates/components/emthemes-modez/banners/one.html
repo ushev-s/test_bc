@@ -1,0 +1,15 @@
+<div class="emthemesModez-bannersContainer 
+			emthemesModez-bannersContainer--one 
+			emthemesModez-bannersContainer--one-{{index}} 
+			{{#if style}}emthemesModez-bannersContainer--one-{{style}}{{/if}}">
+
+	{{> components/emthemes-modez/banners/banner
+		url=(lang (concat (concat "emthemesmodez.banners.one_" index) ".banner.url"))
+		image=(lang (concat (concat "emthemesmodez.banners.one_" index) ".banner.image"))
+		title=(lang (concat (concat "emthemesmodez.banners.one_" index) ".banner.title"))
+		text=(lang (concat (concat "emthemesmodez.banners.one_" index) ".banner.text"))
+		button=(lang (concat (concat "emthemesmodez.banners.one_" index) ".banner.button"))
+		style=style
+	}}
+
+</div>

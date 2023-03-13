@@ -1,0 +1,204 @@
+@font-face {
+  font-family: 'emthemesmodezicons';
+  src:  url('#{$icomoon-font-path}/emthemesmodezicons.eot?jpwbml');
+  src:  url('#{$icomoon-font-path}/emthemesmodezicons.eot?jpwbml#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/emthemesmodezicons.woff2?jpwbml') format('woff2'),
+    url('#{$icomoon-font-path}/emthemesmodezicons.ttf?jpwbml') format('truetype'),
+    url('#{$icomoon-font-path}/emthemesmodezicons.woff?jpwbml') format('woff'),
+    url('#{$icomoon-font-path}/emthemesmodezicons.svg?jpwbml#emthemesmodezicons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+[class^="emthemesModez-icon-"], [class*=" emthemesModez-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'emthemesmodezicons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.emthemesModez-icon-elegant-search {
+  &:before {
+    content: $emthemesModez-icon-elegant-search;
+  }
+}
+.emthemesModez-icon-elegant-gift {
+  &:before {
+    content: $emthemesModez-icon-elegant-gift;
+  }
+}
+.emthemesModez-icon-elegant-bag {
+  &:before {
+    content: $emthemesModez-icon-elegant-bag;
+  }
+}
+.emthemesModez-icon-elegant-cart {
+  &:before {
+    content: $emthemesModez-icon-elegant-cart;
+  }
+}
+.emthemesModez-icon-ui-head-phone {
+  &:before {
+    content: $emthemesModez-icon-ui-head-phone;
+  }
+}
+.emthemesModez-icon-listing-box {
+  &:before {
+    content: $emthemesModez-icon-listing-box;
+  }
+}
+.emthemesModez-icon-location-pin {
+  &:before {
+    content: $emthemesModez-icon-location-pin;
+  }
+}
+.emthemesModez-icon-linear-inbox {
+  &:before {
+    content: $emthemesModez-icon-linear-inbox;
+  }
+}
+.emthemesModez-icon-linear-phone-handset {
+  &:before {
+    content: $emthemesModez-icon-linear-phone-handset;
+  }
+}
+.emthemesModez-icon-linear-heart {
+  &:before {
+    content: $emthemesModez-icon-linear-heart;
+  }
+}
+.emthemesModez-icon-linear-map-marker {
+  &:before {
+    content: $emthemesModez-icon-linear-map-marker;
+  }
+}
+.emthemesModez-icon-linear-bus {
+  &:before {
+    content: $emthemesModez-icon-linear-bus;
+  }
+}
+.emthemesModez-icon-cart3 {
+  &:before {
+    content: $emthemesModez-icon-cart3;
+  }
+}
+.emthemesModez-icon-linear-user {
+  &:before {
+    content: $emthemesModez-icon-linear-user;
+  }
+}
+.emthemesModez-icon-linear-banknote {
+  &:before {
+    content: $emthemesModez-icon-linear-banknote;
+  }
+}
+.emthemesModez-icon-credit-card {
+  &:before {
+    content: $emthemesModez-icon-credit-card;
+  }
+}
+.emthemesModez-icon-coin-dollar {
+  &:before {
+    content: $emthemesModez-icon-coin-dollar;
+  }
+}
+.emthemesModez-icon-compare {
+  &:before {
+    content: $emthemesModez-icon-compare;
+  }
+}
+.emthemesModez-icon-cart2 {
+  &:before {
+    content: $emthemesModez-icon-cart2;
+  }
+}
+.emthemesModez-icon-gift {
+  &:before {
+    content: $emthemesModez-icon-gift;
+  }
+}
+.emthemesModez-icon-present {
+  &:before {
+    content: $emthemesModez-icon-present;
+  }
+}
+.emthemesModez-icon-linear-magnifier {
+  &:before {
+    content: $emthemesModez-icon-linear-magnifier;
+  }
+}
+.emthemesModez-icon-linear-cart {
+  &:before {
+    content: $emthemesModez-icon-linear-cart;
+  }
+}
+.emthemesModez-icon-search3 {
+  &:before {
+    content: $emthemesModez-icon-search3;
+  }
+}
+.emthemesModez-icon-heart {
+  &:before {
+    content: $emthemesModez-icon-heart;
+  }
+}
+.emthemesModez-icon-login {
+  &:before {
+    content: $emthemesModez-icon-login;
+  }
+}
+.emthemesModez-icon-bag {
+  &:before {
+    content: $emthemesModez-icon-bag;
+  }
+}
+.emthemesModez-icon-sign-in {
+  &:before {
+    content: $emthemesModez-icon-sign-in;
+  }
+}
+.emthemesModez-icon-heart-o {
+  &:before {
+    content: $emthemesModez-icon-heart-o;
+  }
+}
+.emthemesModez-icon-search2 {
+  &:before {
+    content: $emthemesModez-icon-search2;
+  }
+}
+.emthemesModez-icon-shopping-bag {
+  &:before {
+    content: $emthemesModez-icon-shopping-bag;
+  }
+}
+.emthemesModez-icon-compare_arrows {
+  &:before {
+    content: $emthemesModez-icon-compare_arrows;
+  }
+}
+.emthemesModez-icon-search {
+  &:before {
+    content: $emthemesModez-icon-search;
+  }
+}
+.emthemesModez-icon-shopping_cart {
+  &:before {
+    content: $emthemesModez-icon-shopping_cart;
+  }
+}
+.emthemesModez-icon-cart {
+  &:before {
+    content: $emthemesModez-icon-cart;
+  }
+}
+

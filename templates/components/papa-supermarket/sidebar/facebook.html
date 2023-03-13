@@ -1,0 +1,8 @@
+{{#if theme_settings.fb_page '!==' ''}}
+<div class="sidebarBlock sidebarBlock--fbPage emthemesModezBannersBlockSidebar02">
+    <div class="fb-page" data-href="https://www.facebook.com/{{theme_settings.fb_page}}/" data-tabs="messages" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/{{theme_settings.fb_page}}/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/{{theme_settings.fb_page}}/">{{theme_settings.fb_page}}</a></blockquote></div>
+    {{#if is_ajax}}
+    <script>FB.XFBML.parse()</script>
+    {{/if}}
+</div>
+{{/if}}

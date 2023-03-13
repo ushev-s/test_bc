@@ -1,0 +1,72 @@
+// =============================================================================
+// LOGIN (CSS)
+// =============================================================================
+
+.login {
+    @if $theme-style == "compact" {
+        margin-top: spacing("half");
+
+        @include breakpoint("medium") {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.login-row {
+    @if $theme-style == "compact" {
+        @include breakpoint("medium") {
+            margin-top: spacing("single");
+        }
+    }
+}
+
+.login-form {
+    .form-actions {
+        text-align: left;
+
+        input,
+        a {
+            vertical-align: middle;
+        }
+    }
+}
+
+.papaSupermarket-style--modern {
+    .login {
+        margin-top: spacing("half");
+    }
+
+    .login-row {
+        @include breakpoint("medium") {
+            margin-top: spacing("double");
+        }
+    }
+
+    .login-form {
+        @include u-modern-container-box;
+        padding: spacing("half");
+
+        @include breakpoint("medium") {
+            margin-top: 0;
+        }
+    }
+
+    .new-customer {
+        @include u-modern-container-box;
+        padding: spacing("half");
+
+        @include breakpoint("medium") {
+            width: 45%;
+            margin-left: 5%;
+        }
+
+        .panel-header,
+        .panel-body {
+            background-color: transparent;
+        }
+
+        .panel-body {
+            margin-bottom: 0;
+        }
+    }
+}

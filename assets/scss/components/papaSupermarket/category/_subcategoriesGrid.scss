@@ -1,0 +1,111 @@
+.papaSupermarket-subcategories-grid {
+    @include u-listBullets("none");
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin-bottom: spacing("single");
+
+    @media (max-width: screenSize("medium") - 1px) {
+        @if $theme-style == "compact" {
+            padding-bottom: spacing("single");
+            border-bottom: container("border");
+            margin-left: -(spacing("half"));
+            margin-right: -(spacing("half"));
+        }
+        @else if $theme-style == "modern" {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+}
+
+.papaSupermarket-subcategories-grid-item {
+    @include grid-column(6, $float: none);
+    display: inline-block;
+    font-size: fontSize("base"); // 1
+    vertical-align: if($theme-style != "default", top, middle);
+    text-align: stencilString("card-textAlign");
+    position: relative;
+    margin-top: if($theme-style != "default", spacing("half"), spacing("single"));
+
+    &:first-child,
+    &:nth-child(2) {
+        margin-top: 0;
+    }
+
+    @if $theme-style == "compact" {
+        @media (max-width: screenSize("medium") - 1px) {
+            padding-left: spacing("quarter");
+            padding-right: spacing("quarter");
+        }
+    }
+
+    @include breakpoint("medium") {
+        width: grid-calc(3, $total-columns);
+        margin-top: if($theme-style != "default", spacing("half"), $column-gutter);
+
+        &:nth-child(3),
+        &:nth-child(4) {
+            margin-top: 0;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.2);
+            }
+
+            .papaSupermarket-subcategories-name {
+                color: $color-textBase-hover;
+            }
+        }
+    }
+}
+
+.papaSupermarket-subcategories-image {
+    display: block;
+
+    @if $theme-style != "default" {
+        margin-bottom: spacing("quarter");
+    }
+
+    img {
+        width: 100%;
+    }
+
+    @include breakpoint("medium") {
+        overflow: hidden;
+        display: block;
+        
+        img {
+            transition: 0.8s transform ease-in;
+        }
+    }
+}
+
+.papaSupermarket-subcategories-name {
+    text-decoration: none;
+    font-weight: fontWeight("bold");
+    font-size: fontSize("small");
+    color: $color-textBase;
+
+
+
+    &:hover,
+    &:focus {
+        color: $color-textBase-hover;
+    }
+
+    &:active {
+        color: $color-textBase-active;
+    }
+    @if $theme-style == "default" {
+        .papaSupermarket-subcategories-image + & {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            padding: spacing("half") spacing("single");
+            transform: translate(-50%, -50%);
+            background: rgba($color-secondary, 0.8);
+        }
+    }
+}

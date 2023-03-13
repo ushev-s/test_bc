@@ -1,0 +1,58 @@
+
+
+
+.emthemesModez-instafeed {
+    @include grid-row($behavior: "nest");
+    font-size: 0; // 1
+    margin: 0 -3px;
+}
+
+
+.emthemesModez-instafeed-item {
+    @include grid-column(6, $float: none);
+    display: inline-block;
+    font-size: fontSize("base"); // 1
+    vertical-align: top;
+    padding: 0 3px;
+    margin: 3px 0;
+
+    @include breakpoint("small") {
+        width: grid-calc(1, 5);
+    }
+
+    img {
+    	max-width: 100%;
+    }
+}
+
+.emthemesModez-instafeed-item--maxCol6 {
+    @include breakpoint("small") {
+        width: grid-calc(1, 6);
+    }
+}
+
+
+// VARIATIONS
+// ----------------------------------------------------------------------------
+
+.emthemesModez-instafeed--fullscreen {
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.emthemesModez-instafeed--carousel {
+    .emthemesModez-instafeed-item {
+        float: left;
+    }
+
+    .slick-prev {
+        left: 0;
+    }
+
+    .slick-next {
+        right: 0;
+    }
+}
+
+

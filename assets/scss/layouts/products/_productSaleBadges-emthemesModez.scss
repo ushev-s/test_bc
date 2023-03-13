@@ -1,0 +1,75 @@
+.sale-flag-side {
+    border-radius: 0;
+    font-size: fontSize("smallest");
+    height: auto;
+    padding: spacing("quarter") / 2 spacing("quarter");
+    top: 0;
+    left: auto;
+    right: 0;
+    z-index: zIndex("lowest"); // lower than mega menu
+
+    .productView-images & {
+        top: 0;
+        right: $column-gutter / 2;
+        
+        .papaSupermarket-style--modern & {
+            margin-top: spacing("half");
+            right: spacing("half");
+        }
+    }
+
+    $h: remCalc(fontSize("smallest") * lineHeight("base") + 5px)+spacing("quarter");
+
+    + .sale-flag-side {
+        top: $h;
+    }
+
+    + .sale-flag-side + .sale-flag-side {
+        top: $h * 2;
+    }
+
+    + .sale-flag-side + .sale-flag-side + .sale-flag-side {
+        top: $h * 3;
+    }
+}
+
+.sale-flag-side--custom {
+    background-color: stencilColor("color_badge_product_custom_badges");
+    color: stencilColor("color_text_product_custom_badges");
+
+    .product:hover & {
+        background-color: stencilColor("color_badge_product_custom_badges");
+    }
+}
+
+.sale-flag-side--outstock {
+    background-color: stencilColor("color_badge_product_outstock_badges");
+    color: stencilColor("color_text_product_outstock_badges");
+
+    .product:hover & {
+        background-color: stencilColor("color_badge_product_outstock_badges");
+    }
+}
+
+
+.sale-flag-star,
+.sale-flag-star:before,
+.sale-flag-star:after {
+	left: auto;
+	right: 0;
+}
+
+.starwrap {
+	right: spacing("base") + remCalc(10px);
+}
+
+.sale-text-burst {
+	font-size: fontSize("smallest");
+}
+
+.sale-flag-sash {
+	left: auto;
+	right: -25px;
+	transform: rotate(45deg);
+	font-size: fontSize("smallest");
+}

@@ -1,0 +1,1 @@
+{"components/papa-supermarket/sections/section-bc-banner":"{{!--\nArguments:\n    - find (string)\n--}}\n{{#if banners.top_metadata}}\n\t{{#each banners.top_metadata}}\n\t    {{#if (occurrences this.content ../find) '>' 0}}\n\t        {{{this.content}}}\n\t    {{/if}}\n\t{{/each}}\n{{/if}}"}
