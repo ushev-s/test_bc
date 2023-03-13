@@ -1,9 +1,0 @@
-<h2 class="page-heading {{#if style}}page-heading--blogGrid-{{style}}{{/if}}">{{lang 'blog.recent_posts' }}</h2>
-
-<ul class="emthemesModez-blogGrid {{#if style}}emthemesModez-blogGrid--{{style}}{{/if}}">
-	{{#each posts}}
-		<li class="emthemesModez-blogItem">
-	    	{{> components/blog/post post=this hide_social_icons=true settings=../settings hide_summary=../hide_summary hide_readmore=../hide_readmore}}
-	    </li>
-	{{/each}}
-</ul>
