@@ -4,13 +4,13 @@
     width: 100%;
 
     @if $theme-style == "compact" {
-		@include breakpoint("medium") {
+        @include breakpoint("medium") {
             margin-bottom: spacing("half");
             
             @if $theme-layout == "left-sidebar" {
                 margin-top: spacing("half");
             }
-		}
+        }
     }
 }
 
@@ -46,6 +46,7 @@
     &.slick-initialized {
         max-height: none;
     }
+
     &.slick-dotted {
         margin-bottom: 0;
     }
@@ -53,6 +54,7 @@
 
 .heroCarousel-banners {
     width: 100%;
+
     > * {
         height: 100% !important;
     }
@@ -61,15 +63,18 @@
         flex: 0 0 auto;
         margin-left: spacing("half");
     }
+
     .papathemesHeroCarouselBanner {
         display: flex;
         flex-flow: row wrap;
+
         > * {
             margin: spacing("half") 0 0 0;
             width: 100%;
         }
         @include breakpoint("small") {
             margin: 0 0 0 (- spacing("half"));
+
             > * {
                 margin: spacing("half") 0 0 spacing("half");
                 width: calc(50% - #{spacing("half")});
@@ -77,6 +82,7 @@
         }
         @include breakpoint("medium") {
             margin: - spacing("half") 0 0 0;
+
             > * {
                 margin: spacing("half") 0 0 0;
                 width: 100%;
@@ -85,7 +91,8 @@
     }
 }
 
-.heroCarousel .slick-next, 
+.heroCarousel .slick-next,
+ 
 .heroCarousel .slick-prev {
     top: 50%;
     display: none !important;
@@ -161,6 +168,7 @@
     margin: 0 auto;
     position: relative;
 }
+
 .heroCarousel-image-box-padding {
     height: 0;
 }
@@ -184,7 +192,7 @@
 
 .heroCarousel-content {
     @include breakpoint("medium") {
-        background-color: rgba($carousel-bgColor, stencilNumber("carousel-bgColor-opacity") / 100);
+        background-color: rgba($carousel-bgColor, stencilNumber("carousel-bgColor-opacity2", "") / 100);
     }
 }
 
@@ -199,7 +207,7 @@
     left: 0;
     width: 100%;
     height: 0;
-    padding-bottom: stencilString('carousel-video-ratio');
+    padding-bottom: stencilString("carousel-video-ratio");
     transform: translateY(-50%);
     opacity: 0;
     visibility: hidden;
@@ -293,7 +301,7 @@
         @include breakpoint("medium") {
             font-size: fontSize("base") * 2;
             margin-bottom: spacing("half");
-            text-shadow: 1px 1px 0 rgba(stencilColor("carousel-bgColor"), .2);
+            text-shadow: 1px 1px 0 rgba(stencilColor("carousel-bgColor"), 0.2);
         }
 
         @include breakpoint("xxlarge") {
@@ -304,7 +312,7 @@
     .heroCarousel-description {
         @include breakpoint("medium") {
             font-size: fontSize("base");
-            text-shadow: 1px 1px 0 rgba(stencilColor("carousel-bgColor"), .2);
+            text-shadow: 1px 1px 0 rgba(stencilColor("carousel-bgColor"), 0.2);
         }
 
         @include breakpoint("xxlarge") {

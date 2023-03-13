@@ -4,6 +4,7 @@
         flex-flow: row wrap;
     }
 }
+
 .papaSupermarket-style--modern {
     .brandGrid {
         @include u-modern-container-box;

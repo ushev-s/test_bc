@@ -61,7 +61,7 @@
                     {{{region name="footer_before_logo--global"}}}
                     <div class="footer-info-heading">
                         <div class="footer-logo">
-                            {{> components/common/store-logo style="footer"}}
+                            {{> components/common/store-logo}}
                         </div>
                     </div>
                     {{{region name="footer_below_logo--global"}}}
@@ -85,103 +85,27 @@
             
 
             {{#if theme_settings.footer_show_pages '>' -2}}
-            
-              <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">WHO WE ARE</p>
+                <article class="footer-info-col" data-section-type="footer-webPages">
+                    <h5 class="footer-info-heading">{{lang 'footer.navigate'}}</h5>
                     <ul class="footer-info-list">
-                      
+                        {{#if theme_settings.footer_show_pages '>' -1}}
+                            {{#each (limit pages theme_settings.footer_show_pages)}}
                                 <li>
-                                    <a href="https://gritroutdoors.com/about-us/">About us</a>
+                                    <a href="{{url}}">{{name}}</a>
                                 </li>
-                           
+                            {{/each}}
+                        {{else}}
+                            {{#each pages}}
                                 <li>
-                                    <a href="https://gritroutdoors.com/contact-us/">Contact us</a>
+                                    <a href="{{url}}">{{name}}</a>
                                 </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/affiliate-program/">Affiliate program</a>
-                                </li>
-                                
-                           
+                            {{/each}}
+                        {{/if}}
                         <li>
                             <a href="{{urls.sitemap}}">{{lang 'sitemap.page_title'}}</a>
                         </li>
-                        <li>
-                                    <a href="https://gritroutdoors.com/careers/">Careers</a>
-                                </li>
-                                 <li>
-                                    <a href="https://gritroutdoors.com/expert-guides-tutorials/">Shopping Guides</a>
-                                </li>
                     </ul>
-                </article>
-                
-                
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">ORDER INFORMATION</p>
-                    <ul class="footer-info-list">
-                        
-                                <li>
-                                    <a href="https://gritroutdoors.com/prices-sales-tax-content-policies/">Prices / Sales Tax / Content Policies</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/shipping-delivery/">Shipping & Delivery</a>
-                                </li>
-                                <li>
-                                    <a href="https://gritroutdoors.com/returns-refunds-policy/">Returns & Refunds Policy / Start a Return</a>
-                                </li>
-                                <li>
-                                    <a href="https://gritroutdoors.com/faq/">FAQ</a>
-                                </li>
-                        
-                        
-                        
-                        
-                    </ul>
-                </article>
-                
-                
-                
-                
-                
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">SHIPPING & TAXES</p>
-                    <ul class="footer-info-list">
-                         <li>
-                                    <a href="https://gritroutdoors.com/domestic-restrictions/">Domestic restrictions</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/international-ordering/">International ordering</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/export-policy/">Export policy</a>
-                                </li>
-                           
-                    </ul>
-                </article>
-                
-                
-                
-                
-                
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">FOR CUSTOMERS</p>
-                    <ul class="footer-info-list">
-                         <li>
-                                    <a href="https://gritroutdoors.com/customer-service/">Customer service</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/rewards-program/">Reward program</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/offer-terms-conditions/">Offer Terms & Conditions</a>
-                                </li>
-                                <li>
-                                    <a href="https://gritroutdoors.com/ada-statement/">ADA Statement</a>
-                                </li>
-                           
-                    </ul>
+                    {{{region name="footer_below_pages--global"}}}
                 </article>
             {{/if}}
 
@@ -225,9 +149,18 @@
 
 
             {{#if theme_settings.show_shop_by_brand}}
-                
+                <article class="footer-info-col footer-info-col--brands" data-section-type="footer-brands">
+                    <h5 class="footer-info-heading">{{lang 'footer.brands'}}</h5>
+                    <ul class="footer-info-list">
+                        {{#each (limit shop_by_brand theme_settings.show_shop_by_brand)}}
+                            <li>
+                                <a href="{{url}}">{{name}}</a>
+                            </li>
+                        {{/each}}
+                        <li><a href="{{urls.brands}}">{{lang 'common.view_all'}}</a></li>
+                    </ul>
                     {{{region name="footer_below_brands--global"}}}
-               
+                </article>
             {{/if}}
 
         </section>
@@ -244,7 +177,7 @@
                     </script>
                 {{/if}}
                 {{#if theme_settings.show_powered_by}}
-                    Powered by <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a>. Theme designed by <a href="https://papathemes.com" rel="nofollow">Papathemes</a>.
+                    {{lang 'footer.powered_by'}} <a href="http://bigcommerce.com" rel="nofollow">BigCommerce</a>. Theme designed by <a href="https://papathemes.com" rel="nofollow">Papathemes</a>.
                 {{/if}}
             </p>
 
@@ -253,7 +186,6 @@
             {{{region name="ssl_site_seal--global"}}}
         </div>
     </div>
-    
 </footer>
 
 {{{region name="footer_bottom--global"}}}

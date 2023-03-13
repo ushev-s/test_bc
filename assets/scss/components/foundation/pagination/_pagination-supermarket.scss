@@ -1,12 +1,5 @@
 .pagination {
     @include clearfix;
-
-    @include breakpoint("medium") {
-        @if $theme-style == "compact" {
-            background-color: container("fill", "dark");
-            padding: spacing("eighth") spacing("single");
-        }
-    }
 }
 
 .pagination-info {
@@ -23,6 +16,14 @@
     +.pagination-list {
         @include breakpoint("medium") {
             float: right;
+        }
+    }
+}
+
+.pagination-item {
+    .icon {
+        svg {
+            fill: $pagination-link-font-color;
         }
     }
 }

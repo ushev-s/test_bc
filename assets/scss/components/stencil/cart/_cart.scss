@@ -39,18 +39,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
             float: right;
         }
     }
-
-    .CheckoutButton {
-        margin-bottom: spacing("base");
-
-        &:first-child {
-            margin-top: spacing("single");
-        }
-
-        &:last-child {
-            margin-bottom: spacing("single");
-        }
-    }
 }
 
 // Cart layout
@@ -114,8 +102,8 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         display: table-row; // 1
         padding-left: 0;
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             display: none;
         }
     }
@@ -152,7 +140,7 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         width: grid-calc(1, $total-columns);
     }
 
-    @include lazy-loaded-padding('productthumb_size');
+    @include lazy-loaded-padding("productthumb_size");
 }
 
 .cart-item-fixed-image {
@@ -160,12 +148,12 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-item-image {
-    max-width: get-width(stencilString('productthumb_size'));
+    max-width: get-width(stencilString("productthumb_size"));
     
     @include lazy-loaded-img;
 
     @include breakpoint("medium") {
-        margin-left:0;
+        margin-left: 0;
     }
 }
 
@@ -230,7 +218,6 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
 }
 
 .cart-item-quantity {
-
     .form-increment {
         display: inline-block;
         margin: 0 spacing("eighth") 1px spacing("single");
@@ -601,10 +588,10 @@ $cart-item-label-offset:                $cart-thumbnail-maxWidth + $cart-item-sp
         max-height: 100%;
         object-fit: contain;
         /* Object-fit polyfill */
-        font-family: 'object-fit: contain';
+        font-family: "object-fit: contain";
     }
 
-    @include lazy-loaded-padding('productthumb_size');
+    @include lazy-loaded-padding("productthumb_size");
 }
 
 .previewCartItem-content {

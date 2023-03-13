@@ -5,13 +5,11 @@
 import PageManager from '../page-manager';
 import initProductsByCategories from '../emthemes-modez/products-by-category';
 import initSpecialProductsTabs from '../emthemes-modez/special-products-tabs';
-import Instafeed from '../../vendor/instafeed/instafeed.min';
 import youtubeCarouselFactory from '../emthemes-modez/youtube-carousel';
 
 export default class Home extends PageManager {
     onReady() {
         this.initProductsByCategorySection();
-        this.initInstagramSection();
         this.initSpecialProductsTabsSection();
         this.initMainCarouselSection();
         this.initBrandsCarouselSection();
@@ -20,33 +18,6 @@ export default class Home extends PageManager {
     initProductsByCategorySection() {
         if (this.context.hasProductsByCategorySortingTabs) {
             initProductsByCategories();
-        }
-    }
-
-    initInstagramSection() {
-        if (this.context.hasInstagram) {
-            const $carousel = $('#instafeed-carousel');
-            if ($carousel.length) {
-                $carousel.on('instafeedAfter', () => {
-                    $carousel.slick($carousel.data('emthemesmodezInstafeedCarousel'));
-                });
-
-                const feed = new Instafeed({
-                    target: 'instafeed-carousel',
-                    get: 'user',
-                    userId: this.context.themeSettings.instagram_userid,
-                    accessToken: this.context.themeSettings.instagram_token,
-                    resolution: 'standard_resolution',
-                    template: '<div class="emthemesModez-instafeed-item"><a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a></div>',
-                    sortBy: 'most-recent',
-                    limit: this.context.themeSettings.instagram_count,
-                    links: false,
-                    after: () => {
-                        $carousel.trigger('instafeedAfter');
-                    },
-                });
-                feed.run();
-            }
         }
     }
 

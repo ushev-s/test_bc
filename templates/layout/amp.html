@@ -6,22 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
         <title>{{ head.title }}</title>
-        <!--Change canonical-->
-        {{#if category.url}}
-          {{#each (split head.meta_tags ">") }}
-            {{#contains this "canonical"}}
-            {{else}}
-              {{#contains this "<"}}
-                 {{{this}}}>
-              {{else}}
-              {{/contains}}
-            {{/contains}}
-          {{/each}}
-          <link rel="canonical" href="{{category.url}}" />
-        {{else}}
-          {{{ head.meta_tags }}}
-        {{/if}}
-        <!--End Change canonical-->
+        {{{ head.meta_tags }}}
         {{{ head.config }}}
         {{#block "head"}} {{/block}}
         <link href="{{ head.favicon }}" rel="shortcut icon">
@@ -29,7 +14,6 @@
         {{#block "amp-style"}} {{/block}}
         {{inject 'themeSettings' theme_settings}}
         {{inject 'genericError' (lang 'common.generic_error')}}
-        {{inject 'maintenanceMode' settings.maintenance}}
         {{inject 'urls' urls}}
         {{{snippet 'htmlhead'}}}
         <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>

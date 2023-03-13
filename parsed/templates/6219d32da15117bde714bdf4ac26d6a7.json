@@ -1,0 +1,3 @@
+{
+  "components/common/forms/date-options": "{{#unless this.value}}\n    <option value=\"\">---</option>\n    {{#each this.items}}\n        <option value=\"{{value}}\">{{label}}</option>\n    {{/each}}\n{{else}}\n    {{#unless this.isRequired}}\n        <option value=\"\">---</option>\n    {{/unless}}\n    {{#each this.items}}\n        <option {{#if ../this.value '==' value}} selected {{/if}}value=\"{{value}}\">{{label}}</option>\n    {{/each}}\n{{/unless}}"
+}

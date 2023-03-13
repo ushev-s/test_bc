@@ -104,7 +104,7 @@
                             {{#if is_file}}
                                 <a href="/viewfile.php?prodfield={{../id}}&cartitem={{../../id}}">{{value}}</a>
                             {{else}}
-                                {{{sanitize value}}}
+                                {{> components/common/product-options}}
                             {{/if}}
                         </dl>
                     {{/each}}
@@ -115,7 +115,7 @@
                                 {{name}}
                             </dt>
                             <dd class="productView-info-value">
-                                {{{sanitize value}}}
+                                {{> components/common/product-options}}
                             </dd>
                         </dl>
                     {{/each}}

@@ -1,6 +1,7 @@
 import PageManager from '../page-manager';
 import _ from 'lodash';
-import giftCertCheck from './common/gift-certificate-validator';
+import checkIsGiftCertValid from './common/gift-certificate-validator';
+import { createTranslationDictionary } from './common/utils/translations-utils';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
 import { defaultModal } from './global/modal';
@@ -8,13 +9,22 @@ import swal from './global/sweet-alert';
 
 export default class Cart extends PageManager {
     onReady() {
+        this.$cartPageContent = $('[data-cart]');
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
+        this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
 
+        this.setApplePaySupport();
         this.bindEvents();
+    }
+
+    setApplePaySupport() {
+        if (window.ApplePaySession) {
+            this.$cartPageContent.addClass('apple-pay-supported');
+        }
     }
 
     cartUpdate($target) {
@@ -66,6 +76,7 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
+                this.$overlay.hide();
                 swal.fire({
                     text: response.data.errors.join('\n'),
                     icon: 'error',
@@ -88,14 +99,14 @@ export default class Cart extends PageManager {
             this.bindGiftWrappingForm();
         });
 
-        utils.hooks.on('product-option-change', (event, currentTarget) => {
-            const $changedOption = $(currentTarget);
+        utils.hooks.on('product-option-change', (event) => {
+            const $changedOption = $(event.target); // papathemes-supermarket fix Cornerstone bug
             const $form = $changedOption.parents('form');
             const $submit = $('input.button', $form);
             const $messageBox = $('.alertMessageBox');
             const item = $('[name="item_id"]', $form).attr('value');
 
-            utils.api.productAttributes.optionChange(item, $form.serialize(), (err, result) => {
+            utils.api.productAttributes.optionChange(item, $form.serialize(), 'products/bulk-discount-rates', (err, result) => {
                 const data = result.data || {};
 
                 if (err) {
@@ -133,6 +144,7 @@ export default class Cart extends PageManager {
                 totals: 'cart/totals',
                 pageTitle: 'cart/page-title',
                 statusMessages: 'cart/status-messages',
+                additionalCheckoutButtons: 'cart/additional-checkout-buttons',
             },
         };
 
@@ -147,6 +159,7 @@ export default class Cart extends PageManager {
             this.$cartContent.html(response.content);
             this.$cartTotals.html(response.totals);
             this.$cartMessages.html(response.statusMessages);
+            this.$cartAdditionalCheckoutBtns.html(response.additionalCheckoutButtons);
 
             $cartPageTitle.replaceWith(response.pageTitle);
             this.bindEvents();
@@ -229,6 +242,7 @@ export default class Cart extends PageManager {
                 text: string,
                 icon: 'warning',
                 showCancelButton: true,
+                cancelButtonText: this.context.cancelButtonText,
             }).then((result) => {
                 if (result.value) {
                     // remove item from cart
@@ -287,7 +301,7 @@ export default class Cart extends PageManager {
                     this.refreshContent();
                 } else {
                     swal.fire({
-                        text: response.data.errors.join('\n'),
+                        html: response.data.errors.join('\n'),
                         icon: 'error',
                     });
                 }
@@ -319,9 +333,10 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            if (!giftCertCheck(code)) {
+            if (!checkIsGiftCertValid(code)) {
+                const validationDictionary = createTranslationDictionary(this.context);
                 return swal.fire({
-                    text: $certInput.data('error'),
+                    text: validationDictionary.invalid_gift_certificate,
                     icon: 'error',
                 });
             }
@@ -331,7 +346,7 @@ export default class Cart extends PageManager {
                     this.refreshContent();
                 } else {
                     swal.fire({
-                        text: resp.data.errors.join('\n'),
+                        html: resp.data.errors.join('\n'),
                         icon: 'error',
                     });
                 }
@@ -410,6 +425,10 @@ export default class Cart extends PageManager {
         this.bindGiftCertificateEvents();
 
         // initiate shipping estimator module
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
+        const shippingErrorMessages = {
+            country: this.context.shippingCountryErrorMessage,
+            province: this.context.shippingProvinceErrorMessage,
+        };
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
     }
 }

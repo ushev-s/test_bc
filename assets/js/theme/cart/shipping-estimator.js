@@ -2,14 +2,15 @@ import $ from 'jquery';
 import stateCountry from '../common/state-country';
 import nod from '../common/nod';
 import utils from '@bigcommerce/stencil-utils';
-import { Validators } from '../common/form-utils';
+import { Validators } from '../common/utils/form-utils';
 import swal from '../global/sweet-alert';
 
 export default class ShippingEstimator {
-    constructor($element) {
+    constructor($element, shippingErrorMessages) {
         this.$element = $element;
 
         this.$state = $('[data-field-type="State"]', this.$element);
+        this.shippingErrorMessages = shippingErrorMessages;
         this.initFormValidation();
         this.bindStateCountryChange();
         this.bindEstimatorEvents();
@@ -51,7 +52,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'Country\' field cannot be blank.',
+                errorMessage: this.shippingErrorMessages.country,
             },
         ]);
     }
@@ -73,7 +74,7 @@ export default class ShippingEstimator {
 
                     cb(result);
                 },
-                errorMessage: 'The \'State/Province\' field cannot be blank.',
+                errorMessage: this.shippingErrorMessages.province,
             },
         ]);
     }

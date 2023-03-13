@@ -6,7 +6,7 @@
                 data-collapsible-disabled-breakpoint="medium"
                 data-collapsible-disabled-state="open"
                 data-collapsible-enabled-state="closed">{{theme_settings.navPages_categoriesItem_text}}</a>
-            <div class="emthemesModez-verticalCategories {{#if theme_settings.homepage_expand_categories_menu}}{{#if template '===' 'pages/home'}}emthemesModez-verticalCategories--open{{/if}}{{/if}}" id="emthemesModez-verticalCategories" data-emthemesmodez-fix-height="emthemesModez-section1-container" aria-hidden="true" tabindex="-1">
+            <div class="emthemesModez-verticalCategories {{#if theme_settings.homepage_expand_categories_menu}}{{#if template '===' 'pages/home'}}emthemesModez-verticalCategories--open{{/if}}{{/if}}" id="emthemesModez-verticalCategories" data-emthemesmodez-fix-height="emthemesModez-section1-container" aria-hidden="true">
                 <ul class="navPages-list navPages-list--categories">
 
                     {{#if theme_settings.navPages_standard}}
@@ -17,13 +17,9 @@
                         {{/each}}
                     {{else}}
                         {{#each categories}}
-                            {{#unless id '==' 310}}
-                                {{#unless id '==' 307}}
-                                    <li class="navPages-item">
-                                        {{> components/common/navigation-list theme_settings=../theme_settings menu_type='mega'}}
-                                    </li>
-                                {{/unless}}
-                            {{/unless}}
+                            <li class="navPages-item">
+                                {{> components/common/navigation-list theme_settings=../theme_settings menu_type='mega'}}
+                            </li>
                         {{/each}}
                     {{/if}}
                     

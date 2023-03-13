@@ -1,10 +1,10 @@
 import { hooks, api } from '@bigcommerce/stencil-utils';
 import _ from 'lodash';
 import Url from 'url';
-import urlUtils from './url-utils';
+import urlUtils from './utils/url-utils';
 import modalFactory from '../global/modal';
 import collapsibleFactory from './collapsible';
-import { Validators } from './form-utils';
+import { Validators } from './utils/form-utils';
 import nod from './nod';
 import actionBarFactory from '../../emthemes-modez/action-bar'; // Papathemes - Supermarket
 
@@ -270,7 +270,7 @@ class FacetedSearch {
             minPriceSelector: this.options.priceRangeMinPriceSelector,
         };
 
-        Validators.setMinMaxPriceValidation(validator, selectors);
+        Validators.setMinMaxPriceValidation(validator, selectors, this.options.validationErrorMessages);
 
         this.priceRangeValidator = validator;
     }
@@ -426,6 +426,7 @@ class FacetedSearch {
         delete url.query.page;
 
         event.preventDefault();
+        // eslint-disable-next-line no-param-reassign
         event.isDefaultPrevented = true; // papathemes-supermarket: quick-fixed stencil-utils for sorting ajax request
 
         urlUtils.goToUrl(Url.format({ pathname: url.pathname, search: urlUtils.buildQueryString(url.query) }));

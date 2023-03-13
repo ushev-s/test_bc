@@ -42,7 +42,15 @@
 .previewCartCheckout-additionalCheckoutButtons {
     .CheckoutButton {
         margin-top: spacing("half");
+
+        + .CheckoutButton {
+            margin-top: 0;
+        }
     }
+}
+
+.PaypalCommerceButton {
+    max-width: 100%;
 }
 
 // Model Style
@@ -88,7 +96,7 @@
     width: 300px;
     background: container("fill");
     border: container("border");
-    box-shadow: 0 5px 30px rgba($color-black,0.1);
+    box-shadow: 0 5px 30px rgba($color-black, 0.1);
 
     @include breakpoint("small") {
         width: 400px;
@@ -119,6 +127,7 @@
 
     .modal-header {
         padding: spacing("half") spacing("double") spacing("half") spacing("half");
+
         .papaSupermarket-style--modern & {
             padding: spacing("quarter") spacing("double") spacing("quarter") spacing("half");
         }
@@ -186,6 +195,7 @@
         .button {
             padding: spacing("third") spacing("base");
             margin: 0 spacing("half") spacing("half") 0;
+
             .papaSupermarket-style--modern & {
                 padding: spacing("quarter") spacing("half");
             }

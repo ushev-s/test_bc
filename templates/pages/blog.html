@@ -1,16 +1,22 @@
 ---
 blog:
     posts:
-        limit: 5
+        limit: {{theme_settings.blog_count}}
         pages: 3
         summary: 500
 products:
     new:
         limit: 5
-customer:
-    recently_viewed_products:
-        limit: {{theme_settings.product_recently_viewed}}
 ---
+{{#partial "head"}}
+    {{#if pagination.blog.previous}}
+        <link rel="prev" href="{{pagination.blog.previous}}">
+    {{/if}}
+    {{#if pagination.blog.next}}
+        <link rel="next" href="{{pagination.blog.next}}">
+    {{/if}}
+{{/partial}}
+
 {{#partial "page"}}
 
 
@@ -28,7 +34,7 @@ customer:
         </div>
         {{{region name="blog_content--global"}}}
         {{{region name="blog_content"}}}
-        <div class="page-content-body emthemesModez-blog--2col-featured">
+        <div class="page-content-body {{#if theme_settings.blog_style '==' 'featured'}}emthemesModez-blog--2col-featured{{else}}emthemesModez-blog--{{theme_settings.blog_style}}{{/if}}">
             {{#each blog.posts}}
                 {{> components/blog/post post=this settings=../settings hide_social_icons=true}}
             {{/each}}

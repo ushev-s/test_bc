@@ -2,7 +2,7 @@
     <ul class="navUser-section">
         {{#if theme_settings.show_welcome_text}}
         <li class="navUser-item">
-            <span>{{{lang 'emthemesmodez.top_nav.welcome_text' store_name=settings.store_name}}}</span>
+            <span class="navUser-welcome">{{{lang 'emthemesmodez.top_nav.welcome_text' store_name=settings.store_name}}}</span>
         </li>
         {{/if}}
         {{#if theme_settings.topHeader_banner1}}
@@ -19,7 +19,9 @@
         <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockTopHeaderBanner02"></div>
     {{/if}}
 
-    {{> components/common/currency-selector}}
+    {{#or customer (unless theme_settings.restrict_to_login)}}
+        {{> components/common/currency-selector}}
+    {{/or}}
 
     {{#or theme_settings.topHeader_address theme_settings.topHeader_phone theme_settings.topHeader_account}}
     <ul class="navUser-section">

@@ -1,4 +1,5 @@
 import Mustache from 'mustache';
+
 let singleton;
 
 const compareListTmpl = `

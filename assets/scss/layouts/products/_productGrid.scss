@@ -42,7 +42,6 @@
 // -----------------------------------------------------------------------------
 
 .page-sidebar + .page-content {
-
     .productGrid {
         // scss-lint:disable SelectorDepth, NestingDepth
         .product { // 1
@@ -87,10 +86,10 @@
         width: 100%;
     }
 
-        .card {
-            margin: 0;
-        }
+    .card {
+        margin: 0;
     }
+}
 
 
 // Product grid view variation

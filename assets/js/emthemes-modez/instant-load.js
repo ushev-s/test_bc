@@ -229,9 +229,7 @@ class InstantLoad {
                     },
                 },
                 customer: {
-                    recently_viewed_products: {
-                        limit: this.context.themeSettings.product_recently_viewed,
-                    },
+                    recently_viewed_products: true,
                 },
                 shop_by_brand: {
                     limit: this.context.themeSettings.max_shop_by_brand,
@@ -243,7 +241,7 @@ class InstantLoad {
             config = {
                 product: {
                     videos: {
-                        limit: this.context.themeSettings.productpage_videos_count,
+                        limit: 100,
                     },
                     reviews: {
                         limit: this.context.themeSettings.productpage_reviews_count,
@@ -288,9 +286,7 @@ class InstantLoad {
                     limit: 9,
                 },
                 customer: {
-                    recently_viewed_products: {
-                        limit: this.context.themeSettings.product_recently_viewed,
-                    },
+                    recently_viewed_products: true,
                 },
                 categories: true,
                 cart: true,

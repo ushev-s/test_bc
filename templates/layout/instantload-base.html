@@ -1,6 +1,29 @@
+{{> components/papa-supermarket/common/global-vars}}
 <div id='instantload-html-element'>
     <div id="instantload-head-element">
-        <title>{{ head.title }}</title>
+        <title>
+            {{#if head.title}}
+                {{ head.title }}
+            {{else}}
+                {{#if page_type '===' 'product'}}
+                    {{#if product.page_title}}
+                        {{product.page_title}}
+                    {{else}} 
+                        {{product.title}} - {{settings.store_name}}
+                    {{/if}}
+                {{else if page_type '===' 'category'}}
+                    {{category.name}} - {{settings.store_name}}
+                {{else if page_type '===' 'brands'}}
+                    {{settings.store_name}} {{lang 'brand.label'}}
+                {{else if page_type '===' 'brand'}}
+                    {{brand.name}} - {{settings.store_name}}
+                {{else if page}}
+                    {{page.title}} - {{settings.store_name}}
+                {{else}}
+                    {{settings.store_name}}
+                {{/if}}
+            {{/if}}
+        </title>
         
         {{{ resourceHints }}}
         {{{ head.meta_tags }}}
@@ -16,12 +39,14 @@
 
         {{~inject 'themeSettings' theme_settings}}
         {{~inject 'genericError' (lang 'common.generic_error')}}
-        {{~inject 'maintenanceMode' settings.maintenance}}
         {{~inject 'urls' urls}}
         {{~inject 'secureBaseUrl' settings.secure_base_url}}
         {{~inject 'cartId' cart_id}}
         {{~inject 'template' template}}
         {{~inject 'pageType' page_type}}
+        {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
+        {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
+        {{~inject 'validationDefaultDictionaryJSON' (langJson 'validation_default_messages')}}
         {{~inject 'ajaxAddToCartEnterQty' (lang 'bulk_order.validate.enter_qty')}}
         {{~inject 'bulkOrderEnterQty' (lang 'bulk_order.validate.enter_qty')}}
         {{~inject 'compareAddonLang_compare' (lang 'common.compare')}}
@@ -32,6 +57,11 @@
         {{#if theme_settings.navPages_autoFit}}
             {{~inject 'txtNavMore' (lang 'common.nav_more')}}
         {{/if}}
+        {{~inject 'customerRecentlyViewedProductIds' (pluck customer.recently_viewed_products.items 'id')}}
+        {{~inject 'customerId' customer.id}}
+        {{~inject 'graphQLToken' settings.storefront_api.token}}
+        {{~inject 'currencyCode' currency_selector.active_currency_code}}
+        {{~inject 'isCrawlerAndSpeedTestMode' (getVar 'isCrawlerAndSpeedTestMode')}}
         {{{snippet 'htmlhead'}}}
     </div>
     <div id="instantload-body-element" class="csscolumns papaSupermarket-layout--{{theme_settings.layout}} 
@@ -41,6 +71,7 @@
         {{#if theme_settings.product_uniform}}emthemesModez-productUniform{{/if}}
         {{#if theme_settings.hide_loading_bar}}papaSupermarket--hideLoadingBar{{/if}}
         {{#if theme_settings.hide_content_navigation}}papaSupermarket--hideContentNav{{/if}}
+        {{#if theme_settings.show_allcategories_menu}}papaSupermarket--showAllCategoriesMenu{{/if}}
         {{#if theme_settings.show_subcategories_menu}}papaSupermarket--showSubcategoriesMenu{{/if}}
         {{#if product_results.faceted_search_enabled}}has-faceted{{/if}}
         {{#if category.faceted_search_enabled}}has-faceted{{/if}}

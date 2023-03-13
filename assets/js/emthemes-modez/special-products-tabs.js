@@ -180,16 +180,18 @@ class SpecialProductsTabs {
         const $products = $tabContent.find('.product, .productCarousel-slide');
         const visible = $products.filter(':visible').length;
 
-        if (!$tabContent.data('loadedMore') || $products.is(':hidden')) {
-            this.$loadMore.show();
-        } else {
-            this.$loadMore.hide();
-        }
+        if (this.context.themeSettings.specialProductsTab_more) {
+            if (!$tabContent.data('loadedMore') || $products.is(':hidden')) {
+                this.$loadMore.show();
+            } else {
+                this.$loadMore.hide();
+            }
 
-        if (visible > this.defaultProductsCount) {
-            this.$collapse.show();
-        } else {
-            this.$collapse.hide();
+            if (visible > this.defaultProductsCount) {
+                this.$collapse.show();
+            } else {
+                this.$collapse.hide();
+            }
         }
     }
 

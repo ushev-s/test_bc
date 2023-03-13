@@ -1,12 +1,8 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     require('time-grunt')(grunt);
-    require('load-grunt-config')(grunt, {
-        jitGrunt: {
-            staticMappings: {
-                scsslint: 'grunt-scss-lint'
-            }
-        }
-    });
+    require('load-grunt-config')(grunt);
 
-    grunt.registerTask('default', ['eslint', 'karma', 'scsslint', 'svgstore'])
+    grunt.loadNpmTasks('grunt-run');
+    grunt.loadNpmTasks('grunt-stylelint');
+    grunt.registerTask('default', ['eslint', 'svgstore']);
 };

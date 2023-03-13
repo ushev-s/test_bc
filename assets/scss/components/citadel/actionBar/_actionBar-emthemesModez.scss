@@ -1,55 +1,57 @@
 .actionBar {
-	@if $theme-style == "compact" {
-		margin: spacing("half") 0;
+    border-radius: $input-border-radius;
 
-		@include breakpoint("medium") {
-			box-shadow: 0 2px 10px rgba(color("blacks"), .1);
-			border: container("border");
-			padding: spacing("eighth") 0;
-		}
-	}
+    @if $theme-style == "compact" {
+        margin: spacing("half") 0;
+
+        @include breakpoint("medium") {
+            box-shadow: 0 2px 10px rgba(color("blacks"), 0.1);
+            border: container("border");
+            padding: spacing("eighth") 0;
+        }
+    }
 	
-	.papaSupermarket-style--modern & {
-		margin-top: 0;
-		margin-bottom: spacing("half");
-	}
+    .papaSupermarket-style--modern & {
+        margin-top: 0;
+        margin-bottom: spacing("half");
+    }
 
-	.form-select {
-		color: $color-textBase;
-	}
+    .form-select {
+        color: $color-textBase;
+    }
 }
 
 .actionBar-section {
-	float: right;
+    float: right;
 
-	@include breakpoint("medium") {
-		margin-left: spacing("half");
-	}
+    @include breakpoint("medium") {
+        margin-left: spacing("half");
+    }
 
-	.form-select {
-	    height: $input-height - remCalc($input-border-width * 2);
-	}
+    .form-select {
+        height: $input-height - remCalc($input-border-width * 2);
+    }
 
-	.form-field {
-		@if $theme-style == "compact" {
-			@include breakpoint("medium") {
-				border: 0;
-			}
-		}
+    .form-field {
+        @if $theme-style == "compact" {
+            @include breakpoint("medium") {
+                border: 0;
+            }
+        }
 
-		.papaSupermarket-style--modern & {
-			margin-bottom: 0;
-		}
-	}
+        .papaSupermarket-style--modern & {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .actionBar-section--sort {
-	float: left;
-	margin-left: 0;
+    float: left;
+    margin-left: 0;
 }
 
 .actionBar-section--mode {
-	.form-option-variant {
-		min-width: fontSize("base") * lineHeight("base");
-	}
+    .form-option-variant {
+        min-width: fontSize("base") * lineHeight("base");
+    }
 }

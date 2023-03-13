@@ -154,13 +154,13 @@
     position: relative;
 }
 
-.header-logo-image-container:after {
-    content: '';
+.header-logo-image-container::after {
+    content: "";
     display: block;
     padding-bottom: remCalc($header-height) - $header-logo-marginVertical * 2;
 
     @include breakpoint("medium") {
-        padding-bottom: get-height(stencilString('logo_size'));
+        padding-bottom: get-height(stencilString("logo_size"));
     }
 }
 

@@ -74,7 +74,7 @@ $dropdown-mobile-default-float:   0;
 $f-dropdown-content-padding:      spacing("half");
 
 // Default radius for dropdown.
-$f-dropdown-radius:               $global-radius;
+$f-dropdown-radius:               stencilNumber("container-border-radius2"); // $global-radius; // papathemes-supermarket edited
 
 
 // Stencil variables

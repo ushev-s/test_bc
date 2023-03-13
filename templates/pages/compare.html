@@ -22,9 +22,9 @@
                                     default_image=../theme_settings.default_image_product
                                 }}
                             </div>
-                            <a class="compareTable-removeProduct" data-id="{{id}}" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
-                                <svg class="icon" data-id="{{id}}">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close" data-id="{{id}}"></use>
+                            <a class="compareTable-removeProduct" data-comparison-remove href="{{#if remove_url}}{{remove_url}}{{else}}#{{/if}}">
+                                <svg class="icon">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-close"></use>
                                 </svg>
                             </a>
                         </figure>
@@ -32,9 +32,9 @@
                             {{#if brand.name}}
                                 <p class="card-text"><a href="{{brand.url}}">{{ brand.name }}</a></p>
                             {{/if}}
-                            <p class="card-title">
+                            <h4 class="card-title">
                                 <a href="{{url}}" {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{ name }}</a>
-                            </p>
+                            </h4>
                             {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
                                 {{#if price_range}}
                                     {{> components/products/price-range}}
@@ -78,7 +78,7 @@
             </tr>
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">Description</span>
+                    <span class="compareTable-headingText">{{lang 'products.description'}}</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">{{{ summary }}}</td>
@@ -87,22 +87,22 @@
             {{#if settings.show_product_rating}}
                 <tr class="compareTable-row">
                     <th class="compareTable-heading">
-                        <span class="compareTable-headingText">Rating</span>
+                        <span class="compareTable-headingText">{{lang 'products.reviews.rating_label'}}</span>
                     </th>
                     {{#each comparisons}}
                     <td class="compareTable-item">
                         {{#if rating}}
                             {{> components/products/ratings rating=rating}}
                         {{else}}
-                            No Reviews
-                    {{/if}}
+                            {{lang 'products.reviews.no_reviews'}}
+                        {{/if}}
                     </td>
                     {{/each}}
                 </tr>
             {{/if}}
             <tr class="compareTable-row">
                 <th class="compareTable-heading">
-                    <span class="compareTable-headingText">Availability</span>
+                    <span class="compareTable-headingText">{{lang 'products.availability'}}</span>
                 </th>
                 {{#each comparisons}}
                 <td class="compareTable-item">

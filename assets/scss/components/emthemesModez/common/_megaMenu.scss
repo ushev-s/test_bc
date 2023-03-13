@@ -61,7 +61,7 @@
 .papaSupermarket-style--modern {
     @include breakpoint("medium") {
         .navPage-subMenu-bottomBanners {
-                margin-top: spacing("single");
+            margin-top: spacing("single");
         }
 
         .navPage-subMenu-bottomBanners,
@@ -71,6 +71,7 @@
                     margin-top: spacing("single");
                 }
             }
+
             .column,
             .columns {
                 padding: 0 spacing("half");

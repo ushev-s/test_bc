@@ -8,6 +8,7 @@
         "info": "Contact Info",
         "categories": "Categories",
         "call_us": "Call us at {phone_number}",
+        "powered_by": "Powered by",
         "email": "contact@example.com",
         "about": "About Us",
         "about_text": " ",
@@ -93,7 +94,6 @@
             "gift_certificate": "Gift Certificate",
             "code_label": "Gift Certificate ({code})",
             "cert_code": "Enter your certificate code",
-            "empty_error": "Please enter your valid certificate code.",
             "remove": "Remove"
         },
         "shipping_estimator": {
@@ -105,7 +105,9 @@
             "zip_postal_code": "Zip/postcode",
             "free_shipping": "Free shipping",
             "hide_ups_rates": "Hide UPS Rates",
-            "show_ups_rates": "Show UPS Rates"
+            "show_ups_rates": "Show UPS Rates",
+            "empty_country_error": "The 'Country' field cannot be blank.",
+            "empty_province_error": "The 'State/Province' field cannot be blank."
         },
         "gift_wrapping": {
             "title": "Gift Wrapping",
@@ -154,10 +156,12 @@
         "cancel": "Cancel",
         "close": "Close",
         "or": "or",
+        "and": "and",
         "compare": "Compare",
         "sign_up": "Register",
-        "login": "Sign in",
-        "logout": "Sign out",
+        "login": "Sign In",
+        "login_for_pricing": "Log in for pricing",
+        "logout": "Sign Out",
         "account": "Account",
         "cart": "Cart",
         "search": "Search",
@@ -286,8 +290,10 @@
             "orders": "Orders",
             "returns": "Returns",
             "messages": "Messages ({num_new_messages})",
-            "wishlists": "Wish Lists ({num_wishlists})",
+            "wishlists": "Wish Lists",
+            "wishlists2": "<span class='firstword'>Wish </span>Lists",
             "recently_viewed": "Recently Viewed",
+            "recently_viewed2": "<span class='firstword'>Recently </span>Viewed",
             "settings": "Account Settings",
             "addresses": "Addresses",
             "payment_methods": "Payment Methods"
@@ -340,6 +346,7 @@
                 "ship_to": "Ship To",
                 "ship_to_multi": "Items shipped to {street}, {city}, {state}, {zip}, {country}",
                 "ship_to_multi_text": "Order will be shipped to multiple addresses",
+                "pickup_details": "Pickup Details",
                 "bill_to": "Bill To",
                 "how_to_pay": "Here's how to pay for your order:",
                 "order_details": "Order Details",
@@ -359,7 +366,13 @@
                 "actions": "Actions",
                 "reorder": "Reorder",
                 "return": "Return",
-                "print_invoice": "Print Invoice"
+                "pickup": "Pickup Details",
+                "pickup_method": "Pickup method",
+                "in_store_pickup": "In-store pickup",
+                "print_invoice": "Print Invoice",
+                "phone": "Phone",
+                "email": "Email",
+                "opening_hours": "Opening hours"
             },
             "downloads": {
                 "heading": "Order #{number} Downloads",
@@ -387,7 +400,7 @@
                 "american_express": "American Express",
                 "credit_card": "Credit Card",
                 "dankort": "Dankort",
-                "diners": "Diners Club",
+                "diners_club": "Diners Club",
                 "discover": "Discover",
                 "jcb": "JCB",
                 "maestro": "Maestro",
@@ -473,7 +486,8 @@
             "save": "Save Wish List",
             "delete_alert": "Are you sure you want to delete your Wish List(s)? This action cannot be undone.",
             "create_new": "Create New Wish List",
-            "add_to_default": "Add to My Wish List"
+            "add_to_default": "Add to My Wish List",
+            "enter_wishlist_name_error": "You must enter a wishlist name."
         }
     },
     "page": {
@@ -659,8 +673,7 @@
                 "name": "You must enter your name.",
                 "password": "You must enter a password.",
                 "password_match": "Your passwords do not match.",
-                "email_address": "Please use a valid email address, such as user@example.com.",
-                "valid_email": "You must enter a valid email."
+                "email_address": "Please use a valid email address, such as user@example.com."
             },
             "contact": {
                 "email_address": "Please use a valid email address, such as user@example.com.",
@@ -672,8 +685,7 @@
                 "from_name": "You must enter your name.",
                 "from_email": "You must enter a valid email.",
                 "cert_theme": "You must select a gift certificate theme.",
-                "agree_terms": "You must agree to these terms.",
-                "amount": "You must enter a gift certificate amount."
+                "agree_terms": "You must agree to these terms."
             },
             "payment_method": {
                 "credit_card_number": "You must enter a valid credit card number.",
@@ -691,8 +703,8 @@
     "products": {
         "current_stock": "Current Stock:",
         "quantity": "Quantity:",
-        "quantity_decrease": "Decrease Quantity:",
-        "quantity_increase": "Increase Quantity:",
+        "quantity_decrease": "Decrease Quantity of {name}",
+        "quantity_increase": "Increase Quantity of {name}",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximum Purchase:",
         "min_purchase_quantity": "Minimum Purchase:",
@@ -702,7 +714,7 @@
         "featured": "Featured",
         "file_option_set": "Currently: <a href=\"{url}\" target=\"_blank\">{name}</a>",
         "new": "New",
-        "warranty": "Size Chart/Specs",
+        "warranty": "Warranty Information",
         "addition": "Additional Information",
         "reviews": {
             "hide": "Hide Reviews",
@@ -710,7 +722,7 @@
             "show": "Show Reviews",
             "header": "{total, plural, =0{0 Reviews} one {# Review} other {# Reviews}}",
             "link_to_review": "({total, plural, =0{No reviews yet} one {# review} other {# reviews}})",
-            "post_on_by": "Posted by { name } on { date }",
+            "post_on_by": "Posted by <span>{ name }</span> on { date }",
             "rating_label": "Rating",
             "select_rating": "Select Rating",
             "anonymous_poster": "Unknown",
@@ -722,6 +734,7 @@
                 "5": "5 stars (best)"
             },
             "write_a_review": "Write a Review",
+            "no_reviews": "No Reviews",
             "form_write": {
                 "name": "Name",
                 "email": "Email",
@@ -782,6 +795,7 @@
             "modal_title": "Bulk discount rates",
             "instructions": "Below are the available bulk discount rates for each individual item when you purchase a certain amount",
             "range": "Buy {min} {max, plural, =0{or above} other {- #}}",
+            "range_single": "Buy {min}",
             "percent": "and get {discount} off",
             "price": "and get {discount} off",
             "fixed": "and pay only {discount} each"
@@ -799,6 +813,10 @@
         "qty": "Qty",
         "code": "Code/SKU",
         "shipping_address": "Shipping Address",
+        "fulfillment": "Fulfillment",
+        "digital": "Digital",
+        "shipping": "Shipping",
+        "pickup": "Pickup",
         "product_name": "Product Name",
         "price": "Price",
         "total": "Total",
@@ -897,6 +915,99 @@
     },
     "maintenance": {
         "down": "Down for Maintenance"
+    },
+    "validation_messages": {
+        "valid_email": "You must enter a valid email.",
+        "password": "You must enter a password.",
+        "password_match": "Your passwords do not match.",
+        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+        "field_not_blank": " field cannot be blank.",
+        "certificate_amount": "You must enter a gift certificate amount.",
+        "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
+        "price_min_evaluation": "Min. price must be less than max. price.",
+        "price_max_evaluation": "Min. price must be less than max. price.",
+        "price_min_not_entered": "Min. price is required.",
+        "price_max_not_entered": "Max. price is required.",
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
+    },
+    "validation_fallback_messages": {
+        "valid_email": "You must enter a valid email.",
+        "password": "You must enter a password.",
+        "password_match": "Your passwords do not match.",
+        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+        "field_not_blank": " field cannot be blank.",
+        "certificate_amount": "You must enter a gift certificate amount.",
+        "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
+        "price_min_evaluation": "Min. price must be less than max. price.",
+        "price_max_evaluation": "Min. price must be less than max. price.",
+        "price_min_not_entered": "Min. price is required.",
+        "price_max_not_entered": "Max. price is required.",
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
+    },
+    "validation_default_messages": {
+        "valid_email": "You must enter a valid email.",
+        "password": "You must enter a password.",
+        "password_match": "Your passwords do not match.",
+        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+        "field_not_blank": "The field cannot be blank.",
+        "certificate_amount": "You must enter a gift certificate amount.",
+        "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
+        "price_min_evaluation": "Min. price must be less than max. price.",
+        "price_max_evaluation": "Min. price must be less than max. price.",
+        "price_min_not_entered": "Min. price is required.",
+        "price_max_not_entered": "Max. price is required.",
+        "price_invalid_value": "Input must be greater than 0.",
+        "invalid_gift_certificate": "Please enter your valid certificate code."
+    },
+    "page_builder": {
+        "pdp_sale_badge_label": "On Sale!",
+        "pdp_sold_out_label": "Sold Out",
+        "pdp-sale-price-label": "Now:",
+        "pdp-non-sale-price-label": "Was:",
+        "pdp-retail-price-label": "MSRP:",
+        "pdp-custom-fields-tab-label": "Additional Information"
+    },
+    "consent_manager": {
+        "data_collection_warning": "We use cookies (and other similar technologies) to collect data to improve your shopping experience.",
+        "accept_all_cookies": "Accept All Cookies",
+        "gdpr_settings": "Settings",
+        "data_collection_preferences": "Website Data Collection Preferences",
+        "manage_data_collection_preferences": "Manage Website Data Collection Preferences",
+        "use_data_by_cookies": " uses data collected by cookies and JavaScript libraries to improve your shopping experience.",
+        "data_categories_table": "The table below outlines how we use this data by category. To opt out of a category of data collection, select 'No' and save your preferences.",
+        "allow": "Allow",
+        "accept": "Accept",
+        "deny": "Deny",
+        "dismiss": "Dismiss",
+        "reject_all": "Reject all",
+        "category": "Category",
+        "purpose": "Purpose",
+        "functional_category": "Functional",
+        "functional_purpose": "Enables enhanced functionality, such as videos and live chat. If you do not allow these, then some or all of these functions may not work properly.",
+        "analytics_category": "Analytics",
+        "analytics_purpose": "Provide statistical information on site usage, e.g., web analytics so we can improve this website over time.",
+        "targeting_category": "Targeting",
+        "advertising_category": "Advertising",
+        "advertising_purpose": "Used to create profiles or personalize content to enhance your shopping experience.",
+        "essential_category": "Essential",
+        "esential_purpose": "Essential for the site and any requested services to work, but do not perform any additional or secondary function.",
+        "yes": "Yes",
+        "no": "No",
+        "not_available": "N/A",
+        "cancel": "Cancel",
+        "save": "Save",
+        "back_to_preferences": "Back to Preferences",
+        "close_without_changes": "You have unsaved changes to your data collection preferences. Are you sure you want to close without saving?",
+        "unsaved_changes": "You have unsaved changes",
+        "by_using": "By using our website, you're agreeing to our",
+        "agree_on_data_collection":"By using our website, you're agreeing to the collection of data as described in our ",
+        "change_preferences": "You can change your preferences at any time",
+        "cancel_dialog_title": "Are you sure you want to cancel?",
+        "privacy_policy": "Privacy Policy",
+        "allow_category_tracking": "Allow [CATEGORY_NAME] tracking",
+        "disallow_category_tracking": "Disallow [CATEGORY_NAME] tracking"
     },
     
     "emthemesmodez": {
@@ -1401,9 +1512,6 @@
             "banner_6": "https://tvlgiao.github.io/bigcommerce-themes/supermarket/demo/images/cat-list-06.jpg"
         }
     },
-    "instagram": {
-        "title": "Instagram"
-    },
     "bulk_order": {
         "icon_title": "Bulk Order",
         "product": "Product",
@@ -1416,7 +1524,7 @@
         "add_all": "Add all to cart",
         "progress_heading": "Adding your products to cart",
         "view_cart": "View Cart",
-        "countinue_shopping": "Continue to Shopping",
+        "countinue_shopping": "Continue Shopping",
         "validate": {
             "enter_qty": "Please enter quantity"
         }

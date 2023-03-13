@@ -10,7 +10,12 @@
     {{{region name="home_sidebar_below_menu--global"}}}
     {{{region name="home_sidebar_below_menu"}}}
 
-    
+    {{#if theme_settings.max_shop_by_brand '>' 9}}
+        {{> components/papa-supermarket/sidebar/brands}}
+    {{/if}}
+
+    {{{region name="home_sidebar_below_brands--global"}}}
+    {{{region name="home_sidebar_below_brands"}}}
 
     <div data-emthemesmodez-remote-banner="emthemesModezBannersBlockSidebar01"></div>
 

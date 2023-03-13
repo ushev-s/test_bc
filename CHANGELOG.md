@@ -1,8 +1,164 @@
 # Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Draft
 
-## 4.9.0 (05-06-2021)
+## 6.2.1 (12-13-2022)
+- Fix 'blog_count' value type
+- Fix duplicated font value
+- Rename setting variables: fontSize-*, button-radius, carousel-bgColor-opacity, input-radius, container-border-radius, to change the variable types.
+
+## 6.2.0 (12-09-2022)
+- Fix no-sidebar product template cause theme_settings.layout undefined
+- Add new widget region blog_post_body
+- Fix PayPal button (PaypalCommerceButton) overlap on the added to cart popup
+- Add new Google fonts: Playfair Display, Montserrat, Josefin Sans. Optimize schema.json file.
+- Update key render-blocking resources to be preloaded via HTTP headers/Early Hints [#2261](https://github.com/bigcommerce/cornerstone/pull/2261)
+
+## 6.1.2 (10-13-2022)
+- Change blog count option from 20 to 15.
+- Fix in-category search not working when multiple search boxes are present.
+- Fix shipping estimator's quotes alignment.
+- Fix missing price in merchant listing schema. Fix long description in schema snippet.
+
+## 6.1.1 (09-23-2022)
+- Hide Frequently Bought Together if all items are not purchasable
+- Add theme setting: Blog > Posts per page
+- Display the value of the selected swatch option when the PDP loads
+- Update product schema json from Cornerstone
+- Use browser-native lazyload for YouTube iframe videos
+
+## 6.1.0 (08-26-2022)
+- Fix duplicate social sharing icons in the footer
+- Improve Page Speed Optimization:
+  - Remove webpack vendors split chunk.
+  - Disable loading remote banners for search bots in speedtest optimization mode.
+  - Disable sharing buttons on PDP for search bots in speedtest optimization mode.
+  - Disable Frequently Bought Together for search bots in speedtest optimization mode.
+  - Disable loading third-party scripts for search bots in speedtest optimization mode.
+  - Fix Layout Shift of the product image carousel on PDP.
+  - Specify Width & Height of img tags of product cards, product listing items and product images.
+  - Add head-last block.
+  - Preload product main image on PDP.
+  - Not use lazyload+lqip for product image in write a review modal.
+- Add theme setting Blog Style (Featured, 1 Column, 2 Columns)
+- Revise design elements to make them more sophisticated and trendy
+- Center logo on mobile
+
+## 6.0.0 (08-16-2022)
+- Fix edit cart item not working
+- Display min only if min equals max in bulk pricing table
+- Fix product custom templates not displaying related products and front matter declaration
+- Display qty box for PreOrder products on Bulk Order layout
+- Correct product price format on Bulk Order layout
+- Fix Add to Cart button of Bulk Order layout does not take into account quantity input after Cornerstone update
+- Display all items in cart preview popup.
+- Tweak Yellow style.
+- Update Cornerstone 6.5.0:
+- [CORNERSTONE] Scss lint has been replaced with stylelint. [#2069](https://github.com/bigcommerce/cornerstone/pull/2069)
+- [CORNERSTONE] BCTHEME-152 Replaced scss-lint with stylelint (#2069)(https://github.com/bigcommerce/cornerstone/pull/2069)
+- [CORNERSTONE] User Account, bug styles in section payment methods. [#2085](https://github.com/bigcommerce/cornerstone/pull/2085)
+- [CORNERSTONE] 'undefined' is announced with screen reader while changing Product quantity on PDP. [#2094](https://github.com/bigcommerce/cornerstone/pull/2094)
+- [CORNERSTONE] Fixing merge conflict: BCTHEME-606 [#2100](https://github.com/bigcommerce/cornerstone/pull/2100)
+- [CORNERSTONE] "Manage Website Data Collection Preferences" phrase is not translatable. [#2090](https://github.com/bigcommerce/cornerstone/pull/2090)
+- [CORNERSTONE] Empty email input in newsletter field should trigger an error. [#2101](https://github.com/bigcommerce/cornerstone/pull/2101)
+- [CORNERSTONE] As a shopper I want to see gift wrapping price in product list the cart. [#2093](https://github.com/bigcommerce/cornerstone/pull/2093)
+- [CORNERSTONE] Translation mechanism for config.json has been updated. [#2089](https://github.com/bigcommerce/cornerstone/pull/2089)
+- [CORNERSTONE] (Partial Merge) Translation mechanism for config.json has been updated. [#2089](https://github.com/bigcommerce/cornerstone/pull/2089)
+- [CORNERSTONE] Google AMP feature request - Add in release date info for preorder products. [#2107](https://github.com/bigcommerce/cornerstone/pull/2107)
+- [CORNERSTONE] Translation for states select field on account signup page. [#2105](https://github.com/bigcommerce/cornerstone/pull/2105)
+- [CORNERSTONE] Added description field below payment provider name on "My Account" -> "Payment Methods" page. [#2111](https://github.com/bigcommerce/cornerstone/pull/2111)
+- [CORNERSTONE] additional checkout buttons don't work on applying 100% discount coupon. [#2109](https://github.com/bigcommerce/cornerstone/pull/2109)
+- [CORNERSTONE] Changed debounce wait time for search to 1200 ms from 200 ms. [#2115](https://github.com/bigcommerce/cornerstone/pull/2115)
+- [CORNERSTONE] Apply dependency updates (jest & lighthouse). [#2132](https://github.com/bigcommerce/cornerstone/pull/2132)
+- [CORNERSTONE] Added basic validation for Account Signup Date Field when it's empty [#2126](https://github.com/bigcommerce/cornerstone/pull/2126)
+- [CORNERSTONE] Hide prices for aria-label and data-product-price attributes if set to "Hidden for guests". Hide currency selection for non-logged in users. [#2131](https://github.com/bigcommerce/cornerstone/pull/2131)
+- [CORNERSTONE] Translation Gap: Checkbox Option selection on Product. [#2063](https://github.com/bigcommerce/cornerstone/pull/2063)
+- [CORNERSTONE] Replace schema microdata with LD+JSON tag. [#2138](https://github.com/bigcommerce/cornerstone/pull/2138)
+- [CORNERSTONE] Optimized usage of jsTree library. [#2145](https://github.com/bigcommerce/cornerstone/pull/2145)
+- [CORNERSTONE] Update stencil-utils package. [#2157](https://github.com/bigcommerce/cornerstone/pull/2157)
+- [CORNERSTONE] Cornerstone performance optimizations: remove unused fonts. [#2176](https://github.com/bigcommerce/cornerstone/pull/2176)
+- [CORNERSTONE] (Partial Merge) Cornerstone performance optimizations: blocking scripts delaying DomContentLoaded. [#2158](https://github.com/bigcommerce/cornerstone/pull/2158)
+- [CORNERSTONE] Fixed password complexity error not displaying the complexity rules set in the store settings [#2117](https://github.com/bigcommerce/cornerstone/pull/2117)
+- [CORNERSTONE] Remove Compare Form. [#2162](https://github.com/bigcommerce/cornerstone/pull/2162)
+- [CORNERSTONE] Add google recaptcha to password reset request page [#2164](https://github.com/bigcommerce/cornerstone/pull/2164)
+- [CORNERSTONE] When price list price is set for currency, the cart does not respect product's price.[#2190](https://github.com/bigcommerce/cornerstone/issues/2190)
+- [CORNERSTONE] (Partial Merge) Remove adminBar. [#2191](https://github.com/bigcommerce/cornerstone/issues/2191)
+- [CORNERSTONE] Social media icons failing wave scan with "Empty Link". [#2202](https://github.com/bigcommerce/cornerstone/issues/2202)
+- [CORNERSTONE] Apply security updates (April 2022) [#2200](https://github.com/bigcommerce/cornerstone/issues/2200)
+- [CORNERSTONE] Stored Payment Methods form can be submitted without selecting a Country.[#2194](https://github.com/bigcommerce/cornerstone/issues/2194)
+- [CORNERSTONE] Show pickup details in storefront for BOPIS orders. [#2199](https://github.com/bigcommerce/cornerstone/pull/2199)
+- [CORNERSTONE] (Partial Merge) Incorrect handling of unsuccessful item removing from cart on the Cart page. [#2211](https://github.com/bigcommerce/cornerstone/issues/2211)
+- [CORNERSTONE] Add lang attribute to html tag to improve checkout accesibility [#2210]https://github.com/bigcommerce/cornerstone/pull/2210
+- [CORNERSTONE] Blog Pages Do Not Include Link Rel Next/Prev Tags. [#2214](https://github.com/bigcommerce/cornerstone/issues/2214).
+- [CORNERSTONE] feat(orders) ORDERS-4645 Add pickup to storefront order invoice
+- [CORNERSTONE] feat(orders) ORDERS-4645 Minor formatting update
+- [CORNERSTONE] Fixed "None" not being selected by default on unrequired Pick Lists without images [#2215](https://github.com/bigcommerce/cornerstone/pull/2215)
+- [CORNERSTONE] Fixed The stored bank account was not displayed in the "payment methods" section [#2225](https://github.com/bigcommerce/cornerstone/pull/2225)
+- [CORNERSTONE] Incorrect translation key for Diners Club card type. [#2237](https://github.com/bigcommerce/cornerstone/issues/2237).
+- [CORNERSTONE] Cannot Vault 16-digit Diners Club cards - creditcards module version is out of date [#2239](https://github.com/bigcommerce/cornerstone/issues/2239)
+
+
+## 5.2.0 (04-01-2022)
+- Added new region on the cart page [#1901](https://github.com/bigcommerce/cornerstone/pull/1901)
+- Added custom event for product price change on PDP page. [#1948](https://github.com/bigcommerce/cornerstone/pull/1948)
+- PAYPAL-886 added container setting for spb container. [#2041](https://github.com/bigcommerce/cornerstone/pull/2041)
+- Workaround for PayPal Pay Later Message setting doesn't show Product price section
+- New feature: Display videos in image gallery on PDP
+
+## 5.1.2 (12-10-2021)
+- Fix Google Structured Data schema for product reviews - Invalid object type for field "author".
+- Fix Recently Viewed Products dropdown position wrong when 'row' class exists (Foundation bug)
+- Add class .sidebarBlock--recentlyViewed
+
+## 5.1.1 (10-23-2021)
+- Revert SCSS for NodeJS 10 compatibility.
+
+## 5.1.0 (10-22-2021)
+- Fix auto fit 1 line menu not display standard menu + check right edge more accurately.
+- Fix HTML encoding in Address List + Edit Account pages
+- Fix SCSS compile error in NodeJS v12
+- [New Feature] Display Recently Viewed Products for everyone
+- Remove recently viewed products limit
+
+## 5.0.2 (09-09-2021)
+- [CORNERSTONE] HTML Entity displayed as is via system/error message on a Storefront. [#1888](https://github.com/bigcommerce/cornerstone/pull/1888)
+- End discount.
+
+## 5.0.1 (08-26-2021)
+- Discount 25%
+
+## 5.0.0 (08-26-2021)
+- [CORNERSTONE] Apple pay button displaying needs to be fixed. [#2043](https://github.com/bigcommerce/cornerstone/pull/2043)
+- [CORNERSTONE] Use https:// for schema markup. [#2039](https://github.com/bigcommerce/cornerstone/pull/2039)
+- [CORNERSTONE] Added styling config for the PayPal SPB on checkout page [#1866](https://github.com/bigcommerce/cornerstone/pull/1866)
+- [CORNERSTONE] Added settings for payment banners. [#2021](https://github.com/bigcommerce/cornerstone/pull/2021)
+- [CORNERSTONE] Translation Gap: Delete from Cart confirmation popup. [#2065](https://github.com/bigcommerce/cornerstone/pull/2065)
+- [CORNERSTONE] Translation Gap: Gift Certificate -> Code required message. [#2064](https://github.com/bigcommerce/cornerstone/pull/2064)
+- [CORNERSTONE] Translation Gap: Compare page fields (Description, Rating and Availability). [#2059](https://github.com/bigcommerce/cornerstone/pull/2059)
+- [CORNERSTONE] Translation Gap: Cart -> Shipping estimator error messages. [#2066](https://github.com/bigcommerce/cornerstone/pull/2066)
+- [CORNERSTONE] Translation Gap: Account -> Wish List -> Name required message. [#2060](https://github.com/bigcommerce/cornerstone/pull/2060)
+- [CORNERSTONE] Add missing quotes for Country and State/Province fields of Shipping Estimator to pass functional tests [#2079](https://github.com/bigcommerce/cornerstone/pull/2079)
+- [CORNERSTONE] Added translations for Consent Manager. [#2083](https://github.com/bigcommerce/cornerstone/pull/2083)
+- [CORNERSTONE] Add pagination for Wishlists.[#1906](https://github.com/bigcommerce/cornerstone/pull/1906)
+- Remove instagram. Optimize schema/config. Optimize cssrelpreload.
+- Fix Sort By not working when Instant-Load is enabled.
+- Fix issue when selecting the search text from right to left by mouse
+- [CORNERSTONE] BCTHEME-304 add pagination for wishlists (bigcommerce/cornerstone#1906)
+
+## 4.10.0 (2021-07-01)
+- Move phrases and static strings to en.json for improving translation customizing. [#1850](https://github.com/bigcommerce/cornerstone/pull/1850)
+- Bulk-Order: Hide progress bar when done
+- Add option "Show all categories on sidebar"
+- Improve CLS score on blog posts
+- Add option show wishlist icon on the header.
+- Convert some icons to SVG.
+- Add product custom template no-addtocart.html
+
+## 4.9.0 (2021-05-06)
 - Fix number field too small on product options
 - Move Cookie Consent Update bar to bottom of page
 - [CORNERSTONE] BCTHEME-445 replace page builder ssl settings with new global region for html widget
@@ -15,33 +171,33 @@
 - Update price min max form spacing
 - Update category and brand image optimized for Core Web Vitals CLS
 
-## 4.8.6 (04-09-2021)
+## 4.8.6 (2021-04-09)
 - Fix MPN not update when selecting product options
 - Fix sub pages menu not expand on mobile
 - Add theme option "Full width background color"
 - [CORNERSTONE] BCTHEME-269 Remove layout shifts to improve CLS indicator from Lighthouse performance report
 
-## 4.8.5 (03-09-2021)
+## 4.8.5 (2021-03-09)
 - Fixed BCTHEME-384 case when default option is out of stock add to cart button does not populate for in stock options. [#1955](https://github.com/bigcommerce/cornerstone/pull/1955)
 - Fixed STRF-8898 'Show More' gives no additional options when filter clicked. Bump stencil utils to 6.8.1.
 - Fixed Choose Options button on Bulk Order layout not showing quick-view when ecommerce tracking is enabled.
 - Added region product_below_rating on PDP.
 
-## 4.8.4 (02-09-2021)
+## 4.8.4 (2021-02-09)
 - Update vertical assignment
 
-## 4.8.3 (02-02-2021)
+## 4.8.3 (2021-02-02)
 - Fix [THEME-2048] Supermarket 4.8.2 - Pagination on Search Result Page
 - Fix [THEME-2047] Supermarket 4.8.2 - Checkbox modifier rule doesn't reflect price
 - Add theme option Carousel Video Autoplay
 - Fix reviews pagination link not work when configured in tab
 - Update theme vertial assignments
 
-## 4.8.2 (12-19-2020)
+## 4.8.2 (2020-12-19)
 - Fix Faceted Filter not working at version 4.8.1
 - [CORNERSTONE] fix(storefront): STRF-8599 Drop Jquery: Replaced event's current target to the element passed from utils(on hook)
 
-## 4.8.1 (12-15-2020)
+## 4.8.1 (2020-12-15)
 - Fix border of rectangle list using input border color
 - Fix homepage carousel not full width in some case
 - Add custom webpage template fullwidth
@@ -52,7 +208,7 @@
 - Removal Bulk Discounts Toggle from Store Settings
 - Move blog_bottom region out page-content-body
 
-## 4.8.0 (10-20-2020)
+## 4.8.0 (2020-10-20)
 - Fix Products By Category right column not hide when banner=no sub-category=hide
 - Remove CSS transition of Sale badge
 - Add regions for blog and blog-post pages
@@ -62,7 +218,7 @@
 - Fix currency switcher warning popup not show on mobile
 - Add global regions
 
-## 4.7.0 (07-03-2020)
+## 4.7.0 (2020-07-03)
 - Display Klarna logo in payment icons
 - Add font-display: swap to FontAwesome
 - Fix home carousel first image not show up before slick init

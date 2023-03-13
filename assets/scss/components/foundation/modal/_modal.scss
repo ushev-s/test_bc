@@ -63,7 +63,7 @@
     background-color: $alert-modal-bgColor;
     border-radius: $alert-modal-borderRadius;
     font-family: $alert-font-body;
-    padding: 40px 20px 20px 20px;
+    padding: 40px 20px 20px;
     text-align: center;
 
     .modal-content {
@@ -80,7 +80,8 @@
             color: $alert-button-color;
         }
 
-        .confirm:focus, .confirm:hover {
+        .confirm:focus,
+        .confirm:hover {
             background-color: $alert-button-bgColorHover;
             border-color: $alert-button-borderColorHover;
             color: $alert-button-colorHover;

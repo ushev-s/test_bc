@@ -244,7 +244,7 @@
         }
 
         > .navPage-subMenu-action {
-            border-bottom: 2px solid #015826;
+            border-bottom: 1px solid stencilColor("navPages-subMenu-separatorColor");
             margin-bottom: spacing("half") + spacing("quarter");
         }
     }
@@ -262,11 +262,6 @@
 //
 // Child pages of sub pages navigation lists
 // -----------------------------------------------------------------------------
-
-.navPage-childList-item {
-    @include breakpoint("medium") {
-    }
-}
 
 .navPage-childList-action {
     font-weight: fontWeight("normal");

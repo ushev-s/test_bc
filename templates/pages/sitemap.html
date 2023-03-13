@@ -20,7 +20,7 @@ shop_by_brand:
             <h1 class="page-heading">{{lang 'sitemap.page_title'}}</h1>
         </div>
         <div class="page-content-body">
-            <!-- <ul>
+            <ul>
             {{#each sitemap}}
                 <li>
                     <h3>{{label}}</h3>
@@ -45,112 +45,7 @@ shop_by_brand:
                     </ul>
                 </li>
             {{/each}}
-            </ul>-->
-            {{#each categories}}
-            <div style="margin-top: 40px">
-                <a style="font-size:26px;font-weight: 600;text-transform: uppercase;text-decoration: none;" href="{{url}}">{{name}}</a>
-                <ul style="display:flex;flex-wrap:wrap;column-gap:70px;row-gap:20px;list-style: none;margin-top:20px">
-                    {{#each children}}
-                    <li>
-                        <a style="font-size:22px;font-weight: 600;text-decoration: none;" href="{{url}}">
-                            {{name}}
-                        </a>
-                        {{#if children}}
-                        <hr style="margin: 15px 0;">
-                        <ul style="list-style: none;display:flex;flex-direction:column;row-gap:10px">
-                            {{#each children}}
-                            <li>
-                                <a style="font-size:18px;text-decoration: none;" href="{{url}}">
-                                    {{name}}
-                                </a>
-                                {{#if children}}
-                                <ul style="list-style: none;">
-                                    {{#each children}}
-                                    <li>
-                                        <a style="font-size:14px;text-decoration: none;" href="{{url}}">
-                                            {{name}}
-                                        </a>
-                                    </li>
-                                    {{/each}}
-                                </ul>
-                                {{/if}}
-                            </li>
-                            {{/each}}
-                        </ul>
-                        {{/if}}
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
-            {{/each}}
-            <section style="display:flex;flex-wrap:wrap;">
-                <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">WHO WE ARE</p>
-                    <ul class="footer-info-list">
-                                <li>
-                                    <a href="https://gritroutdoors.com/about-us/">About us</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/contact-us/">Contact us</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/affiliate-program/">Affiliate program</a>
-                                </li>
-                        <li>
-                                    <a href="https://gritroutdoors.com/careers/">Careers</a>
-                                </li>
-                    </ul>
-                </article>
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">ORDER INFORMATION</p>
-                    <ul class="footer-info-list">
-                         <li>
-                                    <a href="https://gritroutdoors.com/prices-sales-tax-content-policies/">Prices / Sales Tax / Content Policies</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/shipping-delivery/">Shipping & Delivery</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/returns-refunds-policy/">Returns & Refunds Policy / Start a Return</a>
-                                </li>
-                    </ul>
-                </article>
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">SHIPPING & TAXES</p>
-                    <ul class="footer-info-list">
-                         <li>
-                                    <a href="https://gritroutdoors.com/domestic-restrictions/">Domestic restrictions</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/international-ordering/">International ordering</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/export-policy/">Export policy</a>
-                                </li>
-                    </ul>
-                </article>
-                 <article class="footer-info-col" data-section-type="footer-webPages">
-                    <p style="font-weight:bold" class="footer-info-heading">FOR CUSTOMERS</p>
-                    <ul class="footer-info-list">
-                         <li>
-                                    <a href="https://gritroutdoors.com/customer-service/">Customer service</a>
-                                </li>
-                           
-                                <li>
-                                    <a href="https://gritroutdoors.com/rewards-program/">Reward program</a>
-                                </li>
-                                  <li>
-                                    <a href="https://gritroutdoors.com/offer-terms-conditions/">Offer Terms & Conditions</a>
-                                </li>
-                                <li>
-                                    <a href="https://gritroutdoors.com/ada-statement/">ADA Statement</a>
-                                </li>
-                    </ul>
-                </article>
-            </section>
+            </ul>
         </div>
     </div>
 </main>

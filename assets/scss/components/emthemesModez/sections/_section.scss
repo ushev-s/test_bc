@@ -2,98 +2,99 @@
 // ============================================================================
 
 %emthemesModez-section-page-heading {
-	font-size: fontSize("small");
-	text-transform: uppercase;
-	padding: spacing("half") spacing("single");
-	display: block;
-	text-align: left;
-	background: container("fill", "dark");
-	margin: 0 (-$container-padding / 2) spacing("single");
+    font-size: fontSize("small");
+    text-transform: uppercase;
+    padding: spacing("half") $container-padding / 2;
+    display: block;
+    text-align: left;
+    border-top: 5px solid container("fill", "dark");
+    margin: 0 (-$container-padding / 2) spacing("single");
 
-	@include breakpoint("medium") {
-		font-size: fontSize("larger");
-		padding: spacing("half") 0;
-		display: inline-block;
-		border-bottom: 2px solid color("primary");
-		text-align: center;
-		background: none;
+    @include breakpoint("medium") {
+        font-size: fontSize("larger");
+        padding: spacing("half") 0;
+        display: inline-block;
+        border-top: 0;
+        border-bottom: 2px solid color("primary");
+        text-align: center;
+        background: none;
 		
-		@if $theme-style == "compact" {
-			margin: 0 0 spacing("single");
-		}
-		@else {
-			margin: 0 0 spacing("double");
-		}
+        @if $theme-style == "compact" {
+            margin: 0 0 spacing("single");
+        }
+        @else {
+            margin: 0 0 spacing("double");
+        }
 
-		&:after {
-			content: ' ';
-			display: block;
-			font-size: 0;
-			height: 0;
-			border-top: container("border");
-			position: absolute;
-			width: 100%;
-			margin-top: spacing("half") + remCalc(2px);
-		}
-	}
+        &::after {
+            content: " ";
+            display: block;
+            font-size: 0;
+            height: 0;
+            border-top: container("border");
+            position: absolute;
+            width: 100%;
+            margin-top: spacing("half") + remCalc(2px);
+        }
+    }
 
-	.papaSupermarket-style--modern & {
-		margin: 0 0 spacing("half");
-		padding: 0;
-		text-transform: none;
-		text-align: center;
-		font-weight: fontWeight("normal");
+    .papaSupermarket-style--modern & {
+        margin: 0 0 spacing("half");
+        padding: 0;
+        text-transform: none;
+        text-align: center;
+        font-weight: fontWeight("normal");
 
-		@include breakpoint("medium") {
-			font-size: fontSize("large");
-			border-bottom: 0;
-			text-align: left;
+        @include breakpoint("medium") {
+            font-size: fontSize("large");
+            border-bottom: 0;
+            text-align: left;
 
-			&:after {
-				display: none;
-			}
-		}
-	}
+            &::after {
+                display: none;
+            }
+        }
+    }
 }
 
 .emthemesModez-sections-group {
-	display: inline;
+    display: inline;
 }
 
 .emthemesModez-section {
-	@if $theme-style == "compact" {
-		padding: spacing("half") 0;
-	}
-	@else {
-		padding: spacing("single") 0;
-	}
+    @if $theme-style == "compact" {
+        padding: spacing("half") 0;
+    }
+    @else {
+        padding: spacing("single") 0;
+    }
 
-	.papaSupermarket-style--modern & {
-		padding: 0;
-		margin-top: spacing("single");
-	}
+    .papaSupermarket-style--modern & {
+        padding: 0;
+        margin-top: spacing("single");
+    }
 }
 
 .emthemesModez-section-inner {
-	position: relative;
+    position: relative;
 
-	> .page-heading {
-		@extend %emthemesModez-section-page-heading;
-	}
+    > .page-heading {
+        @extend %emthemesModez-section-page-heading;
+    }
 }
 
 .emthemesModez-section--alt {
-	background-color: container("fill", "dark");
+    background-color: container("fill", "dark");
 
-	@include breakpoint("medium") {
-		width: 100vw;
-		margin-left: 50%;
-		transform: translateX(-50%);
-	}
+    @include breakpoint("medium") {
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
 
-	.emthemesModez-section-inner {
-		@extend %emthemesModez-container;
-	}
+    .emthemesModez-section-inner {
+        @extend %emthemesModez-container;
+    }
 }
 
 
@@ -101,77 +102,77 @@
 // SECTION 1
 // ============================================================================
 .container--emthemesModez-section1-fullwidth.container {
-	padding: 0;
-	margin: 0;
-	max-width: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
 }
 
 .emthemesModez-section1 {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .emthemesModez-section1--fullwidth {
-	width: 100%;
-	margin-left: 0;
-	margin-right: 0;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .emthemesModez-section1-socials {
-	display: none;
+    display: none;
 }
 
 .emthemesModez-section1-top {
-	@include breakpoint("medium") {
-		display: flex;
-		align-items: center;
-		padding: spacing("quarter") 0;
-		background: $body-bg;
+    @include breakpoint("medium") {
+        display: flex;
+        align-items: center;
+        padding: spacing("quarter") 0;
+        background: $body-bg;
 
-		.emthemesModez-section1-hotNews {
-			flex: 1;
-		}
+        .emthemesModez-section1-hotNews {
+            flex: 1;
+        }
 
-		.emthemesModez-section1-socials {
-			display: block;
-			flex: 0;
-			white-space: nowrap;
-			padding-left: spacing("single");
-		}
-	}
+        .emthemesModez-section1-socials {
+            display: block;
+            flex: 0;
+            white-space: nowrap;
+            padding-left: spacing("single");
+        }
+    }
 }
 
 
 .papaSupermarket-style--modern {
-	.emthemesModez-section--productsByCategorySortingTabs {
-		.emthemesModez-section-inner {
-			background-color: container("fill");
-			border: container("border");
-			border-radius: $container-border-radius;
-			box-shadow: 0 3px 0 container("borderColor");
-		}
-	}
+    .emthemesModez-section--productsByCategorySortingTabs {
+        .emthemesModez-section-inner {
+            background-color: container("fill");
+            border: container("border");
+            border-radius: $container-border-radius;
+            box-shadow: 0 3px 0 container("borderColor");
+        }
+    }
 
-	.emthemesModez-section--newProducts,
-	.emthemesModez-section--featuredProducts {
-		padding: 0 spacing("quarter");
+    .emthemesModez-section--newProducts,
+    .emthemesModez-section--featuredProducts {
+        padding: 0 spacing("quarter");
 
-		@include breakpoint("medium") {
-			padding: 0;
-		}
+        @include breakpoint("medium") {
+            padding: 0;
+        }
 
-		.page-heading {
-			text-align: left;
-			padding: 0 spacing("half");
-		}
+        .page-heading {
+            text-align: left;
+            padding: 0 spacing("half");
+        }
 
-		.productCarousel {
-			@include breakpoint("medium") {
-				margin: 0 (-(spacing("quarter")));
-			}
-		}
+        .productCarousel {
+            @include breakpoint("medium") {
+                margin: 0 (-(spacing("quarter")));
+            }
+        }
 
-		.productCarousel-slide {
-			padding: 0 spacing("quarter");
-		}
-	}
+        .productCarousel-slide {
+            padding: 0 spacing("quarter");
+        }
+    }
 }

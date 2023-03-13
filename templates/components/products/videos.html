@@ -1,4 +1,4 @@
-<section class="toggle videoGallery{{#if theme_settings.show_video_tabs}} videoGallery--inTab{{/if}}" data-video-gallery>
+<section class="toggle videoGallery{{#if theme_settings.productpage_videos_position '===' 'tab'}} videoGallery--inTab{{/if}}" data-video-gallery>
         <h4 class="toggle-title">
             <span class="toggle-title-heading">{{lang 'products.videos.header'}}</span>            <a href="#videoGallery-content" class="toggleLink is-open" data-collapsible>
                 <span class="toggleLink-text toggleLink-text--on">
@@ -14,7 +14,6 @@
             <div class="videoGallery-main">
                 <iframe
                     id="player"
-                    class="lazyload"
                     type="text/html"
                     width="640"
                     height="390"
@@ -22,7 +21,8 @@
                     webkitAllowFullScreen
                     mozallowfullscreen
                     allowFullScreen
-                    data-src="//www.youtube.com/embed/{{this.featured.id}}?rel=0"
+                    src="https://www.youtube.com/embed/{{this.featured.id}}?rel=0"
+                    loading="lazy"
                     data-video-player>
                 </iframe>
             </div>

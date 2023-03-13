@@ -1,4 +1,24 @@
-<article class="card {{#if alternate}}card--alternate{{/if}}" {{#if settings.data_tag_enabled}} data-event-type="{{event}}" data-entity-id="{{id}}" data-position="{{position}}" data-name="{{name}}" data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{brand.name}}" data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"  {{/if}}>
+<article class="card {{#if alternate}}card--alternate{{/if}}"
+    {{#if settings.data_tag_enabled}}
+        data-event-type="{{event}}"
+        data-entity-id="{{id}}"
+        data-position="{{position}}"
+        data-name="{{name}}"
+        data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+        data-product-brand="{{brand.name}}"
+        data-product-price="
+            {{#or customer (unless theme_settings.restrict_to_login)}}
+                {{#if price.with_tax}}
+                    {{price.with_tax.value}}
+                {{else}}
+                    {{price.without_tax.value}}
+                {{/if}}
+            {{else}}
+                {{lang 'common.login_for_pricing'}}
+            {{/or}}"
+        "
+    {{/if}}
+>
     <figure class="card-figure">
         {{#if theme_settings.product_outstock_badge}}
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
@@ -42,6 +62,7 @@
                     fallback_size=theme_settings.productgallery_size
                     lazyload=theme_settings.lazyload_mode
                     default_image=theme_settings.default_image_product
+                    otherAttributes=(getVar 'productCardImageSizeAttrs')
                 }}
                 {{#if theme_settings.card_showHoverImage}}
                     {{#each (limit images 2)}}
@@ -52,6 +73,7 @@
                                 fallback_size=../../theme_settings.productgallery_size
                                 lazyload=../../theme_settings.lazyload_mode
                                 default_image=../../theme_settings.default_image_product
+                                otherAttributes=(getVar 'productCardImageSizeAttrs')
                             }}
                         {{/if}}
                     {{/each}}
@@ -63,7 +85,7 @@
                 <div class="card-buttons">
                     {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                         {{#if show_cart_action}}
-                            <!--{{#if has_options}}
+                            {{#if has_options}}
                                 <a href="{{url}}" data-event-type="product-click" class="button button--small button--primary card-figcaption-button{{#unless hide_product_quick_view}}{{#if theme_settings.show_product_quick_view}}{{#if theme_settings.ajax_add_to_cart}} quickview-alt{{/if}}{{/if}}{{/unless}}" data-product-id="{{id}}">{{lang 'products.choose_options'}}</a>
                             {{/if}}
                             {{#if pre_order}}
@@ -71,7 +93,7 @@
                             {{/if}}
                             {{#if add_to_cart_url }}
                                 <a href="{{add_to_cart_url}}"{{#unless theme_settings.ajax_add_to_cart}} data-event-type="product-click"{{/unless}} class="button button--small button--primary card-figcaption-button"{{#if theme_settings.ajax_add_to_cart}} data-emthemesmodez-cart-item-add{{/if}}>{{lang 'products.add_to_cart'}}</a>
-                            {{/if}}-->
+                            {{/if}}
                             {{#unless theme_settings.product_outstock_badge}}
                                 {{#if out_of_stock_message }}
                                     <a href="{{url}}" data-event-type="product-click" class="button button--small card-figcaption-button" data-product-id="{{id}}">{{out_of_stock_message}}</a>
@@ -80,13 +102,13 @@
                         {{/if}}
                     {{/or}}
 
-                    <!--{{#if show_compare}}
+                    {{#if show_compare}}
                         <button type="button" class="button button--small card-figcaption-button card-figcaption-button--compare" 
                             data-compare-id="{{id}}"
                             data-compare-image="{{getImage image 'productthumb_size' (cdn theme_settings.default_image_product)}}"
                             data-compare-title="{{name}}"
                         >{{lang 'products.compare'}}</button>
-                    {{/if}}-->
+                    {{/if}}
                 </div>
 
                 <div class="card-buttons card-buttons--alt">
@@ -100,9 +122,9 @@
         </figcaption>
     </figure>
     <div class="card-body">
-        <p class="card-title">
+        <h4 class="card-title">
             <a href="{{url}}" data-instantload {{#if settings.data_tag_enabled}} data-event-type="product-click" {{/if}}>{{name}}</a>
-        </p>
+        </h4>
 
         {{#if brand.name}}
             <p class="card-text card-text--brand" data-test-info-type="brandName">{{brand.name}}</p>
@@ -288,12 +310,12 @@
         </div>
         <div class="card-bulkOrder-fieldRow card-bulkOrder-qty">
             {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
-            {{#if add_to_cart_url}}
+            {{#or add_to_cart_url pre_order_add_to_cart_url}}
                 <div class="card-bulkOrder-label">{{lang 'bulk_order.qty'}}: </div>
                 <div class="card-bulkOrder-value">
                     <div class="form-increment" data-quantity-change>
                         <button class="button button--icon" data-action="dec" type="button">
-                            <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                            <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
                             <i class="icon" aria-hidden="true">
                                 <svg>
                                     <use xlink:href="#icon-keyboard-arrow-down"/>
@@ -311,7 +333,7 @@
                             pattern="[0-9]*"
                             aria-live="polite">
                         <button class="button button--icon" data-action="inc" type="button">
-                            <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                            <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
                             <i class="icon" aria-hidden="true">
                                 <svg>
                                     <use xlink:href="#icon-keyboard-arrow-up"/>
@@ -320,7 +342,7 @@
                         </button>
                     </div>
                 </div>
-            {{/if}}
+            {{/or}}
             {{/or}}
         </div>
         <div class="card-bulkOrder-fieldRow card-bulkOrder-price">
@@ -361,7 +383,11 @@
                         {{/all}}
                     {{/if}}
                     {{#if pre_order}}
-                        <a href="{{url}}" data-event-type="product-click" class="button button--small button--primary card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                        {{#if pre_order_add_to_cart_url}}
+                            <a href="{{pre_order_add_to_cart_url}}" {{#unless theme_settings.ajax_add_to_cart}} data-event-type="product-click"{{/unless}} class="button button--small button--primary card-figcaption-button"{{#if theme_settings.ajax_add_to_cart}} data-emthemesmodez-cart-item-add{{/if}} data-check-qty>{{lang 'products.pre_order'}}</a>
+                        {{else}}
+                            <a href="{{url}}" data-event-type="product-click" class="button button--small button--primary card-figcaption-button">{{lang 'products.pre_order'}}</a>
+                        {{/if}}
                     {{/if}}
                     {{#if add_to_cart_url }}
                         <a href="{{add_to_cart_url}}" {{#unless theme_settings.ajax_add_to_cart}} data-event-type="product-click"{{/unless}} class="button button--small button--primary card-figcaption-button"{{#if theme_settings.ajax_add_to_cart}} data-emthemesmodez-cart-item-add{{/if}} data-check-qty>{{lang 'products.add_to_cart'}}</a>

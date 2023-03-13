@@ -21,9 +21,8 @@
 
 .optimizedCheckout-header {
     background-color: stencilColor("optimizedCheckout-header-backgroundColor");
-    // scss-lint:disable StringQuotes
+    // stylelint-disable-next-line function-url-quotes
     background-image: url(stencilImage('optimizedCheckout-backgroundImage', 'optimizedCheckout-backgroundImage-size'));
-    // scss-lint:enable StringQuotes
     background-size: cover;
     border-color: stencilColor("optimizedCheckout-header-borderColor");
     color: stencilColor("optimizedCheckout-header-textColor");

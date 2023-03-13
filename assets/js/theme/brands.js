@@ -1,5 +1,5 @@
 import PageManager from '../page-manager';
-import AZBrands from '../emthemes-modez/azbrands.js';
+import AZBrands from '../emthemes-modez/azbrands';
 
 export default class Brands extends PageManager {
     onReady() {

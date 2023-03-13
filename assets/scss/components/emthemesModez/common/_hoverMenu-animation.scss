@@ -1,118 +1,118 @@
 @include breakpoint("medium") {
-	@if stencilString("navPages_animation") == "fade" {
+    @if stencilString("navPages_animation") == "fade" {
 
-		// 2nd-level menu
-		// ========================================================================
-		.navPage-subMenu.is-open:not(.navPage-subMenu--vertical) {
-			display: block;
-			opacity: 0;
-			transform: translateY(20px);
-			transition: opacity .2s ease-in, transform .2s ease-in, left .1s ease-in .2s;
+        // 2nd-level menu
+        // ========================================================================
+        .navPage-subMenu.is-open:not(.navPage-subMenu--vertical) {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.2s ease-in, transform 0.2s ease-in, left 0.1s ease-in 0.2s;
 			
 
-			.navPages-item:not(.is-hover):not(:hover):not(:focus) & {
-				left: -99999px !important;
-			}	
-		}
+            .navPages-item:not(.is-hover):not(:hover):not(:focus) & {
+                left: -99999px !important;
+            }	
+        }
 		
-		.navPages-item.is-hover,
-		.navPages-item:hover,
-		.navPages-item:focus {
-			.navPage-subMenu.is-open:not(.navPage-subMenu--vertical) {
-				opacity: 1;
-				transform: none;
-				transition: opacity .2s ease-out, transform .2s ease-out;
+        .navPages-item.is-hover,
+        .navPages-item:hover,
+        .navPages-item:focus {
+            .navPage-subMenu.is-open:not(.navPage-subMenu--vertical) {
+                opacity: 1;
+                transform: none;
+                transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 				
-			}
-		}
+            }
+        }
 
-		// Standard dropdown menu
-		// ========================================================================
-		.navPage-subMenu--standard {
+        // Standard dropdown menu
+        // ========================================================================
+        .navPage-subMenu--standard {
 
-			// 2nd-level dropdown menu
-			// --------------------------------------------------------------------
-			.navPage-childList.is-open {
-				display: block;
-				opacity: 0;
-				transform: translateY(20px);
-				transition: opacity .2s ease-in, transform .2s ease-in, left .1s ease-in .2s;
-			}
+            // 2nd-level dropdown menu
+            // --------------------------------------------------------------------
+            .navPage-childList.is-open {
+                display: block;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.2s ease-in, transform 0.2s ease-in, left 0.1s ease-in 0.2s;
+            }
 
-			.navPage-subMenu-item:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
-				left: -99999px !important;
-			}
+            .navPage-subMenu-item:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
+                left: -99999px !important;
+            }
 
-			.navPage-subMenu-item.is-hover,
-			.navPage-subMenu-item:hover,
-			.navPage-subMenu-item:focus {
-				> .navPage-childList.is-open {
-					opacity: 1;
-					transform: none;
-					transition: opacity .2s ease-out, transform .2s ease-out;
-				}
-			}
+            .navPage-subMenu-item.is-hover,
+            .navPage-subMenu-item:hover,
+            .navPage-subMenu-item:focus {
+                > .navPage-childList.is-open {
+                    opacity: 1;
+                    transform: none;
+                    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+                }
+            }
 
-			// 3rd-level menu
-			// --------------------------------------------------------------------
-			.navPage-childList-item:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
-				left: -99999px !important;
-			}
+            // 3rd-level menu
+            // --------------------------------------------------------------------
+            .navPage-childList-item:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
+                left: -99999px !important;
+            }
 
-			.navPage-childList-item.is-hover,
-			.navPage-childList-item:hover,
-			.navPage-childList-item:focus {
-				> .navPage-childList.is-open {
-					opacity: 1;
-					transform: none;
-					transition: opacity .2s ease-out, transform .2s ease-out;
-				}
-			}
-		}
+            .navPage-childList-item.is-hover,
+            .navPage-childList-item:hover,
+            .navPage-childList-item:focus {
+                > .navPage-childList.is-open {
+                    opacity: 1;
+                    transform: none;
+                    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+                }
+            }
+        }
 
-		// 4th-level menu on the left sidebar and grouped categories menu
-		// ------------------------------------------------------------------------
-		.emthemesModez-verticalCategories .navPage-childList-item {
-			> .navPage-childList.is-open {
-				display: block;
-				opacity: 0;
-				transform: translateY(20px);
-				transition: opacity .2s ease-in, transform .2s ease-in, left .1s ease-in .2s;
-			}
+        // 4th-level menu on the left sidebar and grouped categories menu
+        // ------------------------------------------------------------------------
+        .emthemesModez-verticalCategories .navPage-childList-item {
+            > .navPage-childList.is-open {
+                display: block;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.2s ease-in, transform 0.2s ease-in, left 0.1s ease-in 0.2s;
+            }
 
-			&:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
-				left: -99999px !important;
-			}
+            &:not(.is-hover):not(:hover):not(:focus) > .navPage-childList.is-open {
+                left: -99999px !important;
+            }
 
-			&.is-hover,
-			&:hover,
-			&:focus {
-				> .navPage-childList.is-open {
-					opacity: 1;
-					transform: none;
-					transition: opacity .2s ease-out, transform .2s ease-out;
-				}
-			}
-		}
+            &.is-hover,
+            &:hover,
+            &:focus {
+                > .navPage-childList.is-open {
+                    opacity: 1;
+                    transform: none;
+                    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+                }
+            }
+        }
 
-		.emthemesModez-verticalCategories.is-open:not(.emthemesModez-verticalCategories--open) {
-			display: block;
-			opacity: 0;
-			transform: translateY(20px);
-			transition: opacity .2s ease-in, transform .2s ease-in, left .1s ease-in .2s;
+        .emthemesModez-verticalCategories.is-open:not(.emthemesModez-verticalCategories--open) {
+            display: block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.2s ease-in, transform 0.2s ease-in, left 0.1s ease-in 0.2s;
 
-			.emthemesModez-navPages-verticalCategories-container:not(.is-hover):not(:hover):not(:focus) & {
-				left: -99999px !important;
-			}
+            .emthemesModez-navPages-verticalCategories-container:not(.is-hover):not(:hover):not(:focus) & {
+                left: -99999px !important;
+            }
 
-			.emthemesModez-navPages-verticalCategories-container.is-hover &,
-			.emthemesModez-navPages-verticalCategories-container:hover &,
-			.emthemesModez-navPages-verticalCategories-container:focus & {
-				opacity: 1;
-				transform: none;
-				transition: opacity .2s ease-out, transform .2s ease-out;
-			}
-		}
-	}
+            .emthemesModez-navPages-verticalCategories-container.is-hover &,
+            .emthemesModez-navPages-verticalCategories-container:hover &,
+            .emthemesModez-navPages-verticalCategories-container:focus & {
+                opacity: 1;
+                transform: none;
+                transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+            }
+        }
+    }
 }
 

@@ -1,7 +1,7 @@
 import { api } from '@bigcommerce/stencil-utils';
 import { debounce } from 'lodash';
 import Url from 'url';
-import urlUtils from '../theme/common/url-utils';
+import urlUtils from '../theme/common/utils/url-utils';
 
 export default class SearchInCategory {
     /**
@@ -74,12 +74,11 @@ export default class SearchInCategory {
     onClear(event) {
         event.preventDefault();
         this.$clear.hide();
-        this.$input.val('');
-        this.onInput();
+        this.$input.val('').trigger('input');
     }
 
-    onInput() {
-        this.doSearch(this.$input.val());
+    onInput(event) {
+        this.doSearch($(event.target).val());
     }
 
     onStateChange() {

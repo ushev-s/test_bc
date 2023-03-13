@@ -1,7 +1,7 @@
 ---
 product:
     videos:
-        limit: {{theme_settings.productpage_videos_count}}
+        limit: 100
     reviews:
         limit: {{theme_settings.productpage_reviews_count}}
     related_products:
@@ -23,8 +23,8 @@ product:
 {{/partial}}
 {{#partial "page"}}
     {{> components/amp/common/header }}
-    <div itemscope itemtype="http://schema.org/Product">
-        {{> components/amp/products/product-view schema=true}}
+    <div>
+        {{> components/amp/products/product-view}}
     </div>
     {{#if settings.amp_analytics_id}}
         <amp-analytics type="googleanalytics">

@@ -1,10 +1,9 @@
-<ul class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+<ul class="breadcrumbs">
     {{#each breadcrumbs}}
         {{#if url}}
-            <li class="breadcrumb {{#if @last}}is-active{{/if}}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a data-instantload href="{{url}}" class="breadcrumb-label" itemprop="item">
-                    <span itemprop="name">{{name}}</span>
-                    <meta itemprop="position" content="{{@index}}" />
+            <li class="breadcrumb {{#if @last}}is-active{{/if}}">
+                <a data-instantload href="{{url}}" class="breadcrumb-label">
+                    <span>{{name}}</span>
                 </a>
             </li>
         {{else}}
@@ -14,3 +13,23 @@
         {{/if}}
     {{/each}}
 </ul>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement":
+    [
+        {{#each breadcrumbs}}
+        {
+            "@type": "ListItem",
+            "position": {{add @index 1}},
+            "item": {
+                "@id": {{{JSONstringify url}}},
+                "name": {{{JSONstringify name}}}
+            }
+        }{{#unless @last}},{{/unless}}
+        {{/each}}
+    ]
+}
+</script>

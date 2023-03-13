@@ -37,7 +37,7 @@
             top: -39px;
             border: container("border");
             background-color: container("fill");
-            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -61,7 +61,7 @@
             top: auto;
             border: container("border");
             background-color: container("fill");
-            box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
         }
 
         .supermarket-compareList-panel-body {
@@ -78,6 +78,7 @@
     from {
         transform: translateY(50px);
     }
+
     to {
         transform: none;
     }
@@ -86,6 +87,7 @@
     from {
         transform: none;
     }
+
     to {
         transform: translateY(50px);
     }
@@ -103,7 +105,7 @@
     padding: spacing("half") spacing("quarter");
     border: container("border");
     position: relative;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
 }
@@ -153,7 +155,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, 0.5);
 
     @media (max-width: screenSize("medium") - 1px) {
         width: 25px;

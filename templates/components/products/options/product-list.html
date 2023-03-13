@@ -17,7 +17,7 @@
                            name="attribute[{{id}}]"
                            value="0"
                            id="attribute_productlist_0_{{id}}"
-                           checked="{{#if defaultValue '==' 0}}checked{{/if}}" required>
+                           {{#unless defaultValue}}checked{{/unless}} required>
                     <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
                 </li>
             {{/unless}}
@@ -57,7 +57,7 @@
                name="attribute[{{id}}]"
                value="0"
                id="attribute_productlist_0_{{id}}"
-               {{#if defaultValue '==' 0}}checked{{/if}}>
+               {{#unless defaultValue}}checked{{/unless}}>
         <label class="form-label" for="attribute_productlist_0_{{id}}">{{lang 'products.none'}}</label>
         {{/unless}}
         {{#each values}}
@@ -68,7 +68,10 @@
                 value="{{id}}"
                 id="attribute_productlist_{{../id}}_{{id}}"
                 data-product-id="{{data}}"
-                {{#if selected}}checked{{/if}}
+                {{#if selected}}
+                    checked
+                    data-default
+                {{/if}}
                 {{#if ../required}}required{{/if}}>
             <label data-product-attribute-value="{{id}}" class="form-label" for="attribute_productlist_{{../id}}_{{id}}">{{label}}</label>
         {{/each}}

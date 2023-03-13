@@ -5,8 +5,8 @@
 // BURST BADGE
 // -----------------------------------------------------------------------------
 .sale-flag-star,
-.sale-flag-star:before,
-.sale-flag-star:after {
+.sale-flag-star::before,
+.sale-flag-star::after {
     background: stencilColor("color_badge_product_sale_badges");
     content: "";
     display: block;
@@ -21,11 +21,11 @@
     z-index: zIndex("lower");
 }
 
-.sale-flag-star:before {
+.sale-flag-star::before {
     transform: rotateZ(30deg) scaleX(1) scaleY(1) scaleZ(1);
 }
 
-.sale-flag-star:after {
+.sale-flag-star::after {
     transform: rotateZ(60deg) scaleX(1) scaleY(1) scaleZ(1);
 }
 

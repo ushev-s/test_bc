@@ -1,86 +1,86 @@
 .productCarousel {
-	.papaSupermarket-style--modern & {
-		margin: 0;
-	}
+    .papaSupermarket-style--modern & {
+        margin: 0;
+    }
 }
 
 .page-heading + .productCarousel {
-	$pd: spacing("half");
-	$h: remCalc(fontSize("small") * 1.25) + spacing("single"); // same page-heading height
-	$t: spacing("single");
+    $pd: spacing("half");
+    $h: remCalc(fontSize("small") * 1.25) + spacing("single"); // same page-heading height
+    $t: spacing("single");
 
-	@if $theme-style == "modern" {
-		$pd: spacing("eighth");
-		$h: remCalc(fontSize("small") * 1.25);
-		$t: spacing("half");
-	}
-	@else if $theme-style == "compact" {
-		$pd: spacing("half");
-		$h: remCalc(fontSize("small") * 1.25) + spacing("single");
-	}
+    @if $theme-style == "modern" {
+        $pd: spacing("eighth");
+        $h: remCalc(fontSize("small") * 1.25);
+        $t: spacing("half");
+    }
+    @else if $theme-style == "compact" {
+        $pd: spacing("half");
+        $h: remCalc(fontSize("small") * 1.25) + spacing("single");
+    }
 	
-	.slick-prev,
-	.slick-next	{
-		top: -($t + $h);
-		margin: 0;
-		width: auto;
-		height: auto;
-		padding: $pd;
-		transform: none;
+    .slick-prev,
+    .slick-next {
+        top: -($t + $h);
+        margin: 0;
+        width: auto;
+        height: auto;
+        padding: $pd;
+        transform: none;
 
-		&:before {
-			width: $h - $pd * 2;
-			height: $h - $pd * 2;
-			margin: 0;
-		}
-	}
+        &::before {
+            width: $h - $pd * 2;
+            height: $h - $pd * 2;
+            margin: 0;
+        }
+    }
 
-	.slick-prev {
-		left: auto;
-		$r: $h;
+    .slick-prev {
+        left: auto;
+        $r: $h;
 
-		@if $theme-style == "modern" {
-			right: $r + spacing("half");
-		}
-		@else {
-			right: $r;
-		}
-	}
+        @if $theme-style == "modern" {
+            right: $r + spacing("half");
+        }
+        @else {
+            right: $r;
+        }
+    }
 
-	.slick-next	{
-		@if $theme-style == "modern" {
-			right: spacing("half");
-		}
-		@else {
-			right: 0;
-		}
-	}
+    .slick-next {
+        @if $theme-style == "modern" {
+            right: spacing("half");
+        }
+        @else {
+            right: 0;
+        }
+    }
 
-	@include breakpoint("medium") {
-		@if $theme-style == "modern" {
-			$pd: spacing("quarter");
-			$h: remCalc(fontSize("large") * 1.25);
+    @include breakpoint("medium") {
+        @if $theme-style == "modern" {
+            $pd: spacing("quarter");
+            $h: remCalc(fontSize("large") * 1.25);
 			
-			.slick-prev,
-			.slick-next	{
-				top: -($t + $h);
-				padding: $pd;
+            .slick-prev,
+            .slick-next {
+                top: -($t + $h);
+                padding: $pd;
 				
-				&:before {
-					width: $h - $pd * 2;
-					height: $h - $pd * 2;
-				}
-			}
+                &::before {
+                    width: $h - $pd * 2;
+                    height: $h - $pd * 2;
+                }
+            }
 
-			.slick-prev {
-				right: spacing("half") + $h;
-			}
-		}
-	}
+            .slick-prev {
+                right: spacing("half") + $h;
+            }
+        }
+    }
 }
 
 .productCarousel-slide {
-	padding: 0;
+    padding: 0;
 }
 
 
@@ -88,16 +88,16 @@
 // Modern Style
 // ============================================================================
 .papaSupermarket-style--modern {
-	.productCarousel .slick-track {
-		display: flex;
-		align-items: stretch;
-	}
+    .productCarousel .slick-track {
+        display: flex;
+        align-items: stretch;
+    }
 
-	.productCarousel-slide {
-		height: auto;
-	}
+    .productCarousel-slide {
+        height: auto;
+    }
 
-	.card {
-		height: 100%;
-	}
+    .card {
+        height: 100%;
+    }
 }

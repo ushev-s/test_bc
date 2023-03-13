@@ -5,15 +5,15 @@
 .emthemesModez-productUniform {
     .card-figure {
         > a {
-            max-width: get-width(stencilString('productgallery_size'));
+            max-width: get-width(stencilString("productgallery_size"));
             text-align: center;
 
-            &:after {
-                content: '';
+            &::after {
+                content: "";
                 display: block;
                 height: 0;
                 width: 100%;
-                padding-bottom: get-padding(stencilString('productgallery_size'));
+                padding-bottom: get-padding(stencilString("productgallery_size"));
             }
         }
     }
@@ -30,10 +30,10 @@
     .brandGrid {
         .card-figure {
             > a {
-                max-width: get-width(stencilString('brand_size'));
+                max-width: get-width(stencilString("brand_size"));
 
-                &:after {
-                    padding-bottom: get-padding(stencilString('brand_size'));
+                &::after {
+                    padding-bottom: get-padding(stencilString("brand_size"));
                 }
             }
         }

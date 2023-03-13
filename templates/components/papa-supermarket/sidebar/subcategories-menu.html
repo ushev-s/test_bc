@@ -3,7 +3,7 @@
 
     {{#unless sidebar_subcategories}}
         <div class="sidebarBlock sidebarBlock--mobileCollapsible">
-            <h4 class="sidebarBlock-heading is-open" data-collapsible="#categories-navList" data-collapsible-disabled-breakpoint="medium" aria-expanded="true">{{#if category.name}}{{category.name}}{{else}}{{theme_settings.navPages_categoriesItem_text}}{{/if}}</h4>
+            <h5 class="sidebarBlock-heading is-open" data-collapsible="#categories-navList" data-collapsible-disabled-breakpoint="medium" aria-expanded="true">{{#if category.name}}{{category.name}}{{else}}{{theme_settings.navPages_categoriesItem_text}}{{/if}}</h5>
             <ul id="categories-navList" class="navList is-open" aria-hidden="false">
                 {{#each category.subcategories}}
                 <li class="navList-item">

@@ -53,23 +53,23 @@
 
 
 .sale-flag-star,
-.sale-flag-star:before,
-.sale-flag-star:after {
-	left: auto;
-	right: 0;
+.sale-flag-star::before,
+.sale-flag-star::after {
+    left: auto;
+    right: 0;
 }
 
 .starwrap {
-	right: spacing("base") + remCalc(10px);
+    right: spacing("base") + remCalc(10px);
 }
 
 .sale-text-burst {
-	font-size: fontSize("smallest");
+    font-size: fontSize("smallest");
 }
 
 .sale-flag-sash {
-	left: auto;
-	right: -25px;
-	transform: rotate(45deg);
-	font-size: fontSize("smallest");
+    left: auto;
+    right: -25px;
+    transform: rotate(45deg);
+    font-size: fontSize("smallest");
 }

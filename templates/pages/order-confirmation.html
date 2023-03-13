@@ -1,84 +1,4 @@
-
 {{#partial "head"}}
-<!-- Start GTM4 and Avantlink -->
-<script>
-  var _AvantMetrics = [];
-  var dataLayer = [];
-
-  const collectOrderData = async () => {
-    const url =
-      'https://gritroutdoors.com/api/storefront/orders/{{checkout.order.id}}?include=payments%2ClineItems.physicalItems.socialMedia%2ClineItems.physicalItems.options%2ClineItems.digitalItems.socialMedia%2ClineItems.digitalItems.options';
-
-    const response = await fetch(url);
-    const status = await response.status;
-
-    if (status != 200) return;
-
-    const orderData = await response.json();
-
-    const {
-      orderId,
-      orderAmount,
-      lineItems,
-      billingAddress,
-      shippingCostTotal,
-      taxTotal,
-    } = orderData;
-
-    _AvantMetrics.push([
-      'order',
-      {
-        order_id: orderId,
-        amount: orderAmount,
-        state: billingAddress.stateOrProvinceCode,
-        country: billingAddress.country,
-      },
-    ]);
-
-    dataLayer.push({
-      orderId: `${orderId}`,
-      orderAmount,
-      orderTax: taxTotal,
-      orderShipping: shippingCostTotal,
-      orderItems: lineItems
-        ? lineItems.physicalItems
-          ? lineItems.physicalItems.map((item) => ({
-              item_name: item.name,
-              item_id: item.sku,
-              price: item.salePrice || item.listPrice,
-              quantity: item.quantity,
-              currency: 'USD',
-            }))
-          : []
-        : [],
-    });
-
-    lineItems.physicalItems.forEach((itemData) => {
-      _AvantMetrics.push([
-        'item',
-        {
-          order_id: orderId,
-          parent_sku: itemData.sku,
-          variant_sku: '',
-          price: itemData.salePrice,
-          qty: itemData.quantity,
-        },
-      ]);
-    });
-
-    let avm = document.createElement('script'),
-      s = document.getElementsByTagName('script')[0];
-    avm.type = 'text/javascript';
-    avm.async = true;
-    avm.src =
-      ('https:' == document.location.protocol ? 'https://' : 'http://') +
-      'cdn.avmws.com/1014667/';
-    s.parentNode.insertBefore(avm, s);
-  };
-
-  collectOrderData();
-</script>
-<!-- End GTM4 and Avantlink -->
 {{{ checkout.checkout_head }}}
 {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
 {{ getFontsCollection }}
@@ -86,7 +6,6 @@
 <script type="text/javascript">
     window.language = {{{langJson 'optimized_checkout'}}};
 </script>
-
 
 {{{head.scripts}}}
 
@@ -135,48 +54,6 @@
 </header>
 
 {{{ checkout.order_confirmation_content }}}
-
-<!-- Avantlink Integration Code -->
-<!--<script>
-var _AvantMetrics = [];
-
-(function() {
-
-  const collectOrderData = async event => {
-    if (document.readyState != 'complete')
-      return;
-
-    const url = 'https://gritroutdoors.com/api/storefront/orders/{{checkout.order.id}}?include=payments%2ClineItems.physicalItems.socialMedia%2ClineItems.physicalItems.options%2ClineItems.digitalItems.socialMedia%2ClineItems.digitalItems.options';
-
-    const response = await fetch(url);
-    const status = await response.status;
-
-    if (status != 200)
-      return;
-
-    const orderData = await response.json();
-
-    const { orderId, orderAmount, lineItems, billingAddress } = orderData;
-
-    _AvantMetrics.push(['order', { order_id: orderId, amount: orderAmount, state: billingAddress.stateOrProvinceCode, country: billingAddress.country }]);
-    
-    lineItems.physicalItems.forEach(itemData => {
-      _AvantMetrics.push(['item',{ order_id: orderId, parent_sku: itemData.sku, variant_sku:'', price: itemData.salePrice, qty: itemData.quantity }]);
-    });
-
-    let avm = document.createElement('script'),
-      s = document.getElementsByTagName('script')[0]; 
-    avm.type = 'text/javascript'; 
-    avm.async = true;
-    avm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.avmws.com/1014667/';
-    s.parentNode.insertBefore(avm, s);
-
-  };
-
-  document.addEventListener('readystatechange', collectOrderData);
-
-})();
-</script>-->
 
 {{{ footer.scripts }}}
 

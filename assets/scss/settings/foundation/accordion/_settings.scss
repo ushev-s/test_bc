@@ -64,7 +64,7 @@ $accordion-content-active-bg-color:             null;
 // Stencil Variables
 // -----------------------------------------------------------------------------
 
-$accordion-borderRadius:                        $global-radius;
+$accordion-borderRadius:                        stencilNumber("container-border-radius2"); // $global-radius; // papathemes-supermarket edited
 
 $accordion-navList-border:                      $accordion-border;
 $accordion-navList-borderRadius:                $accordion-borderRadius;

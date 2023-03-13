@@ -1,56 +1,80 @@
 .form-label--alternate {
-	text-transform: uppercase;
-	font-size: fontSize("base");
-	font-weight: fontWeight("bold");
+    text-transform: uppercase;
+    font-size: fontSize("base");
+    font-weight: fontWeight("bold");
+}
+
+.form-option {
+    border-radius: $input-border-radius;
+}
+
+.form-option-variant {
+    &:first-child {
+        border-top-left-radius: $input-border-radius;
+        border-bottom-left-radius: $input-border-radius;
+    }
+
+    &:last-child {
+        border-top-right-radius: $input-border-radius;
+        border-bottom-right-radius: $input-border-radius;
+    }
 }
 
 .form-option-variant--color,
 .form-option-variant--pattern {
-	@media (-moz-touch-enabled: 1), (pointer: coarse) {
-		pointer-events: none;
-	}
+    @media (-moz-touch-enabled: 1), (pointer: coarse) {
+        pointer-events: none;
+    }
 }
 
 .form-increment {
-	display: inline-flex;
-	border-top: 1px solid $input-border-color;
-	border-bottom: 1px solid $input-border-color;
-	white-space: nowrap;
-	letter-spacing: -0.5em;
-	border-radius: $button-radius;
-	overflow: hidden;
+    display: inline-flex;
+    border-top: 1px solid $input-border-color;
+    border-bottom: 1px solid $input-border-color;
+    white-space: nowrap;
+    letter-spacing: -0.5em;
+    border-radius: $button-radius;
+    overflow: hidden;
 
-	.button {
-		border-radius: 0;
-		border-top: 0;
-		border-bottom: 0;
-		border-color: $input-border-color;
-		padding: spacing("third");
-	}
+    .button {
+        border-radius: 0;
+        border-top: 0;
+        border-bottom: 0;
+        border-color: $input-border-color;
+        padding: spacing("third");
+    }
 }
 
+.form-select--small,
+.form-select--date {
+    @if $theme-style == "compact" {
+        background-position: right spacing("third") top spacing("quarter");
+    }
+}
 
 .form-input--incrementTotal {
-	width: spacing("double");
+    width: spacing("double");
 }
 
 
 .form-prefixPostfix {
-	.form-input {
-		@include breakpoint("small") {
-			width: auto;
-		}
-	}
-	.button {
-		@include breakpoint("small") {
-			width: auto;
-		}
-	}
+    .form-input {
+        @include breakpoint("small") {
+            width: auto;
+        }
+    }
+
+    .button {
+        @include breakpoint("small") {
+            width: auto;
+        }
+    }
 }
+
 .form-prefixPostfix-button--postfix {
-	@include breakpoint("small") {
-		margin: 0 0 0 spacing("half");
-	}
+    @include breakpoint("small") {
+        margin: 0 0 0 spacing("half");
+    }
 }
 
 
@@ -60,12 +84,12 @@
 // ----------------------------------------------------------------------------
 
 .gift-certificate-form {
-	.form-column {
-		.form-field:not(.form-field-group) {
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
+    .form-column {
+        .form-field:not(.form-field-group) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
 }
 
 
@@ -73,32 +97,32 @@
 // Modern Style
 // ============================================================================
 .papaSupermarket-style--modern {
-	.form-row {
-		margin: 0;
+    .form-row {
+        margin: 0;
 
-		@include breakpoint("small") {
-			margin: 0 (-(spacing("half")));
-		}
+        @include breakpoint("small") {
+            margin: 0 (-(spacing("half")));
+        }
 
-		.form-field {
-			padding: 0;
-			margin-bottom: spacing("half");
+        .form-field {
+            padding: 0;
+            margin-bottom: spacing("half");
 
-			@include breakpoint("small") {
-				padding: 0 spacing("half");
-			}
-		}
-	}
+            @include breakpoint("small") {
+                padding: 0 spacing("half");
+            }
+        }
+    }
 
-	.form-field {
-		margin-bottom: spacing("single");
-	}
+    .form-field {
+        margin-bottom: spacing("single");
+    }
 
-	.form-column {
-		padding: 0;
+    .form-column {
+        padding: 0;
 
-		@include breakpoint("small") {
-			padding: 0 spacing("half");
-		}
-	}
+        @include breakpoint("small") {
+            padding: 0 spacing("half");
+        }
+    }
 }

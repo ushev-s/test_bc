@@ -9,6 +9,7 @@ import scrollToElement from 'scroll-to-element';
 import mediaQueryListFactory from '../theme/common/media-query-list';
 import newsletterPopup from './newsletter-popup';
 import cartPopupRemove from './cart-popup-remove';
+import recentlyViewedProducts from './recently-viewed-products';
 
 export default function (context) {
     const mq = mediaQueryListFactory('medium');
@@ -234,4 +235,9 @@ export default function (context) {
     // Init Cart Popup remove item button
     // ------------------------------------------------------------------------
     cartPopupRemove();
+
+    // ------------------------------------------------------------------------
+    // Init Recently Viewed Products
+    // ------------------------------------------------------------------------
+    recentlyViewedProducts(context);
 }

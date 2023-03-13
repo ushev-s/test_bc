@@ -10,11 +10,11 @@
 
         .actionBar {
             position: absolute;
-            left: 1px;
+            left: 0;
             right: 1px;
             margin-top: spacing("half") * 2 + remCalc(fontSize("smaller") * lineHeight("base"));
             z-index: zIndex("lower") + 1;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             display: none;
             
 
@@ -38,8 +38,8 @@
             flex-wrap: wrap;
             align-items: flex-start;
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 display: none;
             }
         }
@@ -146,7 +146,6 @@
         }
 
         .facetedSearch-navList {
-
             &.is-open {
                 padding: spacing("half") 0;
             }

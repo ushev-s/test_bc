@@ -7,6 +7,8 @@ import ImageGallery from '../product/image-gallery';
 import modalFactory, { defaultModal, ModalEvents, showAlertModal } from '../global/modal';
 import _ from 'lodash';
 import Wishlist from '../wishlist';
+import bannerUtils from './utils/banner-utils';
+import currencySelector from '../global/currency-selector';
 import AlsoBought from '../../emthemes-modez/also-bought'; // Papathemes - Supermarket
 
 // Supermarket - OBPS Mod
@@ -45,6 +47,7 @@ function shake($el, settings) {
 // Supermarket: Fix Price not update when a product option is checked
 function supermarketSerialize($form) {
     const assoc = $form.serializeArray().reduce((_assoc, { name, value }) => {
+        // eslint-disable-next-line no-param-reassign
         _assoc[name] = value;
         return _assoc;
     }, {});
@@ -114,6 +117,7 @@ export default class ProductDetails {
             });
         } else {
             this.updateProductAttributes(productAttributesData);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         }
 
         $productOptionsElement.show();
@@ -356,12 +360,12 @@ export default class ProductDetails {
                 .html($changedOption.data('productAttributeLabel'));
         }
 
-        
         utils.api.productAttributes.optionChange(productId, supermarketSerialize($form), 'products/bulk-discount-rates', (err, response) => {
             const productAttributesData = response.data || {};
             const productAttributesContent = response.content || {};
             this.updateProductAttributes(productAttributesData);
             this.updateView(productAttributesData, productAttributesContent);
+            bannerUtils.dispatchProductBannerEvent(productAttributesData);
         });
     }
 
@@ -495,6 +499,9 @@ export default class ProductDetails {
 
         // Add item to cart
         utils.api.cart.itemAdd(this.filterEmptyFilesFromForm(new FormData(form)), async (err, response) => {
+            if (response && response.data && response.data.cart_id) {
+                currencySelector(response.data.cart_id);
+            }
             const errorMessage = err || response.data.error;
 
             $addToCartBtn
@@ -535,6 +542,10 @@ export default class ProductDetails {
                 modal.close();
                 if (this.context.themeSettings.add_to_cart_popup !== 'hide') {
                     this.previewModal.open();
+                }
+
+                if (window.ApplePaySession) {
+                    this.previewModal.$modal.addClass('apple-pay-supported');
                 }
 
                 this.updateCartContent(this.previewModal, response.data.cart_item.id);
@@ -738,14 +749,12 @@ export default class ProductDetails {
         if (data.mpn) {
             viewModel.mpn.$value.text(data.mpn);
             viewModel.mpn.$label.show();
+        } else if (viewModel.mpn.$value.data('originalMpn')) {
+            viewModel.mpn.$value.text(viewModel.mpn.$value.data('originalMpn'));
+            viewModel.mpn.$label.show();
         } else {
-            if (viewModel.mpn.$value.data('originalMpn')) {
-                viewModel.mpn.$value.text(viewModel.mpn.$value.data('originalMpn'));
-                viewModel.mpn.$label.show();
-            } else {
-                viewModel.mpn.$label.hide();
-                viewModel.mpn.$value.text('');
-            }
+            viewModel.mpn.$label.hide();
+            viewModel.mpn.$value.text('');
         }
 
         // if stock view is on (CP settings)

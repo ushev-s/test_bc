@@ -1,0 +1,3 @@
+{
+  "components/papa-supermarket/common/global-vars": "{{#if theme_settings.csspreload}}\n    {{#if settings.request.is_crawler}}\n        {{assignVar 'isCrawlerAndSpeedTestMode' 1}}\n    {{/if}}\n{{/if}}\n{{assignVar 'productCardImageSizeAttrs' (get 'string' (concat 'width=' (join (split theme_settings.productgallery_size 'x') ' height=')))}}"
+}

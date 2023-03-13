@@ -3,24 +3,24 @@
 // =============================================================================
 
 %emthemesModez-container {
-	margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     max-width: none;
     padding: 0 container("padding") / 2;
     position: relative;
-    width: layout("fixed");                                                                                             
+    width: layout("fixed");
 
     @include breakpoint("medium") {
         padding: 0 $container-padding;
     }
 
     @include breakpoint("large") {
-    	max-width: remCalc(1170) + ($container-padding * 2);
+        max-width: remCalc(1170) + ($container-padding * 2);
         padding: 0 $container-padding;
     }
 
     @include breakpoint("xxlarge") {
-    	max-width: layout("max") + ($container-padding * 4);
+        max-width: layout("max") + ($container-padding * 4);
         padding: 0 $container-padding * 2;
     }
 }

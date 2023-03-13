@@ -6,7 +6,7 @@ import Review from './product/reviews';
 import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
-import { classifyForm } from './common/form-utils';
+import { classifyForm } from './common/utils/form-utils';
 import { autoExpandCategoryMenu } from '../emthemes-modez/theme-utils'; // Supermarket
 
 export default class Product extends PageManager {
@@ -32,7 +32,7 @@ export default class Product extends PageManager {
         // Init collapsible
         collapsibleFactory();
 
-        this.productDetails = new ProductDetails($('.productView-scope'), this.context, window.BCData.product_attributes); // Supermarket Mod
+        this.productDetails = new ProductDetails($('.productView-scope'), this.context, window.BCData ? window.BCData.product_attributes : null); // Supermarket Mod
         this.productDetails.setProductVariant();
 
         videoGallery();
@@ -55,6 +55,9 @@ export default class Product extends PageManager {
 
         this.productReviewHandler();
         this.bulkPricingHandler();
+
+        // Supermarket: Track recently viewed products
+        $('body').trigger('productviewed', [Number($('.productView-scope').find('input[name="product_id"]').val())]);
     }
 
     productReviewHandler() {

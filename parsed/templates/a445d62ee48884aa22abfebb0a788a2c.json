@@ -1,0 +1,3 @@
+{
+  "components/products/preload-main-image": "{{#partial \"head-last\"}}\n    {{#if product.main_image}}\n        {{#if theme_settings.product_image_responsive}}\n            <link href=\"{{getImageSrcset product.main_image 'product_size' (cdn theme_settings.default_image_product) 1x=theme_settings.product_size}}\" rel=\"preload\" as=\"image\">\n        {{else}}\n            <link href=\"{{getImage product.main_image 'product_size' (cdn ../../theme_settings.default_image_product)}}\" rel=\"preload\" as=\"image\">\n        {{/if}}\n    {{/if}}\n{{/partial}}"
+}
